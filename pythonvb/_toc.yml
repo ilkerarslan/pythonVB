@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+
+parts:
+  - caption: Kısım I
+    numbered: True
+    chapters:
+    - file: part01/chapter0100.md
+    - file: part01/chapter0101.md
+    - file: part01/chapter0102.ipynb
+    
