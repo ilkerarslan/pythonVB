@@ -250,7 +250,7 @@ Tüm bunlar, Python’u finanstan, biyolojiye, fizikten, web tasarımına kadar 
 Bu kadar işlevselliğin yanı sıra Python, yazması, okuması ve öğrenmesi de çok kolay olan bir programlama dilidir. Bu nedenle öğrencilere programlama öğretmede en fazla kullanılan dillerden birisidir. Python, C, C++ ve Java gibi dillere göre çok daha anlaşılır bir yazı stiline sahiptir. Aşağıda, iki sayının toplamını bulan programların C++, C ve Java dillerindeki örnekleri yer alıyor. Önce C++ uygulamasına bakalım.
 
 ```C++
-using namespace std;2 2
+using namespace std;
 int main()
 {
  int a, b, c;
