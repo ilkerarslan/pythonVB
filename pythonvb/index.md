@@ -1,4 +1,4 @@
-# ÖNSÖZ
+# PYTHON ile VERİ BİLİMİ
 
 R ile İstatistiksel Programlama kitabım 2015 yılında yayımlandığında, Türkiye’de Veri Bilimine olan ilgi bugüne nazaran daha dar ve akademik bir çevre ile sınırlıydı. Geçen kısa sürede tüm Dünya’da olduğu gibi ülkemizde de bu alana olan ilgi katlanarak arttı. Bu durum da veri biliminde en fazla kullanılan iki programlama dili olan R ve Python’a olan ilginin artmasını sağladı. 
 
