@@ -11,4 +11,5 @@ parts:
     - file: part01/chapter0100.md
     - file: part01/chapter0101.md
     - file: part01/chapter0102.ipynb
+    - file: part01/chapter0103.ipynb
     
