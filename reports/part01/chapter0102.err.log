@@ -18,35 +18,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-""" Birden fazla satıra
-yayılmış açıklama cümlesi örneği.
-Lütfen bir sayı girin.
-"""
-x = input("Karesi alınacak sayıyı girin: ")   
-print (float (x)**2)     # Kullanıcının 42 girdiği durumda
+def = 4     # Hata
 ------------------
 
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
-Cell [1;32mIn[22], line 5[0m
-[0;32m      1[0m [38;5;124;03m""" Birden fazla satıra[39;00m
-[0;32m      2[0m [38;5;124;03myayılmış açıklama cümlesi örneği.[39;00m
-[0;32m      3[0m [38;5;124;03mLütfen bir sayı girin.[39;00m
-[0;32m      4[0m [38;5;124;03m"""[39;00m
-[1;32m----> 5[0m x [38;5;241m=[39m [38;5;28;43minput[39;49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mKaresi alınacak sayıyı girin: [39;49m[38;5;124;43m"[39;49m[43m)[49m   
-[0;32m      6[0m [38;5;28mprint[39m ([38;5;28mfloat[39m (x)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)     [38;5;66;03m# Kullanıcının 42 girdiği durumda[39;00m
+[1;36m  Cell [1;32mIn[24], line 1[1;36m[0m
+[1;33m    def = 4     # Hata[0m
+[1;37m        ^[0m
+[1;31mSyntaxError[0m[1;31m:[0m invalid syntax
 
-File [1;32md:\007Github\pythonVB\.venv\Lib\site-packages\ipykernel\kernelbase.py:1201[0m, in [0;36mKernel.raw_input[1;34m(self, prompt)[0m
-[0;32m   1199[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_allow_stdin:
-[0;32m   1200[0m     msg [38;5;241m=[39m [38;5;124m"[39m[38;5;124mraw_input was called, but this frontend does not support input requests.[39m[38;5;124m"[39m
-[1;32m-> 1201[0m     [38;5;28;01mraise[39;00m StdinNotImplementedError(msg)
-[0;32m   1202[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_input_request(
-[0;32m   1203[0m     [38;5;28mstr[39m(prompt),
-[0;32m   1204[0m     [38;5;28mself[39m[38;5;241m.[39m_parent_ident[[38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m],
-[0;32m   1205[0m     [38;5;28mself[39m[38;5;241m.[39mget_parent([38;5;124m"[39m[38;5;124mshell[39m[38;5;124m"[39m),
-[0;32m   1206[0m     password[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
-[0;32m   1207[0m )
-
-[1;31mStdinNotImplementedError[0m: raw_input was called, but this frontend does not support input requests.
 
