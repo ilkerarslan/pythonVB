@@ -455,6 +455,488 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">123</span><span class="p">,</span> <span class="mi">456</span><span class="p">,</span> <span class="s2">&quot;klm&quot;</span><span class="p">,</span> <span class="s2">&quot;xyz&quot;</span><span class="p">]</span>
+<span class="n">liste3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[123, 456, &#39;klm&#39;, &#39;xyz&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bölüm başında verdiğimiz notlar örneğini bir liste içinde aşağıdaki şekillerde yazmak da mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Eren&quot;</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;Ilhan&quot;</span><span class="p">,</span><span class="mi">99</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span><span class="mi">98</span><span class="p">,</span> <span class="s2">&quot;Erman&quot;</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">,</span><span class="mi">96</span><span class="p">]</span>
+<span class="n">notlar1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Eren&#39;, 100, &#39;Ilhan&#39;, 99, &#39;Ali&#39;, 98, &#39;Erman&#39;, 97, &#39;Mehmet&#39;, 96]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar2</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Eren&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span> 
+          <span class="p">[</span><span class="s1">&#39;Ilhan&#39;</span><span class="p">,</span><span class="mi">99</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Ali&#39;</span><span class="p">,</span><span class="mi">98</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Erman&#39;</span><span class="p">,</span><span class="mi">97</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span><span class="mi">96</span><span class="p">]]</span>
+
+<span class="n">notlar2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Eren&#39;, 100], [&#39;Ilhan&#39;, 99], [&#39;Ali&#39;, 98], [&#39;Erman&#39;, 97], [&#39;Mehmet&#39;, 96]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar3</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Eren&quot;</span><span class="p">,</span> <span class="s2">&quot;Ilhan&quot;</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;Erman&quot;</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">],</span>
+           <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">96</span><span class="p">]]</span>
+
+<span class="n">notlar3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Eren&#39;, &#39;Ilhan&#39;, &#39;Ali&#39;, &#39;Erman&#39;, &#39;Mehmet&#39;], [100, 99, 98, 97, 96]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda verilen örneklerde, birinci liste tamsayı, ikinci liste metin, üçüncü liste ise hem tamsayı hem de metin tipi verilerden oluşmaktadır. Boş bir liste oluşturmak için içi boş köşeli parantezler kullanılır: liste = [] gibi.</p>
+<p>Liste içinde değişken ismi de kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[</span><span class="n">not_Eren</span><span class="p">,</span> <span class="n">not_Ilhan</span><span class="p">,</span> <span class="n">not_Ali</span><span class="p">,</span> <span class="n">not_Erman</span><span class="p">,</span> <span class="n">not_Mehmet</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Eren&quot;</span><span class="p">,</span> <span class="n">not_Eren</span><span class="p">,</span> <span class="s2">&quot;Ilhan&quot;</span><span class="p">,</span> <span class="n">not_Ilhan</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="n">not_Ali</span><span class="p">,</span> 
+          <span class="s2">&quot;Erman&quot;</span><span class="p">,</span> <span class="n">not_Erman</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">,</span> <span class="n">not_Mehmet</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listenin veri tipi list olarak belirtilir. Bunu <code class="docutils literal notranslate"><span class="pre">type()</span></code> fonksiyonu ile görebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">liste</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+9
+</pre></div>
+</div>
+</div>
+</div>
+<p>Peki, listede yer alan verilerin bir kısmına nasıl erişebiliriz. Bir listenin elemanları sıfırdan başlayacak şekilde numaralandırılmıştır. Bir verinin listedeki sıra numarasına verinin indeksi de denir.</p>
+<p>Dikkat edilmesi gereken bir nokta, Python’da sıra numaralarının sıfır ile başlamasıdır. Bir listenin ilk elemanı 0, ikinci elemanı 1, üçüncü elemanı 2 sıra sayısını alır. Python’da sıfırla başlayan sıralama düzeni konusunda dikkatli olunmalıdır. Bir listenin herhangi bir sıradaki elemanını görmek için liste yanında köşeli parantez içinde sıra numarası yazılır. Yukarıdaki liste3 listesini ele alalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste3</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>123
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste3</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>456
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;klm&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste3</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;xyz&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">liste3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">liste3</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listenin elemanlarına liste sonundan başlayarak da erişebiliriz. Listenin ilk elemanının sıra numarasının sıfır olduğunu söylemiştik. Liste elemanlarını sondan başa numaralandırmak içinse sondaki eleman -1, ondan bir önceki eleman -2, bir önceki -3 sıra numarası veririz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdiye kadar sadece listedeki bir elemana erişmek için gerekli yazım şeklini gördük. Peki birden fazla elemana erişmek için ne yazmamız gerekir? Örneğin, listedeki 2 ve 5 sıra sayısına sahip elemanları çekmek için ne yazmamız gerekir? Ardışık sıra numaralarını belirtmek için iki nokta (<code class="docutils literal notranslate"><span class="pre">:</span></code>) işareti kullanılır.</p>
+<p>Ancak, listede : işaretini kullanarak birden fazla elemana erişirken bir noktaya çok dikkat edilmelidir. Örneğin yukarıdaki listeyi ele alalım. Listenin 2, 3, ve 4 sıra numarasına sahip elemanlarını görmek için ne yazmalıyız? İlk verinin sıra numarasının 0 olduğunu unutmayın. Bu durumda listedeki 2,3 ve 4 sıra numarasına sahip veriler 9, 12 ve 15 oluyor? Akla gelen ilk cevap liste[2:4] yazmaktır. Ancak aşağıda liste[2:4] yazdığımızda ne çıktığına bakalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="n">liste</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listeden ardışık elemanları çekerken liste[a:b] yazdığımızda a sıra numarası ile başlayan ve b sıra numarası ile biten verilerin gelmesini bekleriz. Ancak, b sıra numarasındaki veri işleme dahil edilmez. Ondan bir önceki veri alınır. Yani, liste[2:4] yazdığımızda 2. ve 3. sıradaki elemanlar gelir ama 4. sıradaki eleman dahil edilmez. Bu nedenle istediğimiz en son sıranın bir fazlasını yazmamız gerekir. Örneğin, yukarıdaki listenin ilk 3 elemanını almak için hangi indeks numaralarını yazmak gerekir? İlk üç elemanın indeks numaraları 0, 1 ve 2’dir. İstediğimiz ilk elemanın indeks numarasını ve son elemanın indeks numarasının bir fazlasını yazmamız gerektiğini hatırlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 7, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<p>(:) işaretinin soluna herhangi bir sayı yazılmazsa, burada sıfır olduğu varsayılır. Yani liste[:3] ile liste[0:3] aynı anlama gelmektedir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Benzer şekilde (:) işaretinin sağına herhangi bir sayı yazılmazsa, listenin sonuna kadar bütün veriler alınır. Örneğin, liste[3: ] yazıldığında, 3 sıra numarasına sahip veriden başlayarak liste sonuna kadar tüm veriler çekilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12, 15, 19]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Üçüncü olarak sayıların kaçar atlanarak seçileceğini gösteren bir sayı yazabiliriz. Örneğin, liste[a:b:k] yazdığımızda, a sıra numarasından başlayıp b-1 sıra numarasında biten ve k atlayarak giden bir seçim yapılmasını isteriz. Aşağıdaki örnekte, listede 3. sıra numarasında başlayıp 11. sıra numarasına kadar, ikişer atlayarak giden bir seçim yapıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12, 19, 6, 12, 11]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de daha önceki örneklerde gördüğümüz listelerden oluşmuş listeyi dikkate alalım. Listenin içindeki listelerin elemanlarına nasıl erişebiliriz?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Eren&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Ilhan&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Ali&#39;</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Erman&#39;</span><span class="p">,</span> <span class="mi">97</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span> <span class="mi">96</span><span class="p">]]</span>
+
+<span class="n">notlar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Eren&#39;, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Ali&#39;, 98]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Mehmet&#39;, 96]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Liste ismi ile endekslediğimizde beklenen şekilde liste içindeki listelere erişiyoruz. Peki, örneğin 2. sıradaki listenin ikinci elemanına erişmek istersek ne yapmamız gerekir? Dikkat ederseniz, notlar[1] şeklinde belirtilen verinin kendisi de bir listedir. O halde bu listenin içindeki bir elemana erişmek için yanına bir [ ] daha getirmek gerekir. Diyelim ki ana listenin 2. sırasındaki alt listedeki ismi ve notu görmek istiyoruz. İkinci sıradaki elemanın indeks değerinin 1 olduğunu hatırlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Ilhan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">isim</span><span class="p">,</span> <span class="n">puan</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">notlar</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">notlar</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">isim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Ilhan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda da bahsettiğimiz gibi bir listenin elemanları değiştirilebilir. Yani, herhangi bir sıradaki değeri farklı bir değerle değiştirebiliriz. String ya da bytes veri tipinde bunun mümkün olmadığını hatırlayalım. Bir listenin herhangi bir elemanını değiştirmek için basitçe liste adı ile birlikte köşeli parantez içinde ilgili sıra numarasını yazdıktan sonra eşittir işareti kullanarak buraya atamak istediğimiz değeri yazarız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">liste</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">liste</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;sayılar&quot;</span>
+<span class="n">liste</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sayılar&#39;, 2, 3, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listedeki herhangi bir elemanın hangi sırada olduğunu yani indeks numarasını öğrenmek için <code class="docutils literal notranslate"><span class="pre">.index()</span></code> metodunu kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Eren&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;Ilhan&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> 
+          <span class="s1">&#39;Ali&#39;</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="s1">&#39;Erman&#39;</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> 
+          <span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span> <span class="mi">96</span><span class="p">]</span>
+<span class="n">notlar</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Ali&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">98</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Belirli bir sıradaki elemanı listeden silmenin bir yöntemi de .pop() yöntemini kullanmaktır. Bu metod istenen elemanı listeden çıkarırken aynı zamanda elemanı farklı bir değişken adı ile kaydetmeye de izin verir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
+<span class="n">sil</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;silinen değer: &quot;</span><span class="p">,</span> <span class="n">sil</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;]
+silinen değer:  D
+liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listedeki herhangi bir elemanın sayısını görmek için <code class="docutils literal notranslate"><span class="pre">.count()</span></code> metodu kullanılabilir. Aşağıdaki örnekte, olçum_degerleri listesinde 3 adet 4 sayısının yer aldığı görülmektedir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">olcum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">olcum</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listede olmayan bir sıra numarasına atama yapmayı denerseniz aşağıdaki gibi bir hata mesajı alırsınız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">assignment</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</pre></div>
+</div>
+<p>Bu örnekte gördüğümüz gibi listenin olmayan sıradaki elemanına doğrudan atama yapmak mümkün değildir. Bir listeye yeni eleman atamak için <code class="docutils literal notranslate"><span class="pre">.append()</span></code> metodu kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;]
+liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;, 12]
+liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;, 12, 15]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
