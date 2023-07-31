@@ -1,0 +1,1056 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Bilgisayarlar ve Programlama &#8212; Python ile Veri Bilimi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0101';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Temel İşlemler ve Veri Tipleri" href="chapter0102.html" />
+    <link rel="prev" title="1. PROGRAMLAMA" href="chapter0100.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python ile Veri Bilimi</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    PYTHON ile VERİ BİLİMİ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kısım I</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. PROGRAMLAMA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Bilgisayarlar ve Programlama</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">5. Kaynaklar</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0101.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter0101.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bilgisayarlar ve Programlama</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarin-tarihi">2.1. Bilgisayarların Tarihi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarin-yapisi">2.2. Bilgisayarların Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarda-veri-yapisi">2.3. Bilgisayarlarda Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programlama-dilleri">2.4. Programlama Dilleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-programlama-dili">2.5. Python Programlama Dili</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-gelistirme-standartlari">2.5.1. Python Geliştirme Standartları</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-kurulumu">2.5.2. Python Kurulumu</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-kullanicilari-icin-python-kurulumu">2.5.2.1. Windows Kullanıcıları için Python Kurulumu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-kullanicilari-icin-python-kurulumu">2.5.2.2. Linux Kullanıcıları için Python Kurulumu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.5.2.3. Linux Kullanıcıları için Python Kurulumu</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-editorleri">2.5.3. Python Editörleri</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bilgisayarlar-ve-programlama">
+<h1><span class="section-number">2. </span>Bilgisayarlar ve Programlama<a class="headerlink" href="#bilgisayarlar-ve-programlama" title="Permalink to this heading">#</a></h1>
+<p>Bundan 20 yıl önce çok az sayıda insanın kullandığı bir araç olan bilgisayarlar önce her eve sonra da hepimizin her anına girdi. Peki sürekli kullandığımız, kullanmak bir yana artık neredeyse 24 saat birlikte onunla yaşadığımız bilgisayar nedir? Klasik bir giriş yaparak kelime anlamıyla başlayalım. Türk Dil Kurumu, bilgisayarı aşağıdaki gibi tanımlıyor:</p>
+<blockquote>
+<div><p>Çok sayıda aritmetiksel veya mantıksal işlemlerden oluşan bir işi, önceden verilmiş bir programa göre yapıp sonuçlandıran elektronik araç, elektronik beyin.</p>
+</div></blockquote>
+<p>Cambridge Sözlüğünün tanımı ise aşağıdaki gibi:</p>
+<blockquote>
+<div><p>Kelime, sayı ve resimleri saklama, düzenleme ve bulmak, hesaplama yapmak ve diğer makineleri kontrol etmek için kullanılan bir elektronik makine.</p>
+</div></blockquote>
+<p>Son olarak Oxford Sözlüğünün tanımı ise aşağıdaki gibi:</p>
+<blockquote>
+<div><p>Bilgiyi (veriyi) belirli bir şekilde alarak önceden belirlenmiş fakat değişebilir bir dizi işlemden (program) geçiren ve bunun sonucunda da bilgi veya sinyal üretebilen elektronik alet.</p>
+</div></blockquote>
+<p>Basitçe özetleyecek olursak bilgisayarlar, verileri okuyabilen, bunlar üzerinde önceden tanımlanmış işlemleri gerçekleştiren ve sonucunda da istenen bir çıktıyı üreten aletlerdir diyebiliriz. Burada, veri sayısal bir tablo olabileceği gibi, bir komut, fotoğraf, video, sıcaklık gibi çok farklı girdiler olabilir. Bu girdileri kullanıp işlemeye yarayan, bir başka deyişle bilgisayara ne yapması gerektiğini söyleyen talimatlar dizisine ise program deniyor. Bilgisayar bu talimatları takip ederek istenen çıktıyı üretir. Bilgisayarların istenen görevi yerine getirmesi için kullandığımız dile ise program ya da programlama dili diyoruz. Bu açıdan baktığımızda basit bir hesap makinesi de aslında bir bilgisayardır. Hesap makinesine iki veya daha fazla sayıyı girip bu sayılarla hangi işlemi yapması gerektiğini söyleriz. Bir mikro dalga fırınına yiyeceği koyup 30 dakikaya kurduğumuz zaman, fırın, 30 dakika boyunca çalışıp sonra durması gerektiğini anlar. Bu açıdan bakıldığında, kullandığımız akıllı telefonlar, akıllı saatler, trafik ışıkları özel birer bilgisayardır.</p>
+<p>Yukarıda yer alan son tanımdaki diğer bir önemli nokta da programın değişebilir olmasıdır. Bir bilgisayar algıladığı, okuduğu verilerle ne yapması gerektiğini programlar ile iletilen talimatlar sayesinde bilir. Aslında bir bilgisayar, kendisine verilen talimatı adım adım izlemekten başka bir şey yapmaz. Bu talimatları, yani programı değiştirdiğimiz zaman bilgisayar farklı adımlar takip edecek ve büyük ihtimalle farklı çıktılar üretecektir. Bu da genel anlamıyla kullandığımız ve anladığımız bilgisayarı, hesap makinesi, mikro dalga fırın ya da trafik ışığı gibi özel bilgisayarlardan ayıran noktadır <span id="id1">[<a class="reference internal" href="referencelist.html#id11" title="J. Zelle. Python Programming: An Introduction to Computer Science (2 b.). Franklin, Beedle &amp; Associates Inc., 2009.">Zel09</a>]</span>.</p>
+<p>Günümüzde artık bilgisayarlar, kullandığımız telefonlardan kolumuzdaki saatlere, otomobil, gemi ve uçaklardan, televizyonlara kadar her yerde karşımızdalar.</p>
+<section id="bilgisayarlarin-tarihi">
+<h2><span class="section-number">2.1. </span>Bilgisayarların Tarihi<a class="headerlink" href="#bilgisayarlarin-tarihi" title="Permalink to this heading">#</a></h2>
+<p>Kitabımız bilgisayar tarihi kitabı değil ancak bilgisayarlar ve programcılık ile ilgilenen herkesin bilgisayarın gelişimi konusunda genel de olsa bilgi sahibi olması gerektiğini düşünüyorum. Bizler, zamanımızın neredeyse tümünü bilgisayarlarla geçirdiğimiz için bilgisayarsız bir hayatı düşünemez hale geldik. Buna karşın, bilgisayarlar oldukça uzun bir tarihsel gelişim sürecinden sonra bugünkü hale geldiler. Bu bölümde bilgisayar tarihini çok genel olarak anlatıyoruz. Konuya ilgi duyan okuyucular bu konudaki kaynaklara göz atabilirler <span id="id2">[<a class="reference internal" href="referencelist.html#id7" title="P. E. Ceruzzi. A History of Modern Computing. MIT Press, 2003.">Cer03</a>, <a class="reference internal" href="referencelist.html#id9" title="S. Levy. Hackers: Heroes of Computer Revolution. O'Reilly Media, 2010.">Lev10</a>, <a class="reference internal" href="referencelist.html#id6" title="W. Aspray. John von Neumann and the Origins of Modern Computing. MIT Press, 2013.">Asp13</a>]</span>(örneğin Ceruzzi, A History of Modern Computing, MIT Press, 2003; Levy, Hackers: Heroes of Computer Revolution, O’Reilly Media, 2010; Aspray, A History of Modern Computing, MIT Press, 2003).</p>
+<p>Tarihte bilinen ilk hesap makinesinin, Asya’da icat edilen abaküs olduğu kabul edilir. Basit toplama ve çıkarma işlemleri yapmak için kullanılan abaküs Orta Çağın sonlarına kadar kullanılmıştır.</p>
+<p>Fransız filozof ve matematikçi Blaise Pascal’ın 1642 yılında icat ettiği ve Pascaline ismini verdiği hesap makinesi, sekiz basamağa kadar toplama işlemi yapılmasında kullanılabiliyordu.</p>
+<figure class="align-default" id="pascal-fig">
+<img alt="pascaline" src="_images/pascaline.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Blaise Pascal tarafından icat edilen Pascaline isimli hesap makinesi (<a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/7/78/Pascaline-CnAM_823-1-IMG_1506-black.jpg">Kaynak</a>)</span><a class="headerlink" href="#pascal-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Alman matematikçi ve filozof Leibniz, 1673 yılında, Pascal’ın makinesini daha da geliştirerek çarpma ve bölme işlemlerini de yapabilir hale getirmiştir. Leibniz aynı zamanda ikili sayma sisteminin de savunucusuydu. İkili sayma sistemi, makineler ve bilgisayarlar için ideal olarak kabul edilegelen sistemdir. Bir makine, anahtarlardan oluşur. Bir anahtar da açık ve kapalı olmak üzere iki halde bulunabilir. Bu iki hal en iyi sıfır ve bir ile temsil edilir. Leibniz’in ölümünden sonra onun fikirleri İngiliz matematikçi George Boole tarafından geliştirilmiş ve Boole Cebiri oluşturulmuştur. Bugün, tüm programlama dillerinde yer alan ve True, False (Doğru, Yanlış ya da 1, 0) değerlerinden birini alabilen Boole ya da Boolean türü değişken, ismini George Boole’dan almıştır.</p>
+<figure class="align-default" id="leibniz-fig">
+<img alt="leibniz" src="_images/leibniz.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Leibniz tarafından geliştirilen hesap makinesi (<a class="reference external" href="https://commons.wikimedia.org/wiki/File:Rechenmaschine_von_Leibniz_(Nachbau)_04.jpg">Kaynak</a>)</span><a class="headerlink" href="#leibniz-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>1819 yılında bir Fransız dokumacı Joseph Jacquard, dokuma aletlerinde delikli kartlar kullanmak suretiyle iğnelerin istenen sırayı izlemesini ve kumaşın istenilen renk ve desene sahip olmasını sağladı. Kartlardaki deliklerin yerleri değiştirilerek kumaşın renk ve desenleri de değiştirilebiliyordu. Yirminci yüzyılda geliştirilen ilk bilgisayarlar da delikli kartlar kullanılarak programlanıyordu. Bu açıdan, Joseph Jacquard’ın icadı bilgisayarların gelişimi için son derece önemli bir adım olmuştur <span id="id3">[<a class="reference internal" href="referencelist.html#id10" title="D. S. Malik. C++ Programming Program Design Including Data Structures (5.b.). Course Technology Cengage Learning, 2011.">Mal11</a>]</span>(Malik, C++ Programming Program Design Including Data Structures, Course Technology Cengage Learning, 2011).</p>
+<p>İngiliz matematikçi Charles Babbage, bugünkü anlamdaki bilgisayarları ilk kez tasarlayan kişi olarak kabul edilmekle birlikte, Babbage, tasarladığı bilgisayarları hayata geçirememiştir. Babbage’ın tasarladığı bilgisayarlarda girdi, hafıza, işlemci ve çıktı üniteleri yer almaktaydı. Bu nedenle Babbage’ın çalışma defterleri 1930’larda bulunduğunda, Babbage bilgisayarın babası olarak nitelendirildi. Babbage’ın yapmayı hayal ettiği makine ancak 1991 yılında Londra Bilim Müzesindeki bir ekibin altı yıllık çalışması sonunda hayata geçirilebildi. Tamamen Babbage’ın zamanındaki teknik imkanlarla yapılan makine doğru bir şekilde çalıştı ve onun fikirlerinin doğruluğunu ortaya koydu.</p>
+<p>Bell laboratuvarlarında çalışan George Stibitz, 1937 yılında röleleri kullanarak Boolean Mantığı ile çalışan basit bir düzenek yaptı ve bu devre 1940 yılında yine George Stibitz tarafından yapılan bir hesap makinesinde kullanıldı.</p>
+<p>İkinci Dünya Savaşı dönemine denk gelen izleyen yıllarda bilgisayar çalışmaları, Amerikan ve İngiliz ordularının, Almanların meşhur Enigma şifrelerinin kırılması ve topçu atışlarının hesaplanması çalışmaları doğrultusunda gelişti. Bu dönemde Almanlar da 22-bitlik işlemler yapabilen ve aerodinamik hesaplamalarda kullanılan Zuse Z3 bilgisayarını geliştirmişlerdi.</p>
+<p>Yirminci yüzyılda bilgisayarın gelişimi açısından en büyük aşama 1947 yılında ENIAC (Electrical Numerical Integrator and Calculator) isimli bilgisayarın yapılması olmuştur. Bunun öncesinde 1942 yılında John V. Atanasoff ve Clifford Berry tarafından Atanasoff-Berry Bilgisayarı ilk elektronik bilgisayar olarak kabul edilebilir. İngiliz Mühendis Tommy Flowers tarafından yapılan Colossus isimli bilgisayar da önemli bir adım olarak kabul edilir. Nazilerin şifrelerinin kırılmasında kullanılan bu bilgisayar 2500 vakum tüpü ile çalışıyordu. Bu bilgisayar Nazilerin mesajlarının kırılma süresini birkaç haftadan birkaç saate indirmişti.</p>
+<p>John W. Mauchly ve J. Presper Eckert tarafından yapılan ENIAC, yaklaşık 18.000 vakum tüpü ile çalışıyordu, bir oda büyüklüğünde ve 30 ton ağırlığındaydı. Önceki hesaplama makinelerinden farklı olarak 10 basamağa kadar sayıları hafızasında tutabiliyordu. ENIAC, anahtarlar ve kablolar ile programlanıyor ve 10 basamaklı iki sayıyı 2800 mikrosaniyede çarpabiliyordu. Programlaması çok zor olduğu için önce kâğıda yazılan programlar daha sonra günlerce süren uğraşlarla bilgisayara aktarılıyordu.</p>
+<p>Manchester Üniversitesinde 1948 yılında geliştirilen ve “Manchester Bebeği” ismi verilen bilgisayar, belleğe sahip ve hafızasında program saklanabilen ilk bilgisayardı. Frederic Williams, Tom Kilburn ve Geoff Toothill tarafından geliştirilen bu bilgisayar, yine Kilburn tarafından yazılmış olan 17 satırlık bir programı hafızasında saklayıp çalıştırabiliyordu. Yine aynı yıl IBM tarafından geliştirilen SSEC (Selective Sequence Electronic Calculator) isimli bilgisayar bir saniyede 50 adet 14 basamaklı iki sayının çarpımı işlemini gerçekleştirebiliyordu. Bu bilgisayar 1969’da Aya giden uzay mekiği Apollo’nun uçuş yörüngesinin hesaplanmasında da kullanıldı.</p>
+<p>1950’lerden sonra Bell Laboratuvarları tarafından geliştirilen transistörler, vakum tüplerinin yerini almaya başladı. Bu gelişme bilgisayarların çok daha hızlı çalışmasına olanak verdi.  1951 yılında UNIVAC 1 (Universal Automatic Computer) isimli ilk ticari amaçlı bilgisayar tanıtıldı. Yine bu dönemde IBM (International Business Machine), tarafından üretilen 650 ve 700 model bilgisayarlar ilk seri üretim bilgisayarlardır.</p>
+<p>Entegre devrelerin icadıyla birlikte 1960’lardan itibaren üçüncü nesil bilgisayarlar üretilmeye ve kullanılmaya başlandı. Bu gelişme sayesinde bilgisayarlar çok daha küçük, güçlü ve birden fazla programı aynı anda çalıştırabilir hale geldiler. Intel ilk mikroişlemcisini 1971 yılında tanıttı. İlk Intel mikroişlemcisi olan Intel 4004, saniyede 90.000 işlem gerçekleştirebiliyordu.</p>
+<p>1980 yılında Microsoft Disk Operating System (MSDOS) tanıtıldı. İzleyen yılda IBM ev ve ofis kullanımı için ilk kişisel bilgisayarı tanıttı. 1984 yılında Apple Macintosh, grafik ara yüzlü ilk bilgisayarı tanıttı. Bunu da 90’larda Microsoft tarafından sunulan Windows işletim sistemi izledi.</p>
+<figure class="align-default" id="eniac-fig">
+<img alt="eniac" src="_images/eniac.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">ENIAC, bir oda büyüklüğündeydi. Bozuk bir vakum tüpünü bulmak ve değiştirmek 18000 vakum tüpünü tek tek kontrol etmek anlamına geliyordu.</span><a class="headerlink" href="#eniac-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Doksanlı yıllardan sonra bilgisayarların gelişimi ve kullanımı giderek ivmelenen bir seyir izledi. Bu dönemde bilgisayarların giderek güçlenip hızlanırken aynı zamanda küçüldüğüne tanık olduk. Masa üstü bilgisayarların yerini diz üstü ve tablet bilgisayarlar aldı. İnternet kullanımının yaygınlaşması daha önceden sadece bilgisayarlar tarafından gerçekleştirilebilen işlemleri yapabilen akıllı telefonların kullanımını hızlandırdı.</p>
+<p>Günümüzde neredeyse kredi kartı büyüklüğündeki Arduino ve Raspberry Pi bilgisayarların kullanımı giderek artıyor. Diğer yandan quantum bilgisayarlara ilişkin çalışmalar devam ediyor.</p>
+<p>İnternet, artık sadece bilgisayarlardan oluşan bir ağ değil, nesnelerin interneti haline geldi. Evlerde kullanılan klima, buzdolabı fırın gibi eşyalar, spor saatleri, üretim bantlarında kullanılan alıcılar gibi çok sayıda nesne IP adresiyle internete bağlı ve ağa sürekli olarak veri gönderir hale geldi. İnsanların cep telefonları ile daha işteyken evlerinin sıcaklığını ayarlamaları artık bilim kurgu sahnesi değil.</p>
+<p>Yapay zekâ ve yapay öğrenme alanındaki çalışmalar sonucunda kendi kendine öğrenen algoritmalar, bilgisayarlar ve programlar üretilmeye başlandı. İşçilerin değil robotların ve makinelerin çalıştığı “karanlık” fabrikalar inşa edilmeye başlandı. Amazon firması Amerika’da, siparişleri otonom dronelar ile teslim etmeye başladı. Zaten bu siparişlerin depolanması ve depolardan bulunup çıkarılması da otonom robotlar tarafından gerçekleştiriliyor.</p>
+<p>Bu gelişmeler, işi ne olursa olsun herkesin hayatına bilgisayarı soktuğu gibi programcılığı da herkes için gerekli bir yetkinlik kılıyor. Ünlü yapa zekâ araştırmacısı, akademisyen Andrew Ng, yapay zekanın 21. yüzyılın elektriği olduğunu söylüyor. Andrew Ng’ye göre nasıl ki 20. yüzyılda elektriğin önemi, elektrik elektronik mühendisliğini bu yüzyılın en önemli mesleklerinden birisi haline getirdi ise 21. yüzyılda da yapay zekâ aynı öneme sahip olacaktır. Yapay zekâ, yapay öğrenme, derin öğrenme gibi konularda ilerlemek de ileri derecede matematik, istatistik bilgisinin yanı sıra bir o kadar programcılık bilgisine sahip olmaktan geçiyor. Nitekim, gelişmiş ülkeler çocuklara küçük yaşlardan itibaren programlama dersleri vermeye başladılar bile.</p>
+<p>Günümüzde, ne iş yapıyor olursanız olun, ekonomist, sosyolog, mühendis, öğretmen, doktor ya da bankacı, mesleğinizde başarılı olabilmek için mutlaka en az bir programlama dilini bilmeniz gerekiyor. Geleceğin Dünya’sına, dijital dünyaya hâkim olan ulusların söz sahibi olacağı artık herkes tarafından kabul ediliyor. Bilgisayarlara hâkim olmanın yolu da onların dilini öğrenmekten geçiyor.</p>
+<figure class="align-default" id="raspberry-fig">
+<img alt="raspberry" src="_images/raspberry.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.4 </span><span class="caption-text">Yaklaşık bir kredi kartı büyüklüğündeki Raspberry Pi Bilgisayarı</span><a class="headerlink" href="#raspberry-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="bilgisayarlarin-yapisi">
+<h2><span class="section-number">2.2. </span>Bilgisayarların Yapısı<a class="headerlink" href="#bilgisayarlarin-yapisi" title="Permalink to this heading">#</a></h2>
+<p>Nasıl ki otomobil kullanabilmek için otomobil ve motor yapısı hakkında derinlemesine bilgi sahibi olmak gerekmiyorsa da iyi bir programcı olmak için de bilgisayarın işleyişi ve bilgisayar parçaları hakkında derin bilgi sahibi olmanız gerekmez. Ancak, yine de her programcının, bilgisayarların yapısı ve işleyiş prensipleri konusunda yüzeysel de olsa bilgi sahibi olmasında fayda vardır.</p>
+<p>Her ne kadar çok farklı tipte ev türde olsa da bir bilgisayar donanım olarak adlandırılan fiziksel parçalar ile yazılım olarak adlandırılan ve bilgisayarı çalıştırmaya yarayan programlardan oluşur. Donanım, bilgisayarın ana kartı, işlemcisi, ekran kartı, klavyesi gibi fiziksel parçaları, yazılım ise bilgisayara yüklenmiş olan işletim sistemi ve diğer programlardır.</p>
+<p>Bir bilgisayarın donanımı genel olarak girdi, çıktı, hafıza (random access memory, RAM), işlemci (central processing unit, CPU), ikincil hafıza birimlerinden oluşur.</p>
+<p>Girdi ünitesi, bilgisayara veri okutmak için kullanılan tüm ünitelerin genel adıdır. Masaüstü veya dizüstü bilgisayarların klavye ve fareleri, tablet bilgisayarların dokunmatik ekranları, CD, DVD, USB bellek girdi üniteleri olarak tanımlanabilir. Genel anlamıyla düşünülecek olursa bir bilgisayara veri aktarmak için kullanılan her türlü araç ya da arayüz girdi ünitesidir. Bu açıdan, harekete duyarlı bir alıcıdan veri okuyan bilgisayar için alıcı, girdi ünitesidir.</p>
+<p>Çıktı ünitesi, bilgisayarda gerçekleşen işlemin sonucunun aktarıldığı birimdir. Bilgisayar ekranında bir fotoğrafa baktığımızda, kulaklıklarla müzik dinlediğimizde, USB belleğe bir dosya kaydettiğimizde, yazıcıda bir belge bastırdığımızda çıktı birimlerini kullanmış oluyoruz.</p>
+<p>Bilgisayarda bir programın çalışması sırasında ihtiyaç duyulan kısa süreli hafıza birincil hafıza ya da bellek (Random Access Memory, RAM) olarak tanımlanır. RAM, programların çalışması sırasında kullanılır. Bilgisayar kapatıldığında ise bellekteki bilgiler kaybolur.</p>
+<p>İşlemci, programı çalıştıran ve komutları sırasıyla gerçekleştiren, verileri işleyen birimdir. Bu açıdan, işlemci genellikle insan beynine benzetilir.</p>
+<p>Son olarak ikincil hafıza ise bilgisayardaki sabit bellek, taşınabilir bellekler, USB bellek, CD, DVD gibi program veya dosya gibi verilerin kaydedilip saklanmasında kullanılan araçlardır.</p>
+</section>
+<section id="bilgisayarlarda-veri-yapisi">
+<h2><span class="section-number">2.3. </span>Bilgisayarlarda Veri Yapısı<a class="headerlink" href="#bilgisayarlarda-veri-yapisi" title="Permalink to this heading">#</a></h2>
+<p>Bilgisayarların en temel veri yapıları bit’lerdir. Bit, “binary digit” yani ikili basamak teriminin kısaltmasıdır. Bit, sadece 0 veya 1 değerlerinden birisini alabilir. Bilgisayarların gerçekleştirdiği bütün işlemlerin temelinde, bir bit değerinin okunması, bite değer atanması ya da değerin değiştirilmesi şeklinde bitler üzerinde yapılan basit işlemler yer alır. Sekiz bit, bir byte’a eşittir.  Bir byte ise bir karakteri saklayabilir. Aşağıdaki tabloda çeşitli karakterlerin byte karşılıkları örnek olarak gösterilmiştir.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Karakter</p></th>
+<th class="head text-center"><p>Onluk Düzende Karşılığı</p></th>
+<th class="head text-center"><p>İkili</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>A</p></td>
+<td class="text-center"><p>65</p></td>
+<td class="text-center"><p>1000001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>B</p></td>
+<td class="text-center"><p>66</p></td>
+<td class="text-center"><p>1000010</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>C</p></td>
+<td class="text-center"><p>67</p></td>
+<td class="text-center"><p>1000011</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>D</p></td>
+<td class="text-center"><p>68</p></td>
+<td class="text-center"><p>1000100</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>a</p></td>
+<td class="text-center"><p>97</p></td>
+<td class="text-center"><p>1100001</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>b</p></td>
+<td class="text-center"><p>98</p></td>
+<td class="text-center"><p>1100010</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>c</p></td>
+<td class="text-center"><p>99</p></td>
+<td class="text-center"><p>1100011</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>d</p></td>
+<td class="text-center"><p>100</p></td>
+<td class="text-center"><p>1100100</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>0</p></td>
+<td class="text-center"><p>48</p></td>
+<td class="text-center"><p>110000</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>49</p></td>
+<td class="text-center"><p>110001</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>50</p></td>
+<td class="text-center"><p>110010</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>51</p></td>
+<td class="text-center"><p>110011</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>52</p></td>
+<td class="text-center"><p>110100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>&#64;</p></td>
+<td class="text-center"><p>64</p></td>
+<td class="text-center"><p>1000000</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>+</p></td>
+<td class="text-center"><p>43</p></td>
+<td class="text-center"><p>101011</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>/</p></td>
+<td class="text-center"><p>47</p></td>
+<td class="text-center"><p>101111</p></td>
+</tr>
+</tbody>
+</table>
+<p>Byte ikili sayma sistemindedir ve onluk düzendeki karşılığı ikili sayma sistemindeki sayıyı onluk sisteme çevirerek bulunabilir. İkilik sayma sisteminin onluk sisteme nasıl çevrileceği aşağıdaki tabloda gösterilmiştir.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-center"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>İkili Sistemdeki Sayı</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Basamak</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(2^7=128\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Basamak Değeri</p></td>
+<td class="text-center"><p>128x1</p></td>
+</tr>
+</tbody>
+</table>
+<p>İkilik düzendeki 10100101 sayısının onluk sistemdeki karşılığı 128 + 32 + 4 + 1 = 165 olarak bulunur.</p>
+<p>Bilgisayara bir kelime ya da bir sayı yazdığımızda bilgisayar aslında bu kelimedeki her bir karakterin ikili düzendeki değerini hafızasına alır ve bunları kullanarak işlem yapar.</p>
+<figure class="align-default" id="veri-yapisi-fig">
+<img alt="veri yapısı" src="_images/veri_yapisi.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Bilgisayarda Veri Yapısı</span><a class="headerlink" href="#veri-yapisi-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Yukarıdaki şekilde “Eren”, “Fizikçi”, “2006” gibi değerler birer alanı temsil eder. Bu alanlar yan yana gelerek bir satır ya da kayıt oluştururlar. Çok sayıda kaydın bir araya gelmesiyle de bir dosya oluşur. Yukarıdaki şekilde her bir alanda kişi ismi, mesleği ya da doğum yılı saklanıyor. Bir kişinin isminin, mesleğinin ve doğum yılının yan yana gelmesiyle de bir kayıt meydana geliyor. Bütün kayıtlar bir arada dosyayı oluşturuyor.  Bilgisayar hafızasında kayıtların yan yana ya da alt alta olmaları gibi bir durum söz konusu değildir. Bilgisayar tüm bilgileri sıralı 0 ve 1’ler şeklinde algılar. Sadece anlamayı kolaylaştırmak için bu şekilde aktarıyoruz.</p>
+<p>Harf ve rakamlar gibi tüm sembol ve işaretlerin de (+, !, %, &amp; vb.) ikili düzendeki değerleri vardır. Dünya’da kullanılan karakter setleri için farklı standartlar geliştirilmiştir. Bunlardan en çok kullanılanlar Unicode ve ASCII (American Standard Code for Information Interchange) standartlarıdır.</p>
+<p>Sekiz bitin bir byte ettiğini söylemiştik. Günlük hayatta megabyte ya da gigabyte terimlerini çok sık duyarsınız. Günümüzde veri büyüklükleri o kadar arttı ki megabyte ve gigabyte yerine artık terabyte konuşulmaya başlandı. Bu terimlerin ne anlama geldiği aşağıda belirtiliyor.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Büyüklük</p></th>
+<th class="head text-center"><p>Anlamı</p></th>
+<th class="head text-center"><p>Yaklaşık Değeri</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Kilobyte (KB)</p></td>
+<td class="text-center"><p>1024 Byte</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^3\)</span> Byte</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Megabayte (MB)</p></td>
+<td class="text-center"><p>1024 KB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^6\)</span> Byte</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Gigabyte (GB)</p></td>
+<td class="text-center"><p>1024 MB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^9\)</span> Byte</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Terabyte (TB)</p></td>
+<td class="text-center"><p>1024 GB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^12\)</span> Byte</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Petabyte (PB)</p></td>
+<td class="text-center"><p>1024 TB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^15\)</span> Byte</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Exabyte (EB)</p></td>
+<td class="text-center"><p>1024 PB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^18\)</span> Byte</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Zettabyte (ZB)</p></td>
+<td class="text-center"><p>1024 EB</p></td>
+<td class="text-center"><p>~<span class="math notranslate nohighlight">\(10^21\)</span> Byte</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="programlama-dilleri">
+<h2><span class="section-number">2.4. </span>Programlama Dilleri<a class="headerlink" href="#programlama-dilleri" title="Permalink to this heading">#</a></h2>
+<p>Dil, “İnsanların düşündüklerini ve duyduklarını bildirmek için kelimelerle veya işaretlerle yaptıkları anlaşma” olarak tanımlanıyor (<a class="reference external" href="https://www.tdk.gov.tr/">TDK</a>). Bu açıdan, bilgisayarların ne yapmaları gerektiğini programlar yardımı ile anladıklarını düşünürsek bu programların yazılmasına ilişkin kuralları da programlama dili olarak tanımlamak yanlış olmaz. Nasıl ki Dünya üzerinde konuşulan çok sayıda dil varsa bilgisayarların insanlarla ve birbirleriyle konuşması için kullanılan birçok programlama dili vardır.</p>
+<p>Programlama dilleri genel olarak üç sınıfa ayrılabilir (Deitel &amp; Deitel, Java How to Program, Pearson, 2015):</p>
+<ol class="arabic simple">
+<li><p>Makine dilleri</p></li>
+<li><p>Assembly dilleri</p></li>
+<li><p>Yüksel seviye diller</p></li>
+</ol>
+<p>Makine dili ve Assembly dili düşük seviyeli diller olarak isimlendirilir. Bunun sebebi bu dillerin doğrudan işlemci ve hafıza ile konuşuyor olmalarıdır. Makine dilleri, bilgisayarların doğrudan anlayabilecekleri şekilde sayılar kullanılan dillerdir. Her bilgisayar tipi için kullanılan makine dili farklıdır. Aşağıda, 1’den n’ye kadar olan sayıların toplamını bulan örnek bir makine dili kodu yer almaktadır:</p>
+<p>0000100010010011<br />
+0001100100000011<br />
+0010100000010011<br />
+0000011110010100<br />
+0001100000000011<br />
+0000101010010101<br />
+0111100000000111</p>
+<p>Bu dilleri kullanmak çok zor olduğu gibi kullanımı ve programlaması da son derece yavaş olabilir. Bu nedenle, konuşma diline daha yakın olan genellikle kısaltmalardan oluşan, Assembly programlama dilleri geliştirilmiştir. Assembly dili kullanılan bilgisayarın özelliklerine ve işletim sistemine bağlı bir dildir. Bu dilde program yazan kişi doğrudan mikroişlemci ve hafızaya ulaşır ve burada değişiklik yapar. Assembly dilinde yazılan programlar bir derleyici (assembler) aracılığıyla makine diline çevrilir. Yukarıda görülen programın assembly dilindeki karşılığı aşağıdaki gibidir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L28</span>	<span class="n">movf</span>		<span class="n">_n</span><span class="p">,</span><span class="n">f</span>\
+    <span class="n">Btfsc</span>		<span class="n">STATUS</span><span class="p">,</span> <span class="n">Z</span>\
+    <span class="n">goto</span>		<span class="n">L41</span>\
+    <span class="n">movf</span>		<span class="n">_n</span><span class="p">,</span><span class="n">f</span>\
+    <span class="n">addwf</span>		<span class="n">_sum</span><span class="p">,</span> <span class="n">f</span>\
+    <span class="n">btfsc</span>		<span class="n">STATUS</span><span class="p">,</span> <span class="n">C</span>\
+    <span class="n">incf</span>		<span class="n">_sum</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">f</span>\
+    <span class="n">decf</span>		<span class="n">_n</span><span class="p">,</span><span class="n">f</span>\
+    <span class="n">goto</span>		<span class="n">L28</span>\
+<span class="n">L41</span>
+</pre></div>
+</div>
+<p>Assembly dili, makine diline göre daha açık ve anlaşılır olmakla birlikte yine de öğrenmesi ve program yazması uzun süre alan bir dildir. Ayrıca basit işlemler için bile uzun kodlar yazmak gerekmektedir. Bunu da aşabilmek için çok daha anlaşılır ve basit olan yüksek seviye programlama dilleri geliştirilmiştir. Makine dilinden, yüksek seviyeli dillere gidildikçe program konuşma diline daha çok benzemeye başlar. Python, C, C++, Java, Fortran vb. bu diller arasındadır. Yukarıdaki kodla aynı işi yapan Python programı aşağıdaki gibidir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span>
+    <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Her ne kadar makine ve assembly dillerinin kendilerine göre (işlemci ve hafızaya doğrudan erişim gibi) avantajları olsa da bu dillerde çok basit işlemleri gerçekleştirmek için bile uzun kodlar yazmak gerekebilmektedir. Bu zorluğu aşmak için yüksek seviyeli, öğrenilmesi, yazması ve anlaşılması kolay olan diller geliştirilmiştir.</p>
+<p>Geçmişte ve günümüzde yaygın olarak kullanılan programlama dillerinden bazılarına aşağıda örnek olarak yer verilmiştir.</p>
+<p><strong>COBOL:</strong> 1950’li yıllarda Amerikan Savunma Bakanlığının bir projesi kapsamında geliştirilmiştir. “Common Business Oriented Language” kelimelerinden türetilmiştir. Daha çok iş ve finans uygulamaları için kullanılmıştır. Yakın zamanlara kadar iş dünyasında, bankacılık ve finans alanlarında yayın şekilde kullanılmaktaydı. Cobol’un İngilizce’ye çok benzeyen, okunması kolay bir yapısı vardır.</p>
+<p><strong>FORTRAN:</strong> IBM tarafından 1950’lerde geliştirildi. Formula Translator (Formül Çevirici) ifadesinin kısaltılmış halidir. Karmaşık matematiksel işlemlerin gerçekleştirilmesi amacıyla geliştirildi ve daha çok bilim ve mühendislik uygulamalarında kullanıldı.</p>
+<p><strong>BASIC:</strong> 1960’lı yıllarda Dartmouth College tarafından yeni başlayanlara programcılık öğretmek amacıyla geliştirilmiştir.</p>
+<p><strong>PASCAL:</strong> Niklaus Wirth tarafından 1970 yılında öğrencilere programlamayı öğretmek amacıyla geliştirilmiştir. Pascal uzun yıllar üniversitelerde öğretilen programlama dili olmuştur. Daha sonra Pascal’dan türetilen ve daha hızlı bir versiyonu olan Turbo Pascal uzun süre oldukça popüler programlama dillerinden olmuştur. Pascal’dan türetilen diğer diller Object Pascal (ve daha sonra Delphi), Borland Pascal, ADA’dır.</p>
+<p><strong>C:</strong> 1970’lerin başında Bell Laboratuvarlarında çalışan Dennis Ritchie tarafından geliştirilmiştir. Bugüne kadar en yaygın olarak kullanılan programlama dillerinden birisi olmuştur. Birçok uygulama ve program C dilinde yazılmıştır.</p>
+<p><strong>C++:</strong> 1980’lerin başında Bell Laboratuvarlarında çalışan Bjarne Stroustrup tarafından geliştirilmiştir. C++ dili performans, hız ve esneklik açılarından en önde gelen dillerden biridir. Ayrıca, nesne yönelimli bir programlama dilidir.</p>
+<p><strong>C#:</strong> Genel kullanım amaçlı nesne yönelimli bir programlama dili olup Microsoft tarafından .NET platformunda kullanılmak üzere geliştirilmiştir.</p>
+<p><strong>JAVA:</strong> Genel kullanımlı nesne yönelimli bir programlama dili olup platformdan bağımsız bütün işletim sistemi ve bilgisayarlarda çalıştırılabilecek programlar yazılabilmesi amacıyla geliştirilmiştir. Birçok özelliğini C ve C++ dillerinden almakla birlikte bunlara göre daha yüksek seviyeli bir dildir.</p>
+<p><strong>JAVASCRIPT:</strong> Web uygulamalarına kullanıcı etkileşimi gibi dinamik uygulamalar kazandırmak amacıyla geliştirilmiş bir dildir.</p>
+<p><strong>MATLAB:</strong> Matrix Laboratory (Matris Laboratuvarı) sözlerinden türetilmiştir. Matworks firması tarafından, matematiksel işlemlerin gerçekleştirilmesi için geliştirilmiştir. Veri işleme ve analiz, fonksiyon ve grafik uygulamalarında oldukça kullanışlıdır. Vektör ve matris tabanlı kullanım yapısı diğer dillerden farklı olarak işlemlerin uzun döngüler olmaksızın hızlı bir şekilde gerçekleştirilebilmesini sağlamaktadır.</p>
+<p><strong>R:</strong> 1993 yılında Auckland Üniversitesinden Ross Ihaka ve Robert Gentleman tarafından geliştirilmiştir. Öncelikle istatistiksel uygulamalar için geliştirilmiş olmakla birlikte zamanla genel kullanım amaçlı bir dil haline gelmiştir. Son yıllarda büyük veri uygulamalarının yaygınlaşması ile birlikte özellikle büyük veri ve yapay öğrenme alanlarında Python ile birlikte kullanımı en çok artan programlama dillerinden birisi olmuştur.</p>
+</section>
+<section id="python-programlama-dili">
+<h2><span class="section-number">2.5. </span>Python Programlama Dili<a class="headerlink" href="#python-programlama-dili" title="Permalink to this heading">#</a></h2>
+<p>Python, 1989 yılında Guido van Rossum tarafından geliştirilen bir programlama dilidir. Guido van Rossum, Python ismini ünlü komedyen Monthy Python’dan esinlenerek bulmuştur. Python açık kaynak kodlu bir programlama dilidir ve ücretsizdir.</p>
+<p>Python orijinal olarak C dilinde yazılmıştır. Bunun dışında Java’da geliştirilen (Jhython) ve Microsoft .NET ortamında C# ile geliştirilen (IronPython) versiyonları da bulunmaktadır.</p>
+<p>Python bugüne kadar iki farklı koldan ilerledi: Python 2 ve Python 3. Python 2, 2000 yılında yayınlandı ve kitabın yazıldığı tarihte 2.7.14 sürümü mevcuttu. Python 3 ise 2008 yılında yayınlandı. Aslında iki sürüm arasında çok fazla fark bulunmamaktadır. Bu iki sürüm birbirinin devamı olarak değil, iki farklı koldan ilerlemektedir. Bu dillerden birini biliyorsanız diğerini de kolayca anlarsınız. Ancak bunlardan birisinde yazılan program diğerinde çalışmaz. Python 2 daha eski ve daha oturmuş olmakla birlikte, Python 3, Python 2’deki birçok eksikliği gidermiştir. Bir değişiklik olmaz ise Python 2’nin geliştirimi 2020 yılında sona erecek ve geliştirim Python 3 ile devam edecektir. Biz bu kitapta Python 3 sürümünü kullanacağız.</p>
+<p>Çok sayıda programlama dili arasında neden Python öğreneyim diye soruyor olabilirsiniz? Öncelikle Python son derece güçlü bir dil olduğu kadar aynı zamanda öğrenmesi de çok kolay bir dildir. Bazı dillerin aksine Python’un standart kütüphanesi çok gelişmiştir. Bu nedenle çoğu zaman çok fazla kod yazmanıza da gerek kalmaz. Öte yandan, Python için geliştirilmiş numpy, pandas, matplotlib gibi çok güçlü ve kullanışlı birçok kütüphane de bulunmaktadır. Bundan dolayı Python, web programlama, bilimsel programlama, veri bilimi, yapay öğrenme, derin öğrenme gibi farklı alanlarda yaygın olarak kullanılmaktadır.</p>
+<p>Yüksek kullanıcı trafiği olan Youtube, Dropbox, Instagram gibi siteler web geliştirme için Python’da geliştirilmiş web geliştirme kütüphanaleri Django, Flask ya da Pyramid kullanmaktadır.</p>
+<p>Python’da geliştirilmiş olan NumPy ve SciPy kütüphaneleri, bilimsel programlamalar için çok hızlı programlamaya imkân vermektedir.</p>
+<p>Son yıllarda önemi ve kullanımı giderek artan yapay öğrenme uygulamaları için de Python’da çok sayıda kütüphane geliştirilmiştir. TensorFlow, Keras ve Scikit Learn bunlardan en önemlileridir. Ayrıca Python, Pandas, Matplotlib ve Bokeh kütüphaneleriyle de veri analizi ve görselleştirme de çok kolaydır.</p>
+<p>Tüm bunlar, Python’u finanstan, biyolojiye, fizikten, web tasarımına kadar çok geniş bir perspektifte kullanılabilen bir programlama dili haline getirmiştir.</p>
+<p>Bu kadar işlevselliğin yanı sıra Python, yazması, okuması ve öğrenmesi de çok kolay olan bir programlama dilidir. Bu nedenle öğrencilere programlama öğretmede en fazla kullanılan dillerden birisidir. Python, C, C++ ve Java gibi dillere göre çok daha anlaşılır bir yazı stiline sahiptir. Aşağıda, iki sayının toplamını bulan programların C++, C ve Java dillerindeki örnekleri yer alıyor. Önce C++ uygulamasına bakalım.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;İki tam sayı giriniz: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;İki sayının toplamı = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aynı programın C versiyonu aşağıdaki gibidir:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#</span><span class="w"> </span><span class="cp">include</span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;İki tam sayı giriniz: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;İki sayının toplamı =  %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Şimdi de Java versiyonunu görelim:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">AddNumbers</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;İki tam sayı giriniz: &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Scanner</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span>
+<span class="w">        </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="w"> </span><span class="n">in</span><span class="p">);</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+<span class="w">        </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;İki sayının toplamı =  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Aynı işlemi yapan Python programı ise aşağıdaki gibidir. Bu bölümdeki kodları anlamıyorsanız endişe etmenize gerek yok. Hepsi ilerideki bölümlerde adım adım anlatılacaktır. Burada sadece Python ile diğer diller arasındaki yapısal farklılıkları aktarmaya çalışıyoruz.</p>
+<p>Python’da, döngüler ve koşullu ifadelerde diğer dillerin çoğunda olduğu gibi parantezler kullanılmaz. Bunun yerine girintiler kullanılır. Örneğin, C++’ta (diğer dillerde de benzerdir) fonksiyon aşağıdaki şekilde tanımlanır:</p>
+<div class="highlight-Cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sayi1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sayi2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sonuc</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sayi1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">sayi2</span><span class="p">)</span>
+<span class="w">       </span><span class="n">sonuc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sayi1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">       </span><span class="n">sonuc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sayi2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sonuc</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Yukarıdaki C++ fonksiyonu, iki sayıdan büyük olanı bulur. Fonksiyonun, argümanların, fonksiyon içindeki geçici değişkenlerin veri tipinin tanımlanması gerekiyor. Fonksiyon metni { } parantezleri arasında olmak zorunda. Ayrıca her satırın sonunda noktalı virgül olması gerekiyor.</p>
+<p>Python’da ise bunların hiçbirine gerek yok. Değişkenlerin türünü baştan belirtmeye gerek yok. C++ ya da Java gibi dillerde değişkenler statik olarak tanımlanır. Yani bir değişkenin tipi başlangıçta tanımlanır ve sonradan değiştirilemez. Python da ise değişkenler dinamik olarak tanımlanır. Yani değişken tipi önceden tanımlanmaz. Program çalıştığı zaman otomatik olarak algılanır ve program sırasında da değişebilir.</p>
+<p>Python’un bir diğer önemli farkı da fonksiyon ve koşullu ifadelerin içeriğinin girintilerle belirlenmesi.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="n">sayi1</span><span class="p">,</span> <span class="n">sayi2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sayi1</span> <span class="o">&gt;</span> <span class="n">sayi2</span><span class="p">:</span>
+        <span class="n">sonuc</span> <span class="o">=</span> <span class="n">sayi1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sonuc</span> <span class="o">=</span> <span class="n">sayi2</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+</pre></div>
+</div>
+<p>Görüldüğü gibi Python’da bir fonksiyon ya da koşullu ifade veya bir döngü, iki nokta, (:), işareti ile belirtiliyor. Hangi ifadelerin ilgili fonksiyon ya da döngüye ait olduğunu belirtmek için de izleyen satırdan itibaren girinti kullanılıyor. Bu durum aşağıdaki şekilden daha iyi anlaşılabilir.</p>
+<p>Fonksiyon tanımlamak için ilk satırda görülen def kelimesi kullanılıyor. Satır sonunda da (:) işareti olmalı. Fonksiyona ait kodlar, bu satıra göre daha içeriden başlamak zorunda. Şekilde, 1 ile başlayan tüm satırlar ilgili fonksiyonun parçası. Fonksiyon tanımlanması bittikten sonra tekrar satırın en başından başlayarak devam edilir. Aynı şekilde, ileride göreceğimiz gibi if ve else bloklarına ait komutlar da (2 ve 3 ile başlayan satırlar) bu komutlara göre daha içeriden başlamalı.</p>
+<p>Diğer dillerde bu durum bir zorunluluk değil sadece kodun okunabilir olması için önerilen bir uygulama. Yani başka dillerde, tüm satırlar aynı hizada olsa da bir sorun olmaz ancak Python’da def ile başlayan fonksiyon tanımından sonraki satırlar aynı hizada olursa aşağıdaki gibi bir hata mesajı alınır:</p>
+<p><span style="color:red">IndentationError: expected an indented block</span></p>
+<p>Bu mesaj, ilgili satırların hizalamasında sorun olduğu ve satırın daha içeriden başlaması gerektiği anlamına gelir.</p>
+<p>Terminalde ya da bir Python editöründe fonksiyon ya da bir döngünün ilk satırının sonuna (:) işareti getirip Enter tuşuna bastığınızda, imlecin alt satırda daha içeriden başladığını görürsünüz. Terminal ekranında fonksiyon ya da döngü gövdesi içinde olduğunu göstermek için satır başında yan yana üç nokta görülür. Bu üç noktadan sonra boşluk tuşu veya tab tuşunu kullanarak satır içine gidilmelidir. Aksi halde aşağıdaki gibi bir hata mesajı alınır.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="o">^</span>
+<span class="ne">IndentationError</span><span class="p">:</span> <span class="n">expected</span> <span class="n">an</span> <span class="n">indented</span> <span class="n">block</span>
+</pre></div>
+</div>
+<p>Genel olarak kabul edilen boşluk uzunluğu dört boşluk veya bir tab kadardır. Ancak aynı kod içinde hem boşluk hem de tab tuşunu aynı anda kullanmamaya dikkat edilmelidir. Ayrıca, aynı kod içinde aynı boşluk sayısını bırakmaya da dikkat edilmelidir. Özellikle aynı blok içinde farklı uzunlukta boşluk bırakılması hata mesajı alınmasına yol açacaktır.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+         <span class="nb">print</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; * &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Fonksiyon ya da döngü bloğundan çıkmak istendiğinde satıra herhangi bir şey yazılmadan enter tuşuna basılır. Python’daki boşluk kuralı kodun kolay okunmasını sağlar ve diğer dillerde yer alan parantezlerin yanlış kullanılmasından kaynaklanan hatalara meydan vermez.</p>
+<section id="python-gelistirme-standartlari">
+<h3><span class="section-number">2.5.1. </span>Python Geliştirme Standartları<a class="headerlink" href="#python-gelistirme-standartlari" title="Permalink to this heading">#</a></h3>
+<p>Python’da programlama tarzının önemli olduğunu belirtmiştik. Bu nedenle Python için yazım standartları ve rehberleri yayınlanmakta ve bunlar sürekli olarak geliştirilmektedir. Bu rehberler PEP (Python Enhancement Proposals) olarak bilinir. Tüm PEP’ler bu kitapta yer verilemeyecek kadar fazladır. PEP’leri incelemek için <a class="reference external" href="https://www.python.org/dev/peps/">https://www.python.org/dev/peps/</a>  sayfası incelenebilir.  Bu sayfada yer alan PEP 0, tüm PEP dokümanlarının listesini vermektedir. Bunlar içinde yer alan “PEP 8: Python Kodu için Üslup Rehberi”, kod yazım standartlarını anlatmaktadır.</p>
+<p>PEP’lerden bahsetmişken Tim Peters tarafından yazılmış olan Python’un Zeni (The Zen of Python) yazısından da bahsetmek gerekir. Bu kısa yazı Python’da kodlamanın ana ilkelerini özetler. Kullanılan Python editörüne import this komutu girildiğinde aşağıdaki yazı çıkar. Python’un Zeni aynı zamanda PEP 20’de yer almaktadır.</p>
+<blockquote>
+<div><p>The Zen of Python, by Tim Peters<br />
+Beautiful is better than ugly.<br />
+Explicit is better than implicit.<br />
+Simple is better than complex.<br />
+Complex is better than complicated.<br />
+Flat is better than nested.<br />
+Sparse is better than dense.<br />
+Readability counts.<br />
+Special cases aren’t special enough to break the rules.<br />
+Although practicality beats purity.<br />
+Errors should never pass silently.<br />
+Unless explicitly silenced.<br />
+In the face of ambiguity, refuse the temptation to guess.<br />
+There should be one– and preferably only one –obvious way to do it.<br />
+Although that way may not be obvious at first unless you’re Dutch.<br />
+Now is better than never.<br />
+Although never is often better than <em>right</em> now.<br />
+If the implementation is hard to explain, it’s a bad idea.<br />
+If the implementation is easy to explain, it may be a good idea.<br />
+Namespaces are one honking great idea – let’s do more of those!</p>
+</div></blockquote>
+<p><strong>Türkçesi:</strong></p>
+<blockquote>
+<div><p>Python’un Zeni, Tim Peters<br />
+Güzel, çirkinden iyidir.<br />
+Açık, gizliden iyidir.<br />
+Basit, karmaşıktan iyidir.<br />
+Karmaşık, karışıktan iyidir.<br />
+Düz olan iç içe geçmişten iyidir.<br />
+Aralıklı olan sık olandan iyidir.<br />
+Okunabilirlik önemlidir.<br />
+Özel durumlar, kuralları çiğneyecek kadar özel değildir.<br />
+Uygulanabilirlik, saflığı yense de<br />
+Hatalar asla sessizce geçiştirilmemelidir.<br />
+Açıkça yapılmadıysa.<br />
+Belirsizlik karşısında, tahmin yürütmenin cazibesinden kaçın.<br />
+Bir şeyi yapmanın -tercihen sadece- bir tek belirgin yolu olmalıdır.<br />
+Tabii, Hollandalı  değilseniz bu yol ilk başta belirgin olmayabilir.<br />
+Şimdi, hiçbir zamandan daha iyidir.<br />
+Asla, çoğu zaman <em>hemen</em> şimdiden daha iyi olsa da<br />
+Açıklanması zor olan uygulama, kötü fikirdir. <br />
+Açıklanması kolay olan uygulama, iyi fikir olabilir.<br />
+Ad uzayı muhteşem bir fikir – onlardan daha çok yapalım!</p>
+</div></blockquote>
+</section>
+<section id="python-kurulumu">
+<h3><span class="section-number">2.5.2. </span>Python Kurulumu<a class="headerlink" href="#python-kurulumu" title="Permalink to this heading">#</a></h3>
+<section id="windows-kullanicilari-icin-python-kurulumu">
+<h4><span class="section-number">2.5.2.1. </span>Windows Kullanıcıları için Python Kurulumu<a class="headerlink" href="#windows-kullanicilari-icin-python-kurulumu" title="Permalink to this heading">#</a></h4>
+<p>Bilgisayarınızda Python’un kurulu olup olmadığını görmek için “command” ekranını açıp “Python” yazın. Aşağıdakine benzer bir ifade ile başlayan bir yazı ve &gt;&gt;&gt; ile başlayan satırı görüyorsanız bilgisayarınızda zaten Python kuruludur. Bunun yerine “Bad command or file name” gibi bir mesaj alıyorsanız Python kurulu değildir.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Python 3.6.0 (default, Dec 23 2016, 11:57:41)…
+Type “help”, “copyright&quot;, “credits” or licence for more information.
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Python programını kurmak için <a class="reference external" href="https://www.python.org">https://www.python.org</a> sayfasından Download linkini kullanarak en güncel Python sürümünü indirebilirsiniz. Kitap yazıldığında en güncel sürüm Python 3.6.5 idi. Python 64 bit sürümünü indirmek için <a class="reference external" href="https://www.python.org/downloads/windows">https://www.python.org/downloads/windows</a> sayfasından “Download Windows x86-64 executable installer” linkini kullanabilirsiniz. İndirilen kurulum dosyası çalıştıktan sonra aşağıdaki adımlar takip edilerek Python kurulumu tamamlanır. İlk gelen kurulum penceresinin altında yer alan “Install launcher for all users” ve “Add Python 3.6 to PATH” seçimlerinin işaretli olması önerilir.</p>
+<figure class="align-default" id="python-kurulumu-fig">
+<img alt="python kurulumu" src="_images/python_kurulum.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Windows için Python kurulum adımları</span><a class="headerlink" href="#python-kurulumu-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Bundan sonra Command Prompt ekranında (Windows için PowerShell ekranı da olabilir) Python yazarak programı kullanmaya başlayabilirsiniz.</p>
+<figure class="align-default" id="python-cmd-fig">
+<img alt="cmd ekrani" src="_images/py_cmd.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.7 </span><span class="caption-text">Command Prompt ekranında Python kullanımı</span><a class="headerlink" href="#python-cmd-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="linux-kullanicilari-icin-python-kurulumu">
+<h4><span class="section-number">2.5.2.2. </span>Linux Kullanıcıları için Python Kurulumu<a class="headerlink" href="#linux-kullanicilari-icin-python-kurulumu" title="Permalink to this heading">#</a></h4>
+<p>Linux Ubuntu dağıtımı için kurulum adımları aşağıdaki gibidir. Öncelikle, kurulu Python sürümü olup olmadığını görmek için terminal ekranında aşağıdaki kod yazılır:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -V
+Python 3.5.2
+</pre></div>
+</div>
+<p>Ubuntu için kurulum komutları aşağıdaki gibidir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get install python3.6
+</pre></div>
+</div>
+<p>Python paketlerini kurmak ve yönetmek için gerekli olan pip kurulumu aşağıdaki şekilde yapılır.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install -y python3-pip
+</pre></div>
+</div>
+<p>Sonrasında istenilen bir paketi kurmak için aşağıdaki kod yazılır:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install paket_ismi
+</pre></div>
+</div>
+<p>Komutta yer alan “paket_ismi” yerine istenilen paketin adı yazılır. Örneğin, numpy, pandas, django, matplotlib gibi.</p>
+<p>Ubuntu’da da Python’u kullanmak için aynı şekilde terminal ekranı açılır ve python3 yazılır.</p>
+</section>
+<section id="id4">
+<h4><span class="section-number">2.5.2.3. </span>Linux Kullanıcıları için Python Kurulumu<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<p>Mac OS X 10.8 sürümü Python 2.7 kurulu olarak gelir. Python 3 kurmak için yine <a class="reference external" href="http://www.python.org">www.python.org</a> sayfasındaki Download linkinden Mac OS X sekmesini seçerek ya da doğrudan <a class="reference external" href="https://www.python.org/downloads/mac-osx/">https://www.python.org/downloads/mac-osx/</a> sayfasından istenilen Python sürümü indirilip kurulabilir. Kurulum sonrasında, Applications (Uygulamalar) klasöründe MacPython 3.6 klasörü yer alır. Bu klasörde, Python’un standart geliştirme ortamı olan IDLE uygulaması kullanılabilir. Ya da doğrudan terminal ekranında python3 yazarak Python ortamına geçilebilir.</p>
+</section>
+</section>
+<section id="python-editorleri">
+<h3><span class="section-number">2.5.3. </span>Python Editörleri<a class="headerlink" href="#python-editorleri" title="Permalink to this heading">#</a></h3>
+<p>Python kurulumunu gerçekleştirdikten sonra, işletim sisteminin terminal (komut ekranı, command screen) kullanarak program yazmaya başlayabilirsiniz. Ancak, bunun yerine geliştirilmiş olan çok sayıda Python editörü (entegre geliştirme ortamı, integrated development environments) daha kullanışlı ve zevkli kodlama deneyimi sunmaktadır. Aşağıda, en çok kullanılan Python editörleri listelenmiştir. Bunların dışında çeşitli editörler de mevcuttur.</p>
+<p><strong>PyCharm:</strong> JetBrains firması tarafından sunulan son derece gelişmiş ticari bir Python editörüdür. Bununla birlikte ücretsiz sürümü de bulunmaktadır. Python’la proje geliştirme, sürüm kontrolü, otomatik komut tamamlama, gelişmiş hata ayıklama gibi özelliklere sahiptir. <a class="reference external" href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a> adresinde yer alan Download linkinden Community seçeneği ile ücretsiz sürümü indirilip kurulabilir. Windows, MacOS ve Linux sürümleri bulunmaktadır.</p>
+<figure class="align-default" id="pycharm-fig">
+<img alt="Pycharm" src="_images/pycharm_ide.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.8 </span><span class="caption-text">PyCharm Python IDE</span><a class="headerlink" href="#pycharm-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Wing IDE:</strong> Wingware firması tarafından geliştirilmiştir. Ticari bir program olmasına karşın, ücretsiz sürümü de mevcuttur. Wing IDE de PyCharm gibi entegre bir kodlama ortamı sunmaktadır. <a class="reference external" href="https://wingware.com">https://wingware.com</a> sayfasında yer alan Download linkinden Wing Personal veya Wing 101 sürümlerinden birisi ücretsiz olarak indirilip kurulabilir. Wing IDE, Windows, MacOS ve Linux’ta çalışmaktadır.</p>
+<p><strong>Anaconda:</strong> Anaconda bir Python editörü ya da geliştirme ortamı olmayıp farklı Python ve R geliştirme ortamlarını bir arada sunan bir platformdur. Jupyter notebook, Spyder, qtconsole, gibi Python editörlerini sunmaktadır. Ayrıca, Learning linki ile çok sayıda eğitim sayfasına erişmek ya da Community linki ile Python haberleşme, forum sayfalarını görüntülemek mümkündür.</p>
+<figure class="align-default" id="anaconda-fig">
+<img alt="Anaconda" src="_images/anaconda_ide.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.9 </span><span class="caption-text">Anaconda Platformu</span><a class="headerlink" href="#anaconda-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Spyder editörü, PyCharm ve Wing IDE gibi entegre bir Python geliştirme ortamı sunmaktadır.</p>
+<figure class="align-default" id="spyder-fig">
+<img alt="Spyder" src="_images/spyder_ide.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.10 </span><span class="caption-text">Spyder Python IDE</span><a class="headerlink" href="#spyder-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Jupyter ise web tabanlı, interaktif bir kodlama ara yüzüdür. Diğer editörlerden farklı olarak hem metin (markdown) hem de kod yazmaya olanak sağlayan bir programdır. Jupyter dosyaları .pynb (Python notebook) uzantılı olarak kaydedilir. Hem kod hem de Markdown ile metin yazmaya izin veren bir formata sahiptir. Jupyter özellikle veri analizi çalışmalarında daha çok kullanılmaktadır.</p>
+<figure class="align-default" id="jupyter-fig">
+<img alt="Jupyter" src="_images/jupyter_ide.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.11 </span><span class="caption-text">Jupyter Editörü</span><a class="headerlink" href="#jupyter-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Kitabın basıma hazırlandığı tarihlerde henüz beta sürümü kullanımda olan JupyterLab editörü Jupyter editörü ile dosya ve veri yönetimini bir arada gerçekleştirmeyi mümkün kılmıştır.</p>
+<figure class="align-default" id="jupyterlab-fig">
+<img alt="Jupyterlab" src="_images/jupyterlab.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.12 </span><span class="caption-text">JupyterLab Ekranı</span><a class="headerlink" href="#jupyterlab-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Microsoft Visual Studio’da Python kullanmak için geliştirilmiş olan Python Tools for Visual Studio (PTVS) editörü de mevcuttur. Özellikle Microsoft Visual Studio programını kullanmaya alışkın olan programcılar için PTVS cazip bir programlama ortamı sunmaktadır. <a class="reference external" href="https://www.visualstudio.com/vs/python/">https://www.visualstudio.com/vs/python/</a> adresinden Microsoft Visual Studio ve PTVS indirilip kurulabilir.</p>
+<p>Son olarak Visual Studio Code (<a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>) editöründe Python uzantısını kurarak da Pyhon kullanabilirsiniz.</p>
+<p>Nispeten kısa ya da veri analizi veya görselleştirmeye yönelik programlamalarda Python terminal ekranı ya da Jupyter çok iyi bir ortam sunsa da daha büyük projeler için PyCharm ya da Spyder gibi entegre ortamları kullanmanız önerilir. Uzun bir program yazacaksanız ilgili kodu .py uzantılı bir dosyaya kaydedip daha sonra tekrar tekrar kullanabilirsiniz. Bu dosyalar Python komut dosyası (script) olarak isimlendirilir.</p>
+<p>Ben başlangıçta daha çok Jupyter notebook ortamını tercih etsem de son yıllarda tüm kodlamalarını VSCode ortamında yapıyorum.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter0100.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>PROGRAMLAMA</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter0102.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Temel İşlemler ve Veri Tipleri</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarin-tarihi">2.1. Bilgisayarların Tarihi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarin-yapisi">2.2. Bilgisayarların Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bilgisayarlarda-veri-yapisi">2.3. Bilgisayarlarda Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programlama-dilleri">2.4. Programlama Dilleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-programlama-dili">2.5. Python Programlama Dili</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-gelistirme-standartlari">2.5.1. Python Geliştirme Standartları</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-kurulumu">2.5.2. Python Kurulumu</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-kullanicilari-icin-python-kurulumu">2.5.2.1. Windows Kullanıcıları için Python Kurulumu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linux-kullanicilari-icin-python-kurulumu">2.5.2.2. Linux Kullanıcıları için Python Kurulumu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.5.2.3. Linux Kullanıcıları için Python Kurulumu</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-editorleri">2.5.3. Python Editörleri</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By İlker Arslan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
