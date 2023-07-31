@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>PYTHON ile VERİ BİLİMİ &#8212; Python ile Veri Bilimi</title>
+    <title>1. PROGRAMLAMA &#8212; Python ile Veri Bilimi</title>
   
   
   
@@ -61,10 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0100';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. PROGRAMLAMA" href="chapter0100.html" />
+    <link rel="next" title="2. Bilgisayarlar ve Programlama" href="chapter0101.html" />
+    <link rel="prev" title="PYTHON ile VERİ BİLİMİ" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -130,7 +131,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -143,15 +144,15 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
                     PYTHON ile VERİ BİLİMİ
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kısım I</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. PROGRAMLAMA</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. PROGRAMLAMA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
@@ -230,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0100.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -260,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="_sources/chapter0100.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -340,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PYTHON ile VERİ BİLİMİ</h1>
+    <h1>PROGRAMLAMA</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -354,38 +355,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="python-ile-veri-bilimi">
-<h1>PYTHON ile VERİ BİLİMİ<a class="headerlink" href="#python-ile-veri-bilimi" title="Permalink to this heading">#</a></h1>
-<p>R ile İstatistiksel Programlama kitabım 2015 yılında yayımlandığında, Türkiye’de Veri Bilimine olan ilgi bugüne nazaran daha dar ve akademik bir çevre ile sınırlıydı. Geçen kısa sürede tüm Dünya’da olduğu gibi ülkemizde de bu alana olan ilgi katlanarak arttı. Bu durum da veri biliminde en fazla kullanılan iki programlama dili olan R ve Python’a olan ilginin artmasını sağladı.</p>
-<p>Veri bilimi dediğimiz zaman yeni, daha önce bilinmeyen bir disiplinden bahsetmiyoruz aslında. Yaptığımız işte ve hatta günlük yaşamımızda bile verilerle hareket eder, verilerle karar veririz. Atalarımızın, ne zaman ekin ekeceklerine, hangi bitkinin faydalı, hangisinin zararlı, hangi hayvanların tehlikeli olduğuna karar vermeye çalıştıkları günlerden beri böyle.</p>
-<p>Veri biliminin tanımı konusunda farklı görüşler olsa da her halde temel olarak istatistik ve bilgisayar programlama becerilerini bir araya getiren disiplinler arası bir alan olarak düşünebiliriz. Veri biliminde, istatistiksel analiz ve modelleme yöntemleri ile etkin bilgisayar algoritmalarını bir arada kullanmaya çalışırız. Daha sonra bu iki alana, çalıştığımız asıl alanı da ekleyebiliriz çünkü veri bilimini uyguladığımız alandaki tecrübe ve bilgi birikimi de veri biliminin başarısı açısından oldukça önemli. İşte bu nedenle, veri bilimi farklı bir disiplin değil çalıştığımız alana uyguladığımız bir yöntemler topluluğudur diyebiliriz sanırım. Bir doktor, mühendis, reklamcı, sosyal medya uzmanı, ekonomist ya da bankacı da olsak işimizin önemli bir bölümünü veri analizi oluşturuyor aslında. Bu nedenle hangi alanda çalışıyorsak çalışalım, veri bilimi becerilerini edinmek işimizde başarılı olmak için mutlaka gerekli.</p>
-<p>Python, özellikle veri bilimi için geliştirilmemiş ve C, C++, Java gibi programlama dillerine göre daha yavaş olmasına karşın, son yıllarda en çok kullanılan dillerden birisi haline gelmiştir. Konu ile ilgili en önemli araştırmalardan birinde Python’un 2017 yılında en çok tercih edilen programlama dili olduğu belirtiliyor<a class="footnote-reference brackets" href="#fn01" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. Bunun önemli sebeplerinden birisi, Python’da veri bilimi için kullanılabilecek kütüphanelerin çokluğu. Google başta olmak üzere, büyük firmaların analitik çalışmaları için Python’u tercih etmelerinin de bu dile gösterilen ilginin artmasına olan katkısı yadsınamaz. Diyebiliriz ki Python’u bu kadar önemli ve gözde kılan, aslında veri biliminin yükselişi olmuştur.</p>
-<p>Bu kitap, üç kısımdan oluşmaktadır: Programlama, Veri Analizi ve Yapay Öğrenme. İlk kısımda Python ile programlamanın temelleri yer almaktadır. Bu kısmı yazarken hiç programlama deneyimi olmayanların dahi kolayca anlayabilmesini amaçladım. Veri bilimi ve yapay öğrenmeye hiç ilginiz yoksa dahi sadece ilk bölümü çalışarak Python’a giriş yapabilir veya başlangıç seviyesindeki bilginizi orta düzeye taşıyabilirsiniz.</p>
-<p>İkinci kısımda Python’da en çok kullanılan veri analizi ve veri görselleştirme kütüphaneleri tanıtılmaktadır. Bu kütüphaneleri öğrenmek, Python’u veri biliminde kullanmayı hedefleyen herkes için son derece gereklidir. Veri bilimi ile yakından ilgilenmeyen okuyucuların bile bu bölümü çalışmalarını tavsiye ederim. Böylece Python becerilerinizi ileri seviyeye taşıyabilirsiniz.</p>
-<p>Üçüncü kısımda ise istatistiksel analiz ve en çok kullanılan yapay öğrenme yöntemleri ile bunların Python’daki uygulamaları yer almaktadır. Bu kısmı yazarken oldukça zorlandığımı itiraf etmeliyim. Çok fazla ayrıntı, konu hakkında fazla bilgisi olmayan okuyucuların takibini zorlaştırarak konudan kopmalarına yol açabilirdi. Aksi durumda ise ileri seviyede bilgi sahibi olan okuyucunun ilgisi dağılabilirdi. Bu nedenle konuları hiç bilmeyen okuyucunun dahi anlayabileceği basitlikte anlatmaya çalışırken her konunun uygulamasına dair farklı örnekler vererek okuyucuyu sıkmamaya çalıştım. Konular hakkındaki matematiksel teoriyi aktarırken de yine aynı şekilde herkesin istediği kadarını alabileceği bir yapı kurmaya çalıştım. Ayrıca, kitaptaki tüm örneklerde, okuyucuların çalışmaları tekrar edebilmeleri için internette ya da Python kütüphanelerinde bulunan veri kümelerini kullanmaya özen gösterdim.</p>
-<p>Herhangi bir programlama dilinde kitap yazmanın kötü yanı, gelişimin sürekli ve çok hızlı olduğu bu alanda, yazdıklarınızın zamanın gerisinde kalması riskidir. Ancak veri biliminin ve Python’un hem Dünya’da hem de ülkemizde uzun yıllar güncelliğini koruyacağına inanıyorum. Amacım, tüm okuyucular için bir rehber ve aynı zamanda çalışmalarında Python kullananların da sürekli el altında bulunduracakları bir başvuru kaynağı sağlamaktı. Umarım biraz da olsa başarabilmişimdir.</p>
-<p>İlker Arslan</p>
-<p>Nisan 2018, İstanbul</p>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kısım I</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. PROGRAMLAMA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="referencelist.html">5. Kaynaklar</a></li>
-</ul>
-</div>
-<hr class="footnotes docutils" />
-<aside class="footnote brackets" id="fn01" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://spectrum.ieee.org/computing/software/the-2017-top-programming-languages">https://spectrum.ieee.org/computing/software/the-2017-top-programming-languages</a></p>
-</aside>
+  <section class="tex2jax_ignore mathjax_ignore" id="programlama">
+<h1><span class="section-number">1. </span>PROGRAMLAMA<a class="headerlink" href="#programlama" title="Permalink to this heading">#</a></h1>
+<p>Bu bölümde önce bilgisayarlar ve bilgisayar programlama hakkında temel bilgiler verildikten sonra, Python’da veri yapıları, koşullu ifadeler, döngüler ve fonksiyonlar anlatılacaktır. Daha sonra Python’un en güçlü yanı olan modüllerin kullanımı ve Python’da nesne yönelimli programlamaya ilişkin bilgiler aktarılacaktır. Son bölümde ise Python’a özgü hata ayıklama yöntemleri hakkında bilgi verilecektir. Bölümler, daha önce programlama yapmamış okuyucularında rahat takip edebileceği şekilde kolaydan zora doğru sıralanmıştır. Veri bilimi ile ilgilenmeyen okuyucular bu bölümleri çalışarak Python hakkında başlangıç ve orta seviyede bilgi sahibi olabilir. Ancak, veri bilimi alanında çalışmayan okuyucuların da ikinci ve üçüncü ya da en azından ikinci bölümü de okumalarını tavsiye ederim.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -419,12 +391,21 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PYTHON ile VERİ BİLİMİ</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="chapter0100.html"
+       href="chapter0101.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>PROGRAMLAMA</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Bilgisayarlar ve Programlama</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

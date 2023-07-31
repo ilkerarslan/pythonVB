@@ -1,0 +1,2043 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Temel İşlemler ve Veri Tipleri &#8212; Python ile Veri Bilimi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0102';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Veri Yapıları" href="chapter0103.html" />
+    <link rel="prev" title="2. Bilgisayarlar ve Programlama" href="chapter0101.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python ile Veri Bilimi</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    PYTHON ile VERİ BİLİMİ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kısım I</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. PROGRAMLAMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Temel İşlemler ve Veri Tipleri</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">5. Kaynaklar</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0102.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter0102.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Temel İşlemler ve Veri Tipleri</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temel-aritmetik-islemler">3.1. Temel Aritmetik İşlemler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degiskenler">3.2. Değişkenler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temel-veri-tipleri">3.3. Temel Veri Tipleri</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sayisal-veri-tipleri">3.3.1. Sayısal Veri Tipleri</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-veri-tipi-string">3.3.2. Metin Veri Tipi (String)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="temel-islemler-ve-veri-tipleri">
+<h1><span class="section-number">3. </span>Temel İşlemler ve Veri Tipleri<a class="headerlink" href="#temel-islemler-ve-veri-tipleri" title="Permalink to this heading">#</a></h1>
+<section id="temel-aritmetik-islemler">
+<h2><span class="section-number">3.1. </span>Temel Aritmetik İşlemler<a class="headerlink" href="#temel-aritmetik-islemler" title="Permalink to this heading">#</a></h2>
+<p>Python da tüm programlama dilleri gibi temelde bir hesap makinesidir. En basitinden başlayarak Python’da yapılabilecek matematiksel işlemlere göz atalım. Amacımız tabii ki Python’u bir hesap makinesi olarak kullanmak değil ancak kullandığınız editöre alışmak için alıştırma yapmak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">18</span> <span class="o">+</span> <span class="mi">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">81</span> <span class="o">-</span> <span class="mi">17</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="o">*</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>72
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">96</span> <span class="o">/</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir değeri her defasında tekrar tekrar kullanmak yerine bu değeri bir değişkene atayıp değişkeni kullanmak ve değiştirmek gerekebilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>144
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anlaşılacağı üzere “**” operatörü üs alma için kullanılır. En son geçerli (hesaplanmış) değeri göstermek ya da kullanmak için alt çizgi “_” kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>144
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">/</span> <span class="mi">24</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ekrana herhangi bir şey yazdırmak için print () komutu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python öğreniyorum&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python öğreniyorum
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python 3’te, Python 2’den farklı olarak print() komutu mutlaka parantez ile birlikte kullanılmalıdır. Python’da kullanılan başlıca matematiksel işlem ve karşılaştırma işaretleri (operatörleri) aşağıdaki gibidir:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operatör</p></th>
+<th class="head text-center"><p>Açıklama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>+</p></td>
+<td class="text-center"><p>Toplama</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>-</p></td>
+<td class="text-center"><p>Çıkarma</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>/</p></td>
+<td class="text-center"><p>Bölme</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>*</p></td>
+<td class="text-center"><p>Çarpma</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>%</p></td>
+<td class="text-center"><p>Mod alma</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>**</p></td>
+<td class="text-center"><p>Üs alma</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>//</p></td>
+<td class="text-center"><p>Tamsayı bölme</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="o">==</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">13.5</span> <span class="o">==</span> <span class="mf">12.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.78</span> <span class="o">&lt;=</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python yazılan bir matematiksel işlemi değerlendirirken matematiksel kurallara uygun olarak önce parantez içini, sonra üs alma işlemini ve daha sonra da sırasıyla bölme ve çarpma işlemleri ile toplama ve çıkarma işlemlerini dikkate alır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6561
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python terminalinde ya da IPython veya Jupyter gibi bir ortamda işlem yapıyorsanız, yazdığınız işlemin sonucu yukarıda olduğu gibi hemen alt satırda görünecektir. Ancak PyCharm gibi entegre bir Python ortamında kod yazıyorsanız, programı çalıştırdığınızda yazdığınız matematiksel işlemin sonucu çıktılar arasında görünmez. Python, işlemi hesaplar ancak çıktıyı yazması gerektiğini bilemez. İşlemin sonucunu yazmasını print() komutu ile söyleyebilirsiniz.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+<span class="nb">print</span> <span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">60</span>
+<span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span> <span class="o">//</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">23</span> <span class="o">//</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’u terminalden ya da IPython veya Jupyter gibi bir editörden kullanıyorsanız herhangi bir matematiksel işlemin sonucunu görmek için doğrudan işlemi yazmanız yeterli olacaktır. Terminal ve IPython Shell’de işlemi yazdıktan sonra Enter tuşuna, Jupyter notebook dokümanında ise hücre içine kodu yazdıktan sonra Shift + Enter tuşlarına basmanız gerekir. Diğer taraftan PyCharm gibi bir entegre geliştirme ortamında (IDE: Integrated Development Environment) kod dosyası içinde işlemi yazarsanız, program çalıştırdığınızda hiçbir çıktı ile karşılaşmazsınız. Burada bir aritmetik işleminin sonucunu görmek için ilgili işlemi print() fonksiyonu içinde yazmak gerekir. Aşağıdaki örnekte, <a class="reference external" href="http://deneme.py">deneme.py</a> dosyasının içine sadece 5**4 yazdığımızı düşünelim.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">ProgramData</span>\<span class="n">Anaconda3</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> 
+<span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">deneme</span><span class="o">.</span><span class="n">py</span>
+<span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Yukarıda <a class="reference external" href="http://deneme.py">deneme.py</a> dosyası çalıştırıldığında çıktı da herhangi bir sonuç görünmemektedir. Aynı kodu print() fonksiyonu kullanarak çalıştırdığımızda ise aşağıdaki sonuç görünmektedir.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="mi">5</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">C</span><span class="p">:</span>\<span class="n">ProgramData</span>\<span class="n">Anaconda3</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> 
+<span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">deneme</span><span class="o">.</span><span class="n">py</span>
+<span class="mi">625</span>
+<span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>	
+
+</pre></div>
+</div>
+<p>Son olarak Python’da açıklama yazmayı görelim. Bütün programlama dillerinde kodların arasında açıklama yazabilmek için belirli kurallar vardır. Yazdığınız programları okuyanların daha kolay anlayabilmesi için kod satırları arasında açıklayıcı cümleler yazmak iyi bir uygulama şeklidir. Siz bile daha önce yazdığınız bir kodu incelerken “Acaba burada ne yapmak istemiştim?” diye düşünebilirsiniz. Yazılan bir açıklama cümlesinin kod parçası olmadığını anlatmanın bir yolu olmalıdır. Python’da bu cümlenin önüne # işareti getirmektir. Python’da, bu işaret görüldüğünde satırın geri kalan kısmı değerlendirmeye alınmaz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Üs alma işlemi</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">13</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Mod alma işlemi</span>
+
+<span class="c1"># Aşağıdaki işlemde tam sayı bölme örneği veriliyor</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">15</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+1
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da açıklama cümlelerini birden fazla satıra yaymak da mümkündür. Açıklamanın başına ve sonuna üç tane tırnak işareti “”” getirerek açıklamaları birden fazla satırda yazabilirsiniz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Birden fazla satıra</span>
+<span class="sd">yayılmış açıklama cümlesi örneği.</span>
+<span class="sd">Verilen sayının karesini yazdırma.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;42&quot;</span>   
+<span class="nb">print</span> <span class="p">(</span><span class="nb">float</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># Kullanıcının 42 girdiği durumda</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1764.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="degiskenler">
+<h2><span class="section-number">3.2. </span>Değişkenler<a class="headerlink" href="#degiskenler" title="Permalink to this heading">#</a></h2>
+<p>Tüm programlama dillerinin ortak bir özelliği de değişken kullanmalarıdır. Değişken, en basit tanımıyla bir değeri daha sonra da kullanabilmek için bu değere verilen isimdir. Örneğin, e = 2.71828183 yazarsam, bundan sonra her defasında sayıyı uzun uzun yazmak yerine e yazmam yeterli olacaktır. Program, e yazdığımda aslında neyi kast ettiğimi anlayacaktır.</p>
+<p>Programların çalışması sırasında bilgisayarların hafızasında farklı türde veriler depolanır ve kullanılır. Verilerin depolandığı yerler “nesne” olarak isimlendirilir. Bu nesnelere ulaşmak için de isimlere ihtiyaç duyarız. Bir nesneye verilen isme de “değişken” denir (Stroustrup, Programming Principles and Practice Using C++, Pearson, 2009). Veri nesneleri farklı türlerde olabilir. Bu farklı türlerin neler olduğuna izleyen bölümde değineceğiz.</p>
+<p>Bir değişken tanımlamak için kullanılacak değişken ismi ve sonrasında = yazıldıktan sonra değişkene atanacak değer yazılır. Bir değişkene basit bir değer atanabileceği gibi daha karmaşık veri yapıları da atanabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span> <span class="o">=</span> <span class="s2">&quot;İlker Arslan&quot;</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">18</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bazı dillerde bir değişkeni kullanmadan önce mutlaka bu değişkeni ve bu değişkenin verinin tipini tanımlamak gerekir. Python’da ise buna gerek yoktur. Ayrıca, bir değişkenin hangi tipte olduğunu da açıkça belirtmeye de gerek yoktur. Python, değişkenin aldığı değere bakarak hangi tipte olduğunu anlayabilir.</p>
+<p>Python’da değişken isimlerini belirlerken uyulması gereken kurallar aşağıdadır. Bu kurallardan bazılarına uymamak hataya ve programın durmasına yol açabilir. Bazıları ise sadece iyi programlama alışkanlığı olarak önerilmektedir (Matthes, Python Crash Course: A Hands on Project Based Introduction to Programming, San Francisco: No Starch Press, 2015).</p>
+<p>Değişkenler harf, sayı ya da alt çizgi içerebilir. Bir değişken ismi harf veya alt çizgi ile başlayabilir ama sayı ile başlayamaz ve boşluk içeremez. Diğer dillerde değişken isimlerinde nokta da kullanılsa da Python’da buna izin verilmez.</p>
+<p>Python’da tanımlanmış olan anahtar kelimeleri ve fonksiyon isimlerini değişken ismi olarak kullanmamaya dikkat edin. Örneğin “def”, Python’da fonksiyon tanımlamak için kullanılan bir kelimedir. Bu kelimeyi değişken ismi olarak kullanmak istersek hata mesajı ile karşılaşırız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="o">=</span> <span class="mi">4</span>     <span class="c1"># Hata</span>
+
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="o">=</span> <span class="mi">4</span>     <span class="c1"># Hata</span>
+        <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+</pre></div>
+</div>
+<p>Bazı diğer dillerde olmayan bir özellik de birden fazla değişkeni aynı anda tanımlamaya izin verilmesidir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.78</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14
+2.78
+</pre></div>
+</div>
+</div>
+</div>
+<p>Birden fazla değişkeni tanımlarken normal veya köşeli parantez de kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+8
+9
+</pre></div>
+</div>
+</div>
+</div>
+<p>Mümkün olduğu kadar kısa ancak aynı zamanda anlaşılır değişken isimlerini her zaman tercih etmeniz önerilir. Örneğin, bir programda müşteri numarası için değişkene ihtiyaç duymanız halinde mn, m_n, gibi pratik ancak anlaşılması zor değişken isimleri yerine musteri_no gibi bir değişken ismini tercih etmelisiniz.</p>
+<p>Değişkenleri isimlendirme konusunda genel kabul gören birkaç yöntem vardır. Bu şekilde kullanmak mecburi olmamakla birlikte yazdığınız kodların kendi içinde tutarlı olması ve anlaşılabilir olması açısından belirli bir isimlendirme şeklini kullanmayı alışkanlık edinmeniz tavsiye edilir.</p>
+<p>Öncelikle, değişken isimlerini küçük harflerle tanımlamak, şart olmamakla birlikte tavsiye edilen bir alışkanlıktır. Değişken ismi, birden fazla kelimeden oluşuyorsa kelimeleri alt çizgi ile ayırabilirsiniz ya da ilk kelime küçük harf, sonraki her kelimenin ise sadece ilk harfi büyük olacak şekilde bitişik olarak yazabilirsiniz: musteri_no ya da musteriNo gibi. Diğer dillerde değişkenlerde nokta kullanılması kabul edilse de Python’da değişken isminde nokta kullanılmaz. Bunun sebebini Python metodlarını anlatırken göreceğiz. Son olarak değişken isimlerinin büyük ve küçük harfe duyarlı olduğuna dikkat etmek gerekir. Yani, abc, ABC, Abc, aBc farklı değişken isimlerini temsil eder.</p>
+</section>
+<section id="temel-veri-tipleri">
+<h2><span class="section-number">3.3. </span>Temel Veri Tipleri<a class="headerlink" href="#temel-veri-tipleri" title="Permalink to this heading">#</a></h2>
+<p>Buraya kadar, bazı sayısal işlemler gerçekleştirdik. Ayrıca ekrana yazı yazdırdık. Bir programlama dilinde ilk öğrenilmesi gereken konulardan birisi de bu dildeki veri tipleridir. Nasıl ki bizler veirleri rakam, sayı, ondalık sayı, harf, kelime gibi farklı sınıflara ayırıyorsak bilgisayar programlarında da veriler farklı türlere ayrılır. Örneğin, 12, 13 tamsayı iken 3.14 gerçel sayı, “Merhaba Python” ise metin tipinde verilerdir.</p>
+<p>Python’da temel olarak <strong>int</strong> (integer: tamsayı), <strong>float</strong> (gerçel sayı) ve <strong>string</strong> (metin) veri tipleri bulunmaktadır. Bu üç veri tipinin dışında da bir değeri olmayan ve yer tutucu görevi gören <strong>None</strong> (boş) ve sadece True, False (Doğru, Yanlış) değerlerini alabilen <strong>bool</strong> veri tipleri bulunmaktadır. Ayrıca, karmaşık sayıları belirtmek için <strong>complex</strong> veri tipi de mevcuttur. Daha ileride göreceğimiz daha karmaşık veri yapıları bu temel veriler kullanılarak oluşturulmaktadır.</p>
+<section id="sayisal-veri-tipleri">
+<h3><span class="section-number">3.3.1. </span>Sayısal Veri Tipleri<a class="headerlink" href="#sayisal-veri-tipleri" title="Permalink to this heading">#</a></h3>
+<p><strong>Integer:</strong> Tamsayı türündeki verilerdir. Python’da tamsayıları 10’luk sistem dışında ikilik, sekizlik veya 16’lık sistemde yazmak da mümkündür. İkilik sistemde bir tamsayı yazmak için sayının başına <strong>0b</strong> (0 ve binary kelimesinin ilk harfi) getirilir. Benzer şekilde sekizli sayma düzeni için sayının başına <strong>0o</strong>, 16’lı sayma düzeninde bir sayı yazmak için sayının başına <strong>0x</strong> karakterleri getirilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Onluk düzende 100 sayısı</span>
+<span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># İkili düzende 100 sayısının onluk düzendeki karşılığı</span>
+<span class="mb">0b100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sekizlik düzendeki 100 sayısının onluk düzendeki karşılığı</span>
+<span class="mo">0o100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Onaltılık düzendeki 100 sayısının onluk düzendeki karşılığı</span>
+<span class="mh">0x100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>256
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir gerçel sayıyı tam sayıya çevirmek için <code class="docutils literal notranslate"><span class="pre">int()</span></code> fonksiyonu kullanılır. Bu fonksiyon, gerçel sayının ondalık bölümünü atar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="o">-</span><span class="mf">3.999</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="mf">4.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="o">-</span><span class="mf">2.78</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="mf">7.99</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">int()</span></code> fonksiyonu, metin olarak girilmiş bir sayıyı da tamsayıya çevirebilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1807&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1807
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">int()</span></code> fonksiyonunu kullanırken, ikinci bir argüman olarak sayının hangi sayma sisteminde olduğunu da belirtebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1010&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;A0&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>160
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir verinin türünü öğrenmek için <code class="docutils literal notranslate"><span class="pre">type()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir verinin kaç bit büyüklüğünde olduğunu görmek için <code class="docutils literal notranslate"><span class="pre">.bit_length()</span></code> metodu kullanılır. Bu özelliği tamsayılar için de kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1000000000</span><span class="p">)</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Float:</strong> Gerçel sayılar ya da ondalık sayılar float veri tipi olarak saklanır. Python ondalık kısmı olan her sayıyı <strong>float</strong> olarak kabul eder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">3.14</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.7818</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.7818
+</pre></div>
+</div>
+</div>
+</div>
+<p>Çok büyük sayıları yazmak için bilimsel notasyon da kullanılabilir. Örneğin, <span class="math notranslate nohighlight">\(4x10^{12}\)</span> sayısı 4e12 olarak yazılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">4e12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4000000000000.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tamsayılardaki <code class="docutils literal notranslate"><span class="pre">int()</span></code> fonksiyonu gibi bir veriyi float veri tipine çevirmek için de <code class="docutils literal notranslate"><span class="pre">float()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;18.07&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18.07
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Complex:</strong> Karmaşık sayıları belirtmek üzere kullanılır. Bilindiği gibi karmaşık sayılar bir gerçel, bir de sanal kısımdan oluşan nesnelerdir. Python’da karmaşık sayının sanal kısmı j harfi ile belirtilir. Sanal kısmı belirten <span class="math notranslate nohighlight">\(j = \sqrt{-1}\)</span> olarak tanımlanır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3+4j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="n">j</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2-3j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>complex
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="n">j</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">2</span><span class="n">j</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8+1j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir karmaşık sayı tanımlamak için <code class="docutils literal notranslate"><span class="pre">complex()</span></code> fonksiyonu da kullanılabilir. Bu fonksiyon iki argüman alır. İlk argüman oluşturulacak karmaşık sayının gerçel kısmını, ikinci argüman ise sanal kısmını belirtir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">complex</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4+3j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">complex</span><span class="p">(</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.7+3.2j)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>None:</strong> Herhangi bir değeri olmayan boş bir nesneyi temsil eder. İlk harf mutlaka büyük yazılmalıdır. Python’da herhangi bir değer döndürmeyen fonksiyonlar None nesnesini verir. Python’da genelde bir fonksiyonun opsiyonel argümanlarının varsayılan değeri None olur. Bu şekilde fonksiyon kullanıldığında, opsiyonel argümana bir değer atanıp atanamadığı program tarafından anlaşılır (Zelle, 2009).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">x</span> <span class="ow">is</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Bool:</strong> Sadece <strong>True</strong> (Doğru) veya <strong>False</strong> (Yanlış) değerlerinden birini alabilen mantıksal bir veri türüdür. Sayısal olarak 0 değeri False ve sıfır dışındaki tüm sayılar True kabul edilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="mf">4.12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>İleride göreceğimiz, tuple, list, dictionary gibi veri yapılarında da veri yapısının hiç elemanı yoksa yani boş ise bool karşılığı False, bir veya daha fazla elemanı varsa True kabul edilir. <strong>None</strong> boş nesnesinin de hiçbir değeri ya da bir özelliği bulunmadığı için <strong>False</strong> bool değerini alır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bool verileri 0 ve 1 olarak kabul edildiğinden bunlarla yapılan matematiksel işlemlerde de 0 ve 1 değerlerini alırlar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">+</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">+</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">*</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metin-veri-tipi-string">
+<h3><span class="section-number">3.3.2. </span>Metin Veri Tipi (String)<a class="headerlink" href="#metin-veri-tipi-string" title="Permalink to this heading">#</a></h3>
+<p>String, bir veya daha fazla karakter dizisinden oluşan metin tipi veri yapısıdır. String veri tipi Pyhon’da tırnak işareti (“  ”) veya kesme işareti (‘  ’) arasında yazılarak belirtilir. İyi uygulama alışkanlığı açısından bir tanesini kullanmayı alışkanlık edinmekte fayda vardır. Metin veri tipi için iki işareti de kullanabilmenin bir faydası da metnin içinde tırnak veya kesme işareti kullanımına izin vermesidir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Python, &#39;Guido van Rossum&#39; tarafından geliştirilmiştir.&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Python, &#39;Guido van Rossum&#39; tarafından geliştirilmiştir.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki metni aşağıdaki şekillerde yazarsanız hata mesajı ile karşılaşırsınız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Python, &quot;</span><span class="n">Guido</span> <span class="n">van</span> <span class="n">Rossum</span><span class="s2">&quot; tarafından geliştirilmiştir.&quot;</span>       <span class="c1"># Hata</span>
+
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">64</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="s2">&quot;Python, &quot;</span><span class="n">Guido</span> <span class="n">van</span> <span class="n">Rossum</span><span class="s2">&quot; tarafından geliştirilmiştir.&quot;</span>       <span class="c1"># Hata</span>
+              <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+</pre></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Python, &#39;</span><span class="n">Guido</span> <span class="n">van</span> <span class="n">Rossum</span><span class="s1">&#39; tarafından geliştirilmiştir.&#39;</span>       <span class="c1"># Hata</span>
+
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">67</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="s1">&#39;Python, &#39;</span><span class="n">Guido</span> <span class="n">van</span> <span class="n">Rossum</span><span class="s1">&#39; tarafından geliştirilmiştir.&#39;</span>       <span class="c1"># Hata</span>
+              <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+</pre></div>
+</div>
+<p>Yan yana metinleri ayrı tırnak işaretleri içinde yazarsanız Python bunları da bir araya getirir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;birinci &quot;</span> <span class="s2">&quot;ikinci &quot;</span> <span class="s2">&quot;üçüncü&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;birinci ikinci üçüncü&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da, string veri tipi UTF-8 karakter setini desteklemektedir. Bunun bizim için anlamı, Python’da string türü verilerde, Türkçe karakterleri de kullanabiliyor olmamızdır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;İıŞşÖöÜüĞğ&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İıŞşÖöÜüĞğ
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bazı programlama dillerinde, tek bir karakterden oluşan veri tipi karakter, birden fazla karakterden oluşan veri tipi ise metin olarak isimlendirilir. Python’da böyle bir ayrım yoktur. Metnin uzunluğu kaç karakter olursa olsun string veri tipindedir. Bir metnin içindeki karakterler 0’dan başlayan sıra numaraları ile numaralandırılmıştır. İlk karakterin sırası sıfır, ikinci sıradaki karakterin sırası iki olmak üzere devam eder. Bir metinde herhangi bir sıradaki karakteri çekmek için köşeli parantez, [ ], içinde sıra numarası yazılır.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>P</p></th>
+<th class="head text-center"><p>y</p></th>
+<th class="head text-center"><p>t</p></th>
+<th class="head text-center"><p>h</p></th>
+<th class="head text-center"><p>o</p></th>
+<th class="head text-center"><p>n</p></th>
+<th class="head text-center"><p></p></th>
+<th class="head text-center"><p>p</p></th>
+<th class="head text-center"><p>r</p></th>
+<th class="head text-center"><p>o</p></th>
+<th class="head text-center"><p>g</p></th>
+<th class="head text-center"><p>r</p></th>
+<th class="head text-center"><p>a</p></th>
+<th class="head text-center"><p>m</p></th>
+<th class="head text-center"><p>l</p></th>
+<th class="head text-center"><p>a</p></th>
+<th class="head text-center"><p>m</p></th>
+<th class="head text-center"><p>a</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p>2</p></td>
+<td class="text-center"><p>3</p></td>
+<td class="text-center"><p>4</p></td>
+<td class="text-center"><p>5</p></td>
+<td class="text-center"><p>6</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>13</p></td>
+<td class="text-center"><p>14</p></td>
+<td class="text-center"><p>15</p></td>
+<td class="text-center"><p>16</p></td>
+<td class="text-center"><p>17</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">il</span> <span class="o">=</span> <span class="s2">&quot;İzmir&quot;</span>
+<span class="n">il</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İ&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">il</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">il</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;z&#39;, &#39;m&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">il</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;i&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sıra numarasının sıfır ile başladığına dikkat etmişsinizdir. Python’da tüm sıralamalar sıfırdan başlar.</p>
+<p>Diğer yandan, yukarıdaki örnekler bir metnin içeriğinin kısmen değiştirilebileceği anlamına gelmez. Yani bir metni tanımladıktan sonra, metnin sözgelimi 3. karakterini değiştirmek isterseniz bir hata mesajı ile karşılaşırsınız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">ulke</span> <span class="o">=</span> <span class="s2">&quot;türkiye&quot;</span>
+<span class="n">ulke</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span>       <span class="c1"># Hata</span>
+
+
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">73</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+      <span class="mi">1</span> <span class="n">ulke</span> <span class="o">=</span> <span class="s2">&quot;türkiye&quot;</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="n">ulke</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span>       <span class="c1"># Hata</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+</div>
+<p>Python’da tüm değişkenleri olduğu gibi metinleri de yazdırmanın yolu <code class="docutils literal notranslate"><span class="pre">print()</span></code> fonksiyonunu kullanmaktır. Birden fazla metni bir arada yazdırmak için print fonksiyonu içinde bir araya getirilmek istenen metinler arasında <code class="docutils literal notranslate"><span class="pre">+</span></code> işareti konur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python &quot;</span> <span class="o">+</span> <span class="s2">&quot;öğreniyorum&quot;</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python öğreniyorum!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir veriyi metne çevirmenin yolu str() fonksiyonunu kullanmaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">12345</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;12345&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da metinleri birden fazla satırda yazmak da mümkündür. Bunun iki yolu vardır. İlk yolu, daha önce açıklama yazımında gördüğümüz gibi, metnin başında ve sonunda üçer adet tırnak ya da kesme işareti kullanmaktır. Arada kalan metni farklı satırlara yazabilirsiniz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Python&#39;da metinler </span>
+<span class="sd">birden fazla satıra </span>
+<span class="sd">yazılabilir.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Python&#39;da metinler \nbirden fazla satıra \nyazılabilir.\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metnin çıktısı tek satırda verilir ama çıktıdaki “\n” karakteri dikkatinizi çekmiştir. Bu karakter satır sonu karakteri olarak kullanılır. Program, metin içinde \n karakteri gördüğünde alt satıra geçer. Aynı şekilde, yukarıdaki gibi Enter tuşuna basılarak alt satıra geçildiğinde program buraya \n karakterini yerleştirir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;Bu metin </span><span class="se">\n</span><span class="s2">birden fazla </span><span class="se">\n</span><span class="s2">satırda yazılmıştır.&quot;</span>
+<span class="n">metin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Bu metin \nbirden fazla \nsatırda yazılmıştır.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">metin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bu metin 
+birden fazla 
+satırda yazılmıştır.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki kodda sadece değişken adı ile yazdırılan metinle, print() kullanılarak yazdırılan metin arasındaki farka dikkat edin. Benzer şekilde metin içinde sekme (tab) karakteri koymak için \t kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;Python </span><span class="se">\t</span><span class="s2"> ile </span><span class="se">\t</span><span class="s2"> programlama.&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 	 ile 	 programlama.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metin içinde tırnak işareti veya kesme işareti kullanmak için <code class="docutils literal notranslate"><span class="pre">\”</span></code> ve <code class="docutils literal notranslate"><span class="pre">\’</span></code> kullanılır. Yukarıda görüldüğü gibi <code class="docutils literal notranslate"><span class="pre">“\”</span></code> karakterinin özel bir kullanımı olduğundan dosya ve klasör adreslerini yazarken bu karakterin olduğu gibi kullanılması hata mesajı alınmasına yol açabilir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="o">=</span> <span class="s2">&quot;C:\users\ilker\Desktop&quot;</span>
+
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">85</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="s2">&quot;C:\users\ilker\Desktop&quot;</span>
+                                  <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="p">(</span><span class="n">unicode</span> <span class="n">error</span><span class="p">)</span> <span class="s1">&#39;unicodeescape&#39;</span>
+<span class="n">codec</span> <span class="n">can</span><span class="s1">&#39;t decode bytes in position 2-3: truncated \uXXXX escape</span>
+</pre></div>
+</div>
+<p>Bu hatanın önüne geçmek için yazılacak metnin önüne “r” harfi getirilir. Bu harf “raw” yani ham kelimesinin kısaltmasıdır ve yazılan metnin olduğu gibi alınmasını sağlar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\users\ilker\Desktop&quot;</span>
+<span class="nb">dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;C:\\users\\ilker\\Desktop&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\users\ilker\Desktop
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metinleri ya da metin veri tipindeki değişkenleri toplamak da mümkündür. İki veya daha fazla metni, <code class="docutils literal notranslate"><span class="pre">+</span></code> operatörü ile topladığımızda, bu metinler birleştirilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ad</span> <span class="o">=</span> <span class="s2">&quot;Guido&quot;</span>
+<span class="n">soyad</span> <span class="o">=</span> <span class="s2">&quot;van Rossum&quot;</span>
+<span class="n">adsoyad</span> <span class="o">=</span> <span class="n">ad</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">soyad</span> 
+<span class="n">adsoyad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Guido van Rossum&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nasıl ki metinlerle toplama işlemi yapmak mümkünse, çarpma işlemi de mümkündür. Çarpma işlemi de bir metni yan yana istenen sayıda yazmak için kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dil</span> <span class="o">=</span> <span class="s2">&quot;Python &quot;</span>
+<span class="n">dil3</span> <span class="o">=</span> <span class="n">dil</span> <span class="o">*</span> <span class="mi">3</span> 
+<span class="n">dil3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python Python Python &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da metinlerle işlem yapmak ve metinleri değiştirebilmek için geliştirilmiş metodlar bulunmaktadır. Aşağıdaki örnekte yer alan <code class="docutils literal notranslate"><span class="pre">.title()</span></code> metodu, metindeki her kelimenin ilk harfini büyük diğerlerini küçük yapar. Metodlar, Python’a özel fonksiyonlar olup ilerleyen bölümlerde ayrıntılı olarak aktarılacaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span> <span class="o">=</span> <span class="s2">&quot;Hüseyin Eren Arslan&quot;</span>
+<span class="n">isim</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hüseyin Eren Arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span> <span class="o">=</span> <span class="s2">&quot;HUSEYIN EREN ARSLAN&quot;</span>
+<span class="n">isim</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Huseyin Eren Arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda görülen isim.title() şeklindeki kod, Python’a isim değişkeni üzerinde <code class="docutils literal notranslate"><span class="pre">.title()</span></code> metodunu kullanmasını söylemektedir.
+Bir metnin sadece ilk harfini büyük, diğerlerini ise küçük yapmak için <code class="docutils literal notranslate"><span class="pre">.capitalize()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span> <span class="o">=</span> <span class="s2">&quot;Hüseyin Eren Arslan&quot;</span>
+<span class="n">isim</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hüseyin eren arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Benzer şekilde metnin büyük harf yapmak için <code class="docutils literal notranslate"><span class="pre">upper()</span></code>, küçük harf yapmak için <code class="docutils literal notranslate"><span class="pre">lower()</span></code> metodları kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span> <span class="o">=</span> <span class="s2">&quot;HüSeYin ERen ArSLan&quot;</span>
+<span class="n">isim</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;HÜSEYIN EREN ARSLAN&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isim</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;hüseyin eren arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir metin boşluk içeriyor ve bu metni saklamadan ya da bir işlemden geçirmeden önce metindeki boşlukları ortadan kaldırmanız gerekiyor olabilir. Bunun için, <code class="docutils literal notranslate"><span class="pre">.rstrip()</span></code>, <code class="docutils literal notranslate"><span class="pre">.lstrip()</span></code> ve <code class="docutils literal notranslate"><span class="pre">.strip()</span></code> metodları kullanılır. Bu metodlardan ilk ikisi metnin sağındaki ve solundaki boşlukları kaldırır. Sonuncusu ise metindeki tüm boşlukları kaldırır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;     Python öğreniyorum     &quot;</span>
+<span class="n">metin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;     Python öğreniyorum     &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>    <span class="c1"># sağdaki boşlukları kaldır</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;     Python öğreniyorum&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>    <span class="c1">#soldaki boşlukları kaldır</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python öğreniyorum     &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>    <span class="c1"># her iki taraftaki boşlukları kaldır</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python öğreniyorum&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir metni kelimelerine ayırmak içinse <code class="docutils literal notranslate"><span class="pre">.split()</span></code> metodunu kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msj</span> <span class="o">=</span> <span class="s2">&quot;Python ile programlama öğreniyorum&quot;</span>
+<span class="n">msj</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Python&#39;, &#39;ile&#39;, &#39;programlama&#39;, &#39;öğreniyorum&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metnin herhangi bir bölümünde değişiklik yapmak için <code class="docutils literal notranslate"><span class="pre">.replace()</span></code> metodu kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;İstanbul Ankara Adana İstanbul Edirne Kars İstanbul&quot;</span>
+<span class="n">metin</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;İstanbul&quot;</span><span class="p">,</span> <span class="s2">&quot;İzmir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İzmir Ankara Adana İzmir Edirne Kars İzmir&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>İstediğimiz değişikliğin kaç kez yapılacağını da belirtebiliriz. Örneğin, Yukarıdaki örnekte, sadece ilk “İstanbul” kelimesinin değişmesini, diğerlerinin aynı kalmasını istiyorsak aşağıdaki gibi üçüncü bir argüman olarak 1 yazarız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;İstanbul&quot;</span><span class="p">,</span> <span class="s2">&quot;İzmir&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İzmir Ankara Adana İstanbul Edirne Kars İstanbul&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir metinde belirli bir karakter dizisinin kaç kez yer aldığını bulmak için .count() metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;İstanbul Ankara Adana İstanbul Edirne Kars İstanbul&quot;</span>
+<span class="n">metin</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;İstanbul&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metnin belirtilen bir karakter ya da karakter dizisi ile başlayıp başlamadığını görmek için <code class="docutils literal notranslate"><span class="pre">.startswith()</span></code>, aynı şekilde belirli bir karakter ya da karakter dizisi ile bitip bitmediğini görmek için de <code class="docutils literal notranslate"><span class="pre">.endswith()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kelime</span> <span class="o">=</span> <span class="s1">&#39;Türkiye&#39;</span>
+<span class="n">kelime</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kelime</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Metinde bir karakter ya da karakter dizisinin sırasını bulmak için .find() metodu kullanılır. Bu metod, ilgili harfin metinde ilk kez göründüğü sırayı verir. Metinde aranan harf bulunmazsa sonuç -1 olur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kelime</span> <span class="o">=</span> <span class="s2">&quot;Programlama&quot;</span>
+<span class="n">kelime</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kelime</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kelime</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ayrıca, bir metnin belirtilen formatta olup olmadığını kontrol etmek için kullanılan <code class="docutils literal notranslate"><span class="pre">.isupper()</span></code>, <code class="docutils literal notranslate"><span class="pre">.istitle()</span></code>, <code class="docutils literal notranslate"><span class="pre">.isspace()</span></code>, <code class="docutils literal notranslate"><span class="pre">.isnumeric()</span></code>, <code class="docutils literal notranslate"><span class="pre">.islower()</span></code>, <code class="docutils literal notranslate"><span class="pre">.isdigit()</span></code>, <code class="docutils literal notranslate"><span class="pre">.isdecimal()</span></code> yöntemleri bulunmaktadır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span>
+<span class="n">x</span><span class="o">.</span><span class="n">islower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">istitle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;234&quot;</span>
+<span class="n">x</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>bytes veri tipi:</strong> Python 3’te metin veri tipinden farklı olarak bytes veri tipi kullanıma sunulmuştur. Bytes veri tipi, adından da anlaşılacağı üzere byte’lardan oluşan dizilerdir. Metinlerden farklı olarak bytes veri tipini tanımlarken verinin başına b harfi getirilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">b</span><span class="s2">&quot;bytesverisi&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;bytesverisi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">b</span><span class="s1">&#39;bytesverisi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;bytesverisi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bytes veri tipi ile metin veri tipine uygulanan metodların birçoğu uygulanabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;Python programlama dili&quot;</span>
+<span class="n">metin</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[b&#39;Python&#39;, b&#39;programlama&#39;, b&#39;dili&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da metin veri tipinin bir karakter standardına uygun karakterlerin yazımına izin verdiğini belirtmiştik. Örneğin, Türkçe karakterler UTF-8 standardında yer almaktadır. Metin veri tipini bytes veri tipine çevirmek için <code class="docutils literal notranslate"><span class="pre">.encode()</span></code>, tersi için de <code class="docutils literal notranslate"><span class="pre">.decode()</span></code> metodunu uygularız. Metodun argümanı olarak da kullanılmasını istediğimiz standardı yazmamız gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;İ ı Ş ş Ğ ğ Ö ö Ç ç Ü ü&quot;</span>
+<span class="n">metin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İ ı Ş ş Ğ ğ Ö ö Ç ç Ü ü&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">byte1</span> <span class="o">=</span> <span class="n">metin</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">byte1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;\xc4\xb0 \xc4\xb1 \xc5\x9e \xc5\x9f \xc4\x9e \xc4\x9f \xc3\x96 \xc3\xb6 \xc3\x87 \xc3\xa7 \xc3\x9c \xc3\xbc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin2</span> <span class="o">=</span> <span class="n">byte1</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">metin2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İ ı Ş ş Ğ ğ Ö ö Ç ç Ü ü&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter0101.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Bilgisayarlar ve Programlama</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter0103.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Veri Yapıları</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temel-aritmetik-islemler">3.1. Temel Aritmetik İşlemler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degiskenler">3.2. Değişkenler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temel-veri-tipleri">3.3. Temel Veri Tipleri</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sayisal-veri-tipleri">3.3.1. Sayısal Veri Tipleri</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-veri-tipi-string">3.3.2. Metin Veri Tipi (String)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By İlker Arslan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
