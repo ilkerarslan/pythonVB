@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Kaynaklar &#8212; Python ile Veri Bilimi</title>
+    <title>5. Koşullu İfadeler ve Döngüler &#8212; Python ile Veri Bilimi</title>
   
   
   
@@ -61,10 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'referencelist';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0104';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="5. Koşullu İfadeler ve Döngüler" href="chapter0104.html" />
+    <link rel="next" title="6. Kaynaklar" href="referencelist.html" />
+    <link rel="prev" title="4. Veri Yapıları" href="chapter0103.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,16 +151,16 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kısım I</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. PROGRAMLAMA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0104.html">5. Koşullu İfadeler ve Döngüler</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Koşullu İfadeler ve Döngüler</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Kaynaklar</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">6. Kaynaklar</a></li>
 </ul>
 
     </div>
@@ -231,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Freferencelist.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0104.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -261,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/referencelist.md" target="_blank"
+      <li><a href="_sources/chapter0104.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -271,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -330,7 +331,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -341,11 +344,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Kaynaklar</h1>
+    <h1>Koşullu İfadeler ve Döngüler</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -355,31 +366,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="kaynaklar">
-<h1><span class="section-number">6. </span>Kaynaklar<a class="headerlink" href="#kaynaklar" title="Permalink to this heading">#</a></h1>
-<div class="docutils container" id="id1">
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Zel09<span class="fn-bracket">]</span></span>
-<p>J. Zelle. <em>Python Programming: An Introduction to Computer Science (2 b.)</em>. Franklin, Beedle &amp; Associates Inc., 2009.</p>
-</div>
-<div class="citation" id="id7" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Cer03<span class="fn-bracket">]</span></span>
-<p>P. E. Ceruzzi. <em>A History of Modern Computing</em>. MIT Press, 2003.</p>
-</div>
-<div class="citation" id="id9" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Lev10<span class="fn-bracket">]</span></span>
-<p>S. Levy. <em>Hackers: Heroes of Computer Revolution</em>. O'Reilly Media, 2010.</p>
-</div>
-<div class="citation" id="id6" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Asp13<span class="fn-bracket">]</span></span>
-<p>W. Aspray. <em>John von Neumann and the Origins of Modern Computing</em>. MIT Press, 2013.</p>
-</div>
-<div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Mal11<span class="fn-bracket">]</span></span>
-<p>D. S. Malik. <em>C++ Programming Program Design Including Data Structures (5.b.)</em>. Course Technology Cengage Learning, 2011.</p>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="kosullu-ifadeler-ve-donguler">
+<h1><span class="section-number">5. </span>Koşullu İfadeler ve Döngüler<a class="headerlink" href="#kosullu-ifadeler-ve-donguler" title="Permalink to this heading">#</a></h1>
+<section id="kosullu-ifadeler">
+<h2><span class="section-number">5.1. </span>Koşullu İfadeler<a class="headerlink" href="#kosullu-ifadeler" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -414,13 +405,22 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="chapter0104.html"
+       href="chapter0103.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Koşullu İfadeler ve Döngüler</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Veri Yapıları</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="referencelist.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Kaynaklar</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -431,6 +431,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
