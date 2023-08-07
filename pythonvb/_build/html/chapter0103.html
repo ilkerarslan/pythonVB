@@ -354,6 +354,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-liste-veri-yapisi">4.1. List (Liste) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-demet-veri-yapisi">4.2. Tuple (Demet) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-kume-veri-yapisi">4.3. Set (Küme) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary-sozluk-veri-yapisi">4.4. Dictionary (Sözlük) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">4.5. Alıştırmalar</a></li>
 </ul>
             </nav>
         </div>
@@ -918,7 +922,7 @@ liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;]
 <span class="ne">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">assignment</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
 </pre></div>
 </div>
-<p>Bu örnekte gördüğümüz gibi listenin olmayan sıradaki elemanına doğrudan atama yapmak mümkün değildir. Bir listeye yeni eleman atamak için <code class="docutils literal notranslate"><span class="pre">.append()</span></code> metodu kullanılabilir.</p>
+<p>Bu örnekte gördüğümüz gibi listenin olmayan sıradaki elemanına doğrudan atama yapmak mümkün değildir. Ancak bir listeye yeni eleman atamak için <code class="docutils literal notranslate"><span class="pre">.append()</span></code> metodu kullanılabilir.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;liste: &quot;</span><span class="p">,</span> <span class="n">liste</span><span class="p">)</span>
@@ -937,6 +941,778 @@ liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;, 12, 15]
 </div>
 </div>
 </div>
+<p>Listeye yeni veri eklemenin daha kolay bir yolu da <code class="docutils literal notranslate"><span class="pre">+</span></code> operatörünü kullanmaktır. İki liste arasında <code class="docutils literal notranslate"><span class="pre">+</span></code> işareti kullanıldığında, Python bu iki listeyi arka arkaya ekleyip yeni bir liste oluşturur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sayilar</span><span class="p">)</span>
+<span class="n">sayilar</span> <span class="o">+</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 12, 15]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 12, 15, 19, 23]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;İlker&quot;</span><span class="p">,</span> <span class="mi">76</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Eren&#39;, 100, &#39;Ilhan&#39;, 99, &#39;Ali&#39;, 98, &#39;Erman&#39;, 97, &#39;Mehmet&#39;, 96, &#39;İlker&#39;, 76]
+</pre></div>
+</div>
+</div>
+</div>
+<p>İki listeyi birleştirmenin bir başka yolu da <code class="docutils literal notranslate"><span class="pre">.extend()</span></code> metodunu kullanmaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">liste2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bir&#39;</span><span class="p">,</span> <span class="s1">&#39;iki&#39;</span><span class="p">,</span> <span class="s1">&#39;üç&#39;</span><span class="p">,</span> <span class="s1">&#39;dört&#39;</span><span class="p">]</span>
+<span class="n">liste1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">liste2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">liste1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, &#39;bir&#39;, &#39;iki&#39;, &#39;üç&#39;, &#39;dört&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi <code class="docutils literal notranslate"><span class="pre">.extend()</span></code> metodu <code class="docutils literal notranslate"><span class="pre">+</span></code> operatöründen farklı olarak uygulandığı listeyi otomatik olarak güncelliyor.</p>
+<p>Bir listedeki elemanı silmek içinse <code class="docutils literal notranslate"><span class="pre">del()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 12, 15]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span><span class="p">(</span><span class="n">sayilar</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">sayilar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listeden eleman silmenin bir başka yolu da <code class="docutils literal notranslate"><span class="pre">.remove()</span></code> metodunu kullanmaktır. Bu metod, verilen elemanı listede ilk gördüğü yerde siler. Burada dikkat edilmesi gereken nokta eğer silinmesi istenen eleman listede birden fazla ise sadece ilki silinir. Diğerlerine dokunulmaz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">notlar</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">notlar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[93, 86, 78, 52, 45, 95, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Liste elemanlarını sıralamak için <code class="docutils literal notranslate"><span class="pre">sorted()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 3, 4, 5, 7, 7, 9, 11, 18]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sıralamayı büyükten küçüğe yapmak içinse fonksiyonda <code class="docutils literal notranslate"><span class="pre">reverse</span> <span class="pre">=</span> <span class="pre">True</span></code> argümanı kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[18, 11, 9, 7, 7, 5, 4, 3, 3, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listenin elemanlarını tersten yazdırmak için <code class="docutils literal notranslate"><span class="pre">.reverse()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">notlar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[100, 95, 45, 52, 78, 86, 93]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python’da bir liste oluşturduğumuzda bu liste bilgisayar hafızasında saklanır. Bu listeye isim verdiğimizde, bu isim aslında listedeki verileri içermez. Listedeki verilerin geçici hafızada saklandığı adresi gösteren bir işaret görevi görür.</p>
+<p><img alt="Liste Yapisi" src="_images/liste_yapisi.png" /></p>
+<p>Diyelim ki yeni bir liste oluşturup <strong>sayilar</strong> listesini bu listeye atamak istiyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numaralar</span> <span class="o">=</span> <span class="n">sayilar</span>
+<span class="n">numaralar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu durumda, <strong>sayilar</strong> listesi ile aynı adresi gösteren bir <strong>numaralar</strong> listesi oluşturmuş oluyoruz.</p>
+<p><img alt="Listeye yeni isim atama" src="_images/liste_yapisi_2.png" /></p>
+<p>Peki bunun anlamı nedir? Bu iki liste aynı adresi işaret ettiğinden, bunlardan birinde yapılan bir değişiklik diğerini de etkiler. Örneğin sayılar listesinin ilk elemanını 5 yapalım. Bu durumda numaralar listesinin de ilk elemanı 5 olur. Çünkü iki değişken de aynı adresi göstermektedir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">999</span>             <span class="c1"># listenin ilk elemanını 999 yaptık</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sayilar</span><span class="p">)</span>               <span class="c1"># sayilar listesi değişti</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[999, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">numaralar</span><span class="p">)</span>            <span class="c1"># ama numaralar da değişti</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[999, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir listeyi aynı şekilde başka bir listeye kopyalamak ve iki değişkenin farklı listeleri göstermesini istersek ne yapabiliriz? Listeyi farklı bir adreste aşağıdaki gibi kopyalamamız gerekiyor.</p>
+<p><img alt="Listeyi yeni adrese kopyalama" src="_images/liste_yapisi_3.png" /></p>
+<p>Listenin yukarıdaki şekilde yeni bir kopyasını oluşturmanın iki yolu vardır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numaralar</span> <span class="o">=</span> <span class="n">sayilar</span><span class="p">[:]</span>
+<span class="n">numaralar</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sayilar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listenin kopyasını yukarıdaki şekilde oluşturduğumuzda, listeler farklı adresleri gösterir. Bu nedenle bunlardan birinde yapılan değişiklik diğerini etkilemez.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sayilar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numaralar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[999, 7, 12]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuple-demet-veri-yapisi">
+<h2><span class="section-number">4.2. </span>Tuple (Demet) Veri Yapısı<a class="headerlink" href="#tuple-demet-veri-yapisi" title="Permalink to this heading">#</a></h2>
+<p>Bir başka veri yapısı olan tuple, listelere çok benzer. Listeler gibi verileri aldıkları sırada saklar ve saklanan veriye indeks numarası ile erişmek mümkündür. Ancak listelerden farklı olarak bir defa tanımlandıktan sonra tuple veri yapısındaki değerleri değiştirmek mümkün değildir. Bu nedenle, oluşturulan bir verinin kesinlikle değiştirilmemesi gereken zamanlardan tuple veri yapısı daha güvenilirdir. Bu özellik, veri güvenliği ve korunmasının gerekli olduğu işlerde çok faydalıdır. Yaptığınız işlerde veya projelerde, bilinçli veya bilinçsiz olarak değiştirilmesini istemediğiniz verileri tuple verisi olarak tanımlayıp olası hataların önüne geçebilirsiniz.</p>
+<p>Tuple veri yapısının listelerden bir diğer farkı da listeler köşeli parantezle gösterilirken, tuple veri yapısının normal parantezle tanımlanmasıdır. Tuple veri yapısı tıpkı listeler gibi ancak normal parantez kullanılarak oluşturulur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.78</span><span class="p">,</span> <span class="mf">5.67</span><span class="p">,</span> <span class="mf">2.18</span><span class="p">)</span>
+<span class="n">tuple2</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;İstanbul&quot;</span><span class="p">,</span> <span class="s2">&quot;Ankara&quot;</span><span class="p">,</span> <span class="s2">&quot;İzmir&quot;</span><span class="p">,</span> <span class="s2">&quot;Bursa&quot;</span><span class="p">,</span> <span class="s2">&quot;Adana&quot;</span><span class="p">)</span>
+<span class="n">tuple3</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Fizik&quot;</span><span class="p">,</span> <span class="s2">&quot;Matematik&quot;</span><span class="p">,</span> <span class="s2">&quot;Kimya&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">97</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi tuple veri yapısı da listeler gibi farklı türde verileri içerebilir. Tuple veri yapısı da diğer Python’daki diğer verilerde olduğu gibi sıfır indeks numarası ile başlar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tuple2</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14
+(&#39;Ankara&#39;, &#39;İzmir&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda da belirttiğimiz gibi tuple verilerini tanımladıktan sonra bunlarda değişiklik yapmak mümkün değildir. Aynı şekilde tuple nesnelerine veri eklemek ya da bunlardan veri silmek de mümkün değildir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">tuple2</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Mersin&quot;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+</div>
+<p>Bir tuple nesnesinin içeriğini de farklı değişkenlere atamak mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.78</span><span class="p">)</span>
+<span class="n">pi</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">tuple1</span>            <span class="c1"># ya da pi, e = 3.14, 2.78</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14
+2.78
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki örnekte dikkat etmemiz gereken nokta tuple nesnesindeki veri sayısı kadar değişken kullanmamız gerektiğidir. Daha az veya daha fazla sayıda değişken girersek hata mesajı ile karşılaşırız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">tuple2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">tuple2</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">too</span> <span class="n">many</span> <span class="n">values</span> <span class="n">to</span> <span class="n">unpack</span> <span class="p">(</span><span class="n">expected</span> <span class="mi">2</span><span class="p">)</span>
+
+
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">tuple2</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="ow">not</span> <span class="n">enough</span> <span class="n">values</span> <span class="n">to</span> <span class="n">unpack</span> <span class="p">(</span><span class="n">expected</span> <span class="mi">4</span><span class="p">,</span> <span class="n">got</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="set-kume-veri-yapisi">
+<h2><span class="section-number">4.3. </span>Set (Küme) Veri Yapısı<a class="headerlink" href="#set-kume-veri-yapisi" title="Permalink to this heading">#</a></h2>
+<p>Veri nesnelerini herhangi bir sıralama olmaksızın ve her nesneden sadece bir tane olacak şekilde kaydetmek istersek set (küme) veri yapısını kullanabiliriz. Set veri yapısı adını matematikteki küme tanımından almıştır. Tıpkı matematikteki küme tanımı gibi bu veri yapılarında her veriden sadece bir tane bulunur ve verilerin sırası önemli değildir. Set veri yapısı da Listeler gibi sonradan değiştirilebilir (mutable) verilerdir. Set (küme) veri yapısı oluşturmak için <code class="docutils literal notranslate"><span class="pre">set()</span></code> fonksiyonu kullanılır. Örneğin, alışveriş listenizi bir set veri yapısı olarak kaydettiğinizi varsayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris_listesi</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;ekmek&#39;</span><span class="p">,</span> <span class="s1">&#39;süt&#39;</span><span class="p">,</span> <span class="s1">&#39;yoğurt&#39;</span><span class="p">,</span> <span class="s1">&#39;pirinç&#39;</span><span class="p">,</span> <span class="s1">&#39;bal&#39;</span><span class="p">,</span> <span class="s1">&#39;meyve&#39;</span><span class="p">,</span> <span class="s1">&#39;ekmek&#39;</span><span class="p">,</span> <span class="s1">&#39;süt&#39;</span><span class="p">,</span> <span class="s1">&#39;bal&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">alisveris_listesi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ekmek&#39;, &#39;pirinç&#39;, &#39;meyve&#39;, &#39;bal&#39;, &#39;yoğurt&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gördüğünüz gibi orijinal listede tekrar eden elemanlar olduğu halde <code class="docutils literal notranslate"><span class="pre">set()</span></code> fonksiyonu ile oluşturduğunuz küme verisinde bunlar birer kez yazılıyor. Ayrıca, yukarıdaki kodu birkaç kez çalıştırırsanız, sıralamanın her defasında farklı olduğunu görürsünüz.</p>
+<p>Bir kümeye yeni bir eleman eklemek için .add() metodu kullanılır. Hazırladığınız alışveriş listesinde eksik bir şey olduğunuz fark ettiniz ve bu malzemeyi eklemeniz gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;deterjan&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;deterjan&#39;, &#39;ekmek&#39;, &#39;pirinç&#39;, &#39;meyve&#39;, &#39;bal&#39;, &#39;yoğurt&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sonradan eklediğiniz malzemenin en sonda çıkmadığına dikkat etmişsinizdir. Çünkü küme veri yapılarında listeler ve demetlerin aksine sıralama önemli değildir. Bu nedenle, <code class="docutils literal notranslate"><span class="pre">.add()</span></code> metodu ile zaten kümede olan bir veriyi eklemek isterseniz küme içeriğinde herhangi bir değişiklik meydana gelmez.</p>
+<p>Kümeye, birden fazla eleman eklemek için <code class="docutils literal notranslate"><span class="pre">.update()</span></code> metodu kullanılır. Bu metodla kümeye bir liste iletilir. Listedeki elemanlar kümede yoksa eklenir, zaten varsa herhangi bir değişiklik olmaz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yeni_malzemeler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sebze&#39;</span><span class="p">,</span> <span class="s1">&#39;gazete&#39;</span><span class="p">,</span> <span class="s1">&#39;dergi&#39;</span><span class="p">]</span>
+<span class="n">alisveris</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">yeni_malzemeler</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sebze&#39;, &#39;dergi&#39;, &#39;pirinç&#39;, &#39;meyve&#39;, &#39;bal&#39;, &#39;yoğurt&#39;, &#39;ekmek&#39;, &#39;gazete&#39;, &#39;deterjan&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listeden bir eleman çıkarmak için <code class="docutils literal notranslate"><span class="pre">.discard()</span></code> metodu kullanılır. Markete gittiniz ve girişte bulunan reyondan ekmek aldınız. Listeyi güncellemeniz gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s1">&#39;ekmek&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;sebze&#39;, &#39;dergi&#39;, &#39;pirinç&#39;, &#39;meyve&#39;, &#39;bal&#39;, &#39;yoğurt&#39;, &#39;gazete&#39;, &#39;deterjan&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de alışveriş kümesinden rastgele bir ürün seçip onu satın almak istiyorsunuz. Seçilen ürün aynı zamanda alışveriş kümesinden çıksın. Bunun için daha önce de gördüğümüz <code class="docutils literal notranslate"><span class="pre">.pop()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sebze
+{&#39;dergi&#39;, &#39;pirinç&#39;, &#39;meyve&#39;, &#39;bal&#39;, &#39;yoğurt&#39;, &#39;gazete&#39;, &#39;deterjan&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Küme veri yapısının matematikteki küme tanımına çok benzediğini söylemiştik. Buradan hareketle kümelerde yapılan bileşim, kesişim gibi işlemler Python’da küme verileri için de geliştirilmiştir. İki küme verisinin bileşimini bulmak için <code class="docutils literal notranslate"><span class="pre">.union()</span></code> işlemi kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;ekmek&#39;</span><span class="p">,</span> <span class="s1">&#39;süt&#39;</span><span class="p">,</span> <span class="s1">&#39;yoğurt&#39;</span><span class="p">,</span> <span class="s1">&#39;peynir&#39;</span><span class="p">])</span>
+<span class="n">alisveris2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;bal&#39;</span><span class="p">,</span> <span class="s1">&#39;şeker&#39;</span><span class="p">,</span> <span class="s1">&#39;tuz&#39;</span><span class="p">,</span> <span class="s1">&#39;ekmek&#39;</span><span class="p">,</span> <span class="s1">&#39;süt&#39;</span><span class="p">])</span>
+
+<span class="n">alisveris1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">alisveris2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;bal&#39;, &#39;ekmek&#39;, &#39;peynir&#39;, &#39;süt&#39;, &#39;tuz&#39;, &#39;yoğurt&#39;, &#39;şeker&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Benzer şekilde iki kümenin kesişimini bulmak için de <code class="docutils literal notranslate"><span class="pre">.intersection()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alisveris1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">alisveris2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ekmek&#39;, &#39;süt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Son olarak iki kümenin farkını bulmak için <code class="docutils literal notranslate"><span class="pre">.difference()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">alisveris1</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">alisveris2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">alisveris2</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">alisveris1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;peynir&#39;, &#39;yoğurt&#39;}
+{&#39;tuz&#39;, &#39;şeker&#39;, &#39;bal&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionary-sozluk-veri-yapisi">
+<h2><span class="section-number">4.4. </span>Dictionary (Sözlük) Veri Yapısı<a class="headerlink" href="#dictionary-sozluk-veri-yapisi" title="Permalink to this heading">#</a></h2>
+<p>Dictionary ya da sözlük veri yapısı adından da anlaşılacağı üzere anahtar kelimelere değerlerin atandığı sözlük benzeri yapılardır. Diğer dillerde çok fazla rastlanmasa da sözlükler Python’da en fazla kullanılan veri yapılarındandır. Nasıl ki bir sözlükte her sözcüğün karşısında bir açıklama yazıyorsa dict veri yapısında da her bir anahtar kelimenin karşısında yazan bir değer vardır. Diğer bir deyişle, dictionary, her bir değere bağlı bir anahtar kelimenin olduğu yapılardır. Hem anahtarlar hem de veriler herhangi bir veri tipinde olabilir. Hatta anahtar : değer ikilisindeki değer bir başka sözlük de olabilir. Sözlüklerin anahtar : değer ikilileri ayrıca birer tuple veri nesnesi oluşturur. Sözlük veri yapısının avantajı bu tür veri yapıları ile çok hızlı işlem yapılabilmesidir.</p>
+<p>Bir sözlük veri nesnesi oluşturmak için <code class="docutils literal notranslate"><span class="pre">dict()</span></code> fonksiyonu ya da küme parantezi, { }, kullanılabilir. Hisse senedi fiyatlarını takip ettiğimizi ve hisse isimlerini bir listede, hisse fiyatlarını da farklı bir listede kaydettiğimizi varsayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisse</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s1">&#39;KLMN&#39;</span><span class="p">,</span> <span class="s1">&#39;ZTLM&#39;</span><span class="p">,</span> <span class="s1">&#39;XYZT&#39;</span><span class="p">]</span>
+<span class="n">fiyat</span> <span class="o">=</span> <span class="p">[</span><span class="mf">17.70</span><span class="p">,</span> <span class="mf">9.59</span><span class="p">,</span> <span class="mf">28.70</span><span class="p">,</span> <span class="mf">7.05</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir hisse senedinin fiyatını görmek ya da fiyatta değişiklik yapmak için önce bu hisse senedinin hisse listesindeki sıra numarasını bulmak, sonra da fiyat listesindeki bu sıra numarasına denk gelen kayda ulaşmak gerekiyor. Bu da zaman kaybına yol açan bir işlem olacaktır. Bunun yerine hisse isimleri ile fiyatlarını bir arada tutmaya izin veren sözlük veri yapısını kullanabiliriz. Tanımlayacağımız sözlükte hisse isimleri anahtar, fiyatları ise değer olarak yer alacaktır.</p>
+<p>Listelerin köşeli parantezler ile oluşturulduğunu önceki bölümde görmüştük. Sözlükler ise küme parantezleri { } kullanılarak oluşturulur. Küme parantezi içinde, anahtar kelime tırnak işareti içinde yazılıp iki noktadan sonra anahtar kelimenin aldığı değer yazılır. Farklı anahtar – değer ikilileri de birbirlerinden virgülle ayrılır.</p>
+<p>Yukarıda tanımladığımız hisse ve fiyat listelerini tek bir sözlük içinde tanımlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ABCD&#39;</span> <span class="p">:</span> <span class="mf">17.70</span><span class="p">,</span>
+    <span class="s1">&#39;KLMN&#39;</span> <span class="p">:</span> <span class="mf">9.59</span><span class="p">,</span>
+    <span class="s1">&#39;ZTLM&#39;</span> <span class="p">:</span> <span class="mf">28.70</span><span class="p">,</span>
+    <span class="s1">&#39;XYZT&#39;</span> <span class="p">:</span> <span class="mf">7.05</span>
+<span class="p">}</span>
+
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABCD&#39;: 17.7, &#39;KLMN&#39;: 9.59, &#39;ZTLM&#39;: 28.7, &#39;XYZT&#39;: 7.05}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir anahtarın sözlükte yer alıp almadığını görmek için <code class="docutils literal notranslate"><span class="pre">'anahtar'</span> <span class="pre">in</span> <span class="pre">sozluk</span></code> yazımını kullanabiliriz. Bu kod <code class="docutils literal notranslate"><span class="pre">True</span></code> ya da <code class="docutils literal notranslate"><span class="pre">False</span></code> sonucunu verir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;XYZT&#39;</span> <span class="ow">in</span> <span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;ABXY&#39;</span> <span class="ow">in</span> <span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki ifadelerin tersini de <code class="docutils literal notranslate"><span class="pre">'anahtar'</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">sozluk</span></code> ifadesi ile görmek mümkündür. Yani bu ifade, anahtar sözlükte değilse True, sözlükte ise False değerini alacaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;UVYZ&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;ABCD&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlükteki bir değere ulaşmak için bu değerin anahtarını yazmak gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;ABCD&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;XYZT&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlükte olmayan bir veriyi eklemek için de yukarıdaki yazım şekli kullanılabilir. Örneğin, hisseler sözlüğüne yeni bir hisse senedi ve fiyatını ekleyelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;DEFG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">18.75</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABCD&#39;: 17.7, &#39;KLMN&#39;: 9.59, &#39;ZTLM&#39;: 28.7, &#39;XYZT&#39;: 7.05, &#39;DEFG&#39;: 18.75}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlükte olmayan bir anahtara erişmek istediğimizde hata mesajı ile karşılaşırız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;UVYZ&#39;</span><span class="p">])</span>
+<span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;UVYZ&#39;</span>
+</pre></div>
+</div>
+<p>Aradığımız anahtar sözlükte olmasa dahi hata mesajı almamak ya da istediğimiz mesajı almak için <code class="docutils literal notranslate"><span class="pre">.get()</span></code> metodu kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UVYZ&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get metoduna ikinci argüman olarak aranan nahtarın bulunamaması halinde istediğimiz mesajı da yazabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;UVYZ&#39;</span><span class="p">,</span> <span class="s1">&#39;Hisse Bulunamadı&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hisse Bulunamadı
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">,</span> <span class="s1">&#39;Hisse Bulunamadı&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17.7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlüğe yeni veri eklemenin bir başka yolu da <code class="docutils literal notranslate"><span class="pre">.update()</span></code> metodunu kullanmaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yeni_hisse</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;UVYZ&#39;</span> <span class="p">:</span> <span class="mf">32.25</span><span class="p">,</span>
+    <span class="s1">&#39;BRSM&#39;</span> <span class="p">:</span> <span class="mf">3.90</span>
+<span class="p">}</span>
+
+<span class="n">hisseler</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">yeni_hisse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABCD&#39;: 17.7, &#39;KLMN&#39;: 9.59, &#39;ZTLM&#39;: 28.7, &#39;XYZT&#39;: 7.05, &#39;DEFG&#39;: 18.75, &#39;UVYZ&#39;: 32.25, &#39;BRSM&#39;: 3.9}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu metodla eklediğimiz verilerin sözlük veri tipinde olması da şart değildir. Aynı yöntemle sözlüğe tuple veri tipinde de ekleme yapaibliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yeni_hisse</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;UVYZ&#39;</span><span class="p">,</span> <span class="mf">32.25</span><span class="p">),(</span><span class="s1">&#39;BRSM&#39;</span><span class="p">,</span> <span class="mf">3.90</span><span class="p">)]</span>
+<span class="n">hisseler</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">yeni_hisse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlükte yer alan bir anahtarı silmek için yine <code class="docutils literal notranslate"><span class="pre">del()</span></code> fonksiyonu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span><span class="p">(</span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;ZTLM&#39;</span><span class="p">])</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABCD&#39;: 17.7,
+ &#39;KLMN&#39;: 9.59,
+ &#39;XYZT&#39;: 7.05,
+ &#39;DEFG&#39;: 18.75,
+ &#39;UVYZ&#39;: 32.25,
+ &#39;BRSM&#39;: 3.9}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ancak, sözlükte olmayan bir anahtarı silmeye kalkarsanız hata mesajı ile karşılaşırsınız.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">del</span><span class="p">(</span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;ABXY&#39;</span><span class="p">])</span>
+<span class="ne">KeyError</span><span class="p">:</span> <span class="s1">&#39;ABXY&#39;</span>
+</pre></div>
+</div>
+<p>Sözlükten bir anahtarı güvenli şekilde silmenin yolu <code class="docutils literal notranslate"><span class="pre">.pop()</span></code> metodunu kullanmaktır. Bu metodla, istenen anahtar sözlükte yoksa herhangi bir hata mesajı alınmaz ya da istediğiniz uyarı mesajını alırsınız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;KLMN&#39;: 9.59, &#39;XYZT&#39;: 7.05, &#39;DEFG&#39;: 18.75, &#39;UVYZ&#39;: 32.25, &#39;BRSM&#39;: 3.9}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ABXY&#39;</span><span class="p">,</span> <span class="s1">&#39;Hisse bulunamadı.&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hisse bulunamadı.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu metodla silinen anahtarı bir değişkene atamak da mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">silinen</span> <span class="o">=</span> <span class="n">hisseler</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;KLMN&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">silinen</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.59
+</pre></div>
+</div>
+</div>
+</div>
+<p>Biz sözlükte her anahtardan sadece bir tane bulunabilir. Sözlük tanımlarken bir anahtarı iki veya daha fazla yazarsanız, sadece en son yazılan anahtar ve buna ait değer dikkate alınır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ABCD&#39;</span> <span class="p">:</span> <span class="mf">12.35</span><span class="p">,</span>
+    <span class="s1">&#39;KLMN&#39;</span> <span class="p">:</span> <span class="mf">9.59</span><span class="p">,</span>
+    <span class="s1">&#39;ZTLM&#39;</span> <span class="p">:</span> <span class="mf">28.70</span><span class="p">,</span>
+    <span class="s1">&#39;XYZT&#39;</span> <span class="p">:</span> <span class="mf">7.05</span><span class="p">,</span>
+    <span class="s1">&#39;ABCD&#39;</span> <span class="p">:</span> <span class="mf">17.70</span>
+<span class="p">}</span>
+
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ABCD&#39;: 17.7, &#39;KLMN&#39;: 9.59, &#39;ZTLM&#39;: 28.7, &#39;XYZT&#39;: 7.05}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir sözlüğün anahtar : değer ikililerinden oluştuğunu biliyoruz. Sözlükteki anahtarlara, değerlere ve ikisine birlikte ulaşmak için metodlar bulunmaktadır. Bunlar sırasıyla, <code class="docutils literal notranslate"><span class="pre">.keys()</span></code>, <code class="docutils literal notranslate"><span class="pre">.values()</span></code> ve <code class="docutils literal notranslate"><span class="pre">.items()</span></code> metodlarıdır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;ABCD&#39;, 17.7), (&#39;KLMN&#39;, 9.59), (&#39;ZTLM&#39;, 28.7), (&#39;XYZT&#39;, 7.05)])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([17.7, 9.59, 28.7, 7.05])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hisseler</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;ABCD&#39;, 17.7), (&#39;KLMN&#39;, 9.59), (&#39;ZTLM&#39;, 28.7), (&#39;XYZT&#39;, 7.05)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdiye kadar kullandığımız hisseler sözlüğünde değerler hep sayısal veri tipindeydi. Ancak, bir sözlükte değerler her zaman sayısal olmak zorunda değildir. Sayısal olabileceği gibi metin ya da mantıksal veri tipinde olabilir her değer ayrı bir liste ya da sözlük de olabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sektorel_hisseler</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;banka&#39;</span>     <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ABCD&#39;</span><span class="p">:</span> <span class="mf">17.70</span><span class="p">,</span> <span class="s1">&#39;KLMN&#39;</span><span class="p">:</span> <span class="mf">9.59</span><span class="p">},</span>
+    <span class="s1">&#39;otomotiv&#39;</span>  <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ZTLM&#39;</span><span class="p">:</span> <span class="mf">28.70</span><span class="p">,</span> <span class="s1">&#39;XYZT&#39;</span><span class="p">:</span> <span class="mf">7.05</span><span class="p">},</span>
+    <span class="s1">&#39;teknoloji&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ABCD&#39;</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">sektorel_hisseler</span><span class="p">[</span><span class="s1">&#39;banka&#39;</span><span class="p">][</span><span class="s1">&#39;KLMN&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.59
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlüklerden oluşan bir sözlükte bir anahtara bağlı alt sözlükteki bir değere ulaşmak için yukarıda görüldüğü gibi birbirini izleyen köşeli parantezler içinde anahtar değerlerini yazıyoruz. Yukarıdaki örnekte banka sektöründe yer alan KLMN hissesinin fiyatını görmek için önce [‘banka’] yazarak bu sektördeki hisselerin yer aldığı sözlüğe, daha sonra da yanına [‘KLMN’] yazarak bu sözlük içindeki KLMN hissesine ulaştık.</p>
+<p>Anahtarların karşılığı olan değerler farklı veri tiplerinde de olabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">karışık_sözlük</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ab&#39;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span> <span class="s1">&#39;cd&#39;</span><span class="p">:</span><span class="mi">36</span><span class="p">},</span>
+    <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="s1">&#39;xyzt&#39;</span>    
+<span class="p">}</span>
+
+<span class="n">karışık_sözlük</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: [1, 2, 3, 4], &#39;B&#39;: [3, 4, 5], &#39;C&#39;: {&#39;ab&#39;: 34, &#39;cd&#39;: 36}, &#39;D&#39;: &#39;xyzt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="alistirmalar">
+<h2><span class="section-number">4.5. </span>Alıştırmalar<a class="headerlink" href="#alistirmalar" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Aşağıdaki şehirlerden oluşan bir liste oluşturun. Sonra, izleyen işlemleri adım adım gerçekleştirin</p></li>
+</ol>
+<p>Ankara, İzmir, İstanbul, Adana, Bursa, Kars, Iğdır</p>
+<ul class="simple">
+<li><p>.extend() metodunu kullanarak oluşturduğunuz listeye, Edirne ve Aydın şehirlerini ekleyin.</p></li>
+<li><p>İstanbul şehrinin listedeki sıra numarasını, .index() metodunu kullanarak bulun. Bulduğunuz konumu bir değişkene atayın.</p></li>
+<li><p>Önceki adımda kullandığınız değişken yardımı ile İstanbul’u listeden çıkarın.</p></li>
+<li><p>Listeyi alfabetik sırada yazdırın.</p></li>
+</ul>
 </section>
 </section>
 
@@ -1008,6 +1784,10 @@ liste:  [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;E&#39;, 12, 15]
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-liste-veri-yapisi">4.1. List (Liste) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-demet-veri-yapisi">4.2. Tuple (Demet) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-kume-veri-yapisi">4.3. Set (Küme) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary-sozluk-veri-yapisi">4.4. Dictionary (Sözlük) Veri Yapısı</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">4.5. Alıştırmalar</a></li>
 </ul>
   </nav></div>
 
