@@ -12,6 +12,7 @@ parts:
     - file: chapter0101
     - file: chapter0102
     - file: chapter0103
+    - file: chapter0104
   - caption: Ekler
     numbered: True
     chapters:
