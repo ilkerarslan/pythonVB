@@ -1,3 +1,3 @@
-# PROGRAMLAMA
+# Giriş
 
 Bu bölümde önce bilgisayarlar ve bilgisayar programlama hakkında temel bilgiler verildikten sonra, Python’da veri yapıları, koşullu ifadeler, döngüler ve fonksiyonlar anlatılacaktır. Daha sonra Python’un en güçlü yanı olan modüllerin kullanımı ve Python’da nesne yönelimli programlamaya ilişkin bilgiler aktarılacaktır. Son bölümde ise Python’a özgü hata ayıklama yöntemleri hakkında bilgi verilecektir. Bölümler, daha önce programlama yapmamış okuyucularında rahat takip edebileceği şekilde kolaydan zora doğru sıralanmıştır. Veri bilimi ile ilgilenmeyen okuyucular bu bölümleri çalışarak Python hakkında başlangıç ve orta seviyede bilgi sahibi olabilir. Ancak, veri bilimi alanında çalışmayan okuyucuların da ikinci ve üçüncü ya da en azından ikinci bölümü de okumalarını tavsiye ederim. 
