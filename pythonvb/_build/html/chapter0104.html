@@ -355,6 +355,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donguler">5.2. Döngüler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-dongusu">5.2.1. While Döngüsü</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -370,6 +374,401 @@ document.write(`
 <h1><span class="section-number">5. </span>Koşullu İfadeler ve Döngüler<a class="headerlink" href="#kosullu-ifadeler-ve-donguler" title="Permalink to this heading">#</a></h1>
 <section id="kosullu-ifadeler">
 <h2><span class="section-number">5.1. </span>Koşullu İfadeler<a class="headerlink" href="#kosullu-ifadeler" title="Permalink to this heading">#</a></h2>
+<p>Bir bilgisayar verilen bir komutu aşağıdaki yöntemlerden birine göre yerine getirir <span id="id1">[<a class="reference internal" href="referencelist.html#id10" title="D. S. Malik. C++ Programming Program Design Including Data Structures (5.b.). Course Technology Cengage Learning, 2011.">Mal11</a>]</span>:</p>
+<ul class="simple">
+<li><p>Belirli bir sıraya göre.</p></li>
+<li><p>Alternatifler arasında seçim yaparak</p></li>
+<li><p>Aynı işlemi belirli bir şart sağlanana kadar tekrar tekrar gerçekleştirerek</p></li>
+</ul>
+<p>Aşağıdaki şekilde bu üç yönteme ilişkin iş akışları verilmiştir.</p>
+<p><strong>Sıralı işlem yürütme:</strong></p>
+<p><img alt="sirali islem" src="_images/sirali_islem.png" /></p>
+<p>Bu şekilde bilgisayar programı A noktasından başlar ve verilmiş olan komutları sırasıyla yerine getirir. Son işlemi yerine getirdikten sonra B noktasında programı sonlandırır.</p>
+<p><strong>Koşullu işlem yürütme:</strong></p>
+<p><img alt="koşullu işlem" src="_images/kosullu_islem.png" /></p>
+<p>Buradaki iş akışında ise bir koşul ifadesi sınanır. İstenen koşul sağlanıyorsa “İşlem 1”, sağlanmıyorsa “İşlem 2” yerine getirilir ve B noktasında program sonlandırılır. Koşullu ifadeler üç farklı türde olabilir.</p>
+<ul class="simple">
+<li><p>İstenen koşul sağlanıyorsa “İşlem 1”i yerine getir. Sağlanmıyorsa hiçbir şey yapmadan çık. Örneğin elimizde bir sınıftaki öğrencilerin not listesi olsun. Sınav notu 85’in üzerinde olan öğrenciler geçti olarak belirtmek isteyelim ve sadece geçen öğrencilerle ilgilenelim.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+ 	<span class="n">öğrenci</span> <span class="n">geçti</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>İstenen koşul sağlanıyorsa “İşlem1”i yerine getir. Sağlanmıyorsa “İşlem 2”yi yap. Yukarıdaki örneği düşünelim ancak bu defa notu 85’in üzerinde olanları geçti, olmayanları kaldı olarak işaretlemek isteyelim.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+	<span class="n">öğrenci</span> <span class="n">geçti</span>
+<span class="n">aksi</span> <span class="n">halde</span><span class="p">:</span>
+	<span class="n">öğrenci</span> <span class="n">kaldı</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>İstenen 1. koşul sağlanıyorsa “İşlem 1”i yerine getir. Sağlanmıyorsa koşul 2’yi sına.</p>
+<ul>
+<li><p>Koşul 2 sağlanıyorsa “İşlem 2”yi yerine getir. Sağlanmıyorsa koşul 3’ü sına.</p></li>
+<li><p>Koşul 3 sağlanıyorsa “İşlem 3”ü yerine getir. Sağlanmıyorsa koşul 4’ü sına.</p></li>
+</ul>
+</li>
+</ul>
+<p>Sonuncu türdeki sınama istenen sayıda koşulu test etmeye izin verir. Örneğin, yine sınav notları ile işlem yapmak istiyor olalım ancak 100 üzerinden alınan notları harf notuna çeviren bir program yazıyor olalım. Programın algoritması şu şekilde olacaktır.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+	<span class="ow">not</span> <span class="n">A</span>
+<span class="n">aksi</span> <span class="n">halde</span> <span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">70</span> <span class="n">ise</span><span class="p">:</span>
+	<span class="ow">not</span> <span class="n">B</span>
+<span class="n">aksi</span> <span class="n">halde</span> <span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">60</span> <span class="n">ise</span><span class="p">:</span>
+	<span class="ow">not</span> <span class="n">C</span>
+<span class="n">aksi</span> <span class="n">halde</span> <span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="n">ise</span><span class="p">:</span>
+	<span class="ow">not</span> <span class="n">D</span>
+<span class="n">aksi</span> <span class="n">halde</span><span class="p">:</span>
+	<span class="ow">not</span> <span class="n">E</span>
+</pre></div>
+</div>
+<p><strong>Tekrarlayan (döngüsel) işlem yürütme:</strong></p>
+<p><img alt="koşullu işlem" src="_images/dongusel_islem.png" /></p>
+<p>Buradaki akış ise döngü olarak isimlendirilir.  Bu iş akışında program istenen bir şart sağlanana (ya da sağlanmayana) kadar verilen işlemi yapmaya devam eder. Döngülere izleyen bölümde ayrıntılı olarak yer vereceğiz.</p>
+<p>Bir defada birden fazla koşulun hepsinin, birinin ya da bazılarının sağlanıp sağlanmadığı da test edilmek istenebilir. Bu da VE ile VEYA kullanılarak yapılır. Örneğin, bir sayı dizisindeki 50’den büyük çift sayıları bulmak istiyorsak (x çift VE  x &gt; 50) şartını yazabiliriz. Her defasında eldeki sayının verilen iki şartı da yerine getirip getirmediği test edilir. Diğer bir örnek olarak da sayı dizisindeki tek veya üçe bölünebilen sayıları bulmak istiyor olalım. Bunun için de (x tek VEYA x üçün katı) koşulunu yazarız. Koşulun doğrulanması için eldeki sayının iki şarttan birini yerine getirmesi yeterli olacaktır.</p>
+<p>Koşullu ifadelerde doğruluğu sınanan koşullar sonucu doğru ya da yanlış (True, False) olan mantıksal ifadelerdir. Mantıksal sınamalara örnek olarak iki sayının eşit olması ya da bir sayının diğerinden küçük, büyük, küçük eşit ya da büyük eşit olmasını verebiliriz. Python’da kullanılan mantıksal sınamalara ilişkin operatörler aşağıdaki gibidir.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operatör</p></th>
+<th class="head text-left"><p>Anlamı</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>==</p></td>
+<td class="text-left"><p>Eşit mi?</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>!=</p></td>
+<td class="text-left"><p>Farklı mı?</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>&lt;</p></td>
+<td class="text-left"><p>Küçük mü?</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>&lt;=</p></td>
+<td class="text-left"><p>Küçük ya da eşit mi?</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>&gt;</p></td>
+<td class="text-left"><p>Büyük mü?</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>&gt;=</p></td>
+<td class="text-left"><p>Büyük ya da eşit mi?</p></td>
+</tr>
+</tbody>
+</table>
+<p>Python’da mantıksal sınama operatörlerini kullanımına ilişkin aşağıdaki örnekleri inceleyin. Kendiniz de farklı koşullar yazıp sonucuna bakabilirsiniz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">==</span> <span class="mi">5</span>		<span class="c1"># 5, 5’e eşit mi?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span> <span class="o">==</span> <span class="mi">5</span>		<span class="c1"># 6, 5’e eşit mi?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span> <span class="o">!=</span> <span class="mi">5</span>		<span class="c1"># 6, 5’ten farklı mı?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">7</span>		<span class="c1"># 4, 7’den küçük mü?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">2.78</span> <span class="o">&lt;=</span> <span class="mf">3.14</span> 	<span class="c1"># 2.78, 3.14’ten küçük ya da ona eşit mi?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Birden fazla mantıksal sınamayı bir arada test etmek için “ve” (AND) ile “veya” (OR) operatörlerini kullanmamız gerektiğini belirtmiştik. Python’da “ve” için “&amp;”, “veya” içinse ( | ) operatörleri kullanılır. Bu operatörlerin sonucu aşağıdaki gibidir.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>x</p></th>
+<th class="head text-center"><p>y</p></th>
+<th class="head text-center"><p>x &amp; y</p></th>
+<th class="head text-center"><p>x | y</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>True</p></td>
+<td class="text-center"><p>True</p></td>
+<td class="text-center"><p>True</p></td>
+<td class="text-center"><p>True</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>True</p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-center"><p>True</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>False</p></td>
+<td class="text-center"><p>True</p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-center"><p>True</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>False</p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-center"><p>False</p></td>
+<td class="text-center"><p>False</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">6</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>    <span class="c1"># 6, 4’ten büyük VE 5, 10’dan küçük mü?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">3</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span>    <span class="c1"># 5, 4’e eşit veya 3, 4’ten farklı mı?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">50</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span><span class="o">%</span><span class="k">3</span>==0)    # 50’den büyük veya üçe tam bölünebilir mi?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Artık, Python’da koşullu ifadelerin yazılışına geçebiliriz. Tüm yüksek seviye programlama dillerinde olduğu gibi Python’da da koşullu ifadeler “if…else” ifadeleri ile yazılır. Python’da if…else ifadesinin yazım şekli aşağıdaki gibidir:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">koşul</span><span class="p">:</span>
+    <span class="n">gerçekleştirilecek</span> <span class="n">işlem</span>
+</pre></div>
+</div>
+<p>Öncelikle ifade <code class="docutils literal notranslate"><span class="pre">if</span></code> ile başlamalıdır. Sonrasında test edilmek istenen koşul yazılı ve satır sonunda <code class="docutils literal notranslate"><span class="pre">:</span></code> konulur. Bir alt satırda daha önce aktardığımız üzere içeriden başlanmalıdır. Birçok Python editörü bunu zaten otomatik olarak yapar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Koşul sağlanıyor!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Koşul sağlanıyor!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Koşul sağlanıyor!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puan</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">85</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Öğrenci geçti!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Öğrenci geçti!
+</pre></div>
+</div>
+</div>
+</div>
+<p>İlk örnekte sınanan şart doğru olduğu için alt program alt satırdaki işlemi gerçekleştiriyor. İkinci örnekte ise 7, 8’e eşit olmadığı yani sınanan şart doğru olmadığı için program bir alt satırı atlayarak hiçbir şey yapmıyor. Son örnekte puan değeri 85’ten büyük olduğu için istenilen işlem gerçekleştiriliyor.</p>
+<p>Python’da 0 ve None dışında tüm değişkenlerin bool karşılığının True olduğunu belirtmiştik. Bu nedenle if satırına mantıksal sınama yerine sayısal bir değer ya da metin de girilebilir. Ancak bu tür kullanımla çok sık karşılaşılmaz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bir değer girildi!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bir değer girildi!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bir değer girildi!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;metin&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bir değer girildi!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bir değer girildi!
+</pre></div>
+</div>
+</div>
+</div>
+<p>İlk ve son örnekte, “if”ten sonraki değerin bool karşılığı True olduğundan alt satırdaki işlem gerçekleştirilir. İkinci örnekte ise 0’ın bool değeri False olduğu için alt satırdaki işlem atlanır.
+Şimdi de <code class="docutils literal notranslate"><span class="pre">if...else</span></code> kullanımına ilişkin bir örnek görelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puan</span> <span class="o">=</span> <span class="mi">70</span>
+
+<span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">85</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Öğrenci geçti!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Öğrenci kaldı!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Öğrenci kaldı!
+</pre></div>
+</div>
+</div>
+</div>
+<p>İlk satırda istenen şart sağlanmadığı için buradaki işlem atlanıyor. Else ifadesi, istenen koşulun sağlanmaması halinde yapılması istenen işlemi veriyor. Öğrencinin notu 85’in altında olduğu için istenen koşul sağlanamıyor ve else ile belirtilen işlem gerçekleştiriliyor.</p>
+<p>Şimdi de üçüncü tip if…else ifadelerine geçelim. Yukarıdaki iki örnekte sadece bir koşula bakılıyor ve bu koşulun doğruluğuna göre işlem yapılıyor. Sınanmak istenen koşul sayısı iki veya daha fazla da olabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puan</span> <span class="o">=</span> <span class="mi">65</span>
+<span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">85</span><span class="p">:</span>
+     <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">karne_notu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki kodu incelediğimizde iç içe geçmiş if…else ifadeleri olduğunu görüyoruz. Önce puan’ın 85’ten yüksek olup olmadığını sınayan bir if…else ifadesi var. Bu sınama yanlışsa puanın 70’ten büyük olup olmadığını kontrol eden ikinci bir if…else ifadesi geliyor ve bu şekilde devam ediyor. Her if…else ifadesinin bir önceki “else:” satırına göre daha içeriden başladığına dikkat edin.</p>
+<p>Yukarıda görülen yazım şekli yanlış olmamakla birlikte çok fazla koşulun test edildiği bir kodda içeri doğru girintileri çok artıracak ve kod yazma ve okumayı zorlaştıracaktır. Bu nedenle Python’da else: if ifadesi yerine <code class="docutils literal notranslate"><span class="pre">elif</span></code> anahtar kelimesi geliştirilmiştir. Şimdi yukarıdaki kodu elif anahtar kelimesini kullanarak nasıl yazdığımızı inceleyelim. Görüldüğü gibi kod bu şekilde daha derli toplu ve okunabilir hale geliyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puan</span> <span class="o">=</span> <span class="mi">65</span>
+
+<span class="k">if</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">85</span><span class="p">:</span>
+    <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span>
+<span class="k">elif</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">70</span><span class="p">:</span>
+    <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;B&quot;</span>
+<span class="k">elif</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span>
+<span class="k">elif</span> <span class="n">puan</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">karne_notu</span> <span class="o">=</span> <span class="s2">&quot;F&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">karne_notu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="donguler">
+<h2><span class="section-number">5.2. </span>Döngüler<a class="headerlink" href="#donguler" title="Permalink to this heading">#</a></h2>
+<p>Önceki bölümde döngülerden kısaca bahsetmiştik. Döngüler, belirli bir şart sağlanana ya da sağlanmayana kadar tekrar edilen işlemlerdir. Python’da kullanılan iki tür döngü vardır: “while” ve “for” döngüleri.</p>
+<section id="while-dongusu">
+<h3><span class="section-number">5.2.1. </span>While Döngüsü<a class="headerlink" href="#while-dongusu" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 </section>
 
@@ -441,6 +840,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donguler">5.2. Döngüler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-dongusu">5.2.1. While Döngüsü</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
