@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0104';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -357,8 +359,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donguler">5.2. Döngüler</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-dongusu">5.2.1. While Döngüsü</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-dongusu">5.2.2. For Döngüsü</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yineleyiciler-iterators">5.3. Yineleyiciler (Iterators)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liste-donguleri">5.4. Liste Döngüleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sozluk-donguleri">5.5. Sözlük Döngüleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">5.6. Alıştırmalar</a></li>
 </ul>
             </nav>
         </div>
@@ -768,7 +775,936 @@ document.write(`
 <p>Önceki bölümde döngülerden kısaca bahsetmiştik. Döngüler, belirli bir şart sağlanana ya da sağlanmayana kadar tekrar edilen işlemlerdir. Python’da kullanılan iki tür döngü vardır: “while” ve “for” döngüleri.</p>
 <section id="while-dongusu">
 <h3><span class="section-number">5.2.1. </span>While Döngüsü<a class="headerlink" href="#while-dongusu" title="Permalink to this heading">#</a></h3>
+<p>While döngüsünün yapısı aşağıdaki gibidir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">koşul</span><span class="p">:</span>
+    <span class="n">gerçekleştirilecek</span> <span class="n">işlem</span>
+</pre></div>
+</div>
+<p>Örneğin 1’den 9’a kadar sayıları yazdıran bir program yazalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></div>
+</div>
+</div>
+</div>
+<p>Önce x değişkenini 1’e eşitliyoruz. Daha sonra x’in değeri 10’dan küçük olduğu sürece x’in yazdırılması komutunu veriyoruz.</p>
+<p>Döngü yazarken dikkat edilmesi gereken en önemli nokta, işlemin her gerçekleşmesinden sonra sınanacak verinin güncellendiğinden emin olmaktır. Bu nokta ihmal edilirse sınanan koşul her zaman doğru olacağı için program sonsuz döngüye girecektir. Yukarıdaki örnekte, x = x + 1 satırını yazmamış olsaydık x’in değeri hep 1’de kalacağı için (x &lt; 10) şartı her zaman geçerli olacak ve program sonsuza (ya da durdurulana) kadar ekrana x’in değerini yani 1’i yazacaktı. Terminal ekranında sonsuz döngüye girerseniz Ctrl + C kısayolu ile döngüden çıkabilirsiniz.</p>
+<p>Yukarıdaki kodda görülen x = x + 1 ifadesi daha kısa bir şekilde x += 1 olarak da yazılabilir. Bu ifade x = x + 1 ile aynı anlama gelir. Python’da kullanılan bu tür ifadelere aşağıda yer verilmiştir.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operatör</p></th>
+<th class="head text-center"><p>Kullanımı</p></th>
+<th class="head text-center"><p>Açıklama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>+=</p></td>
+<td class="text-center"><p>x += c</p></td>
+<td class="text-center"><p>x = x + c</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>-=</p></td>
+<td class="text-center"><p>x -= c</p></td>
+<td class="text-center"><p>x = x - c</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>*=</p></td>
+<td class="text-center"><p>x *= c</p></td>
+<td class="text-center"><p>x = x * c</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>/=</p></td>
+<td class="text-center"><p>x /= c</p></td>
+<td class="text-center"><p>x = x / c</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>**=</p></td>
+<td class="text-center"><p>x **= c</p></td>
+<td class="text-center"><p>x = x ** c</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>%=</p></td>
+<td class="text-center"><p>x %= c</p></td>
+<td class="text-center"><p>x = x % c</p></td>
+</tr>
+</tbody>
+</table>
+<p>Döngü sırasında herhangi bir koşulun sağlanması durumunda döngünün durdurulmasını isteyebiliriz. Bu durumda “break” anahtar kelimesini kullanmamız gerekir. Aşağıdaki örnekte, while döngüsü, koşul1 sağlandığı sürece devam eder. Ancak, koşul1’in sağlandığı sırada, koşul2 de doğru olursa while döngüsü sona erecektir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; while koşul1:
+…        if koşul2:
+…             break
+…        işlem1
+</pre></div>
+</div>
+<p>Aşağıdaki örnekte, kullanıcıdan bir sayı girmesi isteniyor. Ancak girilen sayının sıfır olması durumunda while döngüsü sonlandırılıyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">cevap</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bir sayı girin (Çıkmak için 0 girin): &quot;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Girdiğiniz sayı: &quot;</span> <span class="o">+</span> <span class="n">cevap</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">int</span> <span class="p">(</span><span class="n">cevap</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">   </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">cevap</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bir sayı girin (Çıkmak için 0 girin): &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Girdiğiniz sayı: &quot;</span> <span class="o">+</span> <span class="n">cevap</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">if</span> <span class="nb">int</span> <span class="p">(</span><span class="n">cevap</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="nn">File d:\007Github\pythonVB\.venv\Lib\site-packages\ipykernel\kernelbase.py:1201,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1199</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1200</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1201</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1202</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1203</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1204</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1205</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1207</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
+<section id="for-dongusu">
+<h3><span class="section-number">5.2.2. </span>For Döngüsü<a class="headerlink" href="#for-dongusu" title="Permalink to this heading">#</a></h3>
+<p>Bir işlemi belirli bir sayıda ya da bir dizi boyunca yapmak için for döngüsü kullanılır. Örneğin, bir listedeki bütün elemanları karesini alacak bir program yazmak isteyelim. Bunun için izlenecek yol aşağıdaki gibidir.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span> <span class="n">ile</span> <span class="n">listenin</span> <span class="n">eleman</span> <span class="n">sayısı</span> <span class="n">arasında</span> <span class="n">olmak</span> <span class="n">üzere</span><span class="p">:</span>
+	<span class="n">listenin</span> <span class="n">x</span><span class="o">.</span> <span class="n">elemanının</span> <span class="n">karesini</span> <span class="n">al</span>
+</pre></div>
+</div>
+<p>Bu işlemde x, 1’den başlar. Listenin 1. elemanının karesi alınır. Sonra, x’in değeri 1 artırılır. Listenin 2. elemanının karesi alınır. İşlem, x’in listenin eleman sayısına eşit olmasından sonra biter.</p>
+<p>For döngülerinin mantığı bu şekildedir. For döngüsünde bir değişken, bir de değişkenin sırayla izlediği bir dizi vardır. Değişken dizinin ilk elemanından son elemanına kadar bütün elemanları birer birer alır ve bu elemanlara istenilen işlemleri uygular.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">değişken</span> <span class="ow">in</span> <span class="n">dizi</span><span class="p">:</span>
+	<span class="n">işlem</span>
+</pre></div>
+</div>
+<p>Görüldüğü gibi, Python’da birçok konuda olduğu gibi döngüleri kullanmak da son derece basittir. Daha düşük seviyedeki programlama dillerinde for döngüsü aşağıdaki şekilde tanımlanır.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">){</span>
+	<span class="n">döngü</span> <span class="n">içeriği</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Yukarıdaki döngünün ilk satırına baktığımızda üç şartın sağlanmış olması gerektiğini görüyoruz. Önce döngü çalışırken her defasında artırılacak değişken tanımlanmalıdır (int i = 1). Daha sonra döngünün geçerli olduğu aralık verilmelidir (i &lt; 10). Son olarak da döngünün her çalışmasından sonra ilgili değişkenin güncellenmesi gerekmektedir (i = i +1). Python’da ise bu kadar ayrıntıya gerek kalmadan çok basit bir şekilde döngü yazılabilmektedir.   Döngü değişkeninin (i) veri tipini ve her döngüden sonra değişkenin nasıl güncelleneceğini belirtmeye gerek yoktur.</p>
+<p>Aşağıdaki örnekte 1’den 5’e kadar olan sayıların karelerini yazdırıyoruz. Bunun için kullanılan range() fonksiyonu, ilk sayı ile ikinci sayı arasında, ikinci sayının dahil olmadığı bir sayı dizisi oluşturur. range(1, 5), 1,2,3,4 tamsayı dizisini üretir. Fonksiyonda tek sayı kullanırsak sıfırdan bu sayının bir eksiğine kadar olan sayılar üretilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+4
+9
+16
+25
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aşağıdaki örnekte, listede yazan öğrenci isimlerini for döngüsü ile yazdırıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;İlhan&quot;</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">,</span> <span class="s2">&quot;Yağız&quot;</span><span class="p">,</span> <span class="s2">&quot;Baran&quot;</span><span class="p">,</span> <span class="s2">&quot;Özlem&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">ogrenci</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">ogrenci</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İlhan
+Ali
+Mehmet
+Yağız
+Baran
+Özlem
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir liste üzerinde for döngüsü uygularken liste elemanlarının yanı sıra bunların sıralarına da erişmek isteyebiliriz. Python for döngüleri buna da izin vermektedir. Bunun için enumerate() fonksiyonu kullanılabilir. Bir dizi, liste ya da sözlük gibi sıralı veri yapılarına uygulanabilen enumerate() fonksiyonu uygulandığı dizideki sıra numarası ve bu sıradaki elemanı birlikte verir. Örneğin enumerate fonksiyonunu bir liste üzerinde uygularsak, sonuç <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">liste[0]),</span> <span class="pre">(1,</span> <span class="pre">liste[1]),</span> <span class="pre">(2,</span> <span class="pre">liste[2]),…</span></code> olacaktır.</p>
+<p>Şimdi yukarıdaki listeye enumerate fonksiyonunu ve for döngüsünü birlikte uygulayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;İlhan&quot;</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">,</span> <span class="s2">&quot;Yağız&quot;</span><span class="p">,</span> <span class="s2">&quot;Baran&quot;</span><span class="p">,</span> <span class="s2">&quot;Özlem&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">sira</span><span class="p">,</span> <span class="n">ogrenci</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sira</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ogrenci</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 : İlhan
+1 : Ali
+2 : Mehmet
+3 : Yağız
+4 : Baran
+5 : Özlem
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sıra numarasının sıfır yerine birden başlaması için döngüde <code class="docutils literal notranslate"><span class="pre">str(sira)</span></code> yerine <code class="docutils literal notranslate"><span class="pre">str(sira</span> <span class="pre">+</span> <span class="pre">1)</span></code> yazmak yeterli olacaktır.</p>
+<p><code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> fonksiyonunun bir başka kullanım alanı da tuple veri nesneleridir. Bu fonksiyon yardımı ile listelerde olduğu gibi tuple veri nesnelerinde indeks numaralarına ve bu numaralara denk gelen verilere erişmek mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ulkeler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Türkiye&#39;</span><span class="p">,</span> <span class="s1">&#39;İtalya&#39;</span><span class="p">,</span> <span class="s1">&#39;İspanya&#39;</span><span class="p">,</span> <span class="s1">&#39;Portekiz&#39;</span><span class="p">,</span> <span class="s1">&#39;Fransa&#39;</span><span class="p">]</span>
+<span class="n">baskentler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ankara&#39;</span><span class="p">,</span> <span class="s1">&#39;Roma&#39;</span><span class="p">,</span> <span class="s1">&#39;Madrid&#39;</span><span class="p">,</span> <span class="s1">&#39;Lizbon&#39;</span><span class="p">,</span> <span class="s1">&#39;Paris&#39;</span><span class="p">]</span>
+
+<span class="n">ulke_baskent</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ulkeler</span><span class="p">,</span> <span class="n">baskentler</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sira</span><span class="p">,</span> <span class="n">veri</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ulke_baskent</span><span class="p">):</span>
+    <span class="n">ulke</span><span class="p">,</span> <span class="n">baskent</span> <span class="o">=</span> <span class="n">veri</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sira</span><span class="p">,</span> <span class="n">ulke</span><span class="p">,</span> <span class="n">baskent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 Türkiye Ankara
+1 İtalya Roma
+2 İspanya Madrid
+3 Portekiz Lizbon
+4 Fransa Paris
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bazı listelerin yine listelerden meydana gelebildiğini daha önce görmüştük. Örneğin, aşağıdaki örnekte, listeler bölümünde de kullandığımız notlar listesi görülmektedir. Bu listenin her bir elemanı yine bir listedir ve öğrenci adı ile aldığı notu içermektedir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">notlar</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Eren&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+              <span class="p">[</span><span class="s1">&#39;Ilhan&#39;</span><span class="p">,</span><span class="mi">99</span><span class="p">],</span>
+              <span class="p">[</span><span class="s1">&#39;Ali&#39;</span><span class="p">,</span><span class="mi">98</span><span class="p">],</span>
+              <span class="p">[</span><span class="s1">&#39;Erman&#39;</span><span class="p">,</span><span class="mi">97</span><span class="p">],</span>
+              <span class="p">[</span><span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span><span class="mi">96</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">notlar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eren: 100
+Ilhan: 99
+Ali: 98
+Erman: 97
+Mehmet: 96
+</pre></div>
+</div>
+</div>
+</div>
+<p>Döngüdeki i notlar listesini elemanlarını göstermektedir. Bu durumda her alt listedeki ismi <code class="docutils literal notranslate"><span class="pre">i[0]</span></code>, notu da <code class="docutils literal notranslate"><span class="pre">i[1]</span></code> ile gösterebiliriz. Bu örnekte, alt listelerin eleman sayısını biliyorduk. Peki, alt listelerin her biri farklı sayıda elemandan oluşuyorsa bu durumda ne yapabiliriz?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">siniflar</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;İlhan&quot;</span><span class="p">,</span> <span class="s2">&quot;Ali&quot;</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Yağız&quot;</span><span class="p">,</span> <span class="s2">&quot;Baran&quot;</span><span class="p">,</span> <span class="s2">&quot;Tuğçe&quot;</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">],</span>
+             <span class="p">[</span><span class="s2">&quot;Selin&quot;</span><span class="p">,</span> <span class="s2">&quot;Umut&quot;</span><span class="p">,</span> <span class="s2">&quot;Lara&quot;</span><span class="p">,</span> <span class="s2">&quot;Ayten&quot;</span><span class="p">,</span> <span class="s2">&quot;Murat&quot;</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">sinif</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">siniflar</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sınıf&quot;</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sinif</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">sira</span><span class="p">,</span> <span class="n">ogrenci</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sira</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ogrenci</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sınıf:1
+   1 : İlhan
+   2 : Ali
+Sınıf:2
+   1 : Yağız
+   2 : Baran
+   3 : Tuğçe
+   4 : Mehmet
+Sınıf:3
+   1 : Selin
+   2 : Umut
+   3 : Lara
+   4 : Ayten
+   5 : Murat
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de öğrenci ismi ve notlardan oluşan bir sözlük (dict) veri yapısından anahtar ve değerleri yazdıralım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">not_listesi</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;İlhan&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span> <span class="s1">&#39;Ali&#39;</span><span class="p">:</span> <span class="mi">98</span><span class="p">,</span>
+               <span class="s1">&#39;Mehmet&#39;</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span> <span class="s1">&#39;Yağız&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span> 
+               <span class="s1">&#39;Baran&#39;</span><span class="p">:</span> <span class="mi">68</span><span class="p">,</span> <span class="s1">&#39;Özlem&#39;</span><span class="p">:</span> <span class="mi">89</span><span class="p">,</span> 
+               <span class="s1">&#39;Ayten&#39;</span><span class="p">:</span> <span class="mi">74</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">ogrenci</span> <span class="ow">in</span> <span class="n">not_listesi</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">ogrenci</span><span class="p">,</span> <span class="n">not_listesi</span><span class="p">[</span><span class="n">ogrenci</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İlhan 75
+Ali 98
+Mehmet 83
+Yağız 99
+Baran 68
+Özlem 89
+Ayten 74
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sözlük veri yapısında for döngüsü uygulamanın bir başka yolu da döngüyü <code class="docutils literal notranslate"><span class="pre">dict.items()</span></code> üzerinde uygulamaktır. Aşağıdaki kod da yukarıdaki örnekle aynı sonucu verecektir.</p>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">anahtar,</span> <span class="pre">deger</span> <span class="pre">in</span> <span class="pre">not_listesi.items():</span>&#160;&#160;&#160;&#160; <span class="pre">print(anahtar</span> <span class="pre">+</span> <span class="pre">&quot;</span> <span class="pre">:</span> <span class="pre">&quot;</span> <span class="pre">+</span> <span class="pre">str(deger))</span></code></p>
+<p>Yukarıdaki döngüyü not_listesi sözlük yapısı üzerinde uygulamaya kalkarsanız bir hata mesajı ile karşılaşırsınız. Ancak bunun yerine <code class="docutils literal notranslate"><span class="pre">not_listesi.items()</span></code> üzerinde uyguladığınızda anahtar (key) ve değere (value) ayrı ayrı erişebilirsiniz.</p>
+<p>Şimdi önceki bölümde gördüğümüz liste, tuple ve sözlük veri yapılarını kullanarak biraz daha ileri seviye bir örnek üzerinden ilerleyelim. Çoğu zaman bir veri yapısı oluşturduğumuzda, içerdiği veri sayısını biliriz. Ancak zaman zaman programın başında oluşturduğumuz liste veya sözlükteki değerlerin sayısına ilişkin bir bilgimiz bulunmayabilir. Örneğin, farklı dokümanlardaki kelimeleri ve her kelimenin sayısını okuyacak bir metin analizi programı üzerinde çalışıyorsanız oluşturacağınız liste ya da sözlüğün uzunluğu hakkında en başta fikir yürütmeniz mümkün değildir.</p>
+<p>Bu durumda nasıl bir kod yazacağımız göstermek için aşağıdaki örneği inceleyelim. Elimizde, bir listede her bir öğrencinin sınıfı, adı ve numarası tuple verisi olarak yer alıyor. Fazla yer kapsamaması için listeyi kısa tuttum. Bizden istenen bu listedeki verileri alıp her sınıftaki öğrencileri ayrıştırmamız. Bunun için anahtarların sınıf, değerlerin ise öğrenci listesi olduğu biz sözlük oluşturabiliriz. Ancak işimiz burada da bitmiyor. Öğrenci listesinin elemanları da öğrenci adı ve numarasından oluşan tuple verileri olacak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Öğrenci listesi</span>
+<span class="n">ogrenciler</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;Ali&#39;</span><span class="p">,</span> <span class="s1">&#39;0001&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;Can&#39;</span><span class="p">,</span> <span class="s1">&#39;0002&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;Eren&#39;</span><span class="p">,</span> <span class="s1">&#39;0003&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;Ayşe&#39;</span><span class="p">,</span> <span class="s1">&#39;0004&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;İlhan&#39;</span><span class="p">,</span> <span class="s1">&#39;0005&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;Baran&#39;</span><span class="p">,</span> <span class="s1">&#39;0006&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span> <span class="s1">&#39;0007&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Yağız&#39;</span><span class="p">,</span> <span class="s1">&#39;0008&#39;</span><span class="p">),</span>
+              <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Özlem&#39;</span><span class="p">,</span> <span class="s1">&#39;0009&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Boş bir sınıflar sözlüğü oluşuralım.</span>
+<span class="n">siniflar</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Öğrenciler listesini izleyecek bir for döngüsü yazalım.</span>
+<span class="c1"># Listenin elemanı olan tuple verilerini de sinif, ogrenci ve numara olarak ayrıştıralım.</span>
+<span class="k">for</span> <span class="n">sinif</span><span class="p">,</span> <span class="n">ogrenci</span><span class="p">,</span> <span class="n">numara</span> <span class="ow">in</span> <span class="n">ogrenciler</span><span class="p">:</span>
+    <span class="c1"># Sınıflar sözlüğünde bu sınıfa ait bir anahar yoksa yenisini oluştur.</span>
+    <span class="c1"># Bu nahtara karşılık gelen değer boş bir liste olsun.</span>
+    <span class="k">if</span> <span class="n">sinif</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">siniflar</span><span class="p">:</span>
+        <span class="n">siniflar</span><span class="p">[</span><span class="n">sinif</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># öğrenci ve numara verilerini tuple haline getir ve ilgili sınıfın listesine ekle </span>
+    <span class="n">siniflar</span><span class="p">[</span><span class="n">sinif</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ogrenci</span><span class="p">,</span> <span class="n">numara</span><span class="p">))</span>
+
+<span class="c1"># Sınıfları yazdır</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">siniflar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: [(&#39;Ali&#39;, &#39;0001&#39;), (&#39;Can&#39;, &#39;0002&#39;), (&#39;Eren&#39;, &#39;0003&#39;)], &#39;B&#39;: [(&#39;Ayşe&#39;, &#39;0004&#39;), (&#39;İlhan&#39;, &#39;0005&#39;), (&#39;Baran&#39;, &#39;0006&#39;)], &#39;C&#39;: [(&#39;Mehmet&#39;, &#39;0007&#39;), (&#39;Yağız&#39;, &#39;0008&#39;), (&#39;Özlem&#39;, &#39;0009&#39;)]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu örneği gerçekleştirmenin farklı bir yolu da Python standart kütüphanesinde yer alan <code class="docutils literal notranslate"><span class="pre">collections</span></code> modülündeki <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> yapısını kullanmaktır. <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> yapısı ile yazdığımız kod biraz daha kısalacaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># collections modülünden defaultdict yapısını aktaralım</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c1"># Yine bir siniflar sözlüğü oluşturuyoruz ama bu defa defaultdict yapısında olduğunu ve değerlerin liste olduğunu belirtiyoruz.</span>
+<span class="n">siniflar</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+<span class="c1"># anahtarın yani sınıfın sözlükte olup olmadığını kontrol etmemize gerek olmadan öğrenci, numara ikilisini ilgili anahtarı kullanarak sözlüğe ekleyebiliyoruz. </span>
+<span class="k">for</span> <span class="n">sinif</span><span class="p">,</span> <span class="n">ogrenci</span><span class="p">,</span> <span class="n">numara</span> <span class="ow">in</span> <span class="n">ogrenciler</span><span class="p">:</span>
+    <span class="n">siniflar</span><span class="p">[</span><span class="n">sinif</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ogrenci</span><span class="p">,</span> <span class="n">numara</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">siniflar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultdict(&lt;class &#39;list&#39;&gt;, {&#39;A&#39;: [(&#39;Ali&#39;, &#39;0001&#39;), (&#39;Can&#39;, &#39;0002&#39;), (&#39;Eren&#39;, &#39;0003&#39;)], &#39;B&#39;: [(&#39;Ayşe&#39;, &#39;0004&#39;), (&#39;İlhan&#39;, &#39;0005&#39;), (&#39;Baran&#39;, &#39;0006&#39;)], &#39;C&#39;: [(&#39;Mehmet&#39;, &#39;0007&#39;), (&#39;Yağız&#39;, &#39;0008&#39;), (&#39;Özlem&#39;, &#39;0009&#39;)]})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tüm programlama dillerinde olduğu gibi Python’da da for döngüleri oldukça önemlidir. Ancak, bu noktada bir uyarı yapmamız gerekiyor. Özellikle daha önce farklı programlama dillerini kullanmış olanlar, yazdıkları programlarda for döngüsü kullanmaya daha fazla yatkın olabilir. Ancak, yazdığınız bir programda for (veya while) döngüsü kullanmak başvuracağınız en son yöntem olmalıdır. Öncesinde, Python’da for döngüsü yerine kullanabileeğiniz bir metod ya da fonksiyon olup olmadığını araştırmanız önerilir.</p>
+<p>Python, vektörel bir programlama dilidir . Bunun anlamını aşağıdaki örneklerle ifade edelim.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="o">+</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="o">+</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Gördüğünüz gibi Python’da dizilere uygulanan işlemler o dizinin elemanlarına tek tek uygulanır.  İlk örnekte, 5 elemanlı iki listeyi topladığımızda, her iki listenin aynı sıradaki elemanları toplanır. İkinci örnekte ise bir liste ile skaler değeri topluyoruz. Burada da Python, skaler değeri listedeki her elemanla tek tek topluyor. Çok basit gibi görünen bu örnek bize yazdığımız programlarda çok fazla zaman kazandırabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For döngüsü: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ms&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For döngüsü: 215.26265144348145 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tic</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">toc</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vektörel çözüm: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">toc</span><span class="o">-</span><span class="n">tic</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; ms&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vektörel çözüm: 0.9846687316894531 ms
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki örnekte 1 milyon sayıdan oluşan iki dizinin vektör çarpımlarını önce for döngüsü kullanarak sonra da Python numpy modülündeki <code class="docutils literal notranslate"><span class="pre">np.dot()</span></code> metodunu kullanarak hesaplıyoruz. İlk yöntemde işlem 583 ms sürerken ikincisinde sadece1 ms sürdü. <code class="docutils literal notranslate"><span class="pre">Numpy</span></code> modülünü ve ilerleyen bölümlerde göreceğiz bu nedenle kodun bı kısmını anlamadıysanız endişe etmeyin. Burada, önemli olan Python’a özgü metodların döngülere göre ne kadar hızlı olabileceğini görmektir.</p>
+</section>
+</section>
+<section id="yineleyiciler-iterators">
+<h2><span class="section-number">5.3. </span>Yineleyiciler (Iterators)<a class="headerlink" href="#yineleyiciler-iterators" title="Permalink to this heading">#</a></h2>
+<p>Python’da döngülerden, özellikle de for döngülerinden bahsetmişken açıklamamız gereken bir başka konu Python’da yer alan yineleyici  yapısıdır. Şimdiye kadar metin, sözlük, liste, tuple gibi sıralı elemanlardan oluşan çok farklı dizilerle karşılaştık. Çalışmalarımızda kullanacağımız özellikle for döngülerinin çoğu böyle bir diziyi alıp bunun elemanlarına aynı işlemi uygulamaktan ibaret olacaktır. Önceki bölümde yer alan örneklere tekrar bakarsanız, yazdığımız for döngülerinin bir listenin ya da farklı bir dizinin elemanlarını sırayla ve tek tek alıp bunlara yazdırma ya da karelerini alma gibi işlemler uyguladığımızı görürsünüz. Örnekleri daha da artırabiliriz, bir listedeki bütün isimleri büyük harfle yazdırmak, bir dosyada yer alan belirli şartı sağlayan kayıtları seçmek, bir dizide yer alan sayıların toplamını bulmak gibi. Bu dizilerin özellikleri her elemanın bir sıra numarasına sahip olmalarıdır.</p>
+<p>Sıralı elemanlardan oluşan ve elemanlarına yukarıda tanımladığımız şekilde sırayla ve birer birer işlem uygulanabilen diziler yinelenen <strong>(iterable)</strong> yapılar olarak isimlendirilir. Bir liste, sözlük ya da tuple gibi yinelenen nesne üzerinde for döngüsü uyguladığımızda bu nesne üzerinde yinelenen bir işlem gerçekleştirmiş oluyoruz. Bu nesneler üzerinde yinelenebilen işlemler yapabilmemizin nedeni bunların yinelenen nesne özelliğine sahip olmalarıdır. Liste, sözlük veya tuple gibi üzerinde işlem yapılan, örneğin satırları tek tek okunan bir dosya da yinelenen nesnedir.</p>
+<p>Yinelenen bir dizideki bir elemanı belirten ve istediğimiz işlemleri sırayla gerçekleştirmemize izin veren nesneler ise yineleyici <strong>(iterator)</strong> olarak isimlendirilir. Python’da, bir yinelenen veri yapısını işaret eden yineleyici oluşturmak için <strong>iter()</strong> fonksiyonu kullanılır. Aslında, yinelenen nesneleri üzerlerinde iter() metodu uygulanabilen nesneler olarak da görebiliriz. Aslında, önceki bölümde gördüğümüz for döngüsünün yaptığı da tam olarak budur. Yinelenen bir nesneyi alır, buna ilişkin bir yineleyici oluşturur ve bu yineleyici yardımı ile yinelenen üzerinde istenen işlemi gerçekleştirir. Yineleyici de benzer biçimde üzerinde next() metodu uygulanabilen nesne olarak tanımlanabilir.
+Buraya kadar çok fazla terim gördük. Bu kadar terim arasında kafamızın karışmış olması normaldir. Şimdi buraya kadar anlattıklarımızı aşağıdaki şekilde özetleyelim.</p>
+<p><img alt="yineleyiciler" src="_images/yineleyici.png" /></p>
+<p>Şekilde de görüldüğü gibi yinelenen bir nesne üzerinde <code class="docutils literal notranslate"><span class="pre">iter()</span></code> metodu ile yineleyici oluşturuluyor. Bu yineleyici de <code class="docutils literal notranslate"><span class="pre">next()</span></code> metodunu kullanarak yinelenen nesnedeki elemanlara sırayla ulaşıyor.</p>
+<p>Aşağıdaki örnekte yinelenen olarak bir kelimelik bir metin nesnesi oluşturalım ve bunun üzerinde <code class="docutils literal notranslate"><span class="pre">iter()</span></code> ve <code class="docutils literal notranslate"><span class="pre">next()</span></code> metodlarını deneyelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sehir</span> <span class="o">=</span> <span class="s2">&quot;İzmir&quot;</span>
+<span class="n">yine</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">sehir</span><span class="p">)</span>
+<span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;İ&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;z&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;m&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;i&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;r&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">yine</span><span class="p">)</span>
+
+<span class="ne">StopIteration</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Oluşturduğumuz metin üzerinde <code class="docutils literal notranslate"><span class="pre">iter()</span></code> fonksiyonunu kullanarak bir yineleyici oluşturuyoruz. Yineleyicinin ismini de yine yaptık. Sonraki adımda, oluşturduğumuz yineleyici üzerinde her <code class="docutils literal notranslate"><span class="pre">next()</span></code> fonksiyonunu kullandığımızda metin nesnesi üzerindeki bir sonraki elemana ulaşıyoruz. Bizim örneğimizde elemanlar harfler ancak bu bir dosyanın satırları, bir listenin elemanları, bir sözlüğün değerleri gibi çok farklı türde veri yapıları olabilir. Örnekteki son adımda, <code class="docutils literal notranslate"><span class="pre">next()</span></code> metodu ile <code class="docutils literal notranslate"><span class="pre">r</span></code> harfine ulaştıktan sonra artık ulaşılabilecek bir eleman kalmıyor. Bu nedenle fonksiyonu tekrar kullandığımızda <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> hata mesajını alıyoruz.</p>
+<p>Bir yinelenen nesnedeki tüm elemanlara aynı anda ulaşmak için yineleyicinin önüne * işareti getirerek kullanabiliriz. Yukarıdaki örneğimizde tüm harfleri aynı anda yazdırmayı deneyelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sehir</span> <span class="o">=</span> <span class="s2">&quot;İzmir&quot;</span>
+<span class="n">yine</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">sehir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">yine</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İ z m i r
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ancak son işlemden sonra <code class="docutils literal notranslate"><span class="pre">print(*yine)</span></code> komutunu tekrar uygularsak herhangi bir sonuç alamayız. Çünkü artık yineleyici, yinelenin sonuna gelmiş oluyor.</p>
+<p>Bazen, bir yinelenen nesne yerine belirli sayıda işlemi arka arkaya yapmak gerekebilir. Örneğin, aynı cümleyi 5 defa yazdırmak isteyebilirim. Bu durumda iş yarayabilecek bir fonksiyon <code class="docutils literal notranslate"><span class="pre">range()</span></code> nesnesidir. Kabaca, <code class="docutils literal notranslate"><span class="pre">range(x)</span></code>, 0’dan x-1’e kadar tamsayılardan oluşan bir liste oluşturuyor gibi düşünebiliriz. Esasında, <code class="docutils literal notranslate"><span class="pre">range()</span></code> fonksiyonu gerçekten bir sayı listesi oluşturmaz. Sadece sayı listesini işaret eden bir yineleyicisi olan bir nesne oluşturur. Bu fonksiyonu iki argümanlı olarak da yazdırmak mümkündür. <code class="docutils literal notranslate"><span class="pre">range(x,y)</span></code> yazdığımızda, x ile başlayan ve y-1 ile son bulan ardışık tamsayılara işaret eden bir yineleyici üretilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+5
+6
+7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oluşturulan bir range nesnesinin içeriğini yazdırmak isterseniz yazdırılan sonuç çok da bilgi verici olmayacaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sayilar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range(10, 20)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Range nesnesinin işaret ettiği sayıları görebilmek için bunları <code class="docutils literal notranslate"><span class="pre">list()</span></code> veya <code class="docutils literal notranslate"><span class="pre">set()</span></code> gibi bir fonksiyonla dizi haline getirmek gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">sayi_listesi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sayilar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sayi_listesi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aslında, <code class="docutils literal notranslate"><span class="pre">list()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">set()</span></code> gibi birçok fonksiyon argüman olarak yineleyicileri kullanır.</p>
+<p>For döngülerini anlatırken <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> fonksiyonundan bahsetmiştik. Şimdi bu bölümde öğrendiklerimizle birlikte <code class="docutils literal notranslate"><span class="pre">enumerate()</span></code> fonksiyonuna tekrar bakalım. Bu fonksiyon, herhangi bir yinelenen nesneyi argüman olarak alır ve özel bir enumerate nesnesi üretir. Bu nesnenin kendisi de bir yinelenen nesnedir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">]</span>
+
+<span class="n">enum</span><span class="o">=</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">enum</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;enumerate&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu nesne kullandığımız listedeki (veya bir başka yinelenen nesnedeki) elemanları, bunların indeks numaraları ile birlikte tutar. Bunu görebilmek için yine <code class="docutils literal notranslate"><span class="pre">list()</span></code> fonksiyonunu kullanalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">enum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0, &#39;A&#39;), (1, &#39;B&#39;), (2, &#39;C&#39;), (3, &#39;D&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu yapı sayesinde, for döngülerinde belirttiğimiz gibi bir yinelenen nesnedeki elemanlara bunların sıra numaraları ile birlikte erişmek (örneğin bunları yazdırmak) mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">indeks</span><span class="p">,</span> <span class="n">deger</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">indeks</span><span class="p">,</span> <span class="n">deger</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 A
+1 B
+2 C
+3 D
+</pre></div>
+</div>
+</div>
+</div>
+<p>Enumerate, fonksiyonuna start argümanı girilerek yinelenen nesnenin istenen sıra numarasından başlanılması sağlanabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">indeks</span><span class="p">,</span> <span class="n">deger</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">indeks</span><span class="p">,</span> <span class="n">deger</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 A
+3 B
+4 C
+5 D
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yineleyiciler konusunda çok bilinen bir başka fonksiyon da <code class="docutils literal notranslate"><span class="pre">zip()</span></code> fonksiyonudur. Zip fonksiyonu, bir veya daha fazla sayıda yinelenen nesneyi argüman olarak alır ve tuple nesnelerinden oluşan bir dizi üretir. Bir zip nesnesinde, n. sıradaki tuple, aldığı bütün argümanların n. sıradaki nesnelerinden oluşan bir tuple nesnesidir. Tanım biraz karışık gelmiş olabilir. Aşağıdaki örneğe bakalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ulkeler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Türkiye&#39;</span><span class="p">,</span> <span class="s1">&#39;Japonya&#39;</span><span class="p">,</span> <span class="s1">&#39;İtalya&#39;</span><span class="p">]</span>
+<span class="n">baskentler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ankara&#39;</span><span class="p">,</span> <span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;Roma&#39;</span><span class="p">]</span>
+<span class="n">ulke_baskent</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ulkeler</span><span class="p">,</span> <span class="n">baskentler</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">ulke_baskent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Türkiye&#39;, &#39;Ankara&#39;) (&#39;Japonya&#39;, &#39;Tokyo&#39;) (&#39;İtalya&#39;, &#39;Roma&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>ya da</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ulke</span><span class="p">,</span> <span class="n">baskent</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ulkeler</span><span class="p">,</span> <span class="n">baskentler</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ulke</span><span class="p">,</span> <span class="n">baskent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Türkiye Ankara
+Japonya Tokyo
+İtalya Roma
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yinelenen nesneler ile ilgili olarak bir noktayı hatırlatmakta fayda görüyorum. Enumerate ya da zip gibi bir yineleme fonksiyonunu bir defa kullandığımızda oluşturulan yineleyici, yinelenen nesnenin sonuna geliyor. Bu nedenle aynı fonksiyonu tekrar çağırdığımızda herhangi bir sonuç alamayız. Örneğin, yukarıdaki örnekte yer alan for döngüsünü bird aha çağırırsak herhangi sonuç belirmeyecektir. Bu nedenle bir daha kullanabilmek için yineleyiciyi tekrar oluşturmak gerekmektedir.</p>
+<p><code class="docutils literal notranslate"><span class="pre">zip()</span></code> fonksiyonu ile oluşturulmuş bir nesneyi tekrar kendisini oluşturan bileşenlere ayırmak için * operatörünü kullanabiliriz. Aşağıdaki örnekte, oluşturulmuş olan ulke_baskent nesnesini tekrar bileşenlerine ayırmak için bu nesneyi zip() fonksiyonu içinde önüne * getirerek yazıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ulkeler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Türkiye&#39;</span><span class="p">,</span> <span class="s1">&#39;Japonya&#39;</span><span class="p">,</span> <span class="s1">&#39;Amerika&#39;</span><span class="p">,</span> <span class="s1">&#39;İspanya&#39;</span><span class="p">,</span> <span class="s1">&#39;İtalya&#39;</span><span class="p">]</span>
+<span class="n">baskentler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ankara&#39;</span><span class="p">,</span> <span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Madrid&#39;</span><span class="p">,</span> <span class="s1">&#39;Roma&#39;</span><span class="p">]</span>
+<span class="n">ulke_baskent</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ulkeler</span><span class="p">,</span> <span class="n">baskentler</span><span class="p">)</span>
+<span class="n">ulke</span><span class="p">,</span> <span class="n">baskent</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">ulke_baskent</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ulke</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Türkiye&#39;, &#39;Japonya&#39;, &#39;Amerika&#39;, &#39;İspanya&#39;, &#39;İtalya&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">baskent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Ankara&#39;, &#39;Tokyo&#39;, &#39;New York&#39;, &#39;Madrid&#39;, &#39;Roma&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="liste-donguleri">
+<h2><span class="section-number">5.4. </span>Liste Döngüleri<a class="headerlink" href="#liste-donguleri" title="Permalink to this heading">#</a></h2>
+<p>Liste döngüleri, İngilizce’de <strong>List Comprehension</strong> olarak kullanılıyor. Bu terimin Türkçe’deki tam karşılığını bulamadım. Türkçe kaynaklarda farklı kullanımlar bulunmakta. “Liste Döngüsü” terimin birebir çevirisi olmamakla birlikte kullanım açısından uygun olduğunu düşünüyorum.</p>
+<p>Önceki bölümlerde for döngüleri ile liste oluşturmanın yöntemlerini gördük. Örneğin 1’den 10’a kadar olan sayıların karelerinden meydana gelen bir liste oluşturalım. Bunun için bir for döngüsü kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kareler</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">kareler</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">kareler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veya diyelim ki bir listede yer alan elemanlarla belirli bir işlem örneğin 2 ile çarpma işlemini yapıp bunlardan yeni bir liste oluşturmak istiyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">liste2</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste1</span><span class="p">:</span>
+        <span class="n">liste2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">liste2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 8, 10, 14, 20, 24]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Listelerde işlem yaparken döngüler yerine kullanabileceğimiz bir başka yöntem liste döngüleridir. Liste döngülerini kullanarak yukarıdaki for döngülerinin yaptığını tek satırda gerçekleştirebiliriz.</p>
+<p>Döngüler, çoğu zaman oldukça etkili programlama teknikleri olmakla birlikte özellikle büyük verilerle çalışırken döngülerin yavaş ve verimsiz olduğunu görürsünüz. Büyük verilerde döngü kullanmak işlem hızını oldukça yavaşlatabilmektedir. Bunun için mümkün oldukça döngüler yerine vektörlerle çalışmayı tercih etmeniz önerilir. Bu konuya ileride ayrıntılı olarak değineceğiz.</p>
+<p>Şimdi yukarıda gördüğümüz 1’den 10’a kadar sayıların karelerinden oluşan listeyi tek satırda oluşturalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kareler</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kareler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kareler</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kareler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir liste döngüsü basitçe, iki köşeli parantez arasındaki bir for döngüsü olarak isimlendirilebilir. Liste döngüsünün genel yapısı şu şekildedir:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[çıktı</span> <span class="pre">ifadesi</span> <span class="pre">for</span> <span class="pre">yineleyici</span> <span class="pre">değişken</span> <span class="pre">in</span> <span class="pre">yinelenen</span> <span class="pre">nesne]</span></code></p>
+<p>Şimdi de ikinci örneği liste döngüsü yöntemi ile tekrarlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+
+<span class="n">liste2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">liste2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 8, 10, 14, 20, 24]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aşağıdaki örnekte listede ay isimleri yer alıyor. Fazla yer kaplamaması için ayları ilk üç harfleri ile göstermek istiyoruz. Bunu bir liste döngüsü ile kolayca yapabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aylar</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ocak&#39;</span><span class="p">,</span> <span class="s1">&#39;Şubat&#39;</span><span class="p">,</span> <span class="s1">&#39;Mart&#39;</span><span class="p">,</span> <span class="s1">&#39;Nisan&#39;</span><span class="p">,</span> <span class="s1">&#39;Mayıs&#39;</span><span class="p">,</span> <span class="s1">&#39;Haziran&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Temmuz&#39;</span><span class="p">,</span> <span class="s1">&#39;Ağustos&#39;</span><span class="p">,</span> <span class="s1">&#39;Eylül&#39;</span><span class="p">,</span> <span class="s1">&#39;Ekim&#39;</span><span class="p">,</span> <span class="s1">&#39;Kasım&#39;</span><span class="p">,</span> <span class="s1">&#39;Aralık&#39;</span><span class="p">]</span>
+
+<span class="n">aylar_kisa</span> <span class="o">=</span> <span class="p">[</span><span class="n">ay</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">ay</span> <span class="ow">in</span> <span class="n">aylar</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aylar_kisa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Oca&#39;, &#39;Şub&#39;, &#39;Mar&#39;, &#39;Nis&#39;, &#39;May&#39;, &#39;Haz&#39;, &#39;Tem&#39;, &#39;Ağu&#39;, &#39;Eyl&#39;, &#39;Eki&#39;, &#39;Kas&#39;, &#39;Ara&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Liste döngülerine koşul ekleyerek istenen şartları taşıyan elemanların seçilebilmesi de olanaklıdır. Bu durumda köşeli parantez içindeki ifade aşağıdaki şekli alır.</p>
+<p><code class="docutils literal notranslate"><span class="pre">[çıktı</span> <span class="pre">ifadesi</span> <span class="pre">for</span> <span class="pre">yineleyici</span> <span class="pre">değişken</span> <span class="pre">in</span> <span class="pre">yinelenen</span> <span class="pre">nesne</span> <span class="pre">if</span> <span class="pre">koşul]</span></code></p>
+<p>Varsayalım ki yukarıdaki örnekte sadece M harfi ile başlayan ayların ilk üç harflerini seçtirmek istiyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aylar</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ocak&#39;</span><span class="p">,</span> <span class="s1">&#39;Şubat&#39;</span><span class="p">,</span> <span class="s1">&#39;Mart&#39;</span><span class="p">,</span> <span class="s1">&#39;Nisan&#39;</span><span class="p">,</span> <span class="s1">&#39;Mayıs&#39;</span><span class="p">,</span> <span class="s1">&#39;Haziran&#39;</span><span class="p">,</span> 
+         <span class="s1">&#39;Temmuz&#39;</span><span class="p">,</span> <span class="s1">&#39;Ağustos&#39;</span><span class="p">,</span> <span class="s1">&#39;Eylül&#39;</span><span class="p">,</span> <span class="s1">&#39;Ekim&#39;</span><span class="p">,</span> <span class="s1">&#39;Kasım&#39;</span><span class="p">,</span> <span class="s1">&#39;Aralık&#39;</span><span class="p">]</span>
+
+<span class="n">aylar_kisa</span> <span class="o">=</span> <span class="p">[</span><span class="n">ay</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">ay</span> <span class="ow">in</span> <span class="n">aylar</span> <span class="k">if</span> <span class="n">ay</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;M&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aylar_kisa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Mar&#39;, &#39;May&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Örnekte yer alan if <code class="docutils literal notranslate"><span class="pre">ay[0]</span> <span class="pre">==</span> <span class="pre">&quot;M&quot;</span></code>  ifadesi, for döngüsünü uygularken aynı zamanda ilk harfi “M” olanları seçmektedir.</p>
+<p>Şimdi de 1’den 10’a kadar olan tek sayıların küpünü aynı yapıyı kullanarak hesaplayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kup_tek</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kup_tek</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 27, 125, 343, 729]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Liste döngüsüne koşullu ifade olarak if ekleyebiliyorsak else de ekleyebilmeliyiz. Bunu da aşağıdaki gibi gerçekleştirebiliriz. Aynı örneklerden devam edelim. Bu defa 1’den 10’a kadar olan sayılardan tek olanların küpünü, çift olanların ise karesini alalım. If ifadesinin yanına else de geldiğinde sıralamada küçük bir değişiklik olduğuna dikkat edin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sartli_dongu</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sartli_dongu</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 4, 27, 16, 125, 36, 343, 64, 729, 100]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Burada sıralama aşağıdaki gibi oldu:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Koşul</span> <span class="pre">Doğru</span> <span class="pre">ise</span> <span class="pre">İşlem</span> <span class="pre">|</span> <span class="pre">Koşul</span> <span class="pre">|</span> <span class="pre">Koşul</span> <span class="pre">Doğru</span> <span class="pre">Değilse</span> <span class="pre">İşlem</span> <span class="pre">|</span> <span class="pre">For</span> <span class="pre">Döngüsü</span></code></p>
+</section>
+<section id="sozluk-donguleri">
+<h2><span class="section-number">5.5. </span>Sözlük Döngüleri<a class="headerlink" href="#sozluk-donguleri" title="Permalink to this heading">#</a></h2>
+<p>Liste döngüleri ile aynı yapıyı kullanarak sözlük döngüleri yardımı ile sözlükler oluşturmak da mümkündür. Sözlük döngülerinde köşeli parantez yerine küme parantezi kullanıyoruz ve anahtar, değer ikilisini iki nokta <code class="docutils literal notranslate"><span class="pre">(:)</span></code> ile ayırıyoruz.</p>
+<p>Aşağıdaki örnekte, listede yer alan kelimelerin anahtar, bunların harf sayısının değer oluğu bir sözlük oluşturuyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sehirler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;İstanbul&#39;</span><span class="p">,</span> <span class="s1">&#39;Ankara&#39;</span><span class="p">,</span> <span class="s1">&#39;İzmir&#39;</span><span class="p">,</span> <span class="s1">&#39;Eskişehir&#39;</span><span class="p">,</span> <span class="s1">&#39;Bursa&#39;</span><span class="p">]</span>
+<span class="n">sehir_sozluk</span> <span class="o">=</span> <span class="p">{</span><span class="n">sehir</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">sehir</span><span class="p">)</span> <span class="k">for</span> <span class="n">sehir</span> <span class="ow">in</span> <span class="n">sehirler</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sehir_sozluk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;İstanbul&#39;: 8, &#39;Ankara&#39;: 6, &#39;İzmir&#39;: 5, &#39;Eskişehir&#39;: 9, &#39;Bursa&#39;: 5}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="alistirmalar">
+<h2><span class="section-number">5.6. </span>Alıştırmalar<a class="headerlink" href="#alistirmalar" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Aşağıdaki listeyi kullanarak önce bu listenin elemanlarını yazdıran bir for döngüsü oluşturun.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prg_dilleri</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;Matlab&#39;</span><span class="p">,</span> <span class="s1">&#39;C++&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Şimdi de sırayla aşağıdaki işlemleri yapın:</p>
+<ul class="simple">
+<li><p>Listeyi işaret eden bir yineleyici oluşturun.</p></li>
+<li><p>Bu yineleyiciyi kullanarak listedeki programlama dillerini yazdırın.</p></li>
+</ul>
+<p>İpucu: Hangi iki fonksiyonu kullanmanız gerektiğini düşünün?</p>
+<ol class="arabic simple" start="2">
+<li><p>Aşağıdaki matrisi oluşturacak bir liste döngüsü yazın. İpucu: İç içe iki liste döngüsü kullanmalısınız. Yazacağınız kod, <code class="docutils literal notranslate"><span class="pre">[[…………..]</span> <span class="pre">………..]</span></code> formatında olmalı.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Aşağıdaki listede, uzunluğu 5’ten fazla olan kelimeleri yazdıran bir for döngüsü oluşturun.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">ulkeler</span> <span class="pre">=</span> <span class="pre">[‘Türkiye’,</span> <span class="pre">‘İspanya’,</span> <span class="pre">‘Çin’,</span> <span class="pre">‘Irak’,</span> <span class="pre">‘İtalya’,</span> <span class="pre">‘Çad’]</span></code></p>
+<p>İkinci olarak harf sayısı beşten fazla olan ülkeleri aynı bırakan ancak diğerlerini <code class="docutils literal notranslate"><span class="pre">*</span></code> karakteri ile değiştiren bir döngü yazın.</p>
+<ol class="arabic simple" start="4">
+<li><p>Aşağıdaki ders ve öğretmen isimlerinden oluşan dersler ve ogretmenler listelerini <code class="docutils literal notranslate"><span class="pre">zip()</span></code> fonksiyonunu kullanarak bir tuple veri nesnesine dönüştürün. Oluşturduğunuz tuple nesnesinin adı ders_ogretmen olsun. Şimdi de bu tuple nesnesindeki her ders ve öğretmen çiftini sıra numarası ile birlikte yazdıracak bir for döngüsü yazın. Kolaylık olması için ilgili komutların bir bölümü sizin için oluşturulmuş ve doldurmanız gereken yerler boş bırakılmıştır.</p></li>
+</ol>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dersler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Matematik&#39;</span><span class="p">,</span> <span class="s1">&#39;Fizik&#39;</span><span class="p">,</span> <span class="s1">&#39;Kimya&#39;</span><span class="p">]</span>
+<span class="n">ogretmenler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cahit Arf&#39;</span><span class="p">,</span> <span class="s1">&#39;Mete Atatüre&#39;</span><span class="p">,</span> <span class="s1">&#39;Aziz Sancar&#39;</span><span class="p">]</span>
+
+<span class="n">ders_ogretmen</span> <span class="o">=</span> <span class="n">___</span><span class="p">(</span><span class="n">_____</span><span class="p">,</span> <span class="n">_____</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sira</span><span class="p">,</span> <span class="n">cift</span> <span class="ow">in</span> <span class="n">_____</span><span class="p">(</span><span class="n">_____</span><span class="p">):</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ders No </span><span class="si">{}</span><span class="s1">: Ders: </span><span class="si">{}</span><span class="s1">, Öğretmen: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">____</span><span class="p">,</span> <span class="n">____</span><span class="p">,</span> <span class="n">____</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Döngüleri kullanarak işlem yapmak her zaman en etkin çözüm olmayabilir. Aşağıdaki fonksiyonu listeye for döngüsü kullanmadan uygulamanın yollarını bulun.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    f(x)= 
+\begin{cases}
+    0   &amp; x &lt; \text{ise}\\
+    x   &amp; x \geq \text{ise}
+\end{cases}
+\end{split}\]</div>
+<ol class="arabic simple" start="6">
+<li><p>Haftalık çalışma saati ve saat ücretini alarak haftalık toplam ücreti hesaplayan bir program yazın. Haftalık çalışma süresi 40 saatten fazla ise 40’ın üzerindeki saatler için normal ücretin bir buçuk katı ödensin.</p></li>
+<li><p>Verilen bir metindeki büyük harflerin sayısını veren bir for döngüsü yazın. Daha sonra aynı işi yapan tek satırlık bir for döngüsü yazın.</p></li>
+</ol>
 </section>
 </section>
 
@@ -842,8 +1778,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kosullu-ifadeler">5.1. Koşullu İfadeler</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donguler">5.2. Döngüler</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while-dongusu">5.2.1. While Döngüsü</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-dongusu">5.2.2. For Döngüsü</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#yineleyiciler-iterators">5.3. Yineleyiciler (Iterators)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#liste-donguleri">5.4. Liste Döngüleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sozluk-donguleri">5.5. Sözlük Döngüleri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">5.6. Alıştırmalar</a></li>
 </ul>
   </nav></div>
 
