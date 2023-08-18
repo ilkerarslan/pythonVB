@@ -26,8 +26,8 @@ while True:
 ------------------
 
 
-[1;31m------------------------------------------------------------[0m
-[1;31mStdinNotImplementedError[0m   Traceback (most recent call last)
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mStdinNotImplementedError[0m                  Traceback (most recent call last)
 Cell [1;32mIn[21], line 2[0m
 [0;32m      1[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
 [1;32m----> 2[0m     cevap [38;5;241m=[39m [38;5;28;43minput[39;49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mBir sayı girin (Çıkmak için 0 girin): [39;49m[38;5;124;43m"[39;49m[43m)[49m

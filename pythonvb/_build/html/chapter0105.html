@@ -1,0 +1,1812 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Fonksiyon &#8212; Python ile Veri Bilimi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0105';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Kaynaklar" href="referencelist.html" />
+    <link rel="prev" title="5. Koşullu İfadeler ve Döngüler" href="chapter0104.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Python ile Veri Bilimi</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    PYTHON ile VERİ BİLİMİ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">PROGRAMLAMA</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. Giriş</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0104.html">5. Koşullu İfadeler ve Döngüler</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Fonksiyon</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">7. Kaynaklar</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0105.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter0105.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fonksiyon</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonksiyon-tanimlama">6.1. Fonksiyon Tanımlama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degisken-argumanlar">6.2. Değişken Argümanlar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-fonksiyonlari">6.3. Lambda Fonksiyonları</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonksiyonlarda-kapsama">6.4. Fonksiyonlarda Kapsama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodlar">6.5. Metodlar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uretec-fonksiyonlari">6.6. Üreteç Fonksiyonları</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">6.7. Alıştırmalar</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fonksiyon">
+<h1><span class="section-number">6. </span>Fonksiyon<a class="headerlink" href="#fonksiyon" title="Permalink to this heading">#</a></h1>
+<p>Siz veya bir arkadaşınızın bilgisayarda aynı işi sürekli olarak tekrarladığına birçok kez tanık olmuşsunuzdur. Aslında, bir çoğumuzun işinin önemli bir parçası, rutin işleri tekrarlamaktan ibarettir. Birçok çalışanın örneğin excel programını kullanarak günlük, haftalık, aylık aralıklarda aynı işleri tekrar tekrar aynı şekilde yapması iş hayatında sık görülen bir durumdur. Bu sadece excel için değil programlama dilleri için de geçerli olabilir. Aynı iş için aynı kodları tekrar tekrar yazıyor ya da daha önce yazdığınız kodları kopyala yapıştır yöntemi ile alıp varsa gerekli değişiklikleri yaptıktan sonra kullanıyor olabilirsiniz.</p>
+<p>Bir işlemi aynı şekilde tekrar tekrar yapıyorsanız, en mantıklı olan bu işi otomatikleştirmektir. Örneğin, işinizin bir parçası, txt a da excel gibi farklı formatlarda kaydedilmiş dosyaları açıp buradaki belirli bilgileri kullanarak bir takım hesaplama veya raporlamalar yapmak olabilir. Bunun için her defasında aynı işlemleri tekrarlamak yerine bunları otomatik olarak yapacak bir kod yazmak işinizi çok daha hızlı hale getirecek ve size zaman kazandıracaktır. Aslında, aynı işi ikiden fazla defa tekrarlayacaksanız, en mantıklısı bu işi sizin yerinize yapacak bir kod yazmaktır. Bunun için de fonksiyonlardan faydalanmanız gerekir.</p>
+<p>Fonksiyon farklı şekillerde tanımlanabilir. Programcılıkta kullanılan fonksiyon tanımı matematikteki tanımına benzer. Fonksiyon, bir A kümesinin her elemanını bir B kümesinin bir ve yalnız bir elemanına eşleyen ilişki olarak tanımlanır. Bir diğer deyişle, fonksiyon aldığı her bir girdiden tek bir çıktı üreten ilişkidir.</p>
+<p>Programcılıkta da fonksiyon aynı görevi görür. Bir fonksiyon, kendisine iletilen verileri alır ve bu verileri istenilen işlemlerden geçirdikten sonra ürettiği çıktıyı iletir.</p>
+<p><img alt="fonksiyonlar" src="_images/fonksiyon.png" /></p>
+<p>Çok basit bir örnek düşünelim. Amacımız, bir sayı dizisindeki sayıların ortalamasının bulunması olsun.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 5, 6, 7, 8, 9, 12, 15, 20]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ortalamayı hesaplamanın en basit yöntemi tabii ki sayıları tek tek toplayıp toplamı da sayı adedine bölmektir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">9</span> <span class="o">+</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">15</span> <span class="o">+</span> <span class="mi">20</span><span class="p">)</span> <span class="o">/</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.444444444444445
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ya da sayı dizisinde kaç sayı olduğunu biliyorsak sayıları tek tek yazmak yerine liste indeksini kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="o">/</span> <span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.444444444444445
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bunun için tabii ki Python’a ihtiyacımız yok. Kâğıt kalem ya da hesap makinesi ile de yapabiliriz. Peki ya dokuz tane değil de 200 tane sayı olsaydı ne yapacaktık?</p>
+<p>Python’dan biraz yardım isteyelim. Yukarıda ortalamayı üç adımda bulduk. Önce listedeki sayıları topladık. Daha sonra kaç adet sayı olduğunu bulduk. Bu iki adım farklı sırada veya aynı anda da olabilir. Son olarak bulduğumuz toplamı sayı adedine bölerek ortalama değeri bulduk. Bu işlemleri bizim yerimize yapacak bir program yazalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">adet</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">toplam</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">adet</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">toplam</span> <span class="o">+=</span> <span class="n">i</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">toplam</span><span class="o">/</span><span class="n">adet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.444444444444445
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki program zaten son derece kolay ve anlaşılır. Bu program kullanarak liste ne kadar uzun olursa olsun kolaylıkla ortalama değeri bulabiliriz. Ama hala bir sorunumuz var. Her defasında aynı kodu tekrar yazmak ya da kopyalayıp yapıştırmak gerekiyor. Yukarıdaki örnekte yazığımız kod sadece 6 satır olduğu için çok fazla problem olmayabilir ama aynı işi yapmak için yüzlerce satırlık bir kodu her defasında kopyalayıp yapıştırmak da verimli bir yöntem olmayacaktır.</p>
+<p>Bunun çözümü de yukarıdaki kodu bir fonksiyonun içine almak ve istediğimiz zaman fonksiyonu kullanmaktır. Bu anlamda fonksiyonu belirli bir işlemi gerçekleştiren ve tekrar tekrar kullanılabilen program olarak tanımlayabiliriz. Örneğin yazacağımız bir ortalama fonksiyonunu kullanarak x listesindeki sayıların ortalama değerini bulabilmeliyiz. Örneğin, fonksiyonumuzun adı ortalama() ise yukarıdaki kodu tekrar yazmadan ortalama(x) yazmak bize istediğimiz sonucu vermeli. Yazdığımız bir fonksiyonu farklı programlardan çağırma konusunu izleyen bölümde göreceğiz.</p>
+<p>Aslında şimdiye kadar hazır Python fonksiyonlarından bir kısmını kullandık. Önceki bölümlerde gördüğümüz, help(), print(), str(), bool(), max(), len() komutları birer fonksiyon örneğidir. Python’da bu şekilde çok sayıda yerleşik (built-in) fonksiyon mevcuttur.</p>
+<section id="fonksiyon-tanimlama">
+<h2><span class="section-number">6.1. </span>Fonksiyon Tanımlama<a class="headerlink" href="#fonksiyon-tanimlama" title="Permalink to this heading">#</a></h2>
+<p>Python’da fonksiyonlar def anahtar kelimesi kullanılarak tanımlanır. Satır başına def yazdıktan sonra kullanacağımız fonksiyonun adını ve parantez içinde argümanların yani girdilerin adlarını yazmalıyız. Bir fonksiyon hiç girdi almayabilir, bir adet girdi alabilir ya da birden fazla sayıda girdi alabilir. Satır sonuna, döngülerde olduğu gibi iki nokta <code class="docutils literal notranslate"><span class="pre">(:)</span></code> koyduktan sonra alt satırda aynı şekilde içeriden başlıyoruz.</p>
+<p>Hiç argüman almayan fonksiyon da tanımlayabileceğimizi belirtmiştik. Önce en basit fonksiyon tipi olarak tanımlayabileceğimiz hiç argüman almayan bir fonksiyon yazalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tebrikler</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Tebrikler! İlk Python fonksiyonunuzu yazdınız.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tebrikler</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tebrikler! İlk Python fonksiyonunuzu yazdınız.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonun hiç argümanı olmasa dahi fonksiyon adından sonra mutlaka parantez olması gerektiğine dikkat edin.</p>
+<p>Şimdi de girdi olarak bir sayıyı kabul eden fonksiyon örneği düşünelim. Örneğin, verilen herhangi bir sayıyı 5 ile çarpan bir fonksiyon yazabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bes_kati</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bes_kati</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonda x, argüman ya da girdi olarak isimlendirilir. Parantez içine x yazarak fonksiyonun herhangi bir sayıyı girdi olarak kabul edebileceğini belirtmiş oluyoruz. Bu fonksiyon, verilen bir sayının beş katını hesaplayıp yazdırıyor. Ama herhangi bir sonuç üretmiyor. Çoğu zaman bir fonksiyonun bulduğu sonucu saklayıp tekrar kullanmak isteyebilirim. Örneğin, yukarıdaki örnekte fonksiyon verilen sayının beş katını hesapladıktan sonra bulunan sonucu program içinde tekrar kullanmak isteyebilirim. Bir fonksiyonun ürettiği sonucun saklanabilir olması için return anahtar kelimesini kullanmalıyım. Böylece fonksiyonun hesapladığı sonucu başka bir değişkene atayarak saklayabilir ve daha sonra kullanabilirim. Bulunan sonucu daha sonra tekrar kullanmanın yolu ise onu bir değişkene atamaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bes_kati</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="n">bes_kati</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir fonksiyonun argümanı sayısal ya da metin tipinde tek bir veri olabileceği gibi liste veya sözlük gibi bir veri yapısı da olabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ortalama</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+    <span class="n">adet</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">toplam</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">:</span>
+            <span class="n">adet</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">toplam</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="n">orta</span> <span class="o">=</span> <span class="n">toplam</span> <span class="o">/</span> <span class="n">adet</span>
+    <span class="k">return</span> <span class="n">orta</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonu kullanmak içinse fonksiyon adı ve parantez içinde kullanmak istediğimiz argümanı yazmamız gerekiyor. Buradaki örnekte x listesinde yer alan sayıların ortalamasını alacağımız için parantez argüman olarak x yazmalıyız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ortalama</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.444444444444445
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">ortalama</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.444444444444445
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda da belirttiğimiz gibi bir fonksiyonun sonucunu değişkene atamak mümkündür. Örneğin, bir program içinde bir listedeki en büyük değeri bulan bir fonksiyonu kullanarak bulunan sonucu başka bir değişkene atayarak kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="degisken-argumanlar">
+<h2><span class="section-number">6.2. </span>Değişken Argümanlar<a class="headerlink" href="#degisken-argumanlar" title="Permalink to this heading">#</a></h2>
+<p>Şimdiye kadar tanımladığımız fonksiyonlar sadece bir argüman alıyordu. Aşağıda önce sadece bir argüman alan fonksiyonla başlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kare_al</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">kare_al</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>144
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonu bu şekilde tanımlarsak verilen bir sayının sadece karesini alabiliriz. Sayının, üçüncü, dördüncü ve başka sayılarla üssünü hesaplamak için ayrı ayrı fonksiyonlar mı tanımlamak gerekiyor? Tabii ki hayır. Öyle bir fonksiyon yazalım ki verilen bir sayının, istenen herhangi bir sayıya göre üssünü hesaplasın. Bunun için fonksiyona iki argüman tanımlamak gerekiyor. Üssünü almak istediğimiz sayı ve üs derecesi. Neyse ki Python bir fonksiyonun istediğimiz kadar argüman almasına izin veriyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonu kullanırken parantez içinde değişkenlere atanacak argümanları <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">4</span></code> ve <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">3</span></code> olarak belirttik. Ancak burada mutlaka <code class="docutils literal notranslate"><span class="pre">x</span></code> ve <code class="docutils literal notranslate"><span class="pre">y</span></code> yazmak zorunda değiliz. Bunun yerine <code class="docutils literal notranslate"><span class="pre">us_alma(4,</span> <span class="pre">3)</span></code> şeklinde de yazabilirdik. Fonksiyonu tanımlarken değişkenlerin sırasını <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> olarak yazmıştık. Bu nedenle, fonksiyonu çağırdığımızda yazdığımız argüman değerleri de bu sırada alınır ve ilk sıradaki argüman x, ikinci sıradaki argüman da y olarak kabul edilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us_alma</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Böylece, bir sayının sadece ikinci dereceden değil istediğimiz herhangi bir dereceden üssünü almak mümkün olabilir. Ama diyelim ki bu fonksiyonu çok fazla kullanıyorum ve çoğu zaman da ikinci dereceden üs alıyorum. Diğer dereceleri nadiren kullanıyorum. Öyle bir fonksiyon olsun ki y için herhangi bir değer girmezsem sayının karesini alsın. Ancak başka bir derece kullanmak istersem y yerine bir sayı gireyim.</p>
+<p>Python, argümanlar için varsayılan değer belirlenmesine de izin vermektedir. Yukarıdaki fonksiyonu aşağıdaki şekilde tanımlarsam fonksiyonu her kullandığımda y yerine bir değer girmek zorunda kalmam. Bu durumda Python, y argümanının için varsayılan değer yani ikiye eşit olduğunu kabul eder. Ancak y için bir değer girersem bu değeri esas alır. Argümanlar için varsayılan değer atamanın faydası özellikle çok sayıda argüman alan fonksiyonlarda ortaya çıkmaktadır. Kimi zaman çok sayıda argümanı olan fonksiyonlar kullanmak zorunda kalabiliriz. Bu fonksiyonlarda her defasında her argüman için bir değer yazmak zorunda kalmamak için mümkün olan argümanlara varsayılan değer atamak sonraki kullanımlarda zaman kazandıracaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>169
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
+</pre></div>
+</div>
+</div>
+</div>
+<p>Varsayılan argümanların yanı sıra Python’un bir başka özelliği de esnek argümanlara izin vermesidir. Diyelim ki bir fonksiyon yazacağız ama fonksiyon farklı sayıda ya da türde argümanı kabul edebilsin istiyoruz. Python buna izin vermektedir. Bir fonksiyonda esnek argümanlar kullanabilmek için fonksiyonu tanımlarken argüman olarak <code class="docutils literal notranslate"><span class="pre">*args</span></code> yazmamız gerekiyor. Örnek olarak verilen tüm sayıları çarpan bir fonksiyon yazmak isteyelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">carpim</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">sayi</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">sonuc</span> <span class="o">=</span> <span class="n">sonuc</span> <span class="o">*</span> <span class="n">sayi</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">carpim</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">carpim</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>720
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki örnekte de görüldüğü gibi esnek sayıda argüman tanımlamak istiyorsak fonksiyon tanımında argüman olarak <code class="docutils literal notranslate"><span class="pre">*args</span></code> yazmamız gerekiyor. Ancak fonksiyon gövdesinde argümanı kullanırken sadece args yazmamız gerekiyor.</p>
+<p>Şimdi de yazdığımız kelimeleri birleştirecek bir fonksiyon yazalım. Ancak ilerde fonksiyonu kullanırken her defasında farklı sayıda kelime kullanacağımız için istediğimiz kadar kelime yazabilelim istiyoruz. Bunun için de yine <code class="docutils literal notranslate"><span class="pre">*args</span></code> argümanını kullanmamız gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">birlestir</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">kelime</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">sonuc</span> <span class="o">=</span> <span class="n">sonuc</span> <span class="o">+</span> <span class="n">kelime</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">birlestir</span><span class="p">(</span><span class="s2">&quot;Millet &quot;</span><span class="p">,</span> <span class="s2">&quot;Meclisi&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Millet Meclisi
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">birlestir</span><span class="p">(</span><span class="s2">&quot;Büyük &quot;</span><span class="p">,</span> <span class="s2">&quot;Millet &quot;</span><span class="p">,</span> <span class="s2">&quot;Meclisi&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Büyük Millet Meclisi
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">birlestir</span><span class="p">(</span><span class="s2">&quot;Türkiye &quot;</span><span class="p">,</span> <span class="s2">&quot;Büyük &quot;</span><span class="p">,</span> <span class="s2">&quot;Millet &quot;</span><span class="p">,</span> <span class="s2">&quot;Meclisi&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Türkiye Büyük Millet Meclisi
+</pre></div>
+</div>
+</div>
+</div>
+<p>Normal argüman ile esnek argüman arasındaki farkı bir başka örnekle görmeye çalışalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">yaz</span><span class="p">(</span><span class="n">ilk</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;İlk argüman: &quot;</span> <span class="o">+</span> <span class="n">ilk</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">kelime</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Esnek argüman: &quot;</span> <span class="o">+</span> <span class="n">kelime</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yaz</span><span class="p">(</span><span class="s2">&quot;İlker&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İlk argüman: İlker
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yaz</span><span class="p">(</span><span class="s2">&quot;İlker&quot;</span><span class="p">,</span> <span class="s2">&quot;Eren&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İlk argüman: İlker
+Esnek argüman: Eren
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yaz</span><span class="p">(</span><span class="s2">&quot;İlker&quot;</span><span class="p">,</span> <span class="s2">&quot;Hüseyin&quot;</span><span class="p">,</span> <span class="s2">&quot;Eren&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>İlk argüman: İlker
+Esnek argüman: Hüseyin
+Esnek argüman: Eren
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki programla ilgili olarak bir konuya dikkat çekmek istiyorum. Argüman sayısındaki esnekliği sağlayan args kelimesi değil önüne getirilen <code class="docutils literal notranslate"><span class="pre">*</span></code> işaretidir. Biz de programımızda hem genel kullanıma uyumlu olması hem de akılda kalıcı olması nedeniyle <code class="docutils literal notranslate"><span class="pre">*args</span></code> şeklinde kullandık. Ancak programı <code class="docutils literal notranslate"><span class="pre">*args</span></code> yerine <code class="docutils literal notranslate"><span class="pre">*abcd</span></code> yazsanız da aynı sonucu alırsınız.</p>
+<p>Python’da kullanılan bir diğer esnek argüman yapısı da değişken eleman sayısına sahip sözlük veri yapılarını işleyebilmek için kullanılan <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> argümanıdır. Anlaşılacağı üzere <code class="docutils literal notranslate"><span class="pre">*args</span></code> değişken argüman sayısı için kullanılırken <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>, değişken sayıda elemanı olan sözlük yapısındaki argümanları temsil eder. Bir başka deyişle anahtar kelimeleri olan argümanlar olarak da düşünebilirsiniz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">not_yazdir</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; : &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">not_yazdir</span><span class="p">(</span><span class="n">Ad</span><span class="o">=</span><span class="s2">&quot;Eren&quot;</span><span class="p">,</span> <span class="n">Soyad</span><span class="o">=</span><span class="s2">&quot;Arslan&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ad : Eren
+Soyad : Arslan
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">not_yazdir</span><span class="p">(</span><span class="n">Ad</span><span class="o">=</span><span class="s2">&quot;Eren&quot;</span><span class="p">,</span> <span class="n">Soyad</span><span class="o">=</span><span class="s2">&quot;Arslan&quot;</span><span class="p">,</span> <span class="n">Meslek</span><span class="o">=</span><span class="s2">&quot;Öğrenci&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ad : Eren
+Soyad : Arslan
+Meslek : Öğrenci
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> yapısı ile sözlük veri yapıları üzerinde eleman sayısını bilmesek dahil fonksiyon tanımlayabiliyoruz.</p>
+<p>Python’un sunduğu kolaylıklardan birisi de birden fazla değer döndürebilen fonksiyonlar yazmaya izin vermesidir. Yani, Python’da yazdığımız bir fonksiyon iki veya daha fazla sonuç üretebilir. Bunun için daha önce gördüğümüz tuple veri yapısını kullanacağız.</p>
+<p>Şimdi yukarıda tanımladığımız us_alma fonksiyonunu tekrar düşünelim. Fonksiyonda küçük bir değişiklik yapalım ve istenen sayının farklı iki sayıya göre üssünün ayrı ayrı üretilmesini sağlayalım. Yani öyle bir fonksiyon yazalım ki herhangi bir sayının örneğin hem karesini hem de küpünü hesaplasın ve döndürsün. Bu fonksiyon girdi olarak üç değişken kabul etmeli: taban, birinci üs ve ikinci üs. Fonksiyon gövdesinde de iki farklı hesaplama yapmalıyız: tabanın birinci değere göre üssü ve tabanın ikinci değere göre üssü. Nihayet, fonksiyon hesapladığı iki sonucu bir tuple veri nesnesi olarak iletmeli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">us1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">a</span>
+    <span class="n">us2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">b</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="p">(</span><span class="n">us1</span><span class="p">,</span> <span class="n">us2</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9, 81)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">us_alma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9 81
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyonun çıktısı olan tuple veri yapısını da bir başka değişkene atamak mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sonuc</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">us_alma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">sonuc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9, 81)
+</pre></div>
+</div>
+</div>
+</div>
+<p>İç içe fonksiyonlar tanımlamak da mümkündür. İç içe geçmiş fonksiyonlara basit bir örnek vermek için sıcaklık dereceleri arasındaki dönüşümü örnek olarak alalım. Hepimiz ilkokulda Kelvin, Celsius ve Fahrenheit sıcaklık dereceleri arasındaki dönüşüm formüllerini görmüşüzdür. Bu sıcaklık dereceleri birbirlerine aşağıdaki formüllere göre dönüşürler.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">celsius</span> <span class="o">=</span> <span class="n">kelvin</span> <span class="o">+</span> <span class="mf">273.15</span>
+<span class="n">fahrenheit</span> <span class="o">=</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">celsius</span> <span class="o">+</span> <span class="mi">32</span>
+</pre></div>
+</div>
+<p>Şimdi Kelvin cinsinden verilen bir sıcaklığı Fahrenheit’e çevirecek bir program yazalım. Örneğimizi verebilmek için Kelvin’den doğrudan doğruya Fahrenheit’e çevirmeyi bilmediğimizi düşünmemiz gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kelvin_fahrenheit</span><span class="p">(</span><span class="n">derece</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">kelvin_celsius</span><span class="p">(</span><span class="n">kelvin_derece</span><span class="p">):</span>
+        <span class="n">celsius_derece</span> <span class="o">=</span> <span class="n">kelvin_derece</span> <span class="o">-</span> <span class="mf">273.15</span>
+        <span class="k">return</span> <span class="n">celsius_derece</span>
+
+    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">kelvin_celsius</span><span class="p">(</span><span class="n">derece</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="n">fahrenheit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sadece elimizdeki iki formülü kullanarak Kelvin’den Fahrenheit’e dönüştürmek için önce Kelvin’den Celsius’a, sonra da Celsius’tan Fahrenheit’e dönüşüm işlemini gerçekleştirmemiz gerekiyor. Bu nedenle ana fonksiyonun içinde önce Kelvin’den Fahrenheit’e dönüşümü yapacak bir fonksiyon yazdık (satır 3). Sonra da ana fonksiyon içinde Celsius’tan Fahrenheit’e dönüşüm formülünü yazıyoruz. Satır 7’de belirtilen kelvin_celsius(derece) ifadesi Kelvin cinsinden derecenin Celsius karşılığını veriyor. Bunun için de ana fonksiyonun içindeki diğer fonksiyonu kullanıyor.</p>
+<p>İç içe fonksiyonlara bir başka örnek verelim. Daha önce üs alma ile ilgili fonksiyon yazmıştık. Aşağıda daha farklı bir üs alma fonksiyonu yer alıyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">us_al</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">ussu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">sonuc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">n</span>
+        <span class="k">return</span> <span class="n">sonuc</span>
+    
+    <span class="k">return</span> <span class="n">ussu</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Örnekte, ana fonksiyona argüman olarak üs olacak sayıyı veriyoruz. Ancak tabanı alt fonksiyonda belirtiyoruz. Ana fonksiyon ise alt fonksiyonu döndürüyor. Bu fonksiyondan, istediğimiz kuvvette üsler alacak fonksiyonlar üretebiliriz. Aşağıda görüldüğü gibi kare ve kup değişkenlerini tanımlayarak aslında iki yeni fonksiyon üretiyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kare</span> <span class="o">=</span> <span class="n">us_al</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">kup</span> <span class="o">=</span> <span class="n">us_al</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kare</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kup</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+125
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lambda-fonksiyonlari">
+<h2><span class="section-number">6.3. </span>Lambda Fonksiyonları<a class="headerlink" href="#lambda-fonksiyonlari" title="Permalink to this heading">#</a></h2>
+<p>Konu hakkında daha önce bilgi sahibi değilseniz muhtemelen okuduğunuz başlık size hiçbir şey çağrıştırmamıştır. Python’da anlık fonksiyonlar tanımlayıp kullanmak mümkündür. Bir başka deyişle bunlara satır içi fonksiyonlar da diyebiliriz. Program içinde hızlıca kısa bir fonksiyon tanımlamamız gerekirse bu yönteme başvurabiliriz. Hatta lambda fonksiyonlarına isim vermemiz bile gerekmez. Ancak, lambda fonksiyonların kullanımı her zaman önerilmez. Örneğin karmaşık bir fonksiyon kullanacaksanız, fonksiyonda koşul ifadeleri ya da döngüler kullanacaksanız muhtemelen lambda fonksiyonu çok kullanışlı olmayacaktır. Lambda fonksiyonu genel olarak aşağıdaki şekilde yazılır.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">argümanlar	:</span>&#160;&#160;&#160; <span class="pre">fonksiyon</span> <span class="pre">ifadesi</span></code></p>
+<p>Argümanlar birden fazla ise aralarına virgül konulur. Aşağıda bazı lambda fonksiyonu örnekleri verilmiştir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kare</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">kare</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="n">y</span>
+<span class="n">us</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fahrenheit_cevir</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">C</span> <span class="p">:</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">32</span>
+<span class="n">fahrenheit_cevir</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tekrarla</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">kelime</span><span class="p">,</span> <span class="n">adet</span> <span class="p">:</span> <span class="n">kelime</span> <span class="o">*</span> <span class="n">adet</span>
+<span class="n">tekrarla</span><span class="p">(</span><span class="s2">&quot;Python &quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Python Python Python &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lambda fonksiyonlarının en çok kullanışlı olduğu kullanım alanı, bunları <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> ve <code class="docutils literal notranslate"><span class="pre">filter()</span></code> fonksiyonları ile birlikte kullanmaktır. Lambda fonksiyonlarının bu fonksiyonlarla birlikte kullanımına geçmeden önce bunların kullanımını görelim.</p>
+<p><code class="docutils literal notranslate"><span class="pre">map()</span></code> fonksiyonu, verilen bir listedeki bütün elemanlara aynı fonksiyonu uygulamak için kullanılır. Bu fonksiyon iki argüman alır: bir fonksiyon ve bu fonksiyonun uygulanacağı bir dizi. Map, dizideki her elemanı alır ve bu elemanı verilen fonksiyondan geçirir.</p>
+<p><code class="docutils literal notranslate"><span class="pre">map(fonksiyon,girdi)</span></code></p>
+<p><img alt="map fonksiyonu" src="_images/map.png" /></p>
+<p>Örneğin bir listedeki bütün elemanların karesini almamız gerekiyorsa, bunun için for ya da while döngüsü uygulamak yerine hızlıca map fonksiyonu uygulayabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kare</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">sonuc</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">kare</span><span class="p">,</span> <span class="n">sayilar</span><span class="p">)</span>
+<span class="n">sonuc_listesi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sonuc_listesi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 9, 16, 25]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki örnekte birinci ve ikinci satırlarda <code class="docutils literal notranslate"><span class="pre">kare()</span></code> adında basit bir fonksiyon tanımladık. Dördüncü satırda ise fonksiyonu kullanmak istediğimiz diziyi tanımladık. Bu bir liste olabileceği gibi bir tuple ya da başka bir dizi de olabilir. Altınca satırda kullandığımız <code class="docutils literal notranslate"><span class="pre">map()</span></code> fonksiyonunun sonucunu bir değişkene atıyoruz. Map fonksiyonu bir map nesnesi üretir. Ne yazık ki map nesnesi doğrudan yazdırılabilir ya da erişilebilir bir nesne değildir. Üretilen sonucu kullanabilmek için bunu bir küme veya listeye çevirmek gerekir. Bunu da <code class="docutils literal notranslate"><span class="pre">set()</span></code> ya da <code class="docutils literal notranslate"><span class="pre">list()</span></code> fonksiyonları ile gerçekleştirebiliriz (7. Satır). Satır 6 ve 7’yi aşağıdaki şekilde de birleştirebilirdik.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sonuc</span> <span class="pre">=</span> <span class="pre">list(map(kare,</span> <span class="pre">sayilar))</span></code></p>
+<p>Şimdi de map fonksiyonu içinde lambda fonksiyonunu nasıl kullanabileceğimizi görelim. Yine yukarıdaki örnekte görüldüğü gibi kullandığımız kare fonksiyonu aslında çok basit bir fonksiyon. Bunun için def anahtar kelimesini kullanarak ayrı bir fonksiyon tanımlamak yerine map() fonksiyonu içinde satır arasında hızlıca bir lambda fonksiyonu tanımlayabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">sonuc</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">sayilar</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 9, 16, 25]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir diğer kullanışlı fonksiyon olan <code class="docutils literal notranslate"><span class="pre">filter()</span></code> fonksiyonu, adından da anlaşılacağı üzere veriler arasında filtreleme yapmak yani belirli bir şartı sağlayan verileri bulmak için kullanılır. Filter fonksiyonu da map fonksiyonu gibi iki argüman alır: doğru ya da yanlış (True, False) değerler üreten bir fonksiyon ve bu fonksiyonun uygulanacağı bir dizi.</p>
+<p><code class="docutils literal notranslate"><span class="pre">filter(fonksiyon,</span> <span class="pre">dizi)</span></code></p>
+<p><img alt="filter fonksiyonu" src="_images/filter.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">teksayi</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
+<span class="n">tekler</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">teksayi</span><span class="p">,</span><span class="n">sayilar</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tekler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 17, 43, 29, 81]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aynı kodu bu defa lambda fonksiyonu kullanarak yazmaya çalışalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
+<span class="n">tekler</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sayilar</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tekler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 17, 43, 29, 81]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aşağıdaki örnekte de verilen kelimeler arasında belirli bir uzunluktan fazla olanları buluyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Adıyaman&#39;</span><span class="p">,</span> <span class="s1">&#39;Ankara&#39;</span><span class="p">,</span> <span class="s1">&#39;Balıkesir&#39;</span><span class="p">,</span> <span class="s1">&#39;Kahramanmaraş&#39;</span><span class="p">,</span> <span class="s1">&#39;Iğdır&#39;</span><span class="p">]</span>
+<span class="n">iller</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">,</span> <span class="n">liste</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iller</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Adıyaman&#39;, &#39;Balıkesir&#39;, &#39;Kahramanmaraş&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Son olarak da <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> fonksiyonunu görelim. Reduce fonksiyonu da <code class="docutils literal notranslate"><span class="pre">map()</span></code> gibi verilen bir üzerinde bir fonksiyon uygular. Ancak, map fonksiyonundan farklı olarak reduce fonksiyonu verilen liste üzerinde bir işlem uyguladıktan sonra tek bir sonuç iletir. Yalnız, diğer iki fonksiyondan farklı olarak reduce fonksiyonunu functools paketinden aktarmak gerekmektedir. Ayrıca, bu fonksiyonun ürettiği nesneyi doğrudan yazdırabiliyoruz. Diğerlerinde olduğu gibi önce <code class="docutils literal notranslate"><span class="pre">list()</span></code> veya <code class="docutils literal notranslate"><span class="pre">set()</span></code> ile yazdırılabilir bir nesneye çevirmemize gerek yok.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="n">reduce</span><span class="p">(</span><span class="n">fonksiyon</span><span class="p">,</span> <span class="n">dizi</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="reduce fonksiyonu" src="_images/reduce.png" /></p>
+<p>Artık <code class="docutils literal notranslate"><span class="pre">map()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code> ve <code class="docutils literal notranslate"><span class="pre">reduce()</span></code> fonksiyonlarının nasıl çalıştığını gördüğümüze göre reduce fonksiyonunun kullanımına bir örnek verebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+
+<span class="n">ekip</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ayten&#39;</span><span class="p">,</span> <span class="s1">&#39;Ali&#39;</span><span class="p">,</span> <span class="s1">&#39;Mehmet&#39;</span><span class="p">,</span> <span class="s1">&#39;Yağız&#39;</span><span class="p">,</span> <span class="s1">&#39;Baran&#39;</span><span class="p">,</span> <span class="s1">&#39;Özlem&#39;</span><span class="p">]</span>
+<span class="n">butun_ekip</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ekip1</span><span class="p">,</span> <span class="n">ekip2</span><span class="p">:</span> <span class="n">ekip1</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">ekip2</span><span class="p">,</span> <span class="n">ekip</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">butun_ekip</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ayten, Ali, Mehmet, Yağız, Baran, Özlem
+</pre></div>
+</div>
+</div>
+</div>
+<p>Benzer şekilde bir dizideki elemanların toplamını ya da çarpımını bulmak için de reduce ve lambda fonksiyonlarını kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+
+<span class="n">sayilar</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="n">carpim</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">x1</span><span class="o">*</span><span class="n">x2</span><span class="p">,</span> <span class="n">sayilar</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">carpim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4200
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gördüğünüz gibi doğru kullanıldığında lambda fonksiyonları, map, filter ve reduce fonksiyonları ile birlikte bizi for ve while döngüleri kullanmadan birçok işi çok daha hızlı bir şekilde yapmamızı sağlayabilir.</p>
+</section>
+<section id="fonksiyonlarda-kapsama">
+<h2><span class="section-number">6.4. </span>Fonksiyonlarda Kapsama<a class="headerlink" href="#fonksiyonlarda-kapsama" title="Permalink to this heading">#</a></h2>
+<p>Fonksiyonları anlatırken değinmeden geçmememiz gereken önemli bir konu da fonksiyonlarda kapsam konusudur. Kapsamdan kastımız, bir Python programında tanımlanan ya da kullanılan nesnelerin programın hangi bölümlerinden erişilebilir olduğudur. Programda kullanılan tüm nesnelere programın her yerinden erişilemez.</p>
+<p>Bir Python programında üç tür kapsamadan söz edebiliriz.</p>
+<ul class="simple">
+<li><p>Genel Kapsam (Global Scope): Nesnelerden bir kısmı yazdığımız programın ana gövdesinden erişilebilir nesnelerdir. Bu nesneler genel gövdede tanımlanmıştır.</p></li>
+<li><p>Yerel Kapsam (Local Scope): Bir fonksiyonun içinde tanımlanan ve yine fonksiyon içinden erişilebilen nesneler yerel kapsamdaki nesnelerdir. Bir fonksiyonun içinde tanımlanan değişkenler sadece fonksiyon içinde kullanılır ve fonksiyonun kullanılması bittiğinde de ortadan kalkar.</p></li>
+<li><p>Gömülü Kapsam (Built-in Scope): Python standart kütüphanesinde yer alan builtins modülünde yer alan nesnelerdir. Python’da tanımlanmış olan tüm fonksiyonlar, örneğin, help(), max(), min() gibi fonksiyonlar gömülü (built-in) kapsamdaki nesnelerdir.</p></li>
+</ul>
+<p>Şimdi önceki bölümde de kullandığımız aşağıdaki fonksiyona bakalım.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;sonuc&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+<p>Görüldüğü gibi fonksiyon içinde tanımladığımız sonuc değişkenine fonksiyon dışından erişmeye çalıştığımızda hata mesajı ile karşılaşıyoruz. Bu değişkene sadece yerel kapsama alanından ulaşabiliyoruz.</p>
+<p>Bu duruma bir başka örnek verelim. Fonksiyonu çağırmadan önce bir sonuc değişkeni tanımlayım değişkene bir değer atayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sonuc</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>125
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi <code class="docutils literal notranslate"><span class="pre">print(sonuc)</span></code> komutunu verdiğimizde fonksiyon içinde hesaplanan sonuc değeri değil, fonksiyon dışında tanımladığımız sonuc değeri yazdırılıyor. Yerel kapsamda tanımlanan bir nesneye genel kapsamdan ulaşılamadığını görmüş olduk. Ancak bunun tersi doğru değildir. Genel kapsamda tanımlanan bir nesneye yerel kapsamdan yani bir fonksiyon ya da modülün içinden ulaşılabilir. Bir fonksiyonun içinde kullandığımız bir nesne önce fonksiyon içinde aranır. Burada bulunamaz ise genel kapsama bakılır. Genel kapsamda da bulunamaz ise gömülü kapsama bakılır. Şimdi yukarıdaki fonksiyonu biraz değiştirerek aşağıdaki gibi yazalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">us</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>125
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fonksiyon içinde us değişkeni kullanılıyor. Ancak fonksiyonun ne tanımında ne de gövdesinde us değişkeni tanımlanmış değil. Bu nedenle, genel kapsama bakılıyor. Genel kapsamda tanımlanmış bir us değişkeni bulunuyor ve hesaplamada bu değişken kullanılıyor.</p>
+<p>Fonksiyon metni içinde genel kapsamdaki bir nesneyi değiştirmek istersek global anahtar kelimesini kullanmamız gerekiyor.  Bu durumda fonksiyon içinden yapılan değişiklik genel kapsamda de geçerli olur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">us</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">us_alma</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">us</span>
+    <span class="n">us</span> <span class="o">=</span> <span class="n">us</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">sonuc</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="n">us</span>
+    <span class="k">return</span> <span class="n">sonuc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us_alma</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>625
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">us</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gömülü kapsamdaki nesneleri görmek için builtins modülünü içeri aktarmamız gerekir. Aşağıda bu nesnelerin bir kısmı gösterilmiştir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">builtins</span>
+<span class="nb">dir</span><span class="p">(</span><span class="n">builtins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ArithmeticError&#39;,
+ &#39;AssertionError&#39;,
+ &#39;AttributeError&#39;,
+ &#39;BaseException&#39;,
+ &#39;BaseExceptionGroup&#39;,
+ &#39;BlockingIOError&#39;,
+ &#39;BrokenPipeError&#39;,
+ &#39;BufferError&#39;,
+ &#39;BytesWarning&#39;,
+ &#39;ChildProcessError&#39;,
+ &#39;ConnectionAbortedError&#39;,
+ &#39;ConnectionError&#39;,
+ &#39;ConnectionRefusedError&#39;,
+ &#39;ConnectionResetError&#39;,
+ &#39;DeprecationWarning&#39;,
+ &#39;EOFError&#39;,
+ &#39;Ellipsis&#39;,
+ &#39;EncodingWarning&#39;,
+ &#39;EnvironmentError&#39;,
+ &#39;Exception&#39;,
+ &#39;ExceptionGroup&#39;,
+ &#39;False&#39;,
+ &#39;FileExistsError&#39;,
+ &#39;FileNotFoundError&#39;,
+ &#39;FloatingPointError&#39;,
+ &#39;FutureWarning&#39;,
+ &#39;GeneratorExit&#39;,
+ &#39;IOError&#39;,
+ &#39;ImportError&#39;,
+ &#39;ImportWarning&#39;,
+ &#39;IndentationError&#39;,
+ &#39;IndexError&#39;,
+ &#39;InterruptedError&#39;,
+ &#39;IsADirectoryError&#39;,
+ &#39;KeyError&#39;,
+ &#39;KeyboardInterrupt&#39;,
+ &#39;LookupError&#39;,
+ &#39;MemoryError&#39;,
+ &#39;ModuleNotFoundError&#39;,
+ &#39;NameError&#39;,
+ &#39;None&#39;,
+ &#39;NotADirectoryError&#39;,
+ &#39;NotImplemented&#39;,
+ &#39;NotImplementedError&#39;,
+ &#39;OSError&#39;,
+ &#39;OverflowError&#39;,
+ &#39;PendingDeprecationWarning&#39;,
+ &#39;PermissionError&#39;,
+ &#39;ProcessLookupError&#39;,
+ &#39;RecursionError&#39;,
+ &#39;ReferenceError&#39;,
+ &#39;ResourceWarning&#39;,
+ &#39;RuntimeError&#39;,
+ &#39;RuntimeWarning&#39;,
+ &#39;StopAsyncIteration&#39;,
+ &#39;StopIteration&#39;,
+ &#39;SyntaxError&#39;,
+ &#39;SyntaxWarning&#39;,
+ &#39;SystemError&#39;,
+ &#39;SystemExit&#39;,
+ &#39;TabError&#39;,
+ &#39;TimeoutError&#39;,
+ &#39;True&#39;,
+ &#39;TypeError&#39;,
+ &#39;UnboundLocalError&#39;,
+ &#39;UnicodeDecodeError&#39;,
+ &#39;UnicodeEncodeError&#39;,
+ &#39;UnicodeError&#39;,
+ &#39;UnicodeTranslateError&#39;,
+ &#39;UnicodeWarning&#39;,
+ &#39;UserWarning&#39;,
+ &#39;ValueError&#39;,
+ &#39;Warning&#39;,
+ &#39;WindowsError&#39;,
+ &#39;ZeroDivisionError&#39;,
+ &#39;__IPYTHON__&#39;,
+ &#39;__build_class__&#39;,
+ &#39;__debug__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__import__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;abs&#39;,
+ &#39;aiter&#39;,
+ &#39;all&#39;,
+ &#39;anext&#39;,
+ &#39;any&#39;,
+ &#39;ascii&#39;,
+ &#39;bin&#39;,
+ &#39;bool&#39;,
+ &#39;breakpoint&#39;,
+ &#39;bytearray&#39;,
+ &#39;bytes&#39;,
+ &#39;callable&#39;,
+ &#39;chr&#39;,
+ &#39;classmethod&#39;,
+ &#39;compile&#39;,
+ &#39;complex&#39;,
+ &#39;copyright&#39;,
+ &#39;credits&#39;,
+ &#39;delattr&#39;,
+ &#39;dict&#39;,
+ &#39;dir&#39;,
+ &#39;display&#39;,
+ &#39;divmod&#39;,
+ &#39;enumerate&#39;,
+ &#39;eval&#39;,
+ &#39;exec&#39;,
+ &#39;execfile&#39;,
+ &#39;filter&#39;,
+ &#39;float&#39;,
+ &#39;format&#39;,
+ &#39;frozenset&#39;,
+ &#39;get_ipython&#39;,
+ &#39;getattr&#39;,
+ &#39;globals&#39;,
+ &#39;hasattr&#39;,
+ &#39;hash&#39;,
+ &#39;help&#39;,
+ &#39;hex&#39;,
+ &#39;id&#39;,
+ &#39;input&#39;,
+ &#39;int&#39;,
+ &#39;isinstance&#39;,
+ &#39;issubclass&#39;,
+ &#39;iter&#39;,
+ &#39;len&#39;,
+ &#39;license&#39;,
+ &#39;list&#39;,
+ &#39;locals&#39;,
+ &#39;map&#39;,
+ &#39;max&#39;,
+ &#39;memoryview&#39;,
+ &#39;min&#39;,
+ &#39;next&#39;,
+ &#39;object&#39;,
+ &#39;oct&#39;,
+ &#39;open&#39;,
+ &#39;ord&#39;,
+ &#39;pow&#39;,
+ &#39;print&#39;,
+ &#39;property&#39;,
+ &#39;range&#39;,
+ &#39;repr&#39;,
+ &#39;reversed&#39;,
+ &#39;round&#39;,
+ &#39;runfile&#39;,
+ &#39;set&#39;,
+ &#39;setattr&#39;,
+ &#39;slice&#39;,
+ &#39;sorted&#39;,
+ &#39;staticmethod&#39;,
+ &#39;str&#39;,
+ &#39;sum&#39;,
+ &#39;super&#39;,
+ &#39;tuple&#39;,
+ &#39;type&#39;,
+ &#39;vars&#39;,
+ &#39;zip&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Önceki bölümde iç içe fonksiyonlarda bahsetmiştik. İç içe fonksiyonlarda da kapsama mantığı aynıdır. Örneğin önceki bölümde kullandığımız Kelvin’den Fahrenheit sıcaklık derecesine dönüşüm programını dikkate alalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kelvin_fahrenheit</span><span class="p">(</span><span class="n">derece</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">kelvin_celsius</span><span class="p">(</span><span class="n">kelvin_derece</span><span class="p">):</span>
+        <span class="n">celsius_derece</span> <span class="o">=</span> <span class="n">kelvin_derece</span> <span class="o">-</span> <span class="mf">273.15</span>
+        <span class="k">return</span> <span class="n">celsius_derece</span>
+
+    <span class="n">fahrenheit</span> <span class="o">=</span> <span class="mf">1.8</span> <span class="o">*</span> <span class="n">kelvin_celsius</span><span class="p">(</span><span class="n">derece</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">celsius_derece</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fahrenheit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki fonksiyonda celsius_derece değişkeni alt fonksiyon içinde tanımlanmıştır. Bu fonksiyona ana fonksiyon içinden erişmeye çalışırsak (satır 8) aşağıdaki hata mesajı ile karşılaşırız. Görüldüğü gibi program alt fonksiyonda tnaımlanmış bir değişkene ana fonksiyon içinden erişemiyor.</p>
+<p><code class="docutils literal notranslate"><span class="pre">NameError:</span> <span class="pre">name</span> <span class="pre">'celsius_derece'</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></code></p>
+<p>Diğer yandan, alt fonksiyon içinden bir değişken çağrıldığında, program bu değişkeni önce alt fonksiyon gövdesinde arar. Burada bulamazsa sırayla ana fonksiyona, varsa onun ana fonksiyonlarına ve Global Kapsama alanına bakar.</p>
+</section>
+<section id="metodlar">
+<h2><span class="section-number">6.5. </span>Metodlar<a class="headerlink" href="#metodlar" title="Permalink to this heading">#</a></h2>
+<p>Python’da metod (method) adı verilen özel bir tip fonksiyon da söz konusudur. Metodlar, belirli bir sınıfa dahil fonksiyonlardır. Metodlar sadece belirli bir sınıf için geçerli olup bu sınıfa dahil nesnelerle kullanılabilir. Bu bağlamda, her metod bir fonksiyondur ancak her fonksiyon bir metod değildir. Aslında önceki bölümlerde metod örneklerine rastlamıştık.</p>
+<p>Python’un nesne yönelimli bir programlama dili olduğunu daha önce duymuş olabilirsiniz. Nesne yönelimli programlama, ileride daha ayrıntılı olarak aktarılacaktır. Ancak şimdilik basitçe her verinin ya da veri yapısının bir nesne olduğunu düşünebiliriz. Metin, tamsayı, liste ya da sözlük türünde bir veri aynı zamanda bir nesnedir. Gerçek hayatta olduğu gibi programlamada da nesnelerin farklı özellikleri vardır ve nesnelere çeşitli işlemler uygulanabilir. Örneğin, otomobil dediğimiz zaman bir araç sınıfından bahsediyoruz. Bu sınıfa dahil çeşitli özelliklere sahip çok sayıda otomobil vardır. Bu otomobillerin her biri, tek bir otomobil ise bu sınıfa dahil bir nesnedir. Bir sınıfın genel özellikleri vardır. Her otomobilin, motoru, koltukları, direksiyonu vitesi, kaporta boyası vardır. Ama bu özellikler her otomobil için farklı farklıdır. Kimi arabanın rengi kırmızıyken kimisi mavi, bazıları büyük motorlu iken bazıları küçük motorludur. Programlamada da nesneler çok benzerdir. Liste sınıfına dahil nesnelerin ortak özellikleri vardır ancak bu özellikler her liste için farklıdır.  İşte, metodlar da sadece belirli bir sınıfa dahil nesnelere özel fonksiyonlardır.</p>
+<p>Her nesne tipine uygulanabilecek metodlar farklıdır. Örneğin, .replace(), .upper() metodları sadece metin (string) veri tipindeki nesnelere uygulanabilirken .append() metodu ise liste veri yapılarına uygulanabilir. Farklı sınıflar için uygulanan aynı ismi taşıyan metodlar da bulunabilir. Ancak, bu metodlar uygulandıkları sınıfa göre farklı davranabilirler.</p>
+<p>Bazı metodlar uygulandıkları nesnede herhangi bir değişiklik yapmazken bazıları uygulandıkları nesneyi değiştirir. Örneğin, listeye uygulanan <code class="docutils literal notranslate"><span class="pre">.append()</span></code> metodu, listeye yeni bir eleman ekler, <code class="docutils literal notranslate"><span class="pre">.reverse()</span></code> metodu listenin elemanlarını sondan başa yeniden sıralar. Diğer yandan <code class="docutils literal notranslate"><span class="pre">.index()</span></code> metodu sadece listedeki bir elemanın sıra numarasını verir ve listeyi değiştirmez.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metin</span> <span class="o">=</span> <span class="s2">&quot;python ile programlama öğreniyorum&quot;</span>
+<span class="n">metin</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;PYTHON ILE PROGRAMLAMA ÖĞRENIYORUM&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">37</span><span class="p">)</span>
+<span class="n">liste</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 7, 13, 17, 21, 37]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi bir nesneye herhangi bir metod uygulamak için nesne ismi yanına nokta <code class="docutils literal notranslate"><span class="pre">(.)</span></code> konarak metod ismi yazılır. Tıpkı fonksiyonlarda olduğu gibi bazı metodlar hiç argüman almazken (<code class="docutils literal notranslate"><span class="pre">.upper()</span></code> gibi), bazıları argüman alır (<code class="docutils literal notranslate"><span class="pre">.append()</span></code> gibi).</p>
+</section>
+<section id="uretec-fonksiyonlari">
+<h2><span class="section-number">6.6. </span>Üreteç Fonksiyonları<a class="headerlink" href="#uretec-fonksiyonlari" title="Permalink to this heading">#</a></h2>
+<p>Önceki bölümde gördüğümüz liste döngülerini hatırlayalım. Önceki bölümde yazdığımız, verilen listedeki sayıların küplerini hesaplayan liste döngüsünü düşünelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">liste_kup</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">liste_kup</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[64, 216, 8, 1728, 1331, 343]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de çok uzun bir dosya ya da listeden veri okuyup işlediğimizi düşünelim. Hesapladığımız liste yukarıdaki gibi altı elemanlı değil de milyonlarca elemanı olan bir liste olsa hem hafıza hem de hız açısından sorun yaşayacağız. Bu problemi aşmanın bir yöntemi üreteçleri kullanmaktır. Üreteçler, aynı liste döngüleri gibi çalışır. Ancak, istenen listeyi üretmez bunun yerine kullanılabilecek bir yinelenen nesne üretir. Yazılış olarak üreteçlerin liste döngülerinden farkı köşeli parantez yerine normal parantez kullanmasıdır. Şimdi yukarıdaki işlemi köşeli parantez yerine normal parantez ile yapalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">liste_kup</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">liste_kup</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object &lt;genexpr&gt; at 0x0000019C2B90A190&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Görüldüğü gibi işlemi köşeli parantez yerine normal parantez ile gerçekleştirdiğimizde yazdırılabilir formatta bir liste değil bir üreteç nesnesi (generator object) oluşturuluyor. Üreteç, bir liste oluşturmadığı için hafızada gereksiz yer de işgal etmez. Bunun yerine listenin elemanlarını üretmek için kullanılabilecek yinelenen bir nesne oluşturuluyor. Üreteç elemanlarını görmek için for döngüsü kullanabiliriz ya da üreteç nesnesini <code class="docutils literal notranslate"><span class="pre">list()</span></code> fonksiyonunu kullanarak liste haline getirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">liste_kup</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+216
+8
+1728
+1331
+343
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki ifade yerine <code class="docutils literal notranslate"><span class="pre">print(list(liste_kup))</span></code> da yazabilirdik.</p>
+<p>Tüm yineleyicilerde olduğu gibi üreteçlerde de <code class="docutils literal notranslate"><span class="pre">next()</span></code> fonksiyonu kullanarak işlem yapabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">liste_kup</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">liste_kup</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">liste_kup</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>216
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">liste_kup</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda, üreteç oluşturan ifadeler yazdık. Benzer şekilde üreteç fonksiyonları da yazabiliriz. Şimdiye kadar gördüğümüz fonksiyonlar genelde tek bir değer üretiyorlardı. Üreteç fonksiyonları ise bir tek değer yerine bir dizi değeri aynı anda üretmek için kullanılır. Bu nedenle normal fonksiyonlarda kullanılan return anahtar kelimesi yerine üreteç fonksiyonlarında yield anahtar kelimesi kullanılır. Bir noktaya dikkat çekelim. Üreteç fonksiyonları da diğer üreteçler gibi sonucun kendisini değil sonuç değerleri üzerinde gezinmeyi sağlayan yinelenen nesneyi üretir. Üreteç fonksiyonlarının en önemli faydası, çok büyük hacimli verilerle işlem yapmayı kolaylaştırmasıdır.</p>
+<p>Şimdi, verilen sayıdan geriye doğru sayabilen bir üreteç fonksiyonu yazalım <span id="id1">[<a class="reference internal" href="referencelist.html#id7" title="D. M. Beazley. Python Essential Reference (4b.). Pearson Reference, 2009.">Bea09</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">geri_say</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geri Sayım: &quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Üreteç fonksiyonu da yukarıdaki üreteç örneklerinde olduğu gibi elemanları takip edilebilen bir yinelenen nesne üretir. Bu nesne üzerinde diğer yinelenen nesnelerdeki gibi işlem yapabiliriz. Örneğin, <code class="docutils literal notranslate"><span class="pre">next()</span></code> metodunu kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">say</span> <span class="o">=</span> <span class="n">geri_say</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">say</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Geri Sayım: 
+5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">say</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de verilen bir listedeki kelimelerin harf sayısını veren bir üreteç fonksiyonu yazalım. Örneğimizde kısa bir liste kullanacağız. Ama bir kitap uzunluğundaki metinlerle çalıştığınızda üreteç fonksiyonlarının ne kadar etkili olabileceğini düşünün.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yer_isimleri</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;İstanbul&#39;</span><span class="p">,</span> <span class="s1">&#39;İzmir&#39;</span><span class="p">,</span> <span class="s1">&#39;Türkiye&#39;</span><span class="p">,</span> <span class="s1">&#39;Asya&#39;</span><span class="p">,</span> <span class="s1">&#39;Afrika&#39;</span><span class="p">,</span> <span class="s1">&#39;Dünya&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">uzunluk_bul</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verilen listedeki kelimelerin uzunluklarını</span>
+<span class="sd">    bulan bir üreteç fonksiyonu yazıyoruz&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">kelime</span> <span class="ow">in</span> <span class="n">liste</span><span class="p">:</span>
+        <span class="k">yield</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kelime</span><span class="p">))</span>
+
+<span class="c1"># kelimeler listesindeki kelimelerin uzunluklarını bulalım.</span>
+<span class="k">for</span> <span class="n">sozcuk</span> <span class="ow">in</span> <span class="n">uzunluk_bul</span><span class="p">(</span><span class="n">yer_isimleri</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sozcuk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+5
+7
+4
+6
+5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="alistirmalar">
+<h2><span class="section-number">6.7. </span>Alıştırmalar<a class="headerlink" href="#alistirmalar" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Verilen bir tamsayının tek mi çift mi olduğunu yazan bir fonksiyon yazın.</p></li>
+<li><p>Verilen bir kelimedeki harfleri tersten yazan bir fonksiyon yazın. Aynısını bir liste için yapın.</p></li>
+<li><p>Verilen iki kelimeyi birleştirerek yazdıran bir fonksiyon yazın. Ancak verilen kelimeleri büyük harfe çevirerek birleştirmelisiniz. Büyük harfe çevirme için de ana fonksiyonun içinde bir alt fonksiyon yazın.</p></li>
+<li><p>Sıfırdan 100’e kadar çift sayıları üreten bir üreteç yazın. Oluşan üreteç nesnesinin ilk 3 elemanını next() fonksiyonu kullanarak yazdırın.</p></li>
+<li><p>Kullanıcıdan üç sayı girmesini isteyen ve bu çarpımını yazan bir fonksiyon oluşturun.</p></li>
+<li><p>Her sayının kendinden önceki iki sayının toplamına eşit olduğu seriye Fibonacci serisi denir. Fibonacci serisi 1, 1, 2, 3, 5, 8, 13, 21, 34 şeklinde devam eder. Fibonacci serisinin istenen sırasındaki elemanını gösteren bir fonksiyon yazın. Fonksiyon argümanı sadece pozitif tamsayı olmalı aksi halde hata mesajı vermelidir. İstenen sıra örneğin 7 ise sonuç 13 olmalıdır.</p></li>
+<li><p>Aşağıda tanımlanmış değişkenlerin içeriklerini tahmin etmeye çalışın. Sonra da bunları yazdırarak sonucu görün.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">((</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">B</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">C</span><span class="p">]</span>
+<span class="n">E</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">B</span><span class="p">}</span>
+<span class="n">F</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">B</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>Sayısal verilerden oluşan bir listenin elemanlarını küçükten büyüğe sıralayan bir fonksiyon yazın.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter0104.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Koşullu İfadeler ve Döngüler</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="referencelist.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Kaynaklar</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonksiyon-tanimlama">6.1. Fonksiyon Tanımlama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degisken-argumanlar">6.2. Değişken Argümanlar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-fonksiyonlari">6.3. Lambda Fonksiyonları</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonksiyonlarda-kapsama">6.4. Fonksiyonlarda Kapsama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodlar">6.5. Metodlar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uretec-fonksiyonlari">6.6. Üreteç Fonksiyonları</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">6.7. Alıştırmalar</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By İlker Arslan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
