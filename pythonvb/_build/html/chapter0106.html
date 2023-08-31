@@ -362,6 +362,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesneler-ve-siniflar">7.2. Nesneler ve Sınıflar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">7.3. Alıştırmalar</a></li>
 </ul>
             </nav>
         </div>
@@ -544,6 +545,214 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Artık bildiğimiz gibi bir sınıfa ait olan fonksiyonu metod olarak isimlendiriyoruz. Metodlar da fonksiyonlar gibidir ancak çağrılma şekilleri farklıdır. Yukarıdaki kodlar arasında sadece <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> ifadesini ilk defa görüyorsunuz. Bu metod, sınıfa ait bir nesne oluşturmak için kullanılır. Yeni bir banka hesabı açtığımızda yani programlama diliyle söyleyecek olursak yeni bir banka_hesabı nesnesi oluşturduğumuzda bu nesnenin hangi özelliklere sahip olacağını <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> metodu belirler. Bu metodu kullanılan diğer metodlardan ayırmak için init ifadesinin önüne ve sonuna iki alt çizgi getirilir.</p>
+<p>İlk defa gördüğümüz bir başka ifade de kendisi anlamına gelen <code class="docutils literal notranslate"><span class="pre">self</span></code> anahtar kelimesidir. Diğer programlama dillerini kullananlar için Python’daki self ifadesi C, C++ ve Java’daki this ifadesine karşılık gelir. Sınıf metodlarının normal fonksiyonlarından farkı, bunları yazarken ilk önce self anahtar kelimesine yer verilmesi gereğidir. Ancak daha sonra metod çağrıldığında self argümanı için bir değer atamaya gerek yoktur çünkü self zaten oluşturulan ya da kullanılan nesnenin kendisini ifade eder. Aslında burada mutlaka self kelimesini kullanmak zorunda değiliz. Bunun yerine herhangi bir kelime kullanılabilir. Ancak, farklı kullanıcıların ve kodlama ortamlarının self kelimesini tanıması açısından self anahtar kelimesinin kullanılması tavsiye edilir.</p>
+<p>Tekrar yukarıdaki koda dönelim. Yeni bir hesap açacağımız zaman, hesap_no, hesap_sahibi ve tutar bilgilerini de girmemiz gerekir. Yukarıdaki kodu farklı bir dosya olarak kaydedip daha sonra farklı dosyalardan import komutu ile kullanabiliriz.</p>
+<p>Dosyayı <code class="docutils literal notranslate"><span class="pre">banka_hesapları.py</span></code> adıyla kaydettiğimizi varsayalım. Yeni bir hesap nesnesini <code class="docutils literal notranslate"><span class="pre">Banka_Hesabi()</span></code> fonksiyonu ile oluşturuyoruz. Burada self argümanını kullanmamıza gerek yok ancak kendi tanımladığımız argümanlara ait değerleri iletmemiz gerekiyor. Self değişkeninin bir özelliği de şudur: bu değişken, sınıftaki bütün metodlar tarafından ulaşılabilir olur. Yani yeni oluşturduğumuz nesneye, sınıf tanımında yer alan <code class="docutils literal notranslate"><span class="pre">para_cek()</span></code> ve <code class="docutils literal notranslate"><span class="pre">para_yatir()</span></code> metodlarını uygulayabiliriz. Normalde hesaptaki tutarın eksi değer alamayacağını biliyoruz. Bunu basit bir if koşulu ile kontrol etmek mümkündür ancak örneği basit tutmak adına şimdilik bu durumu göz ardı edelim.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">banka_hesaplari</span> <span class="kn">import</span> <span class="n">Banka_Hesabi</span>
+
+<span class="n">hesap_001</span> <span class="o">=</span> <span class="n">Banka_Hesabi</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;İlker Arslan&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hesap_001</span><span class="o">.</span><span class="n">hesap_no</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>1</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hesap_001</span><span class="o">.</span><span class="n">hesap_sahibi</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>İlker Arslan</p>
+<p>Şimdi de para çekme ve para yatırma metodlarını uygulayalım.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hesap_001</span><span class="o">.</span><span class="n">para_cek</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hesap_001</span><span class="o">.</span><span class="n">tutar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>50</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">hesap_001</span><span class="o">.</span><span class="n">para_yatir</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hesap_001</span><span class="o">.</span><span class="n">tutar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>230</p>
+<p>Tıpkı fonksiyonlarda olduğu gibi nesne tanımlarında da özelliklere varsayılan değer atayabiliriz. Örneğin, yeni açılan bir hesaba tutar bilgisi girilmemişse, varsayılan değer sıfır olsun. Bunun için tanım satırında</p>
+<p><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">__init__(self,</span> <span class="pre">hesap_no,</span> <span class="pre">hesap_sahibi,</span> <span class="pre">tutar=0):</span></code></p>
+<p>yazmamız yeterlidir.  Böylece, yeni bir hesap oluşturulduğunda tutar bilgisi girilmemişse, varsayılan değer olan sıfır atanacaktır.</p>
+<p>Benzer sınıflar oluştururken her zaman bütün kodları en baştan oluşturmamıza gerek olmayabilir. Örneğin bir otomobil sınıfı oluşturduğumuzu düşünelim. Daha sonra bunun bir alt sınıfı olan elektrikli otomobil oluşturmamız gerekebilir. Bu durumda otomobil için tanımlanmış bütün özellik ve metodlar elektrikli otomobil için de kullanılacak, elektrikli otomobil için ilave özellik ve metodlar tanımlanacaktır. Bu nedenle elektrikli otomobil sınıfının gerekli özellikleri ve metodları doğrudan otomobil sınıfından almasını sağlayabiliriz. Nesneye yönelik programlamada buna miras alma (inheritance) denir. Şimdi banka hesabı örneğinde devam edelim. Bu defa bir banka hesabının bir alt sınıfı olan kredili banka hesabı sınıfı oluşturalım. Kredili banka hesabının normal banka hesabından fazla olarak kullanılabilir kredi limiti ve kalan kredi limiti gibi özellikleri olsun.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Kredili_Hesap</span><span class="p">(</span><span class="n">Banka_Hesabi</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Kredi limiti olan hesap&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hesap_no</span><span class="p">,</span> <span class="n">hesap_sahibi</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tutar</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hesap_no</span><span class="p">,</span> <span class="n">hesap_sahibi</span><span class="p">,</span> <span class="n">tutar</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+</pre></div>
+</div>
+<p>İlk satırda Kredili_Hesap(Banka_Hesabi) ifadesiyle, kredili hesap sınıfının, banka hesabı sınıfının bir alt sınıfı olduğunu belirtiyoruz. Daha sonra üst sınıftan miras almasını istediğimiz özellikleri de super().<strong>init</strong>() komutu ile belirtiyoruz. Ancak ilave olarak bir limit özelliği tanımlıyoruz. Yukarıdaki tanımlamada dikkat etmemiz gereken bir nokta var. Varsayılan değer alan özellikleri en sona yazmamız gerekiyor. Yukarıda varsayılan değeri olmayan limit özelliğini, tutar=0 ifadesinden sonra yazarsak hata mesajı ile karşılaşırız.</p>
+<p>Kredili hesapta normal hesaptan farklı olarak bir de kalan limit özelliği yer alsın. Şimdi hesaptan para çekilmek istendiğinde müşterinin yeterli limiti olup olmadığı kontrol edilsin ve ancak yeterli limit varsa para çekilmesine izin verilsin. Aksi halde müşteriye yeterli bakiye olmadığına dair mesaj gösterilsin.</p>
+<p>Kredili Hesap sınıfında para_cek() metodunu aşağıdaki şekilde tanımlıyoruz. Burada ana sınıftaki bir metodu değiştirdik. Alt sınıfta, ana sınıfa ilave özellikler ve metodlar tanımlayabileceğimiz gibi burada yaptığımız gibi ana sınıftaki metodları değiştirmek de mümkündür.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">para_cek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cekilen</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kalan_limit</span> <span class="o">-</span> <span class="n">cekilen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tutar</span> <span class="o">-=</span> <span class="n">cekilen</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kalan_limit</span> <span class="o">-=</span> <span class="n">cekilen</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yeterli kredi limitiniz bulunmamaktadır!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kullanılabilir limitiniz: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kalan_limit</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Şimdi bir Kredili_Hesap() nesnesi oluşturalım ve birkaç para çekme işlemi yapalım.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span> <span class="o">=</span> <span class="n">Kredili_Hesap</span><span class="p">(</span><span class="n">hesap_no</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">hesap_sahibi</span><span class="o">=</span><span class="s2">&quot;Eren Arslan&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">limit</span>
+</pre></div>
+</div>
+<p>500</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">kalan_limit</span>
+</pre></div>
+</div>
+<p>500</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">tutar</span>
+</pre></div>
+</div>
+<p>0</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">para_cek</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">tutar</span>
+</pre></div>
+</div>
+<p>-150</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">kalan_limit</span>
+</pre></div>
+</div>
+<p>350</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">kredi_hesabi_001</span><span class="o">.</span><span class="n">para_cek</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Yeterli kredi limitiniz bulunmamaktadır!
+Kullanılabilir limitiniz: 350</p>
+<p>Gerçek hayatta nesneler çok daha karmaşık olabilir. Daha çok ayrıntıya girdikçe bir sınıftaki özellikler ve metodlar artacaktır. Örneğin, bir arabayı modellemeye çalışırken motorların da sınıf özelliği gösterdiğini fark ederiz. Bu durumda ayrı bir motor sınıfı oluşturup otomobil sınıfı içinde motor sınıfına ait nesne oluşturabiliriz. Banka hesabı örneğimizi düşünecek olursak bir müşteriler ve hesaplar için farklı sınıflar oluşturmak daha mantıklı olabilir. Böylece bir müşteri nesnesi oluşturduğumuzda buna bağlı farklı hesap nesneleri de oluşturmamız mümkün olur. Şimdi buna uygun bir örnek yazalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hesap</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hesap_no</span><span class="p">,</span> <span class="n">hesap_sahibi</span><span class="p">,</span> <span class="n">tutar</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hesap_no</span> <span class="o">=</span> <span class="n">hesap_no</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hesap_sahibi</span> <span class="o">=</span> <span class="n">hesap_sahibi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tutar</span> <span class="o">=</span> <span class="n">tutar</span>
+
+    <span class="k">def</span> <span class="nf">para_cek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cekilen</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tutar</span> <span class="o">-=</span> <span class="n">cekilen</span>
+
+    <span class="k">def</span> <span class="nf">para_yatir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">yatan</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tutar</span> <span class="o">+=</span> <span class="n">yatan</span>
+
+<span class="k">class</span> <span class="nc">Musteri</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">musteri_no</span><span class="p">,</span> <span class="n">adi</span><span class="p">,</span> <span class="n">dogum_tarihi</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">musteri_no</span> <span class="o">=</span> <span class="n">musteri_no</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adi</span> <span class="o">=</span> <span class="n">adi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dogum_tarihi</span> <span class="o">=</span> <span class="n">dogum_tarihi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hesap1</span> <span class="o">=</span> <span class="n">Hesap</span><span class="p">(</span><span class="mi">12345</span><span class="p">,</span> <span class="n">adi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span> <span class="o">=</span> <span class="n">Musteri</span><span class="p">(</span><span class="mi">1111</span><span class="p">,</span> <span class="s1">&#39;ilker arslan&#39;</span><span class="p">,</span> <span class="s1">&#39;27.11.1977&#39;</span><span class="p">)</span>
+<span class="n">musteri_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;__main__.Musteri at 0x17f9209c050&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">musteri_no</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1111
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">adi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ilker arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">dogum_tarihi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;27.11.1977&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">hesap1</span><span class="o">.</span><span class="n">hesap_no</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12345
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">hesap1</span><span class="o">.</span><span class="n">hesap_sahibi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ilker arslan&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">hesap1</span><span class="o">.</span><span class="n">tutar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">musteri_1</span><span class="o">.</span><span class="n">hesap1</span><span class="o">.</span><span class="n">para_yatir</span><span class="p">(</span><span class="mi">1250</span><span class="p">)</span>
+<span class="n">musteri_1</span><span class="o">.</span><span class="n">hesap1</span><span class="o">.</span><span class="n">tutar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1250
+</pre></div>
+</div>
+</div>
+</div>
+<p>Artık hem modüllerin çalışma mantığını hem de nesne yönelimli programlama mantığını temel olarak kavramış bulunuyoruz.</p>
+</section>
+<section id="alistirmalar">
+<h2><span class="section-number">7.3. </span>Alıştırmalar<a class="headerlink" href="#alistirmalar" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Bir çalışan sınıfı oluşturun. Çalışanın özellikleri isim, işe giriş tarihi, görevi ve maaşı olsun. Toplam çalışan sayısını gösterecek bir değişken oluşturun. Yeni bir çalışan oluşturulduğunda çalışan sayısı bir artsın. Çalışan için çalışan bilgilerini gösteren ve maaşına istenen tutarda zam yapan iki metod yazın.</p></li>
+</ol>
 </section>
 </section>
 
@@ -620,6 +829,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nesneler-ve-siniflar">7.2. Nesneler ve Sınıflar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alistirmalar">7.3. Alıştırmalar</a></li>
 </ul>
   </nav></div>
 
