@@ -16,6 +16,10 @@ parts:
     - file: chapter0105
     - file: chapter0106
     - file: chapter0107
+  - caption: VERİ ANALİZİ
+    numbered: True
+    chapters:
+    - file: chapter0200
   - caption: Ekler
     numbered: True
     chapters:
