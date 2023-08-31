@@ -20,6 +20,7 @@ parts:
     numbered: True
     chapters:
     - file: chapter0200
+    - file: chapter0201
   - caption: Ekler
     numbered: True
     chapters:
