@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>10. NumPy Paketi &#8212; Python ile Veri Bilimi</title>
+    <title>10. NumPy &#8212; Python ile Veri Bilimi</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0201';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Kaynaklar" href="referencelist.html" />
+    <link rel="next" title="11. Pandas" href="chapter0202.html" />
     <link rel="prev" title="9. Giriş" href="chapter0200.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -164,11 +164,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VERİ ANALİZİ</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter0200.html">9. Giriş</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. NumPy Paketi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0202.html">11. Pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="referencelist.html">11. Kaynaklar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">12. Kaynaklar</a></li>
 </ul>
 
     </div>
@@ -352,7 +353,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>NumPy Paketi</h1>
+    <h1>NumPy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,8 +378,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numpy-paketi">
-<h1><span class="section-number">10. </span>NumPy Paketi<a class="headerlink" href="#numpy-paketi" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="numpy">
+<h1><span class="section-number">10. </span>NumPy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h1>
 <p>Önceki bölümlerde incelediğimiz liste veri yapısı Python’a özel ve son derece kullanışlı bir veri türüdür. Listeleri kullanarak verileri bir arada saklayabilir ve bunlar üzerinde değişiklikler yapabilir, yeni veriler ekleyebilir ya da mevcut verileri çıkarabiliriz. Ancak, liste veri yapısında günlük hayattaki kullanımlarımızda çok ihtiyaç duyacağımız bir özellik yoktur. Liste veri yapısında, veriler üzerinde analizler yapmak, matematiksel ya da istatistiksel işlemler uygulamak mümkün olmamaktadır. Halbuki R ya da Matlab gibi diğer dillerde bu tip işlemler kolaylıkla yapılabilmektedir.</p>
 <p>Diyelim ki bir sınıftaki öğrencilerin iki sınavdan aldıkları notları iki listede kaydettiniz ve şimdi de ortalamalarını hesaplamak istiyorsunuz. Normalde bunu basit bir şekilde (sinav_1 + sinav_2) / 2 yazarak yapabilmelisiniz. Ancak Python listelerinde bu işlemi yapmak istediğimizde aşağıdaki hata mesajını alıyoruz. Çünkü Python normal liste veri yapıları ile matematik işlemi yapmayı bilmiyor.</p>
 <div class="cell docutils container">
@@ -1285,10 +1286,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[11.03011111, 23.78507516, 14.26893796, 22.41033151],
-       [13.86796418, 38.82095428, 10.2157036 , 17.80150362],
-       [20.68992593, 37.11062246, 27.8202467 , 19.06588639],
-       [22.41953517, 46.05723804, 40.04626302,  9.73255756]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[15.02647757, 25.65382802, 32.61665583, 10.60059968],
+       [49.77680153, 40.02389025, 22.52603295, 49.91002577],
+       [ 5.84360103, 15.88067331,  4.96765295, 23.83563936],
+       [49.30074895, 14.30231251, 22.28037783, 38.72813575]])
 </pre></div>
 </div>
 </div>
@@ -1300,7 +1301,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([22.41953517, 46.05723804, 40.04626302, 22.41033151])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([49.77680153, 40.02389025, 32.61665583, 49.91002577])
 </pre></div>
 </div>
 </div>
@@ -1312,7 +1313,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([23.78507516, 38.82095428, 37.11062246, 46.05723804])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([32.61665583, 49.91002577, 23.83563936, 49.30074895])
 </pre></div>
 </div>
 </div>
@@ -1464,7 +1465,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ilker.arslan\AppData\Local\Temp\ipykernel_41276\848890117.py:1: RuntimeWarning: invalid value encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ilker.arslan\AppData\Local\Temp\ipykernel_29588\848890117.py:1: RuntimeWarning: invalid value encountered in log
   x = np.log([ 3, 4, -5]);
 </pre></div>
 </div>
@@ -1664,11 +1665,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="referencelist.html"
+       href="chapter0202.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Kaynaklar</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Pandas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
