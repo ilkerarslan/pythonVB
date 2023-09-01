@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>11. Pandas Paketi &#8212; Python ile Veri Bilimi</title>
+    <title>11. Pandas &#8212; Python ile Veri Bilimi</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="12. Kaynaklar" href="referencelist.html" />
-    <link rel="prev" title="10. NumPy Paketi" href="chapter0201.html" />
+    <link rel="prev" title="10. NumPy" href="chapter0201.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,8 +164,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VERİ ANALİZİ</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter0200.html">9. Giriş</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0201.html">10. NumPy Paketi</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Pandas Paketi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0201.html">10. NumPy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
 <ul class="nav bd-sidenav">
@@ -340,7 +340,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -351,11 +353,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Pandas Paketi</h1>
+    <h1>Pandas</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-serileri">11.1. Pandas Serileri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-frame">11.2. Pandas Data Frame</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -365,8 +376,229 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pandas-paketi">
-<h1><span class="section-number">11. </span>Pandas Paketi<a class="headerlink" href="#pandas-paketi" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<h1><span class="section-number">11. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this heading">#</a></h1>
+<p>Önceki bölümde gördüğümüz Numpy paketi, veri saklama açısından oldukça hızlı ve etkin bir paket olmakla birlikte farklı türde verilerin bir arada kullanılması, verilerden seçim yapma gibi konularda yetersiz kalabilmektedir. Pandas paketi hem yüksek performanslı hem de esnek bir veri analizi ihtiyacından doğmuş ve Wes McKinney tarafından geliştirilmiştir. Pandas da esas olarak iki temel veri nesnesi bulunmaktadır: seriler (series) ve veri tabloları (dataframes).</p>
+<section id="pandas-serileri">
+<h2><span class="section-number">11.1. </span>Pandas Serileri<a class="headerlink" href="#pandas-serileri" title="Permalink to this heading">#</a></h2>
+<p>Pandas serilerini sıra numalaraları olan (endekslenmiş) bir boyutlu diziler olarak düşünebiliriz. Pandas serisi aşağıdaki gibi tanımlanır. Nasıl ki Numpy paketini aktarırken geleneksel olarak np kısaltması kullanılıyorsa pandas paketi için de genel olarak pd kısaltması kullanılıyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pandas_seri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">pandas_seri</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     5
+1     7
+2     3
+3    10
+4     8
+5     6
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Varsayılan olaran Pandas serilerinin endeksi 0’dan başlayan ardışık tamsayılardır. Ancak dilersek farklı endeks isimleri de kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pandas_seri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> 
+                        <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">])</span>
+<span class="n">pandas_seri</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a     5
+b     7
+c     3
+d    10
+e     8
+f     6
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bu yönüyle serileri bir çeşit sözlük (dictionary) veri yapısı gibi de düşünebiliriz. Ancak sözlüklerde arka arkaya gelen verileri seçmek mümkün değilken serilerde bu mümkündür.</p>
+</section>
+<section id="pandas-data-frame">
+<h2><span class="section-number">11.2. </span>Pandas Data Frame<a class="headerlink" href="#pandas-data-frame" title="Permalink to this heading">#</a></h2>
+<p>Veri analizinde kullanılan verilerin formatı çok farklı olabilmektedir. Buna karşın günlük çalışmalarımızda kullandığımız veriler çoğu zaman satır ve sütunlardan oluşan tablolardan oluşmaktadır. Bu tür verileri iki boyutlu veriler olarak da isimlendirebiliriz. Bu nedenledir ki basit veri işlemlerinde en çok kullanılan program MS Excel veya benzeri programlardır. Bu tür programlar ile satır ve sütunlarda gösterilebilecek verileri rahatlıkla saklamak ve bunlar üzerinde çeşitli analizler ve hesaplamalar yapmak mümkündür. Bu tür programların kullanım kolaylığı da yaygın olarak kullanılmalarında bir başka etkendir. Örneğin, R programlama dilinin yaygınlaşmasının en önemli sebeplerinden birisi de farklı veri tipindeki sütunlardan oluşan verilerle analiz, modelleme gibi işlemleri kolaylaştırmasıdır.</p>
+<p>Diğer yandan kullanılan veri kümelerinin büyüklüğü arttıkça bu tür programlarda veri işleme ve analiz çok zor ve yavaş bir hale gelmektedir. Bilgisayar donanım teknolojinin önceki yıllara nazaran çok daha gelişmiş olduğu günümüzde dahi birçok bilgisayar birkaç yüz bin satırlık bir dosya bile hele bir de formüller içeriyorsa bilgisayarı zorlayabilmekte ve çalışmaları oldukça yavaşlatabilmektedir. Aşağıda görülen veri seti yapay öğrenme konusunda çok sık kullanılan iris veri kümesinin bir bölümünü göstermektedir. Bu veri kümesinde 150 iris çiçeğine ait (tabloda bir kısmı gösterilmiştir) çanak (sepal) ve taç (petal) yapraklarının en ve boy ölçümleri yapılmış ve üç farklı tür için bu ölçümler kaydedilmiştir.</p>
+<p><img alt="iris" src="_images/iris.png" /></p>
+<p>Tablo şeklindeki bir başka deyişle iki boyutlu veri kümelerinde her satır bir gözlemi ya da bir ölçümü belirtmektedir. Her sütun ise bu gözlemlere ilişkin farklı özellikleri yani değişkenleri belirtmektedir. Örneğin, yukarıdaki tabloda her satır bir çiçek için yapılan ölçümü ifade etmektedir. Sütunlarda ise her bir ölçüme ait farklı özellikler (çanak yaprak en ve boyu ile taç yaprak en ve boyu) ve çiçek türü (setosa, versicolor, virginica) yer almaktadır.</p>
+<p>Neyse ki Matlab, R gibi diller gibi Python’da da iki (ve daha fazla) boyutlu veri kümeleri için kullanılabilecek paketler mevcuttur. Bunlar arasında yer alan numpy paketini daha önce görmüştük. Numpy paketinin bir eksikliği, numpy dizilerinin sadece aynı türde verilerden oluşabilmesidir. Ancak, gerçek hayatta kullandığımız birçok veri kümesi farklı sütunlarda farklı veri türleri içerebilmektedir. Örneğin, yukarıdaki tabloda ilk dört sütundaki veriler sayısal, son sütundaki veri tipi ise metin türündedir.</p>
+<p>Pandas paketinde yukarıdaki gibi iki boyutlu veri kümeleri data frame (veri çerçevesi) olarak isimlendirilir (bundan sonra data frame terimi kullanılacaktır). Veri çerçeveleri, Python’da veri analizini son derece kolaylaştıran çok kullanışlı veri yapılarıdır. R programlama dilini bilenler için Pandas data frame, R’daki data frame ile aynıdır. Data frame yukarıda anlattığımız iki boyutlu veri kümesi özelliklerini taşır. Her satırda bir gözlem, her sütunda da farklı bir değişken yer alır. Bir sütunda yer alan tüm veriler aynı tiptedir ama farklı sütunlarda farklı veri türleri yer alabilir. Data frameler, veri bilimi açısından çok faydalı veri yapılarıdır. Bunları kullanarak betimsel ve çıkarımsal veri analizi yapmak, istatistiksel modeller kurmak, verileri görselleştirmek daha kolaydır. Bunlardan olayı veri biliminde Python kullananlar için Pandas modülünden faydalanmak neredeyse standart hale gelmiştir.</p>
+<p>Bir pandas data frame oluşturmak için farklı yöntemler vardır. Bunlardan bir tanesi sözlük veri yapısını kullanmaktır. Şimdi yukarıda yer alan tabloyu oluşturmak için önce bu verileri bir sözlük olarak tanımlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;Sepal_Length&#39;</span><span class="p">:[</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">],</span>
+<span class="s1">&#39;Sepal_Width&#39;</span> <span class="p">:[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
+<span class="s1">&#39;Petal_Length&#39;</span><span class="p">:[</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">],</span>
+<span class="s1">&#39;Petal_Width&#39;</span> <span class="p">:[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span>
+<span class="s1">&#39;Species&#39;</span>     <span class="p">:[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;virginica&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">,</span><span class="s1">&#39;virginica&#39;</span><span class="p">,</span>     
+                <span class="s1">&#39;virginica&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">iris_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Sepal_Length&#39;: [5.1, 4.9, 4.7, 4.6, 5.0, 6.7, 6.3, 6.5, 6.2, 5.9],
+ &#39;Sepal_Width&#39;: [3.5, 3.0, 3.2, 3.1, 3.6, 3.0, 2.5, 3.0, 3.4, 3.0],
+ &#39;Petal_Length&#39;: [1.4, 1.4, 1.3, 1.5, 1.4, 5.2, 5.0, 5.2, 5.4, 5.1],
+ &#39;Petal_Width&#39;: [0.2, 0.2, 0.2, 0.2, 0.2, 2.3, 1.9, 2.0, 2.3, 1.8],
+ &#39;Species&#39;: [&#39;setosa&#39;,
+  &#39;setosa&#39;,
+  &#39;setosa&#39;,
+  &#39;setosa&#39;,
+  &#39;setosa&#39;,
+  &#39;virginica&#39;,
+  &#39;virginica&#39;,
+  &#39;virginica&#39;,
+  &#39;virginica&#39;,
+  &#39;virginica&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sonrasında da pandas paketini <code class="docutils literal notranslate"><span class="pre">import</span></code> komutu ile içeri aktarıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Son olarak yukarıda tanımladığımız sözlüğü pandas DataFrame veri tipine dönüştürmek için <code class="docutils literal notranslate"><span class="pre">.DataFrame()</span></code> metodunu kullanıyoruz. Oluşturulan dataframe’in satırları sıfırdan başlamak üzere numaralandırılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris_dict</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Sepal_Length  Sepal_Width  Petal_Length  Petal_Width    Species
+0           5.1          3.5           1.4          0.2     setosa
+1           4.9          3.0           1.4          0.2     setosa
+2           4.7          3.2           1.3          0.2     setosa
+3           4.6          3.1           1.5          0.2     setosa
+4           5.0          3.6           1.4          0.2     setosa
+5           6.7          3.0           5.2          2.3  virginica
+6           6.3          2.5           5.0          1.9  virginica
+7           6.5          3.0           5.2          2.0  virginica
+8           6.2          3.4           5.4          2.3  virginica
+9           5.9          3.0           5.1          1.8  virginica
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi biraz daha uzun bir yöntem görelim. Bu yöntemi pek kullanmayacak olsak da farklı veri yapılarını tekrar etmek için iyi bir fırsat. Bu yöntemde dataframe sütunlarını önce listeler olarak tanımlıyoruz. Daha sonra sütun isimleri ve sütunları zip fonksiyonunu kullanarak tuple verilerden oluşan bir listeye çeviriyoruz. Burada zipledikten sonra tekrar list fonksiyonunu kullandığımıza dikkat edin. Sonraki aşamada zip veri yapısını sözlüğe ve en son olarak da sözlüğü Pandas data frame’e çeviriyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Önce sütunları liste olarak tanımlayalım. </span>
+
+<span class="n">Sepal_Length</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">]</span>
+<span class="n">Sepal_Width</span>  <span class="o">=</span> <span class="p">[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]</span>
+<span class="n">Petal_Length</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">]</span>
+<span class="n">Petal_Width</span>  <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">]</span>
+<span class="n">Species</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;virginica&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">]</span>
+
+
+<span class="n">sutun_isimleri</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal_Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal_Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal_Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal_Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Species&#39;</span><span class="p">]</span>
+<span class="n">sutunlar</span> <span class="o">=</span> <span class="p">[</span><span class="n">Sepal_Length</span><span class="p">,</span> <span class="n">Sepal_Width</span><span class="p">,</span> <span class="n">Petal_Length</span><span class="p">,</span> <span class="n">Petal_Width</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sütun isimleri ve sütunları zip fonksiyonu ile bir araya getirelim.</span>
+<span class="n">zip_veri</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sutun_isimleri</span><span class="p">,</span> <span class="n">sutunlar</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">zip_veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Sepal_Length&#39;, [5.1, 4.9, 4.7, 4.6, 5.0, 6.7, 6.3, 6.5, 6.2, 5.9]), (&#39;Sepal_Width&#39;, [3.5, 3.0, 3.2, 3.1, 3.6, 3.0, 2.5, 3.0, 3.4, 3.0]), (&#39;Petal_Length&#39;, [1.4, 1.4, 1.3, 1.5, 1.4, 5.2, 5.0, 5.2, 5.4, 5.1]), (&#39;Petal_Width&#39;, [0.2, 0.2, 0.2, 0.2, 0.2, 2.3, 1.9, 2.0, 2.3, 1.8])]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ziplenmiş veriyi sözlük veri yapısına çevirelim</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">zip_veri</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Sepal_Length&#39;: [5.1, 4.9, 4.7, 4.6, 5.0, 6.7, 6.3, 6.5, 6.2, 5.9], &#39;Sepal_Width&#39;: [3.5, 3.0, 3.2, 3.1, 3.6, 3.0, 2.5, 3.0, 3.4, 3.0], &#39;Petal_Length&#39;: [1.4, 1.4, 1.3, 1.5, 1.4, 5.2, 5.0, 5.2, 5.4, 5.1], &#39;Petal_Width&#39;: [0.2, 0.2, 0.2, 0.2, 0.2, 2.3, 1.9, 2.0, 2.3, 1.8]}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Son olarak sözlüğü Veri Çerçevesine çevirelim.</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Sepal_Length  Sepal_Width  Petal_Length  Petal_Width
+0           5.1          3.5           1.4          0.2
+1           4.9          3.0           1.4          0.2
+2           4.7          3.2           1.3          0.2
+3           4.6          3.1           1.5          0.2
+4           5.0          3.6           1.4          0.2
+5           6.7          3.0           5.2          2.3
+6           6.3          2.5           5.0          1.9
+7           6.5          3.0           5.2          2.0
+8           6.2          3.4           5.4          2.3
+9           5.9          3.0           5.1          1.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Varolan bir veri çerçevesine yeni bir sütun eklemek de mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;Gözlem_No&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Sepal_Length  Sepal_Width  Petal_Length  Petal_Width  Gözlem_No
+0           5.1          3.5           1.4          0.2          1
+1           4.9          3.0           1.4          0.2          1
+2           4.7          3.2           1.3          0.2          1
+3           4.6          3.1           1.5          0.2          1
+4           5.0          3.6           1.4          0.2          1
+5           6.7          3.0           5.2          2.3          1
+6           6.3          2.5           5.0          1.9          1
+7           6.5          3.0           5.2          2.0          1
+8           6.2          3.4           5.4          2.3          1
+9           5.9          3.0           5.1          1.8          1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda aktardığımız, sözlükten data frame üretme yöntemi günlük hayatta kullanılabilecek bir yöntem değildir. Gerçekte çok büyük verilerle çalıştığımızı düşünürsek tek tek bütün verilerin sözlük olarak girilmesi mümkün değildir.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -406,7 +638,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>NumPy Paketi</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>NumPy</p>
       </div>
     </a>
     <a class="right-next"
@@ -427,6 +659,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-serileri">11.1. Pandas Serileri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-frame">11.2. Pandas Data Frame</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

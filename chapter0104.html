@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0104';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Fonksiyon" href="chapter0105.html" />
+    <link rel="next" title="6. Fonksiyonlar" href="chapter0105.html" />
     <link rel="prev" title="4. Veri Yapıları" href="chapter0103.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,11 +159,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Koşullu İfadeler ve Döngüler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0105.html">6. Fonksiyon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0105.html">6. Fonksiyonlar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0106.html">7. Modüller ve Nesne Yönelimli Programlama</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0107.html">8. Hata Ayıklama</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VERİ ANALİZİ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter0200.html">9. Giriş</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0201.html">10. NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter0202.html">11. Pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="referencelist.html">7. Kaynaklar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="referencelist.html">12. Kaynaklar</a></li>
 </ul>
 
     </div>
@@ -382,7 +390,7 @@ document.write(`
 <h1><span class="section-number">5. </span>Koşullu İfadeler ve Döngüler<a class="headerlink" href="#kosullu-ifadeler-ve-donguler" title="Permalink to this heading">#</a></h1>
 <section id="kosullu-ifadeler">
 <h2><span class="section-number">5.1. </span>Koşullu İfadeler<a class="headerlink" href="#kosullu-ifadeler" title="Permalink to this heading">#</a></h2>
-<p>Bir bilgisayar verilen bir komutu aşağıdaki yöntemlerden birine göre yerine getirir <span id="id1">[<a class="reference internal" href="referencelist.html#id11" title="D. S. Malik. C++ Programming Program Design Including Data Structures (5.b.). Course Technology Cengage Learning, 2011.">Mal11</a>]</span>:</p>
+<p>Bir bilgisayar verilen bir komutu aşağıdaki yöntemlerden birine göre yerine getirir <span id="id1">[<a class="reference internal" href="referencelist.html#id12" title="D. S. Malik. C++ Programming Program Design Including Data Structures (5.b.). Course Technology Cengage Learning, 2011.">Mal11</a>]</span>:</p>
 <ul class="simple">
 <li><p>Belirli bir sıraya göre.</p></li>
 <li><p>Alternatifler arasında seçim yaparak</p></li>
@@ -398,14 +406,14 @@ document.write(`
 <ul class="simple">
 <li><p>İstenen koşul sağlanıyorsa “İşlem 1”i yerine getir. Sağlanmıyorsa hiçbir şey yapmadan çık. Örneğin elimizde bir sınıftaki öğrencilerin not listesi olsun. Sınav notu 85’in üzerinde olan öğrenciler geçti olarak belirtmek isteyelim ve sadece geçen öğrencilerle ilgilenelim.</p></li>
 </ul>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
  	<span class="n">öğrenci</span> <span class="n">geçti</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>İstenen koşul sağlanıyorsa “İşlem1”i yerine getir. Sağlanmıyorsa “İşlem 2”yi yap. Yukarıdaki örneği düşünelim ancak bu defa notu 85’in üzerinde olanları geçti, olmayanları kaldı olarak işaretlemek isteyelim.</p></li>
 </ul>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
 	<span class="n">öğrenci</span> <span class="n">geçti</span>
 <span class="n">aksi</span> <span class="n">halde</span><span class="p">:</span>
 	<span class="n">öğrenci</span> <span class="n">kaldı</span>
@@ -420,7 +428,7 @@ document.write(`
 </li>
 </ul>
 <p>Sonuncu türdeki sınama istenen sayıda koşulu test etmeye izin verir. Örneğin, yine sınav notları ile işlem yapmak istiyor olalım ancak 100 üzerinden alınan notları harf notuna çeviren bir program yazıyor olalım. Programın algoritması şu şekilde olacaktır.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">85</span> <span class="n">ise</span><span class="p">:</span>
 	<span class="ow">not</span> <span class="n">A</span>
 <span class="n">aksi</span> <span class="n">halde</span> <span class="n">öğrenci</span> <span class="n">notu</span> <span class="o">&gt;</span> <span class="mi">70</span> <span class="n">ise</span><span class="p">:</span>
 	<span class="ow">not</span> <span class="n">B</span>
@@ -619,7 +627,7 @@ document.write(`
 </div>
 </div>
 <p>Artık, Python’da koşullu ifadelerin yazılışına geçebiliriz. Tüm yüksek seviye programlama dillerinde olduğu gibi Python’da da koşullu ifadeler “if…else” ifadeleri ile yazılır. Python’da if…else ifadesinin yazım şekli aşağıdaki gibidir:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">koşul</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">koşul</span><span class="p">:</span>
     <span class="n">gerçekleştirilecek</span> <span class="n">işlem</span>
 </pre></div>
 </div>
@@ -777,7 +785,7 @@ document.write(`
 <section id="while-dongusu">
 <h3><span class="section-number">5.2.1. </span>While Döngüsü<a class="headerlink" href="#while-dongusu" title="Permalink to this heading">#</a></h3>
 <p>While döngüsünün yapısı aşağıdaki gibidir.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">koşul</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">koşul</span><span class="p">:</span>
     <span class="n">gerçekleştirilecek</span> <span class="n">işlem</span>
 </pre></div>
 </div>
@@ -844,47 +852,19 @@ document.write(`
 </tbody>
 </table>
 <p>Döngü sırasında herhangi bir koşulun sağlanması durumunda döngünün durdurulmasını isteyebiliriz. Bu durumda “break” anahtar kelimesini kullanmamız gerekir. Aşağıdaki örnekte, while döngüsü, koşul1 sağlandığı sürece devam eder. Ancak, koşul1’in sağlandığı sırada, koşul2 de doğru olursa while döngüsü sona erecektir.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; while koşul1:
-…        if koşul2:
-…             break
-…        işlem1
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">koşul1</span><span class="p">:</span>
+<span class="go">…        if koşul2:</span>
+<span class="go">…             break</span>
+<span class="go">…        işlem1</span>
 </pre></div>
 </div>
 <p>Aşağıdaki örnekte, kullanıcıdan bir sayı girmesi isteniyor. Ancak girilen sayının sıfır olması durumunda while döngüsü sonlandırılıyor.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">cevap</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bir sayı girin (Çıkmak için 0 girin): &quot;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Girdiğiniz sayı: &quot;</span> <span class="o">+</span> <span class="n">cevap</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">cevap</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bir sayi girin (Cikmak için 0 girin): &quot;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Girdiğiniz sayi: &quot;</span> <span class="o">+</span> <span class="n">cevap</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">int</span> <span class="p">(</span><span class="n">cevap</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">break</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">cevap</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Bir sayı girin (Çıkmak için 0 girin): &quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Girdiğiniz sayı: &quot;</span> <span class="o">+</span> <span class="n">cevap</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">if</span> <span class="nb">int</span> <span class="p">(</span><span class="n">cevap</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-
-<span class="nn">File d:\007Github\pythonVB\.venv\Lib\site-packages\ipykernel\kernelbase.py:1201,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1199</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1200</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1201</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1202</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1203</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1204</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
-<span class="g g-Whitespace">   </span><span class="mi">1205</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1206</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1207</span> <span class="p">)</span>
-
-<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="for-dongusu">
@@ -1167,7 +1147,7 @@ Ayten 74
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For döngüsü: 215.26265144348145 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For döngüsü: 210.4179859161377 ms
 </pre></div>
 </div>
 </div>
@@ -1183,7 +1163,7 @@ Ayten 74
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vektörel çözüm: 0.9846687316894531 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vektörel çözüm: 0.0 ms
 </pre></div>
 </div>
 </div>
@@ -1682,7 +1662,7 @@ Japonya Tokyo
 <ol class="arabic simple" start="4">
 <li><p>Aşağıdaki ders ve öğretmen isimlerinden oluşan dersler ve ogretmenler listelerini <code class="docutils literal notranslate"><span class="pre">zip()</span></code> fonksiyonunu kullanarak bir tuple veri nesnesine dönüştürün. Oluşturduğunuz tuple nesnesinin adı ders_ogretmen olsun. Şimdi de bu tuple nesnesindeki her ders ve öğretmen çiftini sıra numarası ile birlikte yazdıracak bir for döngüsü yazın. Kolaylık olması için ilgili komutların bir bölümü sizin için oluşturulmuş ve doldurmanız gereken yerler boş bırakılmıştır.</p></li>
 </ol>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dersler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Matematik&#39;</span><span class="p">,</span> <span class="s1">&#39;Fizik&#39;</span><span class="p">,</span> <span class="s1">&#39;Kimya&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dersler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Matematik&#39;</span><span class="p">,</span> <span class="s1">&#39;Fizik&#39;</span><span class="p">,</span> <span class="s1">&#39;Kimya&#39;</span><span class="p">]</span>
 <span class="n">ogretmenler</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cahit Arf&#39;</span><span class="p">,</span> <span class="s1">&#39;Mete Atatüre&#39;</span><span class="p">,</span> <span class="s1">&#39;Aziz Sancar&#39;</span><span class="p">]</span>
 
 <span class="n">ders_ogretmen</span> <span class="o">=</span> <span class="n">___</span><span class="p">(</span><span class="n">_____</span><span class="p">,</span> <span class="n">_____</span><span class="p">)</span>
@@ -1754,7 +1734,7 @@ Japonya Tokyo
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Fonksiyon</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Fonksiyonlar</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
