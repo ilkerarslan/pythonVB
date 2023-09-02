@@ -55,6 +55,13 @@
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QGYXFD8Q7K"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QGYXFD8Q7K');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -365,6 +372,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-serileri">11.1. Pandas Serileri</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-frame">11.2. Pandas Data Frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frame-de-secim-yapma">11.3. Data Frame’de Seçim Yapma</a></li>
 </ul>
             </nav>
         </div>
@@ -598,6 +606,1120 @@ dtype: int64
 </div>
 </div>
 <p>Yukarıda aktardığımız, sözlükten data frame üretme yöntemi günlük hayatta kullanılabilecek bir yöntem değildir. Gerçekte çok büyük verilerle çalıştığımızı düşünürsek tek tek bütün verilerin sözlük olarak girilmesi mümkün değildir.</p>
+<p>Günlük hayatta kullandığımız veriler genelce excel, csv gibi formatlarda gelir. Pandas ile farklı formatlardan veri okuma konusunu sonraki bölümlerde ayrıntılı olarak göreceğiz. Şimdilik bir şekilde iris veri setini datframe olarak okuduğumuzu düşünelim. Aşağıda bunu yapıyoruz. Şimdilik aşağıda yer alan kodu görmezden gelin ve sadece <code class="docutils literal notranslate"><span class="pre">iris</span></code> veri setini dataframe olarak okuduğumuzu düşünelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data frame hangi sütunlardan oluşuyor? Bunu görmek için <code class="docutils literal notranslate"><span class="pre">.columns</span></code> özelliğini kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;sepal_length&#39;, &#39;sepal_width&#39;, &#39;petal_length&#39;, &#39;petal_width&#39;,
+       &#39;species&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aynı şekilde bir data frame’in sütun isimlerini değiştirmek de mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SepalLength&quot;</span><span class="p">,</span> <span class="s2">&quot;SepalWidth&quot;</span><span class="p">,</span> <span class="s2">&quot;PetalLength&quot;</span><span class="p">,</span> <span class="s2">&quot;PetalWidth&quot;</span><span class="p">,</span> <span class="s2">&quot;Species&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     SepalLength  SepalWidth  PetalLength  PetalWidth    Species
+0            5.1         3.5          1.4         0.2     setosa
+1            4.9         3.0          1.4         0.2     setosa
+2            4.7         3.2          1.3         0.2     setosa
+3            4.6         3.1          1.5         0.2     setosa
+4            5.0         3.6          1.4         0.2     setosa
+..           ...         ...          ...         ...        ...
+145          6.7         3.0          5.2         2.3  virginica
+146          6.3         2.5          5.0         1.9  virginica
+147          6.5         3.0          5.2         2.0  virginica
+148          6.2         3.4          5.4         2.3  virginica
+149          5.9         3.0          5.1         1.8  virginica
+
+[150 rows x 5 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Iris data frameinin genel yapısını incelemek için <code class="docutils literal notranslate"><span class="pre">.head()</span></code> metodunu kullanabiliriz. Bu metod da argüman olarak görmek istediğimiz satır sayısını iletebiliriz. Herhangi bir değer beştir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SepalLength</th>
+      <th>SepalWidth</th>
+      <th>PetalLength</th>
+      <th>PetalWidth</th>
+      <th>Species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.4</td>
+      <td>3.9</td>
+      <td>1.7</td>
+      <td>0.4</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4.6</td>
+      <td>3.4</td>
+      <td>1.4</td>
+      <td>0.3</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>5.0</td>
+      <td>3.4</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.4</td>
+      <td>2.9</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4.9</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.1</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Benzer şekilde, son satırları görmek için de <code class="docutils literal notranslate"><span class="pre">.tail()</span></code> metodu kullanılır. Bu metoda da aynı biçimde sondan kaç satırı görmek istediğimiz yazılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SepalLength</th>
+      <th>SepalWidth</th>
+      <th>PetalLength</th>
+      <th>PetalWidth</th>
+      <th>Species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yukarıdaki komutu Jupyter Python defteri kullanarak yazdım ve yukarıda gördüğünüz tablo formatlarını da yine aynı programdan aldım. PyCharm gibi entegre kodlama programlarında sadece yazdırmak istediğiniz veri yapısının adını girmeniz (örneğin iris) herhangi bir sonuç vermeyecektir. Bir veri yapısının tamamını ya da bir kısmını yazdırmak için print() fonksiyonunu kullanmanız gerekir. Diğer yandan Jupyter gibi daha çok veri analizi için geliştirilmiş ortamlarda doğrudan verinin adını yazmanız yetecektir. Jupyter’de print fonksiyonu kullanırsanız da sonuç alırsınız ancak format biraz daha farklı olur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     SepalLength  SepalWidth  PetalLength  PetalWidth    Species
+146          6.3         2.5          5.0         1.9  virginica
+147          6.5         3.0          5.2         2.0  virginica
+148          6.2         3.4          5.4         2.3  virginica
+149          5.9         3.0          5.1         1.8  virginica
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data frame boyutlarına yani kaç satır ve kaç sütundan oluştuğuna bakalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data frame bilgilerini alabileceğimiz bir diğer metod da <code class="docutils literal notranslate"><span class="pre">.info()</span></code> metodudur ancak bu metod istatistiksel özellikler yerine sütunların veri tipi, veri çerçevesindeki satır sayısı, her bir sütundaki veri sayısı gibi değerleri verir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 5 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   SepalLength  150 non-null    float64
+ 1   SepalWidth   150 non-null    float64
+ 2   PetalLength  150 non-null    float64
+ 3   PetalWidth   150 non-null    float64
+ 4   Species      150 non-null    object 
+dtypes: float64(4), object(1)
+memory usage: 6.0+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir data frame’i olduğu gibi başka bir data frame’e aktarmak için <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> metodunu kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_yeni</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas paketinin, Numpy paketi üzerinde geliştirildiğini daha önce belirtmiştik. İstenirse bir pandas veri çerçevesini <code class="docutils literal notranslate"><span class="pre">.values</span></code> özelliğini kullanarak numpy dizisine çevirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_dizi</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np_dizi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5.1 3.5 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.0 1.4 0.2 &#39;setosa&#39;]
+ [4.7 3.2 1.3 0.2 &#39;setosa&#39;]
+ [4.6 3.1 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.6 1.4 0.2 &#39;setosa&#39;]
+ [5.4 3.9 1.7 0.4 &#39;setosa&#39;]
+ [4.6 3.4 1.4 0.3 &#39;setosa&#39;]
+ [5.0 3.4 1.5 0.2 &#39;setosa&#39;]
+ [4.4 2.9 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.1 1.5 0.1 &#39;setosa&#39;]
+ [5.4 3.7 1.5 0.2 &#39;setosa&#39;]
+ [4.8 3.4 1.6 0.2 &#39;setosa&#39;]
+ [4.8 3.0 1.4 0.1 &#39;setosa&#39;]
+ [4.3 3.0 1.1 0.1 &#39;setosa&#39;]
+ [5.8 4.0 1.2 0.2 &#39;setosa&#39;]
+ [5.7 4.4 1.5 0.4 &#39;setosa&#39;]
+ [5.4 3.9 1.3 0.4 &#39;setosa&#39;]
+ [5.1 3.5 1.4 0.3 &#39;setosa&#39;]
+ [5.7 3.8 1.7 0.3 &#39;setosa&#39;]
+ [5.1 3.8 1.5 0.3 &#39;setosa&#39;]
+ [5.4 3.4 1.7 0.2 &#39;setosa&#39;]
+ [5.1 3.7 1.5 0.4 &#39;setosa&#39;]
+ [4.6 3.6 1.0 0.2 &#39;setosa&#39;]
+ [5.1 3.3 1.7 0.5 &#39;setosa&#39;]
+ [4.8 3.4 1.9 0.2 &#39;setosa&#39;]
+ [5.0 3.0 1.6 0.2 &#39;setosa&#39;]
+ [5.0 3.4 1.6 0.4 &#39;setosa&#39;]
+ [5.2 3.5 1.5 0.2 &#39;setosa&#39;]
+ [5.2 3.4 1.4 0.2 &#39;setosa&#39;]
+ [4.7 3.2 1.6 0.2 &#39;setosa&#39;]
+ [4.8 3.1 1.6 0.2 &#39;setosa&#39;]
+ [5.4 3.4 1.5 0.4 &#39;setosa&#39;]
+ [5.2 4.1 1.5 0.1 &#39;setosa&#39;]
+ [5.5 4.2 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.1 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.2 1.2 0.2 &#39;setosa&#39;]
+ [5.5 3.5 1.3 0.2 &#39;setosa&#39;]
+ [4.9 3.6 1.4 0.1 &#39;setosa&#39;]
+ [4.4 3.0 1.3 0.2 &#39;setosa&#39;]
+ [5.1 3.4 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.5 1.3 0.3 &#39;setosa&#39;]
+ [4.5 2.3 1.3 0.3 &#39;setosa&#39;]
+ [4.4 3.2 1.3 0.2 &#39;setosa&#39;]
+ [5.0 3.5 1.6 0.6 &#39;setosa&#39;]
+ [5.1 3.8 1.9 0.4 &#39;setosa&#39;]
+ [4.8 3.0 1.4 0.3 &#39;setosa&#39;]
+ [5.1 3.8 1.6 0.2 &#39;setosa&#39;]
+ [4.6 3.2 1.4 0.2 &#39;setosa&#39;]
+ [5.3 3.7 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.3 1.4 0.2 &#39;setosa&#39;]
+ [7.0 3.2 4.7 1.4 &#39;versicolor&#39;]
+ [6.4 3.2 4.5 1.5 &#39;versicolor&#39;]
+ [6.9 3.1 4.9 1.5 &#39;versicolor&#39;]
+ [5.5 2.3 4.0 1.3 &#39;versicolor&#39;]
+ [6.5 2.8 4.6 1.5 &#39;versicolor&#39;]
+ [5.7 2.8 4.5 1.3 &#39;versicolor&#39;]
+ [6.3 3.3 4.7 1.6 &#39;versicolor&#39;]
+ [4.9 2.4 3.3 1.0 &#39;versicolor&#39;]
+ [6.6 2.9 4.6 1.3 &#39;versicolor&#39;]
+ [5.2 2.7 3.9 1.4 &#39;versicolor&#39;]
+ [5.0 2.0 3.5 1.0 &#39;versicolor&#39;]
+ [5.9 3.0 4.2 1.5 &#39;versicolor&#39;]
+ [6.0 2.2 4.0 1.0 &#39;versicolor&#39;]
+ [6.1 2.9 4.7 1.4 &#39;versicolor&#39;]
+ [5.6 2.9 3.6 1.3 &#39;versicolor&#39;]
+ [6.7 3.1 4.4 1.4 &#39;versicolor&#39;]
+ [5.6 3.0 4.5 1.5 &#39;versicolor&#39;]
+ [5.8 2.7 4.1 1.0 &#39;versicolor&#39;]
+ [6.2 2.2 4.5 1.5 &#39;versicolor&#39;]
+ [5.6 2.5 3.9 1.1 &#39;versicolor&#39;]
+ [5.9 3.2 4.8 1.8 &#39;versicolor&#39;]
+ [6.1 2.8 4.0 1.3 &#39;versicolor&#39;]
+ [6.3 2.5 4.9 1.5 &#39;versicolor&#39;]
+ [6.1 2.8 4.7 1.2 &#39;versicolor&#39;]
+ [6.4 2.9 4.3 1.3 &#39;versicolor&#39;]
+ [6.6 3.0 4.4 1.4 &#39;versicolor&#39;]
+ [6.8 2.8 4.8 1.4 &#39;versicolor&#39;]
+ [6.7 3.0 5.0 1.7 &#39;versicolor&#39;]
+ [6.0 2.9 4.5 1.5 &#39;versicolor&#39;]
+ [5.7 2.6 3.5 1.0 &#39;versicolor&#39;]
+ [5.5 2.4 3.8 1.1 &#39;versicolor&#39;]
+ [5.5 2.4 3.7 1.0 &#39;versicolor&#39;]
+ [5.8 2.7 3.9 1.2 &#39;versicolor&#39;]
+ [6.0 2.7 5.1 1.6 &#39;versicolor&#39;]
+ [5.4 3.0 4.5 1.5 &#39;versicolor&#39;]
+ [6.0 3.4 4.5 1.6 &#39;versicolor&#39;]
+ [6.7 3.1 4.7 1.5 &#39;versicolor&#39;]
+ [6.3 2.3 4.4 1.3 &#39;versicolor&#39;]
+ [5.6 3.0 4.1 1.3 &#39;versicolor&#39;]
+ [5.5 2.5 4.0 1.3 &#39;versicolor&#39;]
+ [5.5 2.6 4.4 1.2 &#39;versicolor&#39;]
+ [6.1 3.0 4.6 1.4 &#39;versicolor&#39;]
+ [5.8 2.6 4.0 1.2 &#39;versicolor&#39;]
+ [5.0 2.3 3.3 1.0 &#39;versicolor&#39;]
+ [5.6 2.7 4.2 1.3 &#39;versicolor&#39;]
+ [5.7 3.0 4.2 1.2 &#39;versicolor&#39;]
+ [5.7 2.9 4.2 1.3 &#39;versicolor&#39;]
+ [6.2 2.9 4.3 1.3 &#39;versicolor&#39;]
+ [5.1 2.5 3.0 1.1 &#39;versicolor&#39;]
+ [5.7 2.8 4.1 1.3 &#39;versicolor&#39;]
+ [6.3 3.3 6.0 2.5 &#39;virginica&#39;]
+ [5.8 2.7 5.1 1.9 &#39;virginica&#39;]
+ [7.1 3.0 5.9 2.1 &#39;virginica&#39;]
+ [6.3 2.9 5.6 1.8 &#39;virginica&#39;]
+ [6.5 3.0 5.8 2.2 &#39;virginica&#39;]
+ [7.6 3.0 6.6 2.1 &#39;virginica&#39;]
+ [4.9 2.5 4.5 1.7 &#39;virginica&#39;]
+ [7.3 2.9 6.3 1.8 &#39;virginica&#39;]
+ [6.7 2.5 5.8 1.8 &#39;virginica&#39;]
+ [7.2 3.6 6.1 2.5 &#39;virginica&#39;]
+ [6.5 3.2 5.1 2.0 &#39;virginica&#39;]
+ [6.4 2.7 5.3 1.9 &#39;virginica&#39;]
+ [6.8 3.0 5.5 2.1 &#39;virginica&#39;]
+ [5.7 2.5 5.0 2.0 &#39;virginica&#39;]
+ [5.8 2.8 5.1 2.4 &#39;virginica&#39;]
+ [6.4 3.2 5.3 2.3 &#39;virginica&#39;]
+ [6.5 3.0 5.5 1.8 &#39;virginica&#39;]
+ [7.7 3.8 6.7 2.2 &#39;virginica&#39;]
+ [7.7 2.6 6.9 2.3 &#39;virginica&#39;]
+ [6.0 2.2 5.0 1.5 &#39;virginica&#39;]
+ [6.9 3.2 5.7 2.3 &#39;virginica&#39;]
+ [5.6 2.8 4.9 2.0 &#39;virginica&#39;]
+ [7.7 2.8 6.7 2.0 &#39;virginica&#39;]
+ [6.3 2.7 4.9 1.8 &#39;virginica&#39;]
+ [6.7 3.3 5.7 2.1 &#39;virginica&#39;]
+ [7.2 3.2 6.0 1.8 &#39;virginica&#39;]
+ [6.2 2.8 4.8 1.8 &#39;virginica&#39;]
+ [6.1 3.0 4.9 1.8 &#39;virginica&#39;]
+ [6.4 2.8 5.6 2.1 &#39;virginica&#39;]
+ [7.2 3.0 5.8 1.6 &#39;virginica&#39;]
+ [7.4 2.8 6.1 1.9 &#39;virginica&#39;]
+ [7.9 3.8 6.4 2.0 &#39;virginica&#39;]
+ [6.4 2.8 5.6 2.2 &#39;virginica&#39;]
+ [6.3 2.8 5.1 1.5 &#39;virginica&#39;]
+ [6.1 2.6 5.6 1.4 &#39;virginica&#39;]
+ [7.7 3.0 6.1 2.3 &#39;virginica&#39;]
+ [6.3 3.4 5.6 2.4 &#39;virginica&#39;]
+ [6.4 3.1 5.5 1.8 &#39;virginica&#39;]
+ [6.0 3.0 4.8 1.8 &#39;virginica&#39;]
+ [6.9 3.1 5.4 2.1 &#39;virginica&#39;]
+ [6.7 3.1 5.6 2.4 &#39;virginica&#39;]
+ [6.9 3.1 5.1 2.3 &#39;virginica&#39;]
+ [5.8 2.7 5.1 1.9 &#39;virginica&#39;]
+ [6.8 3.2 5.9 2.3 &#39;virginica&#39;]
+ [6.7 3.3 5.7 2.5 &#39;virginica&#39;]
+ [6.7 3.0 5.2 2.3 &#39;virginica&#39;]
+ [6.3 2.5 5.0 1.9 &#39;virginica&#39;]
+ [6.5 3.0 5.2 2.0 &#39;virginica&#39;]
+ [6.2 3.4 5.4 2.3 &#39;virginica&#39;]
+ [5.9 3.0 5.1 1.8 &#39;virginica&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy için geçerli olan metodları pandas data frame’ler için de uygulayabiliriz. Örneğin sayısal değerlerden oluşan bir veri çerçevesindeki değerlerin doğal logaritmasını bulmak için numpy paketindeki <code class="docutils literal notranslate"><span class="pre">.log()</span></code> metodunu uygulayabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Önce iris&#39;in sayısal sütunlarını seçelim</span>
+<span class="n">dizi</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="n">dizi_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dizi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dizi_log</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   SepalLength  SepalWidth  PetalLength  PetalWidth
+0     1.629241    1.252763     0.336472   -1.609438
+1     1.589235    1.098612     0.336472   -1.609438
+2     1.547563    1.163151     0.262364   -1.609438
+3     1.526056    1.131402     0.405465   -1.609438
+4     1.609438    1.280934     0.336472   -1.609438
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdiye kadar gördüğümüz pandas serileri ve data frameler esasen bir ve iki boyutlu veri yapılarıdır. Ancak, pandas üç ve daha fazla boyutlu veri yapılarına da izin vermektedir. Bunu, pandas verilerinde çoklu indeks ekleyerek yapıyoruz. Önce bir pandas serisine çoklu indeks eklemeyi görelim. Aşağıdaki örnekte farklı hisse senetlerinin 2016 ve 2017 yılı kapanış fiyatlarını görüyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indeks</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="mi">2016</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">),</span>
+          <span class="p">(</span><span class="s1">&#39;DEF&#39;</span><span class="p">,</span> <span class="mi">2016</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;DEF&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">),</span>
+          <span class="p">(</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span> <span class="mi">2016</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">),</span>
+          <span class="p">(</span><span class="s1">&#39;KLM&#39;</span><span class="p">,</span> <span class="mi">2016</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;KLM&#39;</span><span class="p">,</span> <span class="mi">2017</span><span class="p">)]</span>
+<span class="n">fiyatlar</span> <span class="o">=</span> <span class="p">[</span><span class="mf">32.5</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mf">24.7</span><span class="p">,</span> <span class="mf">18.6</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">,</span> <span class="mf">51.9</span><span class="p">,</span> <span class="mf">56.2</span><span class="p">]</span>
+
+<span class="n">hisseler</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">fiyatlar</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indeks</span><span class="p">)</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(ABC, 2016)    32.5
+(ABC, 2017)    12.3
+(DEF, 2016)    24.7
+(DEF, 2017)    18.6
+(XYZ, 2016)    20.3
+(XYZ, 2017)     7.2
+(KLM, 2016)    51.9
+(KLM, 2017)    56.2
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verileri bu şekilde indeksleyerek seride seçim de yapabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[(</span><span class="s1">&#39;XYZ&#39;</span><span class="p">,</span><span class="mi">2016</span><span class="p">):(</span><span class="s1">&#39;KLM&#39;</span><span class="p">,</span><span class="mi">2017</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(XYZ, 2016)    20.3
+(XYZ, 2017)     7.2
+(KLM, 2016)    51.9
+(KLM, 2017)    56.2
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki gibi çoklu indeks kullanmanın daha etkin bir yöntemi ise pandas <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> kullanmaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indeks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">indeks</span><span class="p">)</span>
+<span class="n">indeks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(&#39;ABC&#39;, 2016),
+            (&#39;ABC&#39;, 2017),
+            (&#39;DEF&#39;, 2016),
+            (&#39;DEF&#39;, 2017),
+            (&#39;XYZ&#39;, 2016),
+            (&#39;XYZ&#39;, 2017),
+            (&#39;KLM&#39;, 2016),
+            (&#39;KLM&#39;, 2017)],
+           )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">fiyatlar</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indeks</span><span class="p">)</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ABC  2016    32.5
+     2017    12.3
+DEF  2016    24.7
+     2017    18.6
+XYZ  2016    20.3
+     2017     7.2
+KLM  2016    51.9
+     2017    56.2
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>İndeksleri isimlendirmek de mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hisse&#39;</span><span class="p">,</span> <span class="s1">&#39;Yıl&#39;</span><span class="p">]</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hisse  Yıl 
+ABC    2016    32.5
+       2017    12.3
+DEF    2016    24.7
+       2017    18.6
+XYZ    2016    20.3
+       2017     7.2
+KLM    2016    51.9
+       2017    56.2
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki hisseler verisi bir boyutlu pandas verisi ancak ilk iki sütunda belirtilen iki indeksle gösteriliyor. Bu seriyi pandas modülündeki <code class="docutils literal notranslate"><span class="pre">.unstack()</span></code> metodunu kullanarak data frame’e çevirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Yıl</th>
+      <th>2016</th>
+      <th>2017</th>
+    </tr>
+    <tr>
+      <th>Hisse</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ABC</th>
+      <td>32.5</td>
+      <td>12.3</td>
+    </tr>
+    <tr>
+      <th>DEF</th>
+      <td>24.7</td>
+      <td>18.6</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>51.9</td>
+      <td>56.2</td>
+    </tr>
+    <tr>
+      <th>XYZ</th>
+      <td>20.3</td>
+      <td>7.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Data frame de <code class="docutils literal notranslate"><span class="pre">.stack()</span></code> metodu ile eski haline çevrilebilir. MultiIndex ile çoklu indeks oluşturmanın üç farklı yöntemi vardır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(&#39;x&#39;, 1),
+            (&#39;x&#39;, 2),
+            (&#39;y&#39;, 1),
+            (&#39;y&#39;, 2)],
+           )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(&#39;x&#39;, 1),
+            (&#39;x&#39;, 2),
+            (&#39;y&#39;, 1),
+            (&#39;y&#39;, 2)],
+           )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(&#39;x&#39;, 1),
+            (&#39;x&#39;, 2),
+            (&#39;y&#39;, 1),
+            (&#39;y&#39;, 2)],
+           )
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nasıl ki satırlar için çoklu indeks oluşturabiliyorsak sütunlar için de aynı şekilde çoklu indeks oluşturabiliriz. Çoklu indeks kullanımı özellikle panel verilerle yapılan çalışmalarda oldukça faydalıdır. Şimdi yukarıdaki hisse senedi tablosuna sütunlarına her çeyrek için kapanış fiyatı ve hacim bilgisini ekleyelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indeks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([[</span><span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="s1">&#39;DEF&#39;</span><span class="p">,</span> <span class="s1">&#39;KLM&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">2017</span><span class="p">]])</span>
+<span class="n">sutunlar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([[</span><span class="s1">&#39;Q1&#39;</span><span class="p">,</span> <span class="s1">&#39;Q2&#39;</span><span class="p">,</span> <span class="s1">&#39;Q3&#39;</span><span class="p">,</span> <span class="s1">&#39;Q4&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Hacim&#39;</span><span class="p">,</span> <span class="s1">&#39;Kapanış&#39;</span><span class="p">]])</span>
+
+<span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10762</span><span class="p">,</span> <span class="mf">32.5</span><span class="p">,</span> <span class="mi">12638</span><span class="p">,</span> <span class="mf">33.5</span><span class="p">,</span> <span class="mi">13689</span><span class="p">,</span> <span class="mf">35.2</span><span class="p">,</span> <span class="mi">18414</span><span class="p">,</span> <span class="mf">37.4</span><span class="p">,</span>
+                 <span class="mi">10688</span><span class="p">,</span> <span class="mf">12.3</span><span class="p">,</span> <span class="mi">14348</span><span class="p">,</span> <span class="mf">13.2</span><span class="p">,</span> <span class="mi">15924</span><span class="p">,</span> <span class="mf">15.3</span><span class="p">,</span> <span class="mi">15243</span><span class="p">,</span> <span class="mf">17.9</span><span class="p">,</span>
+                 <span class="mi">14841</span><span class="p">,</span> <span class="mf">24.7</span><span class="p">,</span> <span class="mi">14966</span><span class="p">,</span> <span class="mf">22.1</span><span class="p">,</span> <span class="mi">13098</span><span class="p">,</span> <span class="mf">19.3</span><span class="p">,</span> <span class="mi">17439</span><span class="p">,</span> <span class="mf">15.4</span><span class="p">,</span>
+                 <span class="mi">15607</span><span class="p">,</span> <span class="mf">18.6</span><span class="p">,</span> <span class="mi">16166</span><span class="p">,</span> <span class="mf">13.4</span><span class="p">,</span> <span class="mi">10627</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span> <span class="mi">13396</span><span class="p">,</span> <span class="mf">15.3</span><span class="p">,</span>
+                 <span class="mi">12565</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mi">17469</span><span class="p">,</span> <span class="mf">21.4</span><span class="p">,</span> <span class="mi">18964</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">,</span> <span class="mi">15187</span><span class="p">,</span> <span class="mf">23.6</span><span class="p">,</span>
+                 <span class="mi">13203</span><span class="p">,</span>  <span class="mf">7.2</span><span class="p">,</span> <span class="mi">10629</span><span class="p">,</span>  <span class="mf">7.2</span><span class="p">,</span> <span class="mi">15239</span><span class="p">,</span>  <span class="mf">8.2</span><span class="p">,</span> <span class="mi">18307</span><span class="p">,</span>  <span class="mf">9.1</span><span class="p">])</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">veri</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">hisseler</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">veri</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">indeks</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">sutunlar</span><span class="p">)</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">Q1</th>
+      <th colspan="2" halign="left">Q2</th>
+      <th colspan="2" halign="left">Q3</th>
+      <th colspan="2" halign="left">Q4</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Hacim</th>
+      <th>Kapanış</th>
+      <th>Hacim</th>
+      <th>Kapanış</th>
+      <th>Hacim</th>
+      <th>Kapanış</th>
+      <th>Hacim</th>
+      <th>Kapanış</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">ABC</th>
+      <th>2016</th>
+      <td>10762.0</td>
+      <td>32.5</td>
+      <td>12638.0</td>
+      <td>33.5</td>
+      <td>13689.0</td>
+      <td>35.2</td>
+      <td>18414.0</td>
+      <td>37.4</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>10688.0</td>
+      <td>12.3</td>
+      <td>14348.0</td>
+      <td>13.2</td>
+      <td>15924.0</td>
+      <td>15.3</td>
+      <td>15243.0</td>
+      <td>17.9</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">DEF</th>
+      <th>2016</th>
+      <td>14841.0</td>
+      <td>24.7</td>
+      <td>14966.0</td>
+      <td>22.1</td>
+      <td>13098.0</td>
+      <td>19.3</td>
+      <td>17439.0</td>
+      <td>15.4</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>15607.0</td>
+      <td>18.6</td>
+      <td>16166.0</td>
+      <td>13.4</td>
+      <td>10627.0</td>
+      <td>15.1</td>
+      <td>13396.0</td>
+      <td>15.3</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">KLM</th>
+      <th>2016</th>
+      <td>12565.0</td>
+      <td>20.3</td>
+      <td>17469.0</td>
+      <td>21.4</td>
+      <td>18964.0</td>
+      <td>22.5</td>
+      <td>15187.0</td>
+      <td>23.6</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>13203.0</td>
+      <td>7.2</td>
+      <td>10629.0</td>
+      <td>7.2</td>
+      <td>15239.0</td>
+      <td>8.2</td>
+      <td>18307.0</td>
+      <td>9.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="data-frame-de-secim-yapma">
+<h2><span class="section-number">11.3. </span>Data Frame’de Seçim Yapma<a class="headerlink" href="#data-frame-de-secim-yapma" title="Permalink to this heading">#</a></h2>
+<p>Bir data framedeki herhangi bir sütunu seçmek ya da görmek için df[“sütun_ismi”] formatı kullanılır. Önce data frame ismi ve yanında köşeli parantez içinde, tırnak ya da kesme işareti içinde görülmek istenen sütun ismi yazılır. Yukarıdaki iris veri setinde <code class="docutils literal notranslate"><span class="pre">PetalLength</span></code> sütununu görmek için <code class="docutils literal notranslate"><span class="pre">iris[&quot;PetalLength&quot;]</span></code> yazarız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;SepalLength&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      5.1
+1      4.9
+2      4.7
+3      4.6
+4      5.0
+      ... 
+145    6.7
+146    6.3
+147    6.5
+148    6.2
+149    5.9
+Name: SepalLength, Length: 150, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veri setinin yanında tek köşeli parantez kullanırsak sütundaki veriyi bir boyutlu olarak indirir. Bunu bir liste olarak da düşünebilirsiniz. Nitekim, bu şekilde çektiğimiz verinin türünü incelediğimizde bir boyutlu Series veri tipi olduğunu görürüz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;SepalLength&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıda da görüldüğü gibi veri çerçevesinden çektiğimiz sütunun türü <code class="docutils literal notranslate"><span class="pre">.Series</span></code> yani bir boyutlu bir dizidir. Eğer istediğimiz sütunun da veri çerçevesi gibi davranmasını istiyorsak sütun ismini iki köşeli parantez içine yazmamız gerekir. Sorgulamayı <code class="docutils literal notranslate"><span class="pre">iris[[&quot;SepalLength&quot;]]</span></code> şeklinde iki köşeli parantez içinde yaparsak aşağıdaki şekilde bir pandas data frame ile karşılaşırız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[[</span><span class="s2">&quot;SepalLength&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SepalLength</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 1 columns</p>
+</div></div></div>
+</div>
+<p>Görüldüğü gibi data frame’den bir sütunu bir adet köşeli parantezle çekince bir boyutlu seri, iki adet köşeli parantezle çekince DataFrame veri yapısı ile karşılaşıyoruz.</p>
+<p>Peki birden fazla sütunu çekmek istersek ne yapmamız gerekiyor? Sorgulamayı, bir adet köşeli parantezle yaptığımızda bir boyutlu seri üretildiğini söyledik. Bu nedenle örneğin <code class="docutils literal notranslate"><span class="pre">iris[&quot;SepalLength&quot;,</span> <span class="pre">&quot;SepalWidth&quot;]</span></code> şeklinde yazarsak hata mesajı ile karşılaşırız. Bu nedenle birden fazla değişkeni seçmek için iki adet köşeli parantez kullanmalıyız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[[</span><span class="s2">&quot;SepalLength&quot;</span><span class="p">,</span> <span class="s2">&quot;SepalWidth&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SepalLength</th>
+      <th>SepalWidth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>Sütunları nasıl seçeceğimizi gördük. Şimdi de satırları nasıl seçeceğimizi görelim. Yine iris data frame ile devam edelim. Bir data frame’de belirli satırları seçmek için istediğimiz satır numaralarını arada iki nokta olacak şekilde yazıyoruz. Burada iki noktayı tekrar hatırlatmakta fayda var. Python’da indeks numaraları sıfırdan başlıyor ve indeks sondaki sayıyı kapsamıyor. Yani [2:5] indeks numaralarını yazdığımda, 2 indeks numarası ile başlayan ve 4 indeks numarası ile biten satırlar seçilecek, 5 indeks numarasına sahip satır seçilmeyecektir. İndeks numaralarının sıfırdan başladığını düşünürsek yaptığımız seçim 3. sıradaki satırla başlayıp 5. sıradaki satırla sona erecektir. Sonuç olarak <code class="docutils literal notranslate"><span class="pre">iris[2:5]</span></code> yazdığımızda aşağıdaki şekilde çerçeve içinde belirtilmiş olan satırlar seçilecektir.</p>
+<p><img alt="iris data frame" src="_images/iris_df.png" /></p>
+<p>Hatırlayacağınız gibi iki boyutlu numpy dizilerinde hem satır hem de sütunlarda seçim yapmak mümkündü. Yani belirli sütunların belirli satırlarını seçebiliyorduk. Ancak, yukarıda gösterdiğimiz seçim yöntemi hem satır hem de sütunda seçim yapmaya izin vermemektedir. Pandas paketinde satır ve sütunlardan kolayca seçim yapabilmek için <code class="docutils literal notranslate"><span class="pre">.loc</span></code> ve <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> metodları geliştirilmiştir. Bunlardan, loc, location (konum), iloc ise integer location (sayısal konum) ifadelerini temsil etmektedir.</p>
+<p>Örnek olarak aşağıdaki şekilde görülen hisselerin bir günlük açılış, en düşük, en yüksek ve kapanış fiyatlarını gösteren veri çerçevesini dikkate alalım. Aşağıdaki veri çerçevesinde satırların numaralarla değil hisse isimleri ile belirtildiğini görüyoruz. Bir data frame’de satırları bu şekilde isimlendirmek de mümkündür. Satır isimlendirme için <code class="docutils literal notranslate"><span class="pre">.index()</span></code> metodu kullanılır. Aşağıdaki data framein isminin hisseler olduğunu varsayalım. Bu durumda, satırları isimlendirmek için <code class="docutils literal notranslate"><span class="pre">hisseler.index</span> <span class="pre">=</span> <span class="pre">[&quot;ABC&quot;,</span> <span class="pre">&quot;DEF&quot;,</span> <span class="pre">&quot;KLM&quot;,</span> <span class="pre">&quot;XYZ&quot;,</span> <span class="pre">&quot;IJK&quot;,</span> <span class="pre">&quot;VYZ&quot;,</span> <span class="pre">&quot;ERN&quot;,</span> <span class="pre">&quot;HEA&quot;]</span></code> yazmamız yeterlidir. Data framei bir csv dosyasından okutuyorsak ve satır isimleri de ilk sütunda ise bu durumda <code class="docutils literal notranslate"><span class="pre">.read_csv()</span></code> metodunda dosya yolu ve isminden sonra ikinci bir argüman olarak index_col = 0 yazmamız gerekiyor.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-right"><p>acilis</p></th>
+<th class="head text-right"><p>en_dusuk</p></th>
+<th class="head text-right"><p>en_yuksek</p></th>
+<th class="head text-right"><p>kapanis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>ABC</p></td>
+<td class="text-right"><p>3.25</p></td>
+<td class="text-right"><p>3.15</p></td>
+<td class="text-right"><p>3.50</p></td>
+<td class="text-right"><p>3.15</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DEF</p></td>
+<td class="text-right"><p>5.48</p></td>
+<td class="text-right"><p>5.00</p></td>
+<td class="text-right"><p>6.00</p></td>
+<td class="text-right"><p>6.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>KLM</p></td>
+<td class="text-right"><p>15.75</p></td>
+<td class="text-right"><p>15.25</p></td>
+<td class="text-right"><p>16.75</p></td>
+<td class="text-right"><p>16.50</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>XYZ</p></td>
+<td class="text-right"><p>80.20</p></td>
+<td class="text-right"><p>75.00</p></td>
+<td class="text-right"><p>85.25</p></td>
+<td class="text-right"><p>84.30</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>IJK</p></td>
+<td class="text-right"><p>17.50</p></td>
+<td class="text-right"><p>16.00</p></td>
+<td class="text-right"><p>19.00</p></td>
+<td class="text-right"><p>18.20</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>VYZ</p></td>
+<td class="text-right"><p>25.70</p></td>
+<td class="text-right"><p>24.10</p></td>
+<td class="text-right"><p>27.50</p></td>
+<td class="text-right"><p>26.80</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ERN</p></td>
+<td class="text-right"><p>95.00</p></td>
+<td class="text-right"><p>90.20</p></td>
+<td class="text-right"><p>99.50</p></td>
+<td class="text-right"><p>97.50</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>HEA</p></td>
+<td class="text-right"><p>55.00</p></td>
+<td class="text-right"><p>53.00</p></td>
+<td class="text-right"><p>57.40</p></td>
+<td class="text-right"><p>59.30</p></td>
+</tr>
+</tbody>
+</table>
+<p>Yukarıdaki data frame’in isminin hisseler olduğunu varsayalım. Şimdi önce ERN hissesine ait bilgileri görmek isteyelim. Satır isimleri ile seçim yapmak için .loc[] fonksiyonunu kullanıyoruz.</p>
 </section>
 </section>
 
@@ -670,6 +1792,7 @@ dtype: int64
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-serileri">11.1. Pandas Serileri</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-data-frame">11.2. Pandas Data Frame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-frame-de-secim-yapma">11.3. Data Frame’de Seçim Yapma</a></li>
 </ul>
   </nav></div>
 
