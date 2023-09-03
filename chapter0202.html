@@ -1719,7 +1719,704 @@ Name: SepalLength, Length: 150, dtype: float64
 </tr>
 </tbody>
 </table>
-<p>Yukarıdaki data frame’in isminin hisseler olduğunu varsayalım. Şimdi önce ERN hissesine ait bilgileri görmek isteyelim. Satır isimleri ile seçim yapmak için .loc[] fonksiyonunu kullanıyoruz.</p>
+<p>Yukarıdaki data frame’in isminin hisseler olduğunu varsayalım. Şimdi önce ERN hissesine ait bilgileri görmek isteyelim. Öncelikle dataframe’i oluşturacağız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;acilis&#39;</span>  <span class="p">:</span> <span class="p">[</span><span class="mf">3.25</span><span class="p">,</span> <span class="mf">5.48</span><span class="p">,</span> <span class="mf">15.75</span><span class="p">,</span> <span class="mf">80.20</span><span class="p">,</span> <span class="mf">17.50</span><span class="p">,</span> <span class="mf">25.70</span><span class="p">,</span> <span class="mf">95.00</span><span class="p">,</span> <span class="mf">55.00</span><span class="p">],</span>
+                <span class="s1">&#39;en_dusuk&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">3.15</span><span class="p">,</span> <span class="mf">5.00</span><span class="p">,</span> <span class="mf">15.25</span><span class="p">,</span> <span class="mf">75.00</span><span class="p">,</span> <span class="mf">16.00</span><span class="p">,</span> <span class="mf">24.10</span><span class="p">,</span> <span class="mf">90.20</span><span class="p">,</span> <span class="mf">53.00</span><span class="p">],</span>
+                <span class="s1">&#39;en_yuksek&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.50</span><span class="p">,</span> <span class="mf">6.00</span><span class="p">,</span> <span class="mf">16.75</span><span class="p">,</span> <span class="mf">85.25</span><span class="p">,</span> <span class="mf">19.00</span><span class="p">,</span> <span class="mf">27.50</span><span class="p">,</span> <span class="mf">99.50</span><span class="p">,</span> <span class="mf">57.40</span><span class="p">],</span>
+                <span class="s1">&#39;kapanis&#39;</span>  <span class="p">:</span> <span class="p">[</span><span class="mf">3.15</span><span class="p">,</span> <span class="mf">6.00</span><span class="p">,</span> <span class="mf">16.50</span><span class="p">,</span> <span class="mf">84.30</span><span class="p">,</span> <span class="mf">18.20</span><span class="p">,</span> <span class="mf">26.80</span><span class="p">,</span> <span class="mf">97.50</span><span class="p">,</span> <span class="mf">59.30</span><span class="p">]}</span>
+
+<span class="n">hisseler</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hisseler_dict</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="s2">&quot;DEF&quot;</span><span class="p">,</span> <span class="s2">&quot;KLM&quot;</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">,</span> <span class="s2">&quot;IJK&quot;</span><span class="p">,</span> <span class="s2">&quot;VYZ&quot;</span><span class="p">,</span> <span class="s2">&quot;ERN&quot;</span><span class="p">,</span> <span class="s2">&quot;HEA&quot;</span><span class="p">])</span>
+<span class="n">hisseler</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ABC</th>
+      <td>3.25</td>
+      <td>3.15</td>
+      <td>3.50</td>
+      <td>3.15</td>
+    </tr>
+    <tr>
+      <th>DEF</th>
+      <td>5.48</td>
+      <td>5.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>15.75</td>
+      <td>15.25</td>
+      <td>16.75</td>
+      <td>16.50</td>
+    </tr>
+    <tr>
+      <th>XYZ</th>
+      <td>80.20</td>
+      <td>75.00</td>
+      <td>85.25</td>
+      <td>84.30</td>
+    </tr>
+    <tr>
+      <th>IJK</th>
+      <td>17.50</td>
+      <td>16.00</td>
+      <td>19.00</td>
+      <td>18.20</td>
+    </tr>
+    <tr>
+      <th>VYZ</th>
+      <td>25.70</td>
+      <td>24.10</td>
+      <td>27.50</td>
+      <td>26.80</td>
+    </tr>
+    <tr>
+      <th>ERN</th>
+      <td>95.00</td>
+      <td>90.20</td>
+      <td>99.50</td>
+      <td>97.50</td>
+    </tr>
+    <tr>
+      <th>HEA</th>
+      <td>55.00</td>
+      <td>53.00</td>
+      <td>57.40</td>
+      <td>59.30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Satır isimleri ile seçim yapmak için .loc[] (location) metodunu kullanıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;ERN&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>acilis       95.0
+en_dusuk     90.2
+en_yuksek    99.5
+kapanis      97.5
+Name: ERN, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seçimi bir adet köşeli parantez kullanarak yaptığımız için sonuç seri formatında geldi. Yine data frame formatında gelmesini sağlamak için iki adet köşeli parantez kullanmamız gerektiğini hatırlayalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;ERN&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ERN</th>
+      <td>95.0</td>
+      <td>90.2</td>
+      <td>99.5</td>
+      <td>97.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Bu şekilde birden fazla satır seçmek de mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;ERN&quot;</span><span class="p">,</span> <span class="s2">&quot;HEA&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ERN</th>
+      <td>95.0</td>
+      <td>90.2</td>
+      <td>99.5</td>
+      <td>97.5</td>
+    </tr>
+    <tr>
+      <th>HEA</th>
+      <td>55.0</td>
+      <td>53.0</td>
+      <td>57.4</td>
+      <td>59.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Bir sütun ve satırdaki değeri almak için sütun ve satır isimlerini sırayla köşeli parantez içinde aşağıda görüldüğü gibi belirtmek de mümkündür. Önce sütun daha sonra satır ismi belirttiğimize dikkat edin.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;acilis&#39;</span><span class="p">][</span><span class="s1">&#39;ERN&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aynı seçimi aşağıdaki şekilde de yapabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">acilis</span><span class="p">[</span><span class="s1">&#39;ERN&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi de birden fazla satır ve sütun ismi kullanarak seçim yapmayı görelim. Bu tür seçimlerde .loc özelliğini kullanırız. Bunun için de istediğimiz satır ve sütunları virgülle ayrılmış iki ayrı liste olarak iletmemiz gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;ERN&quot;</span><span class="p">,</span> <span class="s2">&quot;HEA&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;en_dusuk&quot;</span><span class="p">,</span> <span class="s2">&quot;en_yuksek&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ERN</th>
+      <td>90.2</td>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>HEA</th>
+      <td>53.0</td>
+      <td>57.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yukarıdaki seçimi bir adet satır ve sütun için de yapabileceğimizi unutmayın.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ERN&#39;</span><span class="p">,</span> <span class="s1">&#39;acilis&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Belirli değişkenlere ait tüm satırları seçtirmek için satır ismi yazmayıp bunun yerine önceki bölümlerde gördüğümüz gibi <code class="docutils literal notranslate"><span class="pre">:</span></code> yazmamız yeterlidir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;en_dusuk&quot;</span><span class="p">,</span> <span class="s2">&quot;en_yuksek&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ABC</th>
+      <td>3.15</td>
+      <td>3.50</td>
+    </tr>
+    <tr>
+      <th>DEF</th>
+      <td>5.00</td>
+      <td>6.00</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>15.25</td>
+      <td>16.75</td>
+    </tr>
+    <tr>
+      <th>XYZ</th>
+      <td>75.00</td>
+      <td>85.25</td>
+    </tr>
+    <tr>
+      <th>IJK</th>
+      <td>16.00</td>
+      <td>19.00</td>
+    </tr>
+    <tr>
+      <th>VYZ</th>
+      <td>24.10</td>
+      <td>27.50</td>
+    </tr>
+    <tr>
+      <th>ERN</th>
+      <td>90.20</td>
+      <td>99.50</td>
+    </tr>
+    <tr>
+      <th>HEA</th>
+      <td>53.00</td>
+      <td>57.40</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yukarıda tüm satırlar için mutlaka : kullanmamız gerektiğine dikkat edin. Bunun yerine sadece <code class="docutils literal notranslate"><span class="pre">hisseler.loc[[&quot;en_dusuk&quot;,</span> <span class="pre">&quot;en_yuksek&quot;]]</span></code> yazarsanız hata mesajı ile karşılaşırsınız.</p>
+<p>Satır ve sütun isimleri yerine indeks numaraları ile seçim yapmak için iloc fonksiyonu kullanılır. Bu kullanım şeklinde tek fark satır ve sütunların isimleri yerine indeks numaralarını kullanmamızdır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>acilis       5.48
+en_dusuk     5.00
+en_yuksek    6.00
+kapanis      6.00
+Name: DEF, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DEF</th>
+      <td>5.48</td>
+      <td>5.0</td>
+      <td>6.0</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DEF</th>
+      <td>5.48</td>
+      <td>5.00</td>
+      <td>6.00</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>15.75</td>
+      <td>15.25</td>
+      <td>16.75</td>
+      <td>16.5</td>
+    </tr>
+    <tr>
+      <th>XYZ</th>
+      <td>80.20</td>
+      <td>75.00</td>
+      <td>85.25</td>
+      <td>84.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yine iki adet köşeli parantez kullandığımıza dikkat edin. Bir tane köşeli parantez kullanmamız halinde sonuç aşağıdaki gibi olacaktır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>acilis       5.48
+en_dusuk     5.00
+en_yuksek    6.00
+kapanis      6.00
+Name: DEF, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Artık, sonucu yine data frame olarak almak için çift köşeli parantez kullanmamız gerektiğini biliyoruz.</p>
+<p>Birden fazla satır ve sütunda seçim yapmak için yine loc fonksiyonunda olduğu şekilde ama bu defa satır ve sütun indeks numaralarını belirterek yazıyoruz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DEF</th>
+      <td>6.00</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>16.75</td>
+      <td>16.5</td>
+    </tr>
+    <tr>
+      <th>XYZ</th>
+      <td>85.25</td>
+      <td>84.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Sütun ismi ve index numaralarını bir arada kullanmak da mümkündür. Örneğin, ilk 4 sıradaki hissenin kapanış fiyatlarını görelim:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="p">[</span><span class="s1">&#39;kapanis&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ABC     3.15
+DEF     6.00
+KLM    16.50
+XYZ    84.30
+Name: kapanis, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Satır seçimine 0:4 yazdığımızda 0, 1, 2, ve 3. sıradaki yani ilk dört sıradaki verileri çektiğimize dikkat edin. “:” işaretini satır veya sütun isimleriyle de kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ABC&#39;</span><span class="p">:</span><span class="s1">&#39;KLM&#39;</span><span class="p">,</span> <span class="s1">&#39;en_dusuk&#39;</span><span class="p">:</span><span class="s1">&#39;kapanis&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ABC</th>
+      <td>3.15</td>
+      <td>3.50</td>
+      <td>3.15</td>
+    </tr>
+    <tr>
+      <th>DEF</th>
+      <td>5.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+    </tr>
+    <tr>
+      <th>KLM</th>
+      <td>15.25</td>
+      <td>16.75</td>
+      <td>16.50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Satır ya da sütunları ters sırada yazdırmak da mümkündür.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hisseler</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;KLM&#39;</span><span class="p">:</span><span class="s1">&#39;ABC&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acilis</th>
+      <th>en_dusuk</th>
+      <th>en_yuksek</th>
+      <th>kapanis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>KLM</th>
+      <td>15.75</td>
+      <td>15.25</td>
+      <td>16.75</td>
+      <td>16.50</td>
+    </tr>
+    <tr>
+      <th>DEF</th>
+      <td>5.48</td>
+      <td>5.00</td>
+      <td>6.00</td>
+      <td>6.00</td>
+    </tr>
+    <tr>
+      <th>ABC</th>
+      <td>3.25</td>
+      <td>3.15</td>
+      <td>3.50</td>
+      <td>3.15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Buraya kadar satır ve sütunlardan seçim yapmak için çok sayıda yöntem aktardık. Bunlar kullanımların özellikle ilk kullanımlarda karıştırılması normaldir. Kolay başvuru için yukarıda aktardığımız satır ve sütun seçim yöntemlerini aşağıdaki tabloda özetliyoruz.</p>
 </section>
 </section>
 
