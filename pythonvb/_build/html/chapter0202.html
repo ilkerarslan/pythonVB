@@ -2914,6 +2914,1455 @@ dtype: int64
 </div>
 </div>
 </div>
+<p>Aynı şekilde diğer değerleri hesaplamak için de aşağıda belirtilen metodlar kullanılır.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Hesaplama</p></th>
+<th class="head text-left"><p>Metod</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Ortalama</p></td>
+<td class="text-left"><p>.mean()</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Standart sapma</p></td>
+<td class="text-left"><p>.std()</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Medyan</p></td>
+<td class="text-left"><p>.median()</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Yüzdelik dilim</p></td>
+<td class="text-left"><p>.quantile(y)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sepal_length    0.828066
+sepal_width     0.435866
+petal_length    1.765298
+petal_width     0.762238
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gösterilen metodlar arasında <code class="docutils literal notranslate"><span class="pre">.quantile()</span></code> metodunu açıklamamız gerekiyor. Bu metodu kullanırken hangi yüzdelik dilimi istediğimizi, ondalık sayı şeklinde belirtmemiz gerekiyor. Örneğin, %25’lik dilimi hesaplamak için <code class="docutils literal notranslate"><span class="pre">.quantile(0.25)</span></code> yazmamız gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sepal_length    5.1
+sepal_width     2.8
+petal_length    1.6
+petal_width     0.3
+Name: 0.25, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.25</th>
+      <td>5.1</td>
+      <td>2.8</td>
+      <td>1.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>0.75</th>
+      <td>6.4</td>
+      <td>3.3</td>
+      <td>5.1</td>
+      <td>1.8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Herhangi bir sütuna ait bir değeri görmek için bu sütunu seçtirip istediğimiz metodu uygulayabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;petal_width&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdiye kadar gördüğümüz metodları, sütunların yanı sıra satırlara da uygulayabiliriz. Yani satır bazında minimum, maximum, ortalama vb. gibi değerleri hesaplatabiliriz. Bunun için uyguladığımız metod içinde <code class="docutils literal notranslate"><span class="pre">axis='columns'</span></code> argümanını belirtmemiz gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      2.550
+1      2.375
+2      2.350
+3      2.350
+4      2.550
+       ...  
+145    4.300
+146    3.925
+147    4.175
+148    4.325
+149    3.950
+Length: 150, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      2.179449
+1      2.036950
+2      1.997498
+3      1.912241
+4      2.156386
+         ...   
+145    2.021551
+146    2.075853
+147    2.046745
+148    1.791415
+149    1.884144
+Length: 150, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Iris veri setinin üç farklı türe ait gözlemlerden meydana geldiğini daha önce belirtmiştik. Şimdiye kadar verdiğimiz örneklerde her üç türe ait gözlemleri bir arada değerlendirdik ve tür farklılıklarını dikkate almadık. Peki ya her bir türe ait istatistiksel değerleri ayrı ayrı hesaplamak istersek ne yapacağız? Bunun için mantıksal seçim kurallarını uygulayabiliriz. Varsayalım ki versicolor türüne ait özet bilgileri görmek istiyorum. Öncelikle, versicolor türüne ait gözlemleri seçip sonra da yaptığım seçime istediğim metodu uygulayabilirim.</p>
+<p>Önce versicolor türüne ait gözlemlerin hangi satırlarda yer aldığını görelim. Aşağıda, <strong>kosul</strong> olarak belirttiğimiz değişken bize False veya True değerlerden oluşan bir seri verecek.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kosul</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;versicolor&#39;</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">kosul</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kosul</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      False
+1      False
+2      False
+3      False
+4      False
+       ...  
+145    False
+146    False
+147    False
+148    False
+149    False
+Name: species, Length: 150, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Şimdi, bu kosul değerini kullanarak iris veri çerçevesinde sadece <code class="docutils literal notranslate"><span class="pre">versicolor</span></code> türlerinin olduğu satırları seçtirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">versicolor</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">kosul</span><span class="p">,:]</span>
+<span class="n">versicolor</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>7.0</td>
+      <td>3.2</td>
+      <td>4.7</td>
+      <td>1.4</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>6.4</td>
+      <td>3.2</td>
+      <td>4.5</td>
+      <td>1.5</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>6.9</td>
+      <td>3.1</td>
+      <td>4.9</td>
+      <td>1.5</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>5.5</td>
+      <td>2.3</td>
+      <td>4.0</td>
+      <td>1.3</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>6.5</td>
+      <td>2.8</td>
+      <td>4.6</td>
+      <td>1.5</td>
+      <td>versicolor</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">versicolor</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>50.000000</td>
+      <td>50.000000</td>
+      <td>50.000000</td>
+      <td>50.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>5.936000</td>
+      <td>2.770000</td>
+      <td>4.260000</td>
+      <td>1.326000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.516171</td>
+      <td>0.313798</td>
+      <td>0.469911</td>
+      <td>0.197753</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.900000</td>
+      <td>2.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>5.600000</td>
+      <td>2.525000</td>
+      <td>4.000000</td>
+      <td>1.200000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.900000</td>
+      <td>2.800000</td>
+      <td>4.350000</td>
+      <td>1.300000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.300000</td>
+      <td>3.000000</td>
+      <td>4.600000</td>
+      <td>1.500000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.000000</td>
+      <td>3.400000</td>
+      <td>5.100000</td>
+      <td>1.800000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Anlaşılması kolay olsun diye ayrı bir kosul serisi tanımladık ama aslında istediğimiz işi iki satırı birleştirerek da yapabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;virginica&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>50.00000</td>
+      <td>50.000000</td>
+      <td>50.000000</td>
+      <td>50.00000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>6.58800</td>
+      <td>2.974000</td>
+      <td>5.552000</td>
+      <td>2.02600</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.63588</td>
+      <td>0.322497</td>
+      <td>0.551895</td>
+      <td>0.27465</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.90000</td>
+      <td>2.200000</td>
+      <td>4.500000</td>
+      <td>1.40000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>6.22500</td>
+      <td>2.800000</td>
+      <td>5.100000</td>
+      <td>1.80000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>6.50000</td>
+      <td>3.000000</td>
+      <td>5.550000</td>
+      <td>2.00000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>6.90000</td>
+      <td>3.175000</td>
+      <td>5.875000</td>
+      <td>2.30000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.90000</td>
+      <td>3.800000</td>
+      <td>6.900000</td>
+      <td>2.50000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Özellikle <code class="docutils literal notranslate"><span class="pre">iris[iris['species']=='virginica']</span></code> formatına dikkat etmenizi öneririm. Daha önce Python, R veya Matlab gibi bir dil kullanmadıysanız bu format size anlaşılması zor gibi gelebilir. Ancak, zamanla kullana kullana alışacağınızı söyleyebilirim. Burada, iris veri seti içinde (iris[ ]) species sütununun değeri ‘virginica’ olanları (<code class="docutils literal notranslate"><span class="pre">iris['species']</span> <span class="pre">==</span> <span class="pre">'virginica'</span></code>) seçiyoruz. Daha farklı bir anlatımla istediğimiz koşulu <code class="docutils literal notranslate"><span class="pre">iris[</span> <span class="pre">]</span></code> veri çerçevesinde köşeli parantezlerin içine yazıyoruz: <code class="docutils literal notranslate"><span class="pre">iris[koşul]</span></code>. Peki koşulumuz ne? Species sütununun değerinin ‘virginica’ olması, yani: <code class="docutils literal notranslate"><span class="pre">iris['spesies']</span> <span class="pre">==</span> <span class="pre">'virginica'</span></code>.</p>
+<p>Metin tipi sütunlarda koşullu seçim yapmanın bir diğer yolu da <code class="docutils literal notranslate"><span class="pre">.str</span></code> (string yani metin) metodunu uygulamaktır. Yukarıda uyguladığımız seçimi şimdi de bu metodla yapmaya çalışalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kosul</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;setosa&#39;</span><span class="p">)</span>
+<span class="n">setosa</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="n">kosul</span><span class="p">]</span>
+<span class="n">setosa</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yukarıdaki kodda özellikle üçüncü satırda yer alan <code class="docutils literal notranslate"><span class="pre">.str.contains()</span></code> yapısına dikkat edin. Burada önce <code class="docutils literal notranslate"><span class="pre">.str</span></code> metodunu, ardından da .contains (yani içerir) metodunu kullanıyoruz.</p>
+<p>Şimdi farklı bir örnek görelim: Sepal_Length değeri 7.5’ten büyük olan kayıtları seçelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">&gt;</span> <span class="mf">7.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>105</th>
+      <td>7.6</td>
+      <td>3.0</td>
+      <td>6.6</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>7.7</td>
+      <td>3.8</td>
+      <td>6.7</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>7.7</td>
+      <td>2.6</td>
+      <td>6.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>7.7</td>
+      <td>2.8</td>
+      <td>6.7</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
+      <td>6.4</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>7.7</td>
+      <td>3.0</td>
+      <td>6.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Birden fazla şartı bir arada kullanarak çoklu seçimler de yaptırabiliriz. Örneğin, Sepal_Length değeri 6.5’ten fazla, Petal_Length değeri 4.5’ten az olan satırları seçelim. Aşağıdaki ifadede koşulları parantez içinde belirtmezseniz hata mesajı alırsınız.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[(</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">&gt;</span> <span class="mf">6.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">petal_length</span> <span class="o">&lt;</span> <span class="mf">4.5</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>65</th>
+      <td>6.7</td>
+      <td>3.1</td>
+      <td>4.4</td>
+      <td>1.4</td>
+      <td>versicolor</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>6.6</td>
+      <td>3.0</td>
+      <td>4.4</td>
+      <td>1.4</td>
+      <td>versicolor</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Bir başka örnek:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="p">[(</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">&gt;</span> <span class="mf">7.5</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">petal_length</span> <span class="o">&gt;</span> <span class="mf">6.5</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>105</th>
+      <td>7.6</td>
+      <td>3.0</td>
+      <td>6.6</td>
+      <td>2.1</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>7.7</td>
+      <td>3.8</td>
+      <td>6.7</td>
+      <td>2.2</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>7.7</td>
+      <td>2.6</td>
+      <td>6.9</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>7.7</td>
+      <td>2.8</td>
+      <td>6.7</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>7.9</td>
+      <td>3.8</td>
+      <td>6.4</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>135</th>
+      <td>7.7</td>
+      <td>3.0</td>
+      <td>6.1</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Bir sütun verilerine koşul uygulayarak bir başka sütundan veri çekmek de mümkündür. Örneğin, sepal_length değeri 7.5’tan büyük olan satırların petal_length değerlerini görelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="o">.</span><span class="n">petal_length</span><span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">sepal_length</span> <span class="o">&gt;</span> <span class="mf">7.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105    6.6
+117    6.7
+118    6.9
+122    6.7
+131    6.4
+135    6.1
+Name: petal_length, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Buraya kadar anlattıklarımız dışında Pandas modülünde kullanılan farklı metodlar da vardır. Örneğin bir veri çerçevesinde hiç sıfır içermeyen sütunları görmek için <code class="docutils literal notranslate"><span class="pre">.all()</span></code>, sıfırdan farklı değerler içeren sütunları görmek için <code class="docutils literal notranslate"><span class="pre">.any()</span></code>, NaN değeri içeren sütunları görmek için <code class="docutils literal notranslate"><span class="pre">.isnull()</span></code>, içermeyenleri görmek için <code class="docutils literal notranslate"><span class="pre">.notnull()</span></code> metodları mevcuttur.</p>
+<p>Son olarak Pandas veri çerçevelerinde gerçekleştirilebilecek yeniden şekillendirme ve manipülasyon işlemlerine göz atalım. Örneklerimizde kullanmak üzere aşağıdaki df veri çerçevesini oluşturalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">degisken</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">deger</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">df_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;degisken&#39;</span><span class="p">:</span><span class="n">degisken</span><span class="p">,</span> <span class="s1">&#39;deger&#39;</span><span class="p">:</span><span class="n">deger</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_dict</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;degisken&#39;</span><span class="p">,</span> <span class="s1">&#39;deger&#39;</span><span class="p">]]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>degisken</th>
+      <th>deger</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>0.839659</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A</td>
+      <td>0.076583</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>0.749688</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>B</td>
+      <td>0.746401</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>B</td>
+      <td>0.121785</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>B</td>
+      <td>0.706434</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>C</td>
+      <td>0.793706</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>C</td>
+      <td>0.767094</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>C</td>
+      <td>0.685760</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>D</td>
+      <td>0.831844</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>D</td>
+      <td>0.093540</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>D</td>
+      <td>0.407973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Şimdi bu veri çerçevesini öyle değiştirelim ki tarih sütunu yine kalsın ama sütun isimleri A, B, C, D değişken isimleri olsun. Bunun için kullanabileceğimiz Pandas metodlarından birisi <code class="docutils literal notranslate"><span class="pre">.pivot()</span></code> metodudur. Excel’de pivot işlemi yapanlar bu metodun nasıl çalıştığını tahmin edebilirler.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;degisken&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;deger&#39;</span><span class="p">)</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>degisken</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.839659</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.076583</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.749688</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>0.746401</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>0.121785</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>0.706434</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.793706</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.767094</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.685760</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.831844</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.093540</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.407973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Sütunları tekrar satır şeklinde yazmak için <code class="docutils literal notranslate"><span class="pre">.melt()</span></code> metodunu kullanabiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">],</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;deger&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>degisken</th>
+      <th>deger</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>0.839659</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A</td>
+      <td>0.076583</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>0.749688</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>B</td>
+      <td>0.746401</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>B</td>
+      <td>0.121785</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>B</td>
+      <td>0.706434</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>C</td>
+      <td>0.793706</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>C</td>
+      <td>0.767094</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>C</td>
+      <td>0.685760</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>D</td>
+      <td>0.831844</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>D</td>
+      <td>0.093540</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>D</td>
+      <td>0.407973</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>İki veri çerçevesini anahtar bir sütun kullanarak birleştirmek için <code class="docutils literal notranslate"><span class="pre">.merge()</span></code> fonksiyonu kullanılır. Örnek olarak aşağıdaki iki Pandas veri çerçevesini ele alalım.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;X&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;Baran&quot;</span><span class="p">,</span> <span class="s2">&quot;Mehmet&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;Y1&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">97</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">76</span><span class="p">]})</span>
+<span class="n">df1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mehmet</td>
+      <td>76</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;X&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ali&quot;</span><span class="p">,</span> <span class="s2">&quot;Baran&quot;</span><span class="p">,</span> <span class="s2">&quot;Umut&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;Y1&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">96</span><span class="p">]})</span>
+<span class="n">df2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Umut</td>
+      <td>96</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>İki veri çerçevesini birleştirirken kullanabileceğimiz yöntemler, <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">inner</span></code> ve <code class="docutils literal notranslate"><span class="pre">outer</span></code> yöntemleridir. Aşağıdaki örneklerde bu yöntemleri kullanırken önce df1 ve sonra df2 yazdığımıza dikkat edin. Bu, özellikle <code class="docutils literal notranslate"><span class="pre">left</span></code> ve <code class="docutils literal notranslate"><span class="pre">right</span></code> yöntemleri için önemlidir.</p>
+<p>İlk yani <code class="docutils literal notranslate"><span class="pre">left</span></code> yönteminde, önce yazılan veri çerçevesi esas alınır. Argüman
+olarak birleştirilecek iki veri çerçevesinin isimleri, birleştirme yöntemi (how) ve veri çerçeveleri birleştirilirken hangi sütunun dikkate alınacağı (on) belirtilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">df3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1_x</th>
+      <th>Y1_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>97</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>85</td>
+      <td>94.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mehmet</td>
+      <td>76</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">df4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1_x</th>
+      <th>Y1_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>97.0</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>85.0</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Umut</td>
+      <td>NaN</td>
+      <td>96</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Left ve right yöntemlerinin çalışma mantığı benzerdir. Diğer yandan, <code class="docutils literal notranslate"><span class="pre">how</span> <span class="pre">=</span> <span class="pre">'inner'</span></code> seçildiğinde birleştirilecek sütunun sadece her iki veri çerçevesinde de yer alan satırları yani kesişim kümesi dikkate alınır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">df5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1_x</th>
+      <th>Y1_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>97</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>85</td>
+      <td>94</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Son olarak <code class="docutils literal notranslate"><span class="pre">how='outer'</span></code> seçtiğimizde de birleştirilecek sütundaki tüm satırlar yani bileşim kümesi dikkate alınır. Veri çerçevelerinden birinde olmayan değerler için NaN atanır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df6</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">df6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X</th>
+      <th>Y1_x</th>
+      <th>Y1_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ali</td>
+      <td>97.0</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Baran</td>
+      <td>85.0</td>
+      <td>94.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mehmet</td>
+      <td>76.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Umut</td>
+      <td>NaN</td>
+      <td>96.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 </section>
 </section>
 
