@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Giriş &#8212; Python ile Veri Bilimi</title>
+    <title>12. Veri Okuma &#8212; Python ile Veri Bilimi</title>
   
   
   
@@ -68,11 +68,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0100';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter0203';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Bilgisayarlar ve Programlama" href="chapter0101.html" />
-    <link rel="prev" title="PYTHON ile VERİ BİLİMİ" href="index.html" />
+    <link rel="next" title="13. Kaynaklar" href="referencelist.html" />
+    <link rel="prev" title="11. Pandas" href="chapter0202.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,8 +158,8 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">PROGRAMLAMA</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Giriş</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter0100.html">1. Giriş</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0101.html">2. Bilgisayarlar ve Programlama</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0102.html">3. Temel İşlemler ve Veri Tipleri</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0103.html">4. Veri Yapıları</a></li>
@@ -169,11 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter0107.html">8. Hata Ayıklama</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VERİ ANALİZİ</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapter0200.html">9. Giriş</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0201.html">10. NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter0202.html">11. Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter0203.html">12. Veri Okuma</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">12. Veri Okuma</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ekler</span></p>
 <ul class="nav bd-sidenav">
@@ -249,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0100.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ilkerarslan/pythonVB/issues/new?title=Issue%20on%20page%20%2Fchapter0203.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,7 +279,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/chapter0100.md" target="_blank"
+      <li><a href="_sources/chapter0203.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -289,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -348,7 +348,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -359,11 +361,22 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Giriş</h1>
+    <h1>Veri Okuma</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duz-dosyalardan-veri-okuma">12.1. Düz Dosyalardan Veri Okuma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-dosyalarindan-veri-okuma">12.1.1. Metin Dosyalarından Veri Okuma</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -373,9 +386,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="giris">
-<h1><span class="section-number">1. </span>Giriş<a class="headerlink" href="#giris" title="Permalink to this heading">#</a></h1>
-<p>Bu bölümde önce bilgisayarlar ve bilgisayar programlama hakkında temel bilgiler verildikten sonra, Python’da veri yapıları, koşullu ifadeler, döngüler ve fonksiyonlar anlatılacaktır. Daha sonra Python’un en güçlü yanı olan modüllerin kullanımı ve Python’da nesne yönelimli programlamaya ilişkin bilgiler aktarılacaktır. Son bölümde ise Python’a özgü hata ayıklama yöntemleri hakkında bilgi verilecektir. Bölümler, daha önce programlama yapmamış okuyucularında rahat takip edebileceği şekilde kolaydan zora doğru sıralanmıştır. Veri bilimi ile ilgilenmeyen okuyucular bu bölümleri çalışarak Python hakkında başlangıç ve orta seviyede bilgi sahibi olabilir. Ancak, veri bilimi alanında çalışmayan okuyucuların da ikinci ve üçüncü ya da en azından ikinci bölümü de okumalarını tavsiye ederim.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="veri-okuma">
+<h1><span class="section-number">12. </span>Veri Okuma<a class="headerlink" href="#veri-okuma" title="Permalink to this heading">#</a></h1>
+<p>Veri bilimi ile uğraşıyorsanız zamanınızın büyük çoğunluğunu verileri temin etmek ve bu verileri temizleyip düzenleyerek analize hazır hale getirmek olacaktır. Bu kısım, veri analizinin havalı tarafı olmadığı için genelde çok fazla söz konusu edilmez ama aslında iyi veri bilimcisi olmanın en temel şartı veri okuma ve temizleme yani verileri analize hazır hale getirme işini doğru yapmaktır. Günlük hayatta, gerek profesyonel gerekse akademik çalışmalarda neredeyse hiçbir zaman veriler size analize hazır biçimde gelmez. Çoğu zaman verileri Python dışında bir programdan almanız gerekir. Yeni bir işte ya da projede çalışmaya başladığınızda sizden önceki çalışmalar farklı bir programda yapılmış olabilir. Ya da sıfırdan bir çalışmaya başlasanız bile ihtiyaç duyduğunuz veriler çoğu zaman Python dışında bir formatta gelecektir. Bu nedenle veri biliminin ilk şartı çalışacağınız verileri analize hazır hale getirmeyi bilmektir.</p>
+<p>Veri kaynaklarını aşağıdaki şekilde sınıflandırmamız mümkündür:</p>
+<ul class="simple">
+<li><p>Düz dosyalar: Bunlar düz metin (txt), ya da tablo formatında (csv, excel vb.) olabilir</p></li>
+<li><p>Veri tabanı sistemleri: SQL tabanlı sistemlerdir. Bunlar SQL, MySQL, PostgreSQL gibi farklı SQL tipleri olabilir.</p></li>
+<li><p>HTML: Web kaynaklı dosyalar</p></li>
+<li><p>İstatistiksel programlar: Genelde ticari amaçlı kullanılan ve ücretli olan SAS, STATA veya SPSS gibi dosyalar.</p></li>
+</ul>
+<section id="duz-dosyalardan-veri-okuma">
+<h2><span class="section-number">12.1. </span>Düz Dosyalardan Veri Okuma<a class="headerlink" href="#duz-dosyalardan-veri-okuma" title="Permalink to this heading">#</a></h2>
+<p>Düz dosyalar genel olarak .txt, .csv gibi tablo formatında veri içeren dosyalardır. Veri analizi açısından bakacak olursak çalışmalarımızda gerçekleştirdiğimiz analizlerin çoğu satır ve sütunlardan oluşan tablolar formatındadır. Bu tablolarda bir satır bir veriyi ya da gözlemi belirtirken sütunlar da bu gözleme ilişkin farklı özellikleri ya da değişkenleri belirtir. Daha önceki bölümlerde gördüğümüz aşağıdaki iris veri setine bakalım. Toplam 150 gözlemden oluşan bu veri setinde her bir satır farklı bir çiçeğe ait ölçümleri göstermektedir. Bu ölçümlerin neler olduğunu da sütunlarda görüyoruz. Veri analizinde metin, csv ya da excel formatındaki dosyalardan okuduğumuz veriler genellikle bu formatta yapılandırılmıştır.</p>
+<p><img alt="düz veri yapısı" src="_images/iris_tablo.png" /></p>
+<section id="metin-dosyalarindan-veri-okuma">
+<h3><span class="section-number">12.1.1. </span>Metin Dosyalarından Veri Okuma<a class="headerlink" href="#metin-dosyalarindan-veri-okuma" title="Permalink to this heading">#</a></h3>
+<p>Metin dosyaları .txt uzantısına sahip düz metin formatında olan dosyalardır. Bir metin dosyasından veri okumak için önce dosyayla bağlantı sağlanmalıdır. Python, open() fonksiyonu bu bağlantıyı sağlar:</p>
+<p><code class="docutils literal notranslate"><span class="pre">baglanti</span> <span class="pre">=</span> <span class="pre">open('iris.txt',</span> <span class="pre">mode</span> <span class="pre">=</span> <span class="pre">'r')</span></code></p>
+<p>Fonksiyondaki ilk argüman dosya ismi, ikinci argüman ise dosyanın hangi modda okunacağıdır. Dosyadan sadece veri okumak için bu argümanı ‘r’ (read) olarak belirtiyoruz. Bağlantıyı okuma modunda kurarak ham veride herhangi bir değişiklik yapmanın önüne geçmiş oluyoruz. Bağlantı sırasında dosyaya veri yazmak için bu argümanı ‘w’ (write) yapmamız gerekir. Bağlantı dosyasının bulunduğu dizin yolunu da açıkça yazmak gerekebilir: “C:/Users/ilker/Desktop/iris.txt” gibi.</p>
+<p>Dosyadan veri okumak için sadece bağlantı kurmak yetmez. Şimdi da dosyadan veri okumalıyız. Bunun için de bağlantı üzerinde <code class="docutils literal notranslate"><span class="pre">.read()</span></code> metodunu kullanıyoruz: <code class="docutils literal notranslate"><span class="pre">veri</span> <span class="pre">=</span> <span class="pre">baglanti.read()</span></code>.Son olarak kurduğumuz bağlantıyı kapatmamız gerekiyor: <code class="docutils literal notranslate"><span class="pre">baglanti.close()</span></code>
+Şimdi bütün işlemlerin bir arada görelim.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -410,20 +443,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="chapter0202.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PYTHON ile VERİ BİLİMİ</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Pandas</p>
       </div>
     </a>
     <a class="right-next"
-       href="chapter0101.html"
+       href="referencelist.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Bilgisayarlar ve Programlama</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Kaynaklar</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -436,6 +469,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duz-dosyalardan-veri-okuma">12.1. Düz Dosyalardan Veri Okuma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-dosyalarindan-veri-okuma">12.1.1. Metin Dosyalarından Veri Okuma</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
