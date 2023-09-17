@@ -373,8 +373,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duz-dosyalardan-veri-okuma">12.1. Düz Dosyalardan Veri Okuma</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-dosyalarindan-veri-okuma">12.1.1. Metin Dosyalarından Veri Okuma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-modulu-ile-veri-okuma">12.1.2. Numpy Modülü ile Veri Okuma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-modulu-ile-veri-okuma">12.1.3. Pandas Modülü ile Veri Okuma</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-dosyalarindan-veri-okuma">12.2. Excel Dosyalarından Veri Okuma</a></li>
 </ul>
             </nav>
         </div>
@@ -407,7 +410,1378 @@ document.write(`
 <p>Fonksiyondaki ilk argüman dosya ismi, ikinci argüman ise dosyanın hangi modda okunacağıdır. Dosyadan sadece veri okumak için bu argümanı ‘r’ (read) olarak belirtiyoruz. Bağlantıyı okuma modunda kurarak ham veride herhangi bir değişiklik yapmanın önüne geçmiş oluyoruz. Bağlantı sırasında dosyaya veri yazmak için bu argümanı ‘w’ (write) yapmamız gerekir. Bağlantı dosyasının bulunduğu dizin yolunu da açıkça yazmak gerekebilir: “C:/Users/ilker/Desktop/iris.txt” gibi.</p>
 <p>Dosyadan veri okumak için sadece bağlantı kurmak yetmez. Şimdi da dosyadan veri okumalıyız. Bunun için de bağlantı üzerinde <code class="docutils literal notranslate"><span class="pre">.read()</span></code> metodunu kullanıyoruz: <code class="docutils literal notranslate"><span class="pre">veri</span> <span class="pre">=</span> <span class="pre">baglanti.read()</span></code>.Son olarak kurduğumuz bağlantıyı kapatmamız gerekiyor: <code class="docutils literal notranslate"><span class="pre">baglanti.close()</span></code>
 Şimdi bütün işlemlerin bir arada görelim.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">baglanti</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/iris.txt&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">baglanti</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">baglanti</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.1	3.5	1.4	0.2
+4.9	3.0	1.4	0.2
+4.7	3.2	1.3	0.2
+4.6	3.1	1.5	0.2
+5.0	3.6	1.4	0.2
+5.4	3.9	1.7	0.4
+4.6	3.4	1.4	0.3
+5.0	3.4	1.5	0.2
+4.4	2.9	1.4	0.2
+4.9	3.1	1.5	0.1
+5.4	3.7	1.5	0.2
+4.8	3.4	1.6	0.2
+4.8	3.0	1.4	0.1
+4.3	3.0	1.1	0.1
+5.8	4.0	1.2	0.2
+5.7	4.4	1.5	0.4
+5.4	3.9	1.3	0.4
+5.1	3.5	1.4	0.3
+5.7	3.8	1.7	0.3
+5.1	3.8	1.5	0.3
+5.4	3.4	1.7	0.2
+5.1	3.7	1.5	0.4
+4.6	3.6	1.0	0.2
+5.1	3.3	1.7	0.5
+4.8	3.4	1.9	0.2
+5.0	3.0	1.6	0.2
+5.0	3.4	1.6	0.4
+5.2	3.5	1.5	0.2
+5.2	3.4	1.4	0.2
+4.7	3.2	1.6	0.2
+4.8	3.1	1.6	0.2
+5.4	3.4	1.5	0.4
+5.2	4.1	1.5	0.1
+5.5	4.2	1.4	0.2
+4.9	3.1	1.5	0.2
+5.0	3.2	1.2	0.2
+5.5	3.5	1.3	0.2
+4.9	3.6	1.4	0.1
+4.4	3.0	1.3	0.2
+5.1	3.4	1.5	0.2
+5.0	3.5	1.3	0.3
+4.5	2.3	1.3	0.3
+4.4	3.2	1.3	0.2
+5.0	3.5	1.6	0.6
+5.1	3.8	1.9	0.4
+4.8	3.0	1.4	0.3
+5.1	3.8	1.6	0.2
+4.6	3.2	1.4	0.2
+5.3	3.7	1.5	0.2
+5.0	3.3	1.4	0.2
+7.0	3.2	4.7	1.4
+6.4	3.2	4.5	1.5
+6.9	3.1	4.9	1.5
+5.5	2.3	4.0	1.3
+6.5	2.8	4.6	1.5
+5.7	2.8	4.5	1.3
+6.3	3.3	4.7	1.6
+4.9	2.4	3.3	1.0
+6.6	2.9	4.6	1.3
+5.2	2.7	3.9	1.4
+5.0	2.0	3.5	1.0
+5.9	3.0	4.2	1.5
+6.0	2.2	4.0	1.0
+6.1	2.9	4.7	1.4
+5.6	2.9	3.6	1.3
+6.7	3.1	4.4	1.4
+5.6	3.0	4.5	1.5
+5.8	2.7	4.1	1.0
+6.2	2.2	4.5	1.5
+5.6	2.5	3.9	1.1
+5.9	3.2	4.8	1.8
+6.1	2.8	4.0	1.3
+6.3	2.5	4.9	1.5
+6.1	2.8	4.7	1.2
+6.4	2.9	4.3	1.3
+6.6	3.0	4.4	1.4
+6.8	2.8	4.8	1.4
+6.7	3.0	5.0	1.7
+6.0	2.9	4.5	1.5
+5.7	2.6	3.5	1.0
+5.5	2.4	3.8	1.1
+5.5	2.4	3.7	1.0
+5.8	2.7	3.9	1.2
+6.0	2.7	5.1	1.6
+5.4	3.0	4.5	1.5
+6.0	3.4	4.5	1.6
+6.7	3.1	4.7	1.5
+6.3	2.3	4.4	1.3
+5.6	3.0	4.1	1.3
+5.5	2.5	4.0	1.3
+5.5	2.6	4.4	1.2
+6.1	3.0	4.6	1.4
+5.8	2.6	4.0	1.2
+5.0	2.3	3.3	1.0
+5.6	2.7	4.2	1.3
+5.7	3.0	4.2	1.2
+5.7	2.9	4.2	1.3
+6.2	2.9	4.3	1.3
+5.1	2.5	3.0	1.1
+5.7	2.8	4.1	1.3
+6.3	3.3	6.0	2.5
+5.8	2.7	5.1	1.9
+7.1	3.0	5.9	2.1
+6.3	2.9	5.6	1.8
+6.5	3.0	5.8	2.2
+7.6	3.0	6.6	2.1
+4.9	2.5	4.5	1.7
+7.3	2.9	6.3	1.8
+6.7	2.5	5.8	1.8
+7.2	3.6	6.1	2.5
+6.5	3.2	5.1	2.0
+6.4	2.7	5.3	1.9
+6.8	3.0	5.5	2.1
+5.7	2.5	5.0	2.0
+5.8	2.8	5.1	2.4
+6.4	3.2	5.3	2.3
+6.5	3.0	5.5	1.8
+7.7	3.8	6.7	2.2
+7.7	2.6	6.9	2.3
+6.0	2.2	5.0	1.5
+6.9	3.2	5.7	2.3
+5.6	2.8	4.9	2.0
+7.7	2.8	6.7	2.0
+6.3	2.7	4.9	1.8
+6.7	3.3	5.7	2.1
+7.2	3.2	6.0	1.8
+6.2	2.8	4.8	1.8
+6.1	3.0	4.9	1.8
+6.4	2.8	5.6	2.1
+7.2	3.0	5.8	1.6
+7.4	2.8	6.1	1.9
+7.9	3.8	6.4	2.0
+6.4	2.8	5.6	2.2
+6.3	2.8	5.1	1.5
+6.1	2.6	5.6	1.4
+7.7	3.0	6.1	2.3
+6.3	3.4	5.6	2.4
+6.4	3.1	5.5	1.8
+6.0	3.0	4.8	1.8
+6.9	3.1	5.4	2.1
+6.7	3.1	5.6	2.4
+6.9	3.1	5.1	2.3
+5.8	2.7	5.1	1.9
+6.8	3.2	5.9	2.3
+6.7	3.3	5.7	2.5
+6.7	3.0	5.2	2.3
+6.3	2.5	5.0	1.9
+6.5	3.0	5.2	2.0
+6.2	3.4	5.4	2.3
+5.9	3.0	5.1	1.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aynı işlemi with fonksiyonu ile de yapabiliriz. Bu şekilde <code class="docutils literal notranslate"><span class="pre">.close()</span></code> metodunu kullanmamıza da gerek kalmaz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/iris.txt&quot;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">baglanti</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">baglanti</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.1	3.5	1.4	0.2
+4.9	3.0	1.4	0.2
+4.7	3.2	1.3	0.2
+4.6	3.1	1.5	0.2
+5.0	3.6	1.4	0.2
+5.4	3.9	1.7	0.4
+4.6	3.4	1.4	0.3
+5.0	3.4	1.5	0.2
+4.4	2.9	1.4	0.2
+4.9	3.1	1.5	0.1
+5.4	3.7	1.5	0.2
+4.8	3.4	1.6	0.2
+4.8	3.0	1.4	0.1
+4.3	3.0	1.1	0.1
+5.8	4.0	1.2	0.2
+5.7	4.4	1.5	0.4
+5.4	3.9	1.3	0.4
+5.1	3.5	1.4	0.3
+5.7	3.8	1.7	0.3
+5.1	3.8	1.5	0.3
+5.4	3.4	1.7	0.2
+5.1	3.7	1.5	0.4
+4.6	3.6	1.0	0.2
+5.1	3.3	1.7	0.5
+4.8	3.4	1.9	0.2
+5.0	3.0	1.6	0.2
+5.0	3.4	1.6	0.4
+5.2	3.5	1.5	0.2
+5.2	3.4	1.4	0.2
+4.7	3.2	1.6	0.2
+4.8	3.1	1.6	0.2
+5.4	3.4	1.5	0.4
+5.2	4.1	1.5	0.1
+5.5	4.2	1.4	0.2
+4.9	3.1	1.5	0.2
+5.0	3.2	1.2	0.2
+5.5	3.5	1.3	0.2
+4.9	3.6	1.4	0.1
+4.4	3.0	1.3	0.2
+5.1	3.4	1.5	0.2
+5.0	3.5	1.3	0.3
+4.5	2.3	1.3	0.3
+4.4	3.2	1.3	0.2
+5.0	3.5	1.6	0.6
+5.1	3.8	1.9	0.4
+4.8	3.0	1.4	0.3
+5.1	3.8	1.6	0.2
+4.6	3.2	1.4	0.2
+5.3	3.7	1.5	0.2
+5.0	3.3	1.4	0.2
+7.0	3.2	4.7	1.4
+6.4	3.2	4.5	1.5
+6.9	3.1	4.9	1.5
+5.5	2.3	4.0	1.3
+6.5	2.8	4.6	1.5
+5.7	2.8	4.5	1.3
+6.3	3.3	4.7	1.6
+4.9	2.4	3.3	1.0
+6.6	2.9	4.6	1.3
+5.2	2.7	3.9	1.4
+5.0	2.0	3.5	1.0
+5.9	3.0	4.2	1.5
+6.0	2.2	4.0	1.0
+6.1	2.9	4.7	1.4
+5.6	2.9	3.6	1.3
+6.7	3.1	4.4	1.4
+5.6	3.0	4.5	1.5
+5.8	2.7	4.1	1.0
+6.2	2.2	4.5	1.5
+5.6	2.5	3.9	1.1
+5.9	3.2	4.8	1.8
+6.1	2.8	4.0	1.3
+6.3	2.5	4.9	1.5
+6.1	2.8	4.7	1.2
+6.4	2.9	4.3	1.3
+6.6	3.0	4.4	1.4
+6.8	2.8	4.8	1.4
+6.7	3.0	5.0	1.7
+6.0	2.9	4.5	1.5
+5.7	2.6	3.5	1.0
+5.5	2.4	3.8	1.1
+5.5	2.4	3.7	1.0
+5.8	2.7	3.9	1.2
+6.0	2.7	5.1	1.6
+5.4	3.0	4.5	1.5
+6.0	3.4	4.5	1.6
+6.7	3.1	4.7	1.5
+6.3	2.3	4.4	1.3
+5.6	3.0	4.1	1.3
+5.5	2.5	4.0	1.3
+5.5	2.6	4.4	1.2
+6.1	3.0	4.6	1.4
+5.8	2.6	4.0	1.2
+5.0	2.3	3.3	1.0
+5.6	2.7	4.2	1.3
+5.7	3.0	4.2	1.2
+5.7	2.9	4.2	1.3
+6.2	2.9	4.3	1.3
+5.1	2.5	3.0	1.1
+5.7	2.8	4.1	1.3
+6.3	3.3	6.0	2.5
+5.8	2.7	5.1	1.9
+7.1	3.0	5.9	2.1
+6.3	2.9	5.6	1.8
+6.5	3.0	5.8	2.2
+7.6	3.0	6.6	2.1
+4.9	2.5	4.5	1.7
+7.3	2.9	6.3	1.8
+6.7	2.5	5.8	1.8
+7.2	3.6	6.1	2.5
+6.5	3.2	5.1	2.0
+6.4	2.7	5.3	1.9
+6.8	3.0	5.5	2.1
+5.7	2.5	5.0	2.0
+5.8	2.8	5.1	2.4
+6.4	3.2	5.3	2.3
+6.5	3.0	5.5	1.8
+7.7	3.8	6.7	2.2
+7.7	2.6	6.9	2.3
+6.0	2.2	5.0	1.5
+6.9	3.2	5.7	2.3
+5.6	2.8	4.9	2.0
+7.7	2.8	6.7	2.0
+6.3	2.7	4.9	1.8
+6.7	3.3	5.7	2.1
+7.2	3.2	6.0	1.8
+6.2	2.8	4.8	1.8
+6.1	3.0	4.9	1.8
+6.4	2.8	5.6	2.1
+7.2	3.0	5.8	1.6
+7.4	2.8	6.1	1.9
+7.9	3.8	6.4	2.0
+6.4	2.8	5.6	2.2
+6.3	2.8	5.1	1.5
+6.1	2.6	5.6	1.4
+7.7	3.0	6.1	2.3
+6.3	3.4	5.6	2.4
+6.4	3.1	5.5	1.8
+6.0	3.0	4.8	1.8
+6.9	3.1	5.4	2.1
+6.7	3.1	5.6	2.4
+6.9	3.1	5.1	2.3
+5.8	2.7	5.1	1.9
+6.8	3.2	5.9	2.3
+6.7	3.3	5.7	2.5
+6.7	3.0	5.2	2.3
+6.3	2.5	5.0	1.9
+6.5	3.0	5.2	2.0
+6.2	3.4	5.4	2.3
+5.9	3.0	5.1	1.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okuyacağınız dosya çok büyükse dosyanın tamamını tek seferde okumak zor olabilir. Bu nedenle bağlantı kurduktan sonra dosya, satır satır okunabilir. Dosyadan verileri satır satır okumak için <code class="docutils literal notranslate"><span class="pre">.readline()</span></code> metodu kullanılabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/iris.txt&quot;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">baglanti</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">baglanti</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">baglanti</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">baglanti</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">baglanti</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.1	3.5	1.4	0.2
+
+4.9	3.0	1.4	0.2
+
+4.7	3.2	1.3	0.2
+
+4.6	3.1	1.5	0.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Önceki bölümlerde Python’da veri analizi olan iki paketi, Numpy ve Pandas paketlerini görmüştük. Bu paketlerde de verileri kendi formatlarına uygun olarak okumak için gerekli fonksiyonlar yer almaktadır. Böylece okuyacağınız verileri hangi pakette analiz edeceksek o paketin ilgili fonksiyonlarını kullanarak aktarabiliriz.</p>
 </section>
+<section id="numpy-modulu-ile-veri-okuma">
+<h3><span class="section-number">12.1.2. </span>Numpy Modülü ile Veri Okuma<a class="headerlink" href="#numpy-modulu-ile-veri-okuma" title="Permalink to this heading">#</a></h3>
+<p>İlgili bölümde de gördüğümüz üzere Numpy modülü özellikle sayısal verileri okumak ve Analiz etmek için çok kullanışlı bir pakettir. Numpy’da düz dosya okumak için kullanılan iki fonksiyon <code class="docutils literal notranslate"><span class="pre">loadtxt()</span></code> ve <code class="docutils literal notranslate"><span class="pre">genfromtxt()</span></code> fonksiyonlarıdır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">dosya</span> <span class="o">=</span> <span class="s2">&quot;data/iris.txt&quot;</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5.1 3.5 1.4 0.2]
+ [4.9 3.  1.4 0.2]
+ [4.7 3.2 1.3 0.2]
+ [4.6 3.1 1.5 0.2]
+ [5.  3.6 1.4 0.2]
+ [5.4 3.9 1.7 0.4]
+ [4.6 3.4 1.4 0.3]
+ [5.  3.4 1.5 0.2]
+ [4.4 2.9 1.4 0.2]
+ [4.9 3.1 1.5 0.1]
+ [5.4 3.7 1.5 0.2]
+ [4.8 3.4 1.6 0.2]
+ [4.8 3.  1.4 0.1]
+ [4.3 3.  1.1 0.1]
+ [5.8 4.  1.2 0.2]
+ [5.7 4.4 1.5 0.4]
+ [5.4 3.9 1.3 0.4]
+ [5.1 3.5 1.4 0.3]
+ [5.7 3.8 1.7 0.3]
+ [5.1 3.8 1.5 0.3]
+ [5.4 3.4 1.7 0.2]
+ [5.1 3.7 1.5 0.4]
+ [4.6 3.6 1.  0.2]
+ [5.1 3.3 1.7 0.5]
+ [4.8 3.4 1.9 0.2]
+ [5.  3.  1.6 0.2]
+ [5.  3.4 1.6 0.4]
+ [5.2 3.5 1.5 0.2]
+ [5.2 3.4 1.4 0.2]
+ [4.7 3.2 1.6 0.2]
+ [4.8 3.1 1.6 0.2]
+ [5.4 3.4 1.5 0.4]
+ [5.2 4.1 1.5 0.1]
+ [5.5 4.2 1.4 0.2]
+ [4.9 3.1 1.5 0.2]
+ [5.  3.2 1.2 0.2]
+ [5.5 3.5 1.3 0.2]
+ [4.9 3.6 1.4 0.1]
+ [4.4 3.  1.3 0.2]
+ [5.1 3.4 1.5 0.2]
+ [5.  3.5 1.3 0.3]
+ [4.5 2.3 1.3 0.3]
+ [4.4 3.2 1.3 0.2]
+ [5.  3.5 1.6 0.6]
+ [5.1 3.8 1.9 0.4]
+ [4.8 3.  1.4 0.3]
+ [5.1 3.8 1.6 0.2]
+ [4.6 3.2 1.4 0.2]
+ [5.3 3.7 1.5 0.2]
+ [5.  3.3 1.4 0.2]
+ [7.  3.2 4.7 1.4]
+ [6.4 3.2 4.5 1.5]
+ [6.9 3.1 4.9 1.5]
+ [5.5 2.3 4.  1.3]
+ [6.5 2.8 4.6 1.5]
+ [5.7 2.8 4.5 1.3]
+ [6.3 3.3 4.7 1.6]
+ [4.9 2.4 3.3 1. ]
+ [6.6 2.9 4.6 1.3]
+ [5.2 2.7 3.9 1.4]
+ [5.  2.  3.5 1. ]
+ [5.9 3.  4.2 1.5]
+ [6.  2.2 4.  1. ]
+ [6.1 2.9 4.7 1.4]
+ [5.6 2.9 3.6 1.3]
+ [6.7 3.1 4.4 1.4]
+ [5.6 3.  4.5 1.5]
+ [5.8 2.7 4.1 1. ]
+ [6.2 2.2 4.5 1.5]
+ [5.6 2.5 3.9 1.1]
+ [5.9 3.2 4.8 1.8]
+ [6.1 2.8 4.  1.3]
+ [6.3 2.5 4.9 1.5]
+ [6.1 2.8 4.7 1.2]
+ [6.4 2.9 4.3 1.3]
+ [6.6 3.  4.4 1.4]
+ [6.8 2.8 4.8 1.4]
+ [6.7 3.  5.  1.7]
+ [6.  2.9 4.5 1.5]
+ [5.7 2.6 3.5 1. ]
+ [5.5 2.4 3.8 1.1]
+ [5.5 2.4 3.7 1. ]
+ [5.8 2.7 3.9 1.2]
+ [6.  2.7 5.1 1.6]
+ [5.4 3.  4.5 1.5]
+ [6.  3.4 4.5 1.6]
+ [6.7 3.1 4.7 1.5]
+ [6.3 2.3 4.4 1.3]
+ [5.6 3.  4.1 1.3]
+ [5.5 2.5 4.  1.3]
+ [5.5 2.6 4.4 1.2]
+ [6.1 3.  4.6 1.4]
+ [5.8 2.6 4.  1.2]
+ [5.  2.3 3.3 1. ]
+ [5.6 2.7 4.2 1.3]
+ [5.7 3.  4.2 1.2]
+ [5.7 2.9 4.2 1.3]
+ [6.2 2.9 4.3 1.3]
+ [5.1 2.5 3.  1.1]
+ [5.7 2.8 4.1 1.3]
+ [6.3 3.3 6.  2.5]
+ [5.8 2.7 5.1 1.9]
+ [7.1 3.  5.9 2.1]
+ [6.3 2.9 5.6 1.8]
+ [6.5 3.  5.8 2.2]
+ [7.6 3.  6.6 2.1]
+ [4.9 2.5 4.5 1.7]
+ [7.3 2.9 6.3 1.8]
+ [6.7 2.5 5.8 1.8]
+ [7.2 3.6 6.1 2.5]
+ [6.5 3.2 5.1 2. ]
+ [6.4 2.7 5.3 1.9]
+ [6.8 3.  5.5 2.1]
+ [5.7 2.5 5.  2. ]
+ [5.8 2.8 5.1 2.4]
+ [6.4 3.2 5.3 2.3]
+ [6.5 3.  5.5 1.8]
+ [7.7 3.8 6.7 2.2]
+ [7.7 2.6 6.9 2.3]
+ [6.  2.2 5.  1.5]
+ [6.9 3.2 5.7 2.3]
+ [5.6 2.8 4.9 2. ]
+ [7.7 2.8 6.7 2. ]
+ [6.3 2.7 4.9 1.8]
+ [6.7 3.3 5.7 2.1]
+ [7.2 3.2 6.  1.8]
+ [6.2 2.8 4.8 1.8]
+ [6.1 3.  4.9 1.8]
+ [6.4 2.8 5.6 2.1]
+ [7.2 3.  5.8 1.6]
+ [7.4 2.8 6.1 1.9]
+ [7.9 3.8 6.4 2. ]
+ [6.4 2.8 5.6 2.2]
+ [6.3 2.8 5.1 1.5]
+ [6.1 2.6 5.6 1.4]
+ [7.7 3.  6.1 2.3]
+ [6.3 3.4 5.6 2.4]
+ [6.4 3.1 5.5 1.8]
+ [6.  3.  4.8 1.8]
+ [6.9 3.1 5.4 2.1]
+ [6.7 3.1 5.6 2.4]
+ [6.9 3.1 5.1 2.3]
+ [5.8 2.7 5.1 1.9]
+ [6.8 3.2 5.9 2.3]
+ [6.7 3.3 5.7 2.5]
+ [6.7 3.  5.2 2.3]
+ [6.3 2.5 5.  1.9]
+ [6.5 3.  5.2 2. ]
+ [6.2 3.4 5.4 2.3]
+ [5.9 3.  5.1 1.8]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Loadtxt fonksiyonundaki ikinci argüman olan delimiter, bir satırdaki verilerin birbirlerinden hangi işaretle ayrıldıklarını belirtir. Bizim dosyamızda veriler virgül ile ayrılmış olduğu için argümanda bunu belirtiyoruz. Veriler, örneğin sekme yani tab ile ayrılmışsa virgül yerine <code class="docutils literal notranslate"><span class="pre">\t</span></code> yazmamız gerekirdi. Çoğu zaman olduğu gibi dosyada ilk satırda sütun başlıkları yer almakta ise bu durumda üçüncü bir argüman olarak skiprows kullanılır. Bu argüman, dosya başından itibaren kaç satırın atlanacağını belirtir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">skiprows</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5.4 3.7 1.5 0.2]
+ [4.8 3.4 1.6 0.2]
+ [4.8 3.  1.4 0.1]
+ [4.3 3.  1.1 0.1]
+ [5.8 4.  1.2 0.2]
+ [5.7 4.4 1.5 0.4]
+ [5.4 3.9 1.3 0.4]
+ [5.1 3.5 1.4 0.3]
+ [5.7 3.8 1.7 0.3]
+ [5.1 3.8 1.5 0.3]
+ [5.4 3.4 1.7 0.2]
+ [5.1 3.7 1.5 0.4]
+ [4.6 3.6 1.  0.2]
+ [5.1 3.3 1.7 0.5]
+ [4.8 3.4 1.9 0.2]
+ [5.  3.  1.6 0.2]
+ [5.  3.4 1.6 0.4]
+ [5.2 3.5 1.5 0.2]
+ [5.2 3.4 1.4 0.2]
+ [4.7 3.2 1.6 0.2]
+ [4.8 3.1 1.6 0.2]
+ [5.4 3.4 1.5 0.4]
+ [5.2 4.1 1.5 0.1]
+ [5.5 4.2 1.4 0.2]
+ [4.9 3.1 1.5 0.2]
+ [5.  3.2 1.2 0.2]
+ [5.5 3.5 1.3 0.2]
+ [4.9 3.6 1.4 0.1]
+ [4.4 3.  1.3 0.2]
+ [5.1 3.4 1.5 0.2]
+ [5.  3.5 1.3 0.3]
+ [4.5 2.3 1.3 0.3]
+ [4.4 3.2 1.3 0.2]
+ [5.  3.5 1.6 0.6]
+ [5.1 3.8 1.9 0.4]
+ [4.8 3.  1.4 0.3]
+ [5.1 3.8 1.6 0.2]
+ [4.6 3.2 1.4 0.2]
+ [5.3 3.7 1.5 0.2]
+ [5.  3.3 1.4 0.2]
+ [7.  3.2 4.7 1.4]
+ [6.4 3.2 4.5 1.5]
+ [6.9 3.1 4.9 1.5]
+ [5.5 2.3 4.  1.3]
+ [6.5 2.8 4.6 1.5]
+ [5.7 2.8 4.5 1.3]
+ [6.3 3.3 4.7 1.6]
+ [4.9 2.4 3.3 1. ]
+ [6.6 2.9 4.6 1.3]
+ [5.2 2.7 3.9 1.4]
+ [5.  2.  3.5 1. ]
+ [5.9 3.  4.2 1.5]
+ [6.  2.2 4.  1. ]
+ [6.1 2.9 4.7 1.4]
+ [5.6 2.9 3.6 1.3]
+ [6.7 3.1 4.4 1.4]
+ [5.6 3.  4.5 1.5]
+ [5.8 2.7 4.1 1. ]
+ [6.2 2.2 4.5 1.5]
+ [5.6 2.5 3.9 1.1]
+ [5.9 3.2 4.8 1.8]
+ [6.1 2.8 4.  1.3]
+ [6.3 2.5 4.9 1.5]
+ [6.1 2.8 4.7 1.2]
+ [6.4 2.9 4.3 1.3]
+ [6.6 3.  4.4 1.4]
+ [6.8 2.8 4.8 1.4]
+ [6.7 3.  5.  1.7]
+ [6.  2.9 4.5 1.5]
+ [5.7 2.6 3.5 1. ]
+ [5.5 2.4 3.8 1.1]
+ [5.5 2.4 3.7 1. ]
+ [5.8 2.7 3.9 1.2]
+ [6.  2.7 5.1 1.6]
+ [5.4 3.  4.5 1.5]
+ [6.  3.4 4.5 1.6]
+ [6.7 3.1 4.7 1.5]
+ [6.3 2.3 4.4 1.3]
+ [5.6 3.  4.1 1.3]
+ [5.5 2.5 4.  1.3]
+ [5.5 2.6 4.4 1.2]
+ [6.1 3.  4.6 1.4]
+ [5.8 2.6 4.  1.2]
+ [5.  2.3 3.3 1. ]
+ [5.6 2.7 4.2 1.3]
+ [5.7 3.  4.2 1.2]
+ [5.7 2.9 4.2 1.3]
+ [6.2 2.9 4.3 1.3]
+ [5.1 2.5 3.  1.1]
+ [5.7 2.8 4.1 1.3]
+ [6.3 3.3 6.  2.5]
+ [5.8 2.7 5.1 1.9]
+ [7.1 3.  5.9 2.1]
+ [6.3 2.9 5.6 1.8]
+ [6.5 3.  5.8 2.2]
+ [7.6 3.  6.6 2.1]
+ [4.9 2.5 4.5 1.7]
+ [7.3 2.9 6.3 1.8]
+ [6.7 2.5 5.8 1.8]
+ [7.2 3.6 6.1 2.5]
+ [6.5 3.2 5.1 2. ]
+ [6.4 2.7 5.3 1.9]
+ [6.8 3.  5.5 2.1]
+ [5.7 2.5 5.  2. ]
+ [5.8 2.8 5.1 2.4]
+ [6.4 3.2 5.3 2.3]
+ [6.5 3.  5.5 1.8]
+ [7.7 3.8 6.7 2.2]
+ [7.7 2.6 6.9 2.3]
+ [6.  2.2 5.  1.5]
+ [6.9 3.2 5.7 2.3]
+ [5.6 2.8 4.9 2. ]
+ [7.7 2.8 6.7 2. ]
+ [6.3 2.7 4.9 1.8]
+ [6.7 3.3 5.7 2.1]
+ [7.2 3.2 6.  1.8]
+ [6.2 2.8 4.8 1.8]
+ [6.1 3.  4.9 1.8]
+ [6.4 2.8 5.6 2.1]
+ [7.2 3.  5.8 1.6]
+ [7.4 2.8 6.1 1.9]
+ [7.9 3.8 6.4 2. ]
+ [6.4 2.8 5.6 2.2]
+ [6.3 2.8 5.1 1.5]
+ [6.1 2.6 5.6 1.4]
+ [7.7 3.  6.1 2.3]
+ [6.3 3.4 5.6 2.4]
+ [6.4 3.1 5.5 1.8]
+ [6.  3.  4.8 1.8]
+ [6.9 3.1 5.4 2.1]
+ [6.7 3.1 5.6 2.4]
+ [6.9 3.1 5.1 2.3]
+ [5.8 2.7 5.1 1.9]
+ [6.8 3.2 5.9 2.3]
+ [6.7 3.3 5.7 2.5]
+ [6.7 3.  5.2 2.3]
+ [6.3 2.5 5.  1.9]
+ [6.5 3.  5.2 2. ]
+ [6.2 3.4 5.4 2.3]
+ [5.9 3.  5.1 1.8]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kullanışlı bir başka argüman da usecols argümanıdır. Bu da orijinal dosyadan hangi sütunların dikkate alınacağını gösterir. Örneğin, sadece 1. ve 3. sütunlardan veri almak istiyorsanız,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>yazmanız gerekir. Python’da sıralamanın sıfırdan başladığını tekrar hatırlayalım. Dosyadan verilerin hangi veri tipinde okunacağını belirtmek için de dtype argümanı kullanılır. Örneğin, okuyacağınız dosyada metin türünde veriler yer alabilir. Verileri metin olarak okumak için loadtxt fonksiyonunda <code class="docutils literal notranslate"><span class="pre">dtype=str</span></code> yazmanız gerekir.</p>
+<p>Çoğu zaman okuyacağımız tabloda farklı türdeki veri sütunları yer alabilir. Bu durumda <code class="docutils literal notranslate"><span class="pre">.loadtxt()</span></code> metodu işe yaramayacaktır. Bunun yerine <code class="docutils literal notranslate"><span class="pre">.genfromtxt()</span></code> metodunu kullanabiliriz. Bu metodda, <code class="docutils literal notranslate"><span class="pre">dtype=None</span></code> olarak belirtirsek program her sütundaki veri tipini otomatik olarak belirlemeye çalışacaktır. Numpy dizileri aynı türde verilerden oluşmak zorundadır. Bu nedenle farklı türdeki verileri okuduğumuz zaman dizilerden oluşan bir dizi elde ederiz. Ana diziyi oluşturan diziler verinin her bir satırını belirtir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dosya</span> <span class="o">=</span> <span class="s2">&quot;data/iris.txt&quot;</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5.1 3.5 1.4 0.2]
+ [4.9 3.  1.4 0.2]
+ [4.7 3.2 1.3 0.2]
+ [4.6 3.1 1.5 0.2]
+ [5.  3.6 1.4 0.2]
+ [5.4 3.9 1.7 0.4]
+ [4.6 3.4 1.4 0.3]
+ [5.  3.4 1.5 0.2]
+ [4.4 2.9 1.4 0.2]
+ [4.9 3.1 1.5 0.1]
+ [5.4 3.7 1.5 0.2]
+ [4.8 3.4 1.6 0.2]
+ [4.8 3.  1.4 0.1]
+ [4.3 3.  1.1 0.1]
+ [5.8 4.  1.2 0.2]
+ [5.7 4.4 1.5 0.4]
+ [5.4 3.9 1.3 0.4]
+ [5.1 3.5 1.4 0.3]
+ [5.7 3.8 1.7 0.3]
+ [5.1 3.8 1.5 0.3]
+ [5.4 3.4 1.7 0.2]
+ [5.1 3.7 1.5 0.4]
+ [4.6 3.6 1.  0.2]
+ [5.1 3.3 1.7 0.5]
+ [4.8 3.4 1.9 0.2]
+ [5.  3.  1.6 0.2]
+ [5.  3.4 1.6 0.4]
+ [5.2 3.5 1.5 0.2]
+ [5.2 3.4 1.4 0.2]
+ [4.7 3.2 1.6 0.2]
+ [4.8 3.1 1.6 0.2]
+ [5.4 3.4 1.5 0.4]
+ [5.2 4.1 1.5 0.1]
+ [5.5 4.2 1.4 0.2]
+ [4.9 3.1 1.5 0.2]
+ [5.  3.2 1.2 0.2]
+ [5.5 3.5 1.3 0.2]
+ [4.9 3.6 1.4 0.1]
+ [4.4 3.  1.3 0.2]
+ [5.1 3.4 1.5 0.2]
+ [5.  3.5 1.3 0.3]
+ [4.5 2.3 1.3 0.3]
+ [4.4 3.2 1.3 0.2]
+ [5.  3.5 1.6 0.6]
+ [5.1 3.8 1.9 0.4]
+ [4.8 3.  1.4 0.3]
+ [5.1 3.8 1.6 0.2]
+ [4.6 3.2 1.4 0.2]
+ [5.3 3.7 1.5 0.2]
+ [5.  3.3 1.4 0.2]
+ [7.  3.2 4.7 1.4]
+ [6.4 3.2 4.5 1.5]
+ [6.9 3.1 4.9 1.5]
+ [5.5 2.3 4.  1.3]
+ [6.5 2.8 4.6 1.5]
+ [5.7 2.8 4.5 1.3]
+ [6.3 3.3 4.7 1.6]
+ [4.9 2.4 3.3 1. ]
+ [6.6 2.9 4.6 1.3]
+ [5.2 2.7 3.9 1.4]
+ [5.  2.  3.5 1. ]
+ [5.9 3.  4.2 1.5]
+ [6.  2.2 4.  1. ]
+ [6.1 2.9 4.7 1.4]
+ [5.6 2.9 3.6 1.3]
+ [6.7 3.1 4.4 1.4]
+ [5.6 3.  4.5 1.5]
+ [5.8 2.7 4.1 1. ]
+ [6.2 2.2 4.5 1.5]
+ [5.6 2.5 3.9 1.1]
+ [5.9 3.2 4.8 1.8]
+ [6.1 2.8 4.  1.3]
+ [6.3 2.5 4.9 1.5]
+ [6.1 2.8 4.7 1.2]
+ [6.4 2.9 4.3 1.3]
+ [6.6 3.  4.4 1.4]
+ [6.8 2.8 4.8 1.4]
+ [6.7 3.  5.  1.7]
+ [6.  2.9 4.5 1.5]
+ [5.7 2.6 3.5 1. ]
+ [5.5 2.4 3.8 1.1]
+ [5.5 2.4 3.7 1. ]
+ [5.8 2.7 3.9 1.2]
+ [6.  2.7 5.1 1.6]
+ [5.4 3.  4.5 1.5]
+ [6.  3.4 4.5 1.6]
+ [6.7 3.1 4.7 1.5]
+ [6.3 2.3 4.4 1.3]
+ [5.6 3.  4.1 1.3]
+ [5.5 2.5 4.  1.3]
+ [5.5 2.6 4.4 1.2]
+ [6.1 3.  4.6 1.4]
+ [5.8 2.6 4.  1.2]
+ [5.  2.3 3.3 1. ]
+ [5.6 2.7 4.2 1.3]
+ [5.7 3.  4.2 1.2]
+ [5.7 2.9 4.2 1.3]
+ [6.2 2.9 4.3 1.3]
+ [5.1 2.5 3.  1.1]
+ [5.7 2.8 4.1 1.3]
+ [6.3 3.3 6.  2.5]
+ [5.8 2.7 5.1 1.9]
+ [7.1 3.  5.9 2.1]
+ [6.3 2.9 5.6 1.8]
+ [6.5 3.  5.8 2.2]
+ [7.6 3.  6.6 2.1]
+ [4.9 2.5 4.5 1.7]
+ [7.3 2.9 6.3 1.8]
+ [6.7 2.5 5.8 1.8]
+ [7.2 3.6 6.1 2.5]
+ [6.5 3.2 5.1 2. ]
+ [6.4 2.7 5.3 1.9]
+ [6.8 3.  5.5 2.1]
+ [5.7 2.5 5.  2. ]
+ [5.8 2.8 5.1 2.4]
+ [6.4 3.2 5.3 2.3]
+ [6.5 3.  5.5 1.8]
+ [7.7 3.8 6.7 2.2]
+ [7.7 2.6 6.9 2.3]
+ [6.  2.2 5.  1.5]
+ [6.9 3.2 5.7 2.3]
+ [5.6 2.8 4.9 2. ]
+ [7.7 2.8 6.7 2. ]
+ [6.3 2.7 4.9 1.8]
+ [6.7 3.3 5.7 2.1]
+ [7.2 3.2 6.  1.8]
+ [6.2 2.8 4.8 1.8]
+ [6.1 3.  4.9 1.8]
+ [6.4 2.8 5.6 2.1]
+ [7.2 3.  5.8 1.6]
+ [7.4 2.8 6.1 1.9]
+ [7.9 3.8 6.4 2. ]
+ [6.4 2.8 5.6 2.2]
+ [6.3 2.8 5.1 1.5]
+ [6.1 2.6 5.6 1.4]
+ [7.7 3.  6.1 2.3]
+ [6.3 3.4 5.6 2.4]
+ [6.4 3.1 5.5 1.8]
+ [6.  3.  4.8 1.8]
+ [6.9 3.1 5.4 2.1]
+ [6.7 3.1 5.6 2.4]
+ [6.9 3.1 5.1 2.3]
+ [5.8 2.7 5.1 1.9]
+ [6.8 3.2 5.9 2.3]
+ [6.7 3.3 5.7 2.5]
+ [6.7 3.  5.2 2.3]
+ [6.3 2.5 5.  1.9]
+ [6.5 3.  5.2 2. ]
+ [6.2 3.4 5.4 2.3]
+ [5.9 3.  5.1 1.8]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Csv formatındaki dosyaları okumak için kullanılan benzer bir diğer fonksiyon da <code class="docutils literal notranslate"><span class="pre">recfromcsv()</span></code> metodudur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dosya</span> <span class="o">=</span> <span class="s2">&quot;data/iris.csv&quot;</span>
+<span class="n">veri</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">recfromcsv</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(5.1, 3.5, 1.4, 0.2, &#39;setosa&#39;) (4.9, 3. , 1.4, 0.2, &#39;setosa&#39;)
+ (4.7, 3.2, 1.3, 0.2, &#39;setosa&#39;) (4.6, 3.1, 1.5, 0.2, &#39;setosa&#39;)
+ (5. , 3.6, 1.4, 0.2, &#39;setosa&#39;) (5.4, 3.9, 1.7, 0.4, &#39;setosa&#39;)
+ (4.6, 3.4, 1.4, 0.3, &#39;setosa&#39;) (5. , 3.4, 1.5, 0.2, &#39;setosa&#39;)
+ (4.4, 2.9, 1.4, 0.2, &#39;setosa&#39;) (4.9, 3.1, 1.5, 0.1, &#39;setosa&#39;)
+ (5.4, 3.7, 1.5, 0.2, &#39;setosa&#39;) (4.8, 3.4, 1.6, 0.2, &#39;setosa&#39;)
+ (4.8, 3. , 1.4, 0.1, &#39;setosa&#39;) (4.3, 3. , 1.1, 0.1, &#39;setosa&#39;)
+ (5.8, 4. , 1.2, 0.2, &#39;setosa&#39;) (5.7, 4.4, 1.5, 0.4, &#39;setosa&#39;)
+ (5.4, 3.9, 1.3, 0.4, &#39;setosa&#39;) (5.1, 3.5, 1.4, 0.3, &#39;setosa&#39;)
+ (5.7, 3.8, 1.7, 0.3, &#39;setosa&#39;) (5.1, 3.8, 1.5, 0.3, &#39;setosa&#39;)
+ (5.4, 3.4, 1.7, 0.2, &#39;setosa&#39;) (5.1, 3.7, 1.5, 0.4, &#39;setosa&#39;)
+ (4.6, 3.6, 1. , 0.2, &#39;setosa&#39;) (5.1, 3.3, 1.7, 0.5, &#39;setosa&#39;)
+ (4.8, 3.4, 1.9, 0.2, &#39;setosa&#39;) (5. , 3. , 1.6, 0.2, &#39;setosa&#39;)
+ (5. , 3.4, 1.6, 0.4, &#39;setosa&#39;) (5.2, 3.5, 1.5, 0.2, &#39;setosa&#39;)
+ (5.2, 3.4, 1.4, 0.2, &#39;setosa&#39;) (4.7, 3.2, 1.6, 0.2, &#39;setosa&#39;)
+ (4.8, 3.1, 1.6, 0.2, &#39;setosa&#39;) (5.4, 3.4, 1.5, 0.4, &#39;setosa&#39;)
+ (5.2, 4.1, 1.5, 0.1, &#39;setosa&#39;) (5.5, 4.2, 1.4, 0.2, &#39;setosa&#39;)
+ (4.9, 3.1, 1.5, 0.2, &#39;setosa&#39;) (5. , 3.2, 1.2, 0.2, &#39;setosa&#39;)
+ (5.5, 3.5, 1.3, 0.2, &#39;setosa&#39;) (4.9, 3.6, 1.4, 0.1, &#39;setosa&#39;)
+ (4.4, 3. , 1.3, 0.2, &#39;setosa&#39;) (5.1, 3.4, 1.5, 0.2, &#39;setosa&#39;)
+ (5. , 3.5, 1.3, 0.3, &#39;setosa&#39;) (4.5, 2.3, 1.3, 0.3, &#39;setosa&#39;)
+ (4.4, 3.2, 1.3, 0.2, &#39;setosa&#39;) (5. , 3.5, 1.6, 0.6, &#39;setosa&#39;)
+ (5.1, 3.8, 1.9, 0.4, &#39;setosa&#39;) (4.8, 3. , 1.4, 0.3, &#39;setosa&#39;)
+ (5.1, 3.8, 1.6, 0.2, &#39;setosa&#39;) (4.6, 3.2, 1.4, 0.2, &#39;setosa&#39;)
+ (5.3, 3.7, 1.5, 0.2, &#39;setosa&#39;) (5. , 3.3, 1.4, 0.2, &#39;setosa&#39;)
+ (7. , 3.2, 4.7, 1.4, &#39;versicolor&#39;) (6.4, 3.2, 4.5, 1.5, &#39;versicolor&#39;)
+ (6.9, 3.1, 4.9, 1.5, &#39;versicolor&#39;) (5.5, 2.3, 4. , 1.3, &#39;versicolor&#39;)
+ (6.5, 2.8, 4.6, 1.5, &#39;versicolor&#39;) (5.7, 2.8, 4.5, 1.3, &#39;versicolor&#39;)
+ (6.3, 3.3, 4.7, 1.6, &#39;versicolor&#39;) (4.9, 2.4, 3.3, 1. , &#39;versicolor&#39;)
+ (6.6, 2.9, 4.6, 1.3, &#39;versicolor&#39;) (5.2, 2.7, 3.9, 1.4, &#39;versicolor&#39;)
+ (5. , 2. , 3.5, 1. , &#39;versicolor&#39;) (5.9, 3. , 4.2, 1.5, &#39;versicolor&#39;)
+ (6. , 2.2, 4. , 1. , &#39;versicolor&#39;) (6.1, 2.9, 4.7, 1.4, &#39;versicolor&#39;)
+ (5.6, 2.9, 3.6, 1.3, &#39;versicolor&#39;) (6.7, 3.1, 4.4, 1.4, &#39;versicolor&#39;)
+ (5.6, 3. , 4.5, 1.5, &#39;versicolor&#39;) (5.8, 2.7, 4.1, 1. , &#39;versicolor&#39;)
+ (6.2, 2.2, 4.5, 1.5, &#39;versicolor&#39;) (5.6, 2.5, 3.9, 1.1, &#39;versicolor&#39;)
+ (5.9, 3.2, 4.8, 1.8, &#39;versicolor&#39;) (6.1, 2.8, 4. , 1.3, &#39;versicolor&#39;)
+ (6.3, 2.5, 4.9, 1.5, &#39;versicolor&#39;) (6.1, 2.8, 4.7, 1.2, &#39;versicolor&#39;)
+ (6.4, 2.9, 4.3, 1.3, &#39;versicolor&#39;) (6.6, 3. , 4.4, 1.4, &#39;versicolor&#39;)
+ (6.8, 2.8, 4.8, 1.4, &#39;versicolor&#39;) (6.7, 3. , 5. , 1.7, &#39;versicolor&#39;)
+ (6. , 2.9, 4.5, 1.5, &#39;versicolor&#39;) (5.7, 2.6, 3.5, 1. , &#39;versicolor&#39;)
+ (5.5, 2.4, 3.8, 1.1, &#39;versicolor&#39;) (5.5, 2.4, 3.7, 1. , &#39;versicolor&#39;)
+ (5.8, 2.7, 3.9, 1.2, &#39;versicolor&#39;) (6. , 2.7, 5.1, 1.6, &#39;versicolor&#39;)
+ (5.4, 3. , 4.5, 1.5, &#39;versicolor&#39;) (6. , 3.4, 4.5, 1.6, &#39;versicolor&#39;)
+ (6.7, 3.1, 4.7, 1.5, &#39;versicolor&#39;) (6.3, 2.3, 4.4, 1.3, &#39;versicolor&#39;)
+ (5.6, 3. , 4.1, 1.3, &#39;versicolor&#39;) (5.5, 2.5, 4. , 1.3, &#39;versicolor&#39;)
+ (5.5, 2.6, 4.4, 1.2, &#39;versicolor&#39;) (6.1, 3. , 4.6, 1.4, &#39;versicolor&#39;)
+ (5.8, 2.6, 4. , 1.2, &#39;versicolor&#39;) (5. , 2.3, 3.3, 1. , &#39;versicolor&#39;)
+ (5.6, 2.7, 4.2, 1.3, &#39;versicolor&#39;) (5.7, 3. , 4.2, 1.2, &#39;versicolor&#39;)
+ (5.7, 2.9, 4.2, 1.3, &#39;versicolor&#39;) (6.2, 2.9, 4.3, 1.3, &#39;versicolor&#39;)
+ (5.1, 2.5, 3. , 1.1, &#39;versicolor&#39;) (5.7, 2.8, 4.1, 1.3, &#39;versicolor&#39;)
+ (6.3, 3.3, 6. , 2.5, &#39;virginica&#39;) (5.8, 2.7, 5.1, 1.9, &#39;virginica&#39;)
+ (7.1, 3. , 5.9, 2.1, &#39;virginica&#39;) (6.3, 2.9, 5.6, 1.8, &#39;virginica&#39;)
+ (6.5, 3. , 5.8, 2.2, &#39;virginica&#39;) (7.6, 3. , 6.6, 2.1, &#39;virginica&#39;)
+ (4.9, 2.5, 4.5, 1.7, &#39;virginica&#39;) (7.3, 2.9, 6.3, 1.8, &#39;virginica&#39;)
+ (6.7, 2.5, 5.8, 1.8, &#39;virginica&#39;) (7.2, 3.6, 6.1, 2.5, &#39;virginica&#39;)
+ (6.5, 3.2, 5.1, 2. , &#39;virginica&#39;) (6.4, 2.7, 5.3, 1.9, &#39;virginica&#39;)
+ (6.8, 3. , 5.5, 2.1, &#39;virginica&#39;) (5.7, 2.5, 5. , 2. , &#39;virginica&#39;)
+ (5.8, 2.8, 5.1, 2.4, &#39;virginica&#39;) (6.4, 3.2, 5.3, 2.3, &#39;virginica&#39;)
+ (6.5, 3. , 5.5, 1.8, &#39;virginica&#39;) (7.7, 3.8, 6.7, 2.2, &#39;virginica&#39;)
+ (7.7, 2.6, 6.9, 2.3, &#39;virginica&#39;) (6. , 2.2, 5. , 1.5, &#39;virginica&#39;)
+ (6.9, 3.2, 5.7, 2.3, &#39;virginica&#39;) (5.6, 2.8, 4.9, 2. , &#39;virginica&#39;)
+ (7.7, 2.8, 6.7, 2. , &#39;virginica&#39;) (6.3, 2.7, 4.9, 1.8, &#39;virginica&#39;)
+ (6.7, 3.3, 5.7, 2.1, &#39;virginica&#39;) (7.2, 3.2, 6. , 1.8, &#39;virginica&#39;)
+ (6.2, 2.8, 4.8, 1.8, &#39;virginica&#39;) (6.1, 3. , 4.9, 1.8, &#39;virginica&#39;)
+ (6.4, 2.8, 5.6, 2.1, &#39;virginica&#39;) (7.2, 3. , 5.8, 1.6, &#39;virginica&#39;)
+ (7.4, 2.8, 6.1, 1.9, &#39;virginica&#39;) (7.9, 3.8, 6.4, 2. , &#39;virginica&#39;)
+ (6.4, 2.8, 5.6, 2.2, &#39;virginica&#39;) (6.3, 2.8, 5.1, 1.5, &#39;virginica&#39;)
+ (6.1, 2.6, 5.6, 1.4, &#39;virginica&#39;) (7.7, 3. , 6.1, 2.3, &#39;virginica&#39;)
+ (6.3, 3.4, 5.6, 2.4, &#39;virginica&#39;) (6.4, 3.1, 5.5, 1.8, &#39;virginica&#39;)
+ (6. , 3. , 4.8, 1.8, &#39;virginica&#39;) (6.9, 3.1, 5.4, 2.1, &#39;virginica&#39;)
+ (6.7, 3.1, 5.6, 2.4, &#39;virginica&#39;) (6.9, 3.1, 5.1, 2.3, &#39;virginica&#39;)
+ (5.8, 2.7, 5.1, 1.9, &#39;virginica&#39;) (6.8, 3.2, 5.9, 2.3, &#39;virginica&#39;)
+ (6.7, 3.3, 5.7, 2.5, &#39;virginica&#39;) (6.7, 3. , 5.2, 2.3, &#39;virginica&#39;)
+ (6.3, 2.5, 5. , 1.9, &#39;virginica&#39;) (6.5, 3. , 5.2, 2. , &#39;virginica&#39;)
+ (6.2, 3.4, 5.4, 2.3, &#39;virginica&#39;) (5.9, 3. , 5.1, 1.8, &#39;virginica&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pandas-modulu-ile-veri-okuma">
+<h3><span class="section-number">12.1.3. </span>Pandas Modülü ile Veri Okuma<a class="headerlink" href="#pandas-modulu-ile-veri-okuma" title="Permalink to this heading">#</a></h3>
+<p>Numpy dizileri çok faydalı ve hızlı olsa da çalışmalarımızın çoğunda ihtiyaç duyduğumuz esnekliği sağlamaz. Gerçekte kullandığımız verilerin çoğu farklı veri tipindeki sütunlardan oluşur (tipik bir excel tablosunu düşünün). Pandas data framelerden ilgili bölümde bahsetmiştik. Şimdi farklı türdeki dosyaları Pandas data frame olarak okumayı görelim. Pandas modülünde csv dosyası okumak için <code class="docutils literal notranslate"><span class="pre">.read_csv()</span></code> metodu kullanılır.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/iris.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   sepal_length  sepal_width  petal_length  petal_width species
+0           5.1          3.5           1.4          0.2  setosa
+1           4.9          3.0           1.4          0.2  setosa
+2           4.7          3.2           1.3          0.2  setosa
+3           4.6          3.1           1.5          0.2  setosa
+4           5.0          3.6           1.4          0.2  setosa
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas data frameleri, <code class="docutils literal notranslate"><span class="pre">.values</span></code> özelliğini kullanarak Numpy dizisine çevirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5.1 3.5 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.0 1.4 0.2 &#39;setosa&#39;]
+ [4.7 3.2 1.3 0.2 &#39;setosa&#39;]
+ [4.6 3.1 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.6 1.4 0.2 &#39;setosa&#39;]
+ [5.4 3.9 1.7 0.4 &#39;setosa&#39;]
+ [4.6 3.4 1.4 0.3 &#39;setosa&#39;]
+ [5.0 3.4 1.5 0.2 &#39;setosa&#39;]
+ [4.4 2.9 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.1 1.5 0.1 &#39;setosa&#39;]
+ [5.4 3.7 1.5 0.2 &#39;setosa&#39;]
+ [4.8 3.4 1.6 0.2 &#39;setosa&#39;]
+ [4.8 3.0 1.4 0.1 &#39;setosa&#39;]
+ [4.3 3.0 1.1 0.1 &#39;setosa&#39;]
+ [5.8 4.0 1.2 0.2 &#39;setosa&#39;]
+ [5.7 4.4 1.5 0.4 &#39;setosa&#39;]
+ [5.4 3.9 1.3 0.4 &#39;setosa&#39;]
+ [5.1 3.5 1.4 0.3 &#39;setosa&#39;]
+ [5.7 3.8 1.7 0.3 &#39;setosa&#39;]
+ [5.1 3.8 1.5 0.3 &#39;setosa&#39;]
+ [5.4 3.4 1.7 0.2 &#39;setosa&#39;]
+ [5.1 3.7 1.5 0.4 &#39;setosa&#39;]
+ [4.6 3.6 1.0 0.2 &#39;setosa&#39;]
+ [5.1 3.3 1.7 0.5 &#39;setosa&#39;]
+ [4.8 3.4 1.9 0.2 &#39;setosa&#39;]
+ [5.0 3.0 1.6 0.2 &#39;setosa&#39;]
+ [5.0 3.4 1.6 0.4 &#39;setosa&#39;]
+ [5.2 3.5 1.5 0.2 &#39;setosa&#39;]
+ [5.2 3.4 1.4 0.2 &#39;setosa&#39;]
+ [4.7 3.2 1.6 0.2 &#39;setosa&#39;]
+ [4.8 3.1 1.6 0.2 &#39;setosa&#39;]
+ [5.4 3.4 1.5 0.4 &#39;setosa&#39;]
+ [5.2 4.1 1.5 0.1 &#39;setosa&#39;]
+ [5.5 4.2 1.4 0.2 &#39;setosa&#39;]
+ [4.9 3.1 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.2 1.2 0.2 &#39;setosa&#39;]
+ [5.5 3.5 1.3 0.2 &#39;setosa&#39;]
+ [4.9 3.6 1.4 0.1 &#39;setosa&#39;]
+ [4.4 3.0 1.3 0.2 &#39;setosa&#39;]
+ [5.1 3.4 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.5 1.3 0.3 &#39;setosa&#39;]
+ [4.5 2.3 1.3 0.3 &#39;setosa&#39;]
+ [4.4 3.2 1.3 0.2 &#39;setosa&#39;]
+ [5.0 3.5 1.6 0.6 &#39;setosa&#39;]
+ [5.1 3.8 1.9 0.4 &#39;setosa&#39;]
+ [4.8 3.0 1.4 0.3 &#39;setosa&#39;]
+ [5.1 3.8 1.6 0.2 &#39;setosa&#39;]
+ [4.6 3.2 1.4 0.2 &#39;setosa&#39;]
+ [5.3 3.7 1.5 0.2 &#39;setosa&#39;]
+ [5.0 3.3 1.4 0.2 &#39;setosa&#39;]
+ [7.0 3.2 4.7 1.4 &#39;versicolor&#39;]
+ [6.4 3.2 4.5 1.5 &#39;versicolor&#39;]
+ [6.9 3.1 4.9 1.5 &#39;versicolor&#39;]
+ [5.5 2.3 4.0 1.3 &#39;versicolor&#39;]
+ [6.5 2.8 4.6 1.5 &#39;versicolor&#39;]
+ [5.7 2.8 4.5 1.3 &#39;versicolor&#39;]
+ [6.3 3.3 4.7 1.6 &#39;versicolor&#39;]
+ [4.9 2.4 3.3 1.0 &#39;versicolor&#39;]
+ [6.6 2.9 4.6 1.3 &#39;versicolor&#39;]
+ [5.2 2.7 3.9 1.4 &#39;versicolor&#39;]
+ [5.0 2.0 3.5 1.0 &#39;versicolor&#39;]
+ [5.9 3.0 4.2 1.5 &#39;versicolor&#39;]
+ [6.0 2.2 4.0 1.0 &#39;versicolor&#39;]
+ [6.1 2.9 4.7 1.4 &#39;versicolor&#39;]
+ [5.6 2.9 3.6 1.3 &#39;versicolor&#39;]
+ [6.7 3.1 4.4 1.4 &#39;versicolor&#39;]
+ [5.6 3.0 4.5 1.5 &#39;versicolor&#39;]
+ [5.8 2.7 4.1 1.0 &#39;versicolor&#39;]
+ [6.2 2.2 4.5 1.5 &#39;versicolor&#39;]
+ [5.6 2.5 3.9 1.1 &#39;versicolor&#39;]
+ [5.9 3.2 4.8 1.8 &#39;versicolor&#39;]
+ [6.1 2.8 4.0 1.3 &#39;versicolor&#39;]
+ [6.3 2.5 4.9 1.5 &#39;versicolor&#39;]
+ [6.1 2.8 4.7 1.2 &#39;versicolor&#39;]
+ [6.4 2.9 4.3 1.3 &#39;versicolor&#39;]
+ [6.6 3.0 4.4 1.4 &#39;versicolor&#39;]
+ [6.8 2.8 4.8 1.4 &#39;versicolor&#39;]
+ [6.7 3.0 5.0 1.7 &#39;versicolor&#39;]
+ [6.0 2.9 4.5 1.5 &#39;versicolor&#39;]
+ [5.7 2.6 3.5 1.0 &#39;versicolor&#39;]
+ [5.5 2.4 3.8 1.1 &#39;versicolor&#39;]
+ [5.5 2.4 3.7 1.0 &#39;versicolor&#39;]
+ [5.8 2.7 3.9 1.2 &#39;versicolor&#39;]
+ [6.0 2.7 5.1 1.6 &#39;versicolor&#39;]
+ [5.4 3.0 4.5 1.5 &#39;versicolor&#39;]
+ [6.0 3.4 4.5 1.6 &#39;versicolor&#39;]
+ [6.7 3.1 4.7 1.5 &#39;versicolor&#39;]
+ [6.3 2.3 4.4 1.3 &#39;versicolor&#39;]
+ [5.6 3.0 4.1 1.3 &#39;versicolor&#39;]
+ [5.5 2.5 4.0 1.3 &#39;versicolor&#39;]
+ [5.5 2.6 4.4 1.2 &#39;versicolor&#39;]
+ [6.1 3.0 4.6 1.4 &#39;versicolor&#39;]
+ [5.8 2.6 4.0 1.2 &#39;versicolor&#39;]
+ [5.0 2.3 3.3 1.0 &#39;versicolor&#39;]
+ [5.6 2.7 4.2 1.3 &#39;versicolor&#39;]
+ [5.7 3.0 4.2 1.2 &#39;versicolor&#39;]
+ [5.7 2.9 4.2 1.3 &#39;versicolor&#39;]
+ [6.2 2.9 4.3 1.3 &#39;versicolor&#39;]
+ [5.1 2.5 3.0 1.1 &#39;versicolor&#39;]
+ [5.7 2.8 4.1 1.3 &#39;versicolor&#39;]
+ [6.3 3.3 6.0 2.5 &#39;virginica&#39;]
+ [5.8 2.7 5.1 1.9 &#39;virginica&#39;]
+ [7.1 3.0 5.9 2.1 &#39;virginica&#39;]
+ [6.3 2.9 5.6 1.8 &#39;virginica&#39;]
+ [6.5 3.0 5.8 2.2 &#39;virginica&#39;]
+ [7.6 3.0 6.6 2.1 &#39;virginica&#39;]
+ [4.9 2.5 4.5 1.7 &#39;virginica&#39;]
+ [7.3 2.9 6.3 1.8 &#39;virginica&#39;]
+ [6.7 2.5 5.8 1.8 &#39;virginica&#39;]
+ [7.2 3.6 6.1 2.5 &#39;virginica&#39;]
+ [6.5 3.2 5.1 2.0 &#39;virginica&#39;]
+ [6.4 2.7 5.3 1.9 &#39;virginica&#39;]
+ [6.8 3.0 5.5 2.1 &#39;virginica&#39;]
+ [5.7 2.5 5.0 2.0 &#39;virginica&#39;]
+ [5.8 2.8 5.1 2.4 &#39;virginica&#39;]
+ [6.4 3.2 5.3 2.3 &#39;virginica&#39;]
+ [6.5 3.0 5.5 1.8 &#39;virginica&#39;]
+ [7.7 3.8 6.7 2.2 &#39;virginica&#39;]
+ [7.7 2.6 6.9 2.3 &#39;virginica&#39;]
+ [6.0 2.2 5.0 1.5 &#39;virginica&#39;]
+ [6.9 3.2 5.7 2.3 &#39;virginica&#39;]
+ [5.6 2.8 4.9 2.0 &#39;virginica&#39;]
+ [7.7 2.8 6.7 2.0 &#39;virginica&#39;]
+ [6.3 2.7 4.9 1.8 &#39;virginica&#39;]
+ [6.7 3.3 5.7 2.1 &#39;virginica&#39;]
+ [7.2 3.2 6.0 1.8 &#39;virginica&#39;]
+ [6.2 2.8 4.8 1.8 &#39;virginica&#39;]
+ [6.1 3.0 4.9 1.8 &#39;virginica&#39;]
+ [6.4 2.8 5.6 2.1 &#39;virginica&#39;]
+ [7.2 3.0 5.8 1.6 &#39;virginica&#39;]
+ [7.4 2.8 6.1 1.9 &#39;virginica&#39;]
+ [7.9 3.8 6.4 2.0 &#39;virginica&#39;]
+ [6.4 2.8 5.6 2.2 &#39;virginica&#39;]
+ [6.3 2.8 5.1 1.5 &#39;virginica&#39;]
+ [6.1 2.6 5.6 1.4 &#39;virginica&#39;]
+ [7.7 3.0 6.1 2.3 &#39;virginica&#39;]
+ [6.3 3.4 5.6 2.4 &#39;virginica&#39;]
+ [6.4 3.1 5.5 1.8 &#39;virginica&#39;]
+ [6.0 3.0 4.8 1.8 &#39;virginica&#39;]
+ [6.9 3.1 5.4 2.1 &#39;virginica&#39;]
+ [6.7 3.1 5.6 2.4 &#39;virginica&#39;]
+ [6.9 3.1 5.1 2.3 &#39;virginica&#39;]
+ [5.8 2.7 5.1 1.9 &#39;virginica&#39;]
+ [6.8 3.2 5.9 2.3 &#39;virginica&#39;]
+ [6.7 3.3 5.7 2.5 &#39;virginica&#39;]
+ [6.7 3.0 5.2 2.3 &#39;virginica&#39;]
+ [6.3 2.5 5.0 1.9 &#39;virginica&#39;]
+ [6.5 3.0 5.2 2.0 &#39;virginica&#39;]
+ [6.2 3.4 5.4 2.3 &#39;virginica&#39;]
+ [5.9 3.0 5.1 1.8 &#39;virginica&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> metodu çok sayıda argüman alabilir. Bunlardan birisi dosyadan okunacak satır sayısıdır. Dosyadan, örneğin sadece ilk 3 satırı okumak isityorsak <code class="docutils literal notranslate"><span class="pre">pd.read_csv('dosya_adı',</span> <span class="pre">nrows</span> <span class="pre">=</span> <span class="pre">3)</span></code> yazmamız gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   sepal_length  sepal_width  petal_length  petal_width species
+0           5.1          3.5           1.4          0.2  setosa
+1           4.9          3.0           1.4          0.2  setosa
+2           4.7          3.2           1.3          0.2  setosa
+</pre></div>
+</div>
+</div>
+</div>
+<p>Benzer şekilde, <code class="docutils literal notranslate"><span class="pre">.read_csv</span></code> komutu dosyadaki ilk satırın başlık satırı olduğunu varsayar. Dosyada başlık satırı yoksa ve biz herhangi birşey belirtmezse ilk satırdaki veriler sütun başlıkları olarak kabul edilir. Dosyada sütun başlıklarının yer almadığını belirtmek için <code class="docutils literal notranslate"><span class="pre">header=None</span></code> yazılır. Bu bu durumda, sütunlar 0’dan başlamak üzere sayılarla isimlendirilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/iris.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">veri</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sepal_length</td>
+      <td>sepal_width</td>
+      <td>petal_length</td>
+      <td>petal_width</td>
+      <td>species</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Dosyada başlık satırı yoksa ve biz başlıkları belirtmek istiyorsak names argümanını kullanarak sütunları isimlendirebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dosya</span> <span class="o">=</span> <span class="s2">&quot;data/iris.csv&quot;</span>
+<span class="n">sutunlar</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span><span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">sutunlar</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">veri</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Varsayalım ki dosyada sütun başlıkları var ama biz bunların yerine başka isimler kullanmak istiyoruz. Bu durumda yine header argümanı ile sütun başlıklarının yer aldığı satırı belirtiyoruz. Sütun başlıkları çoğunlukla ilk satırda yer alır. Python’da numaralandırmanın 0’dan başladığını hatırlayın. O halde ilk satır numarası 0 be kullanacağımız argüman da <code class="docutils literal notranslate"><span class="pre">header</span> <span class="pre">=</span> <span class="pre">0</span></code> olacaktır. İkinci olarak yine names argümanını kullanarak vereceğimiz yeni isimleri belirtebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dosya</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">sutunlar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dosyada NA (Not Available: erişilemez) veya NaN (Not a Number: Bir sayı değil) gibi tanımsız veriler belirli karakterlerle gösteriliyorsa bunları belirtmek için na_values argümanı kullanılır. Örneğin, bir ankete ait sonuçların kaydedildiği dosyada katılımcıların cevap vermediği her soru *** karakterleri ile belirtilmiş olsun. Bu durumda dosyayı doğrudan okumaktansa *** karakteri görülen yerde NA olması gerektiğini belirtmek için na_values = ‘***’ yazılır. Peki tanımsız veriler farklı sütunlarda farklı karakterlerle belirtilmişse ne yaparız? Bu durumda, na_values argümanına verileri sözlük şeklinde tanımlarız. Örneğin, doğum tarihi bilgisi girmeyen katılımcılar için bu alan 0 ile doğum yeri bilgisi girmeyen katılımcılar içinse *** ile belirtiliyor olsun. Bu sütunlarda belirtilen karakterlerin görülmesi durumunda bunların tanımsız olduğunun anlaşılması için na_values = {‘dogum_tarihi’:[‘0’], ‘dogum_yeri’:[‘***’]} yazarız.</p>
+<p>Okunacak csv dosyasında sütun ayıracı virgülden farklı ise bu da sep veya delimiter argümanı ile belirtilir. Örneğin, dosyadaki sütunlar genelde olduğu gibi tab / sekme ile ayrılmışsa <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> metodunda <code class="docutils literal notranslate"><span class="pre">sep='\t'</span></code> (veya delimiter=’\t’) yazılır. Csv dosyalarında sütunlar genellikle noktalı virgül veya virgül ile ayrılır. Virgül, varsayılan ayraç olduğundan ayrıca belirtmenize gerek yoktur.</p>
+</section>
+</section>
+<section id="excel-dosyalarindan-veri-okuma">
+<h2><span class="section-number">12.2. </span>Excel Dosyalarından Veri Okuma<a class="headerlink" href="#excel-dosyalarindan-veri-okuma" title="Permalink to this heading">#</a></h2>
+<p>Herhalde gerek iş gerekse akademik çalışmalarda en fazla kullanılan dosya türü excel dosyalarıdır. Bu nedenle veri analizinde sık kullanılan programların hemen hepsinde excel dosyalarından veri okumak olanaklıdır. Python’da excel dosyalarından veri okumanın en kolay yolu Pandas modülünü kullanmaktır.</p>
+<p>Pandas modülünde excel dosyasından veri okumak için öncelikle dosya ile bağlantı kurmak gerekir. Bunun için de <code class="docutils literal notranslate"><span class="pre">.ExcelFile()</span></code> metodu kullanılır. Aşağıdaki kodu çalıştırmak için öncesinde <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> modülünü kurmanız gerekir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">dosya</span> <span class="o">=</span> <span class="s1">&#39;data/iris.xlsx&#39;</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">dosya</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir defa dosya ile bağlantı kurulduktan sonra, dosyadaki sayfaları <code class="docutils literal notranslate"><span class="pre">.sheet_names()</span></code> metodu ile görebiliriz. Dosya yolunu tanımlarken dizin de kullanacaksanız dizinler arasında <code class="docutils literal notranslate"><span class="pre">\</span></code> yerine <code class="docutils literal notranslate"><span class="pre">/</span></code> işareti kullanmaya dikkat etmelisiniz. Bildiğiniz gibi Python’da <code class="docutils literal notranslate"><span class="pre">\</span></code> işareti, <code class="docutils literal notranslate"><span class="pre">\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\t</span></code> gibi kaçış (escape) karakterlerinde kullanıldığı için dosya yolunda bunun yerine <code class="docutils literal notranslate"><span class="pre">/</span></code> işaretinin kullanılması gerekiyor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">veri</span><span class="o">.</span><span class="n">sheet_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;iris&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>İstediğimiz sayfadaki verileri okumak için <code class="docutils literal notranslate"><span class="pre">.parse()</span></code> metodunu kullanabiliriz. Burada istediğimiz sayfanın ismini metin olarak ya da sayfa numarasını sayı olarak girmemiz mümkün. Bu açıdan, <code class="docutils literal notranslate"><span class="pre">tablo1</span> <span class="pre">=</span> <span class="pre">veri.parsel('Sayfa1')</span></code> veya <code class="docutils literal notranslate"><span class="pre">tablo1</span> <span class="pre">=</span> <span class="pre">veri.parsel(0)</span></code> aynı sonucu verecektir.</p>
+<p>Excel dosyalarından veri okurken <code class="docutils literal notranslate"><span class="pre">.parse()</span></code> argümanına verebileceğimiz farklı argümanlar da bulunmaktadır. Bunlardan ilki skiprow argümanıdır. Bu argümanı kullanarak sayfada okunmadan atlanmasını istediğimiz satır numaralarını liste olarak iletebiliriz. Excel dosyalarında zaman zaman ilk satırlarda tablolar ile ilgili açıklayıcı bilgilere yer verilir. Bunlar bizim çalışmalarımızda işimize yaramayacağından, doğrudan atlanabilir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tablo1</span> <span class="o">=</span> <span class="n">veri</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yukarıdaki komut, excel sayfasındaki 1, 2 ve 3. satırları okumadan atlayacaktır. Aynı şekilde dosyadaki sütunların hepsini okumak istemeyebiliriz. Bu durumda <code class="docutils literal notranslate"><span class="pre">parse_cols</span></code> argümanını kullanarak almak istediğimiz sütun numaralarını iletebiliriz.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tablo1</span> <span class="o">=</span> <span class="n">veri</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">parse_cols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bir başka durumda, ilk satırdaki başlıkları okumayıp kendimiz farklı sütun başlıkları vermek isteyebiliriz. Buna neden ihtiyaç duyalım? Aynı formattaki çok sayıda Excel tablosundan veri çekip bunları birleştirecek bir kod yazdığınızı düşünün. Excel tabloları aynı bilgileri içermesine rağmen, sütun başlıkları, dosyayı kaydedene göre değişmiş olabilir. Örneğin, aynı başlık, bir dosyada “Sipariş No”, bir diğerinde “Sip. No.”, bir başkasında “Sipariş Numarası” şeklinde kaydedilmiş olabilir. Bu dosyaları olduğu gibi okumak sonrasında verilerin birleştirilmesinde soruna yol açacaktır. Bu durumda en doğrusu bütün dosyalarda ilk satırı atlayıp sütunlara kendi seçeceğimiz isimleri vermektir.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tablo1</span> <span class="o">=</span> <span class="n">veri</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">parse_cols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> 
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_boy&#39;</span><span class="p">,</span><span class="s1">&#39;sepal_en&#39;</span><span class="p">,</span><span class="s1">&#39;petal_boy&#39;</span><span class="p">,</span><span class="s1">&#39;petal_en&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tüm argümanlara ileteceğimiz değerlerin liste formatında olmasına ve sayısal değerlerin de Python indeks yapısına uygun olarak 0 ile başladığına dikkat edin.</p>
+<p>Excel dosyasından veri okumak için kullanılabilecek bir başka Pandas metodu da <code class="docutils literal notranslate"><span class="pre">.read_excel()</span></code> metodudur. Bu metodun aldığı önemli argümanlar aşağıdaki gibidir.</p>
+<ul class="simple">
+<li><p>sheet_name: Verinin okunacağı sayfa adı</p></li>
+<li><p>header: Sütun başlıklarının yer aldığı satır. Varsayılan olarak sıfırdır.</p></li>
+<li><p>skiprows: Baştan itibaren atlanacak satır sayısı.</p></li>
+<li><p>skip_footer: Sondan itibaren atlanacak satır sayısı.</p></li>
+<li><p>index_col: İndeks olarak kullanılacak sütun.</p></li>
+<li><p>names: Dosyada başlık satırı yoksa, başlık isimleri liste olarak iletilebilir.</p></li>
+</ul>
 </section>
 </section>
 
@@ -480,8 +1854,11 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duz-dosyalardan-veri-okuma">12.1. Düz Dosyalardan Veri Okuma</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metin-dosyalarindan-veri-okuma">12.1.1. Metin Dosyalarından Veri Okuma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-modulu-ile-veri-okuma">12.1.2. Numpy Modülü ile Veri Okuma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-modulu-ile-veri-okuma">12.1.3. Pandas Modülü ile Veri Okuma</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-dosyalarindan-veri-okuma">12.2. Excel Dosyalarından Veri Okuma</a></li>
 </ul>
   </nav></div>
 
