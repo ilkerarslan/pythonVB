@@ -378,6 +378,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-dosyalarindan-veri-okuma">12.2. Excel Dosyalarından Veri Okuma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diger-dosya-turlerinden-veri-okuma">12.3. Diğer Dosya Türlerinden Veri Okuma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sas-dosyalari">12.3.1. SAS Dosyaları</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata">12.3.2. STATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdf5-veri-tipi">12.3.3. HDF5 Veri Tipi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab">12.3.4. MATLAB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iliskisel-veri-tabanlarindan-veri-okuma">12.4. İlişkisel Veri Tabanlarından Veri Okuma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webden-veri-cekme">12.5. Webden Veri Çekme</a></li>
 </ul>
             </nav>
         </div>
@@ -1782,6 +1791,129 @@ document.write(`
 <li><p>index_col: İndeks olarak kullanılacak sütun.</p></li>
 <li><p>names: Dosyada başlık satırı yoksa, başlık isimleri liste olarak iletilebilir.</p></li>
 </ul>
+<p>Argümanların tam listesi için <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html">pandas.read_excel</a> dokümantasyan linkine bakabilirsiniz.</p>
+</section>
+<section id="diger-dosya-turlerinden-veri-okuma">
+<h2><span class="section-number">12.3. </span>Diğer Dosya Türlerinden Veri Okuma<a class="headerlink" href="#diger-dosya-turlerinden-veri-okuma" title="Permalink to this heading">#</a></h2>
+<p>Sık kullanılan veri analizi programları arasında SAS, STATA, MATLAB ve SPSS gibi programlar da yer alıyor. Bu programlar kullanılarak oluşturulmuş bir dosya ile karşılaşmamız halinde, bunları da Python’a nasıl aktaracağımızı bilmeniz faydalı olacaktır.</p>
+<section id="sas-dosyalari">
+<h3><span class="section-number">12.3.1. </span>SAS Dosyaları<a class="headerlink" href="#sas-dosyalari" title="Permalink to this heading">#</a></h3>
+<p>SAS, özellikle iş uygulamalarında sık kullanılan ticari bir yazılımdır. Statistical Analysis Software kelimelerinin ilk harflerinden oluşmuştur. SAS yazılımında kullanılan dosya uzantısı .sas7bcat veya .sas7bdat’dir.</p>
+<p>Python’da SAS dosyalarını okumak için öncelikle Pandas modülünde yer alan .read_sas() metodunu kullanabilirsiniz.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">dosya</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/ilker/Desktop/veri_dosyasi.sas7bdat&#39;</span>
+<span class="n">veri_tablosu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sas</span><span class="p">(</span><span class="n">dosya</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Python’da SAS dosyalarını okumanın bir başka yolu da sas7bdat kütüphanesi ve bu kütüphanede yer alan SAS7BDAT modülünü kullanmaktır. Her ne kadar Pandas varken bu modülü önermesem de yine de okuyucuların bilgisi olması amacıyla paylaşıyorum. SAS dosyasını okumak için önce kütüphaneden ilgili modülü aktarmak gerekir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sas7bdat</span> <span class="kn">import</span> <span class="n">SAS7BDAT</span>
+</pre></div>
+</div>
+</section>
+<section id="stata">
+<h3><span class="section-number">12.3.2. </span>STATA<a class="headerlink" href="#stata" title="Permalink to this heading">#</a></h3>
+<p>STATA, özellikle sosyal bilimler ve ekonomi alanlarında sıkça kullanılan bir istatistiksel analiz programıdır. Statistics and Data sözlerinin bir araya getirilmesinden oluşmuştur. STATA dosyaları .dta uzantısına sahiptir. Artık tahmin edebileceğiniz üzere STATA dosyasını okumak için Pandas modülündeki <code class="docutils literal notranslate"><span class="pre">.read_stata()</span></code> metodu kullanılabilir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">dosya</span> <span class="o">=</span> <span class="s1">&#39;stata_dosyasi.dta&#39;</span>
+<span class="n">stata_tablosu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="n">dosya</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="hdf5-veri-tipi">
+<h3><span class="section-number">12.3.3. </span>HDF5 Veri Tipi<a class="headerlink" href="#hdf5-veri-tipi" title="Permalink to this heading">#</a></h3>
+<p>HDF5 ya da Hierarchical Data Format 5, çok büyük ölçekteki ve karmaşık yapıdaki verileri saklamak ve yönetmek üzere geliştirilmiş bir veri modelidir . HDF veri modeli ilk olarak Amerikan, National Center for Supercomputing Applications  (NCA) kurumu tarafından geliştirilmiştir. HDF veri yapısı daha sonra kar amacı gütmeyen HDF kurumu tarafından geliştirilmeye devam etmiştir.</p>
+<p>Python’un yanı sıra C++, Java, Matlab, Mathematica, R ve Julia gibi çok farklı programlama dilleri için de HDF dosya yapısı ile çalışmaya yönelik kütüphaneler geliştirilmiştir. HDF veri yapısı ile exabyte boyutunda dosyalar ile rahatlıkla çalışılabilir (1 exabyte = 1000 gigabyte).</p>
+<p>Python’da HDF5 dosyaları ile çalışabilmek için geliştirilmiş olan modül h5py modülüdür. Bir hdf5 dosyasından veri okumak için bu modüldeki .File() metodu kullanılır.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="n">dosya_adi</span> <span class="o">=</span> <span class="s1">&#39;hdf5_dosyasi.hdf5&#39;</span>
+<span class="n">veri</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">dosya_adi</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Fonksiyondaki ikinci argümanın (‘r’) dosyanın sadece okunması anlamına geldiğini artık biliyoruz. HDF5 dosyasında yer alan verileri görmek için sözlük veri yapısından tanıdığımız .keys() metodunu kullanabiliriz.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alt_veri</span> <span class="ow">in</span> <span class="n">veri</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">alt_veri</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>HDF5 verisinde yer alan alt verilerin kendileri de sözlük yapısında olabilir. Bunların alt verilerini de yine .keys() metodu ile görebilir ya da .value metodu ile verileri inceleyebiliriz.</p>
+<p>HDF veri yapısı ve Python’da kullanımı konusunda ayrıntılı bilgi almak isteyen okuyucular Andrew Collette tarafından yazılmış olan Python and HDF5 kitabına başvurabilir.</p>
+</section>
+<section id="matlab">
+<h3><span class="section-number">12.3.4. </span>MATLAB<a class="headerlink" href="#matlab" title="Permalink to this heading">#</a></h3>
+<p>Matlab özellikle mühendislik ve temel bilimlerde yoğun olarak kullanılan bir programlama dilidir. Matlab, Matrix Laboratory kelimelerinin birleşmesinden oluşmuştur. Matlab’in ticari bir yazılım olması yaygınlığını sınırlasa da ücretsiz bir yazılım olan Octave Matlab’la neredeyse tamamen aynıdır. Vektör ve matrislerle çalışma prensibine sahip olması nedeniyle Matlab kolay ve hızlı bir programlama dilidir. Özellikle Lineer Cebir uygulamalarında başvurulan bir programdır. Yapay öğrenme, derin öğrenme gibi konularda yakın zamana kadar en fazla kullanılan programlardan birisi Matlab olmakla birlikte son zamanlarda Python daha fazla kullanılmaya başlanmıştır.</p>
+<p>Matlab dosyaları .mat uzantısına sahiptir. Matlab dosyalarını okumak için <code class="docutils literal notranslate"><span class="pre">scipy.io</span></code> modülünde yer alan <code class="docutils literal notranslate"><span class="pre">scipy.io.loadmat()</span></code>, dosyaları Matlab formatında kaydetmek içinse <code class="docutils literal notranslate"><span class="pre">scipy.io.savemat()</span></code> fonksiyonlarını kullanabiliriz. Bir .mat dosyası farklı tipte veri nesnelerinden meydana gelmiş olabilir. Python’da <code class="docutils literal notranslate"><span class="pre">.loadmat()</span></code> metodu ile .mat dosyasını okuduğunuzda veri bir sözlük veri yapısı şeklinde okunur. Sözlükte anahtarlar, .mat dosyasındaki veri nesnelerinin isimleri, değerler ise veri nesnelerini belirtir. Aşağıdaki örnekte, Matlab’da hazır olan örnek dosyalardan gprdata.mat dosyasının Python’dan okunması gösteriliyor. Başında ve sonunda ‘__’ olmayan değişkenler okuduğumuz veri dosyasında yer alan veri nesnelerini ifade ediyor.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>import scipy.io
+
+dosya = &#39;C:/Users/ilker/Desktop/gprdata.mat&#39;
+
+mat_veri = scipy.io.loadmat(dosya)
+
+print(mat_veri.keys())
+dict_keys([&#39;__header__&#39;, &#39;__version__&#39;, &#39;__globals__&#39;, &#39;Xtest&#39;, &#39;Xtrain&#39;, &#39;ytest&#39;, &#39;ytrain&#39;])
+
+print(type(mat_veri[&#39;Xtrain&#39;]))
+&lt;class &#39;numpy.ndarray&#39;&gt;
+
+import numpy
+print(numpy.shape(mat_veri[&#39;Xtrain&#39;]))
+(500, 6)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="iliskisel-veri-tabanlarindan-veri-okuma">
+<h2><span class="section-number">12.4. </span>İlişkisel Veri Tabanlarından Veri Okuma<a class="headerlink" href="#iliskisel-veri-tabanlarindan-veri-okuma" title="Permalink to this heading">#</a></h2>
+<p>İlişkisel veri tabanlarını basitçe, farklı tablolardan oluşan, her tablodaki kayıtların (satır) belirli bir anahtar değişken (sütun) ile belirlendiği ve tablolar arasındaki ilişkiler için de bu anahtar değişkenlerin kullanıldığı veri tabanlarıdır. İlişkisel veri tabanı ilk olarak 1970 yılında E.F. Codd tarafından önerilmiştir . Bütün ilişkisel veri tabanları veri arama ve düzenleme için SQL (Structured Query Language) dilini kullanır. Kullanılmakta olan birkaç farklı SQL türü vardır: MySQL, PostgreSQL, SQLite vb.</p>
+<p>İlişkisel veri tabanının çok sayıda tablodan oluştuğunu söylemiştik. Tabloları Pandas veri çerçevesi gibi düşünebilirsiniz. Bir tablodaki her bir satır bir veri, gözlem veya kaydı temsil eder. Her sütun ise bu tekil gözlemlere ilişkin bir özelliği belirtir.</p>
+<p>Örnek olması için bir kütüphanenin veri tabanını oluşturma görevini aldığınızı varsayalım. Hangi verileri saklardınız? Öncelikle kütüphanedeki bütün kitaplar için bir tablo oluşturmak gerekir. Kitap adı, yayınevi, yazarı, kitabın hangi alanla ilgili olduğu vb. bilgileri bu tabloda saklayabilirsiniz. İkinci olarak kütüphane üyelerinin yer aldığı bir tablo oluşturmak gerekecektir. Bu tabloda da üye numarası, adı, soyadı, telefonu, eposta ve adres bilgileri vb. yer alabilir. Üçüncü olarak ödünç verilen kitapları takip edebilmek için bir tablo oluşturmak gerekecektir. Hangi üyenin, hangi kitabı ne zaman aldığı, ne zaman teslim ettiği vb. bilgiler bu tabloda takip edilebilir. Bu tablolar artırılabilir. Örneğin, kitap siparişlerinde kolaylık sağlamak için yayınevlerine ilişkin bilgiler başka bir tabloda yer alabilir. Bütün bu tabloları da anahtar değişkenlerle birbirine bağlamak gerekir. Örneğin, kitap tablosu ile ödünç kitap tablosunu kitap no veya kitap adı gibi bir alanla ilişkilendirmek gerekir ki bir kitap hangi tarihte ödünç verilmiş, o sırada kütüphanede mi ödünç mü verilmiş anlaşılsın. Yine üye tablosu ile ödünç kitap tablosu da üye no gibi bir alanla birleştirilebilir. Böylece hangi üyenin hangi kitapları aldığı, o sırada üzerinde kitap olup olmadığı varsa kaç tane kitap almış olduğu, aldığı kitapları gecikmeli olarak iade edip etmediği takip edilebilsin. Benzer şekilde kitap bilgileri tablosu ile yayınevi tablosu da kitap no gibi bir alanla birleştirilebilir. Bu örnekleri artırmak da mümkündür. Gördüğünüz gibi basit bir kütüphane uygulaması için bile dört tane tablodan oluşan bir ilişkisel veri tabanı kurduk. Çok daha karmaşık verilerin kaydedilip kullanıldığı fabrika, banka, üniversite gibi kuruluşlarda çok daha fazla sayıda tabloya ve değişkene ihtiyaç vardır.</p>
+<p>Şimdi tarif ettiğimiz kütüphane veri tabanına ilişkin tabloları görelim. Kitapta gereksiz yer kaplamaması için tablolardaki kayıt sayısını az tuttum.</p>
+<p><img alt="kitap listesi" src="_images/kitaplar.png" /></p>
+<p><img alt="üye listesi" src="_images/uyeler.png" /></p>
+<p><img alt="ödünç kitaplar" src="_images/odunc_kitaplar.png" /></p>
+<p><img alt="yayınevi listesi" src="_images/yayinevleri.png" /></p>
+<p>Bu tabloları birbirleriyle ilişkilendirmek için de ilgili alan isimleri kullanılabilir. Yukarıdaki tabloların birbirleriyle ilişkilerini aşağıdaki şekilde daha rahat görebiliriz.</p>
+<p><img alt="ilişkisel veri yapısı" src="_images/relational_db.png" /></p>
+<p>Python kullanarak bir ilişkisel veri tabanına bağlanmak ve bu veri tabanında SQL yardımı ile sorgu yapmak ve veri çekmek mümkündür. Bunun için tabii ki öncelikle veri tabanı ile bağlantı kurmamız gerekir. Bunun için kullanılabilecek çok sayıda modül vardır: sqlalchemy, sqlite3, pypyodbc gibi… Örnek olarak sqlalchemy modülünü inceleyelim. Öncelikle sqlalchemy modülünden create_engine fonksiyonunu aktarıyoruz ve istediğimiz SQL sunucusuna bağlanmak için bu fonksiyonu kullanıyoruz. Çoğunuzun bildiği gibi ilişkisel veri tabanları kurumsal olarak kullanılan veri tabanlarıdır. Bu nedenle, buradaki örnekleri sql sunucusuna erişiminiz olan bir ortamda yani iş yerinizde deneyebilirsiniz. İşinizde ihtiyaç duyduğunuz veriler sql sunucusunda ise ancak siz çalışmalarınızı Python’da yürütmek istiyorsanız burada verilen örnekleri uyarlayarak kullanabilirsiniz. Çoğu zaman SQL sunucusuna bağlantı yetkisi ve kullanmanız gereken sunucu bağlantısı için kurumunuzun bilgi teknolojileri bölümü ile temas kurmanız gerekir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</pre></div>
+</div>
+<p>SQL sunucusu ile bağlantı kurmak için kullandığınız create_engine() fonksiyonunda argümanları aşağıdaki format ve sırada kullanmalısınız. Yukarıda da belirttiğim üzere kullanıcı adı, şifre, host, veri tabanı gibi bilgileri (tabii ki erişim yetkiniz varsa) çalıştığınız kurumun bilgi teknolojileri bölümünden almanız gerekiyor.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">baglanti</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sql_türü://kullanıcı:şifre@host:port/veri_tabanı&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>SQL türü, sqlite, mysql, postgresql, oracle ya da mssql olabilir. Bağlantı kurulduktan sonra, bağlandığınız veri tabanında hangi tabloların yer aldığını görmek için <code class="docutils literal notranslate"><span class="pre">.table_names()</span></code> metodunu kullanabilirsiniz.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">tablolar</span> <span class="o">=</span> <span class="n">baglanti</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tablolar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Şimdi oluşturduğumuz bağlantıyı <code class="docutils literal notranslate"><span class="pre">.connect()</span></code> metodu ile kullanabiliriz.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">baglanti</span> <span class="o">=</span> <span class="n">baglan</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Bu bağlantıyı kullanarak SQL sorgusu yapmak için .execute() metodunu kullanmak gerekir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sorgu1</span> <span class="o">=</span> <span class="n">baglanti</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM Tablo_1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bu kodun çalışması sonucunda oluşturulan sorgu1 bir tablo ya da veri çerçevesi değil bir sqlalchemy modülünde tanımlanmış olan bir sorgu nesnesidir. Şimdi bu sorguyu bir veri çerçevesine çevirmek gerekiyor. Bunun için de Pandas modülünden faydalanacağız. Sorgu nesnesini veri çerçevesine çevirmek için <code class="docutils literal notranslate"><span class="pre">.fetchall()</span></code> metodu kullanılır.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sonuc_tablo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sorgu1</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Bütün sorgu sonucu yerine belirli sayıda satırı çekmek isteyebiliriz. Bunun farklı sebepleri olabilir. Örneğin, sorgu çok büyük olduğu için tamamını aynı anda çekmek mümkün olmayabilir. Bu durumda, .fetchall() yerine .fetchmany() metodunu size argümanı ile birlikte kullanırız. Size argümanı kaç satırı okumak istediğimizi belirtir.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sonuc_tablo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sorgu1</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Bağlandığınız tablolarda sorgulama yapmak için SQL kodları kullanmanız gerekmektedir. SQL için çok sayıda kaynak ve kitap bulunmaktadır. Başlangıç seviyedeki bilgiler için dileyen okurlar ekler bölümünde yer alan SQL Sorguları bölümüne göz atabilir. Burada giriş seviyesindeki SQL bilgileri verilmiştir.</p>
+<p>Tablolarda yaptığımız sorguları veri çerçevesi olarak kaydettikten sonra ilgili bağlantıyı kapatabiliriz. Bağlantıyı kapatmak için <code class="docutils literal notranslate"><span class="pre">.close()</span></code> metodunu kullanmak gerekir:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">sorgu1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Bir defa <code class="docutils literal notranslate"><span class="pre">.create_engine()</span></code>  komutu ile SQL sunucusuna bağlandıktan sonra <code class="docutils literal notranslate"><span class="pre">.connect()</span></code> metodu ile bağlantıyı canlı hale getirmemiz, <code class="docutils literal notranslate"><span class="pre">.execute()</span></code> ile SQL sorgusunu gerçekleştirmemiz, <code class="docutils literal notranslate"><span class="pre">.fetchall</span></code> (veya <code class="docutils literal notranslate"><span class="pre">.fetchmany</span></code>) komutu ile sorgu nesnesini ver çerçevesine çevirmemiz, veri çerçevesinin sütun isimlerini atamamız ve son olarak bağlantıyı kapatmamız gerekir. Oyda pandas modülünde bunların hepsini tek satırda yapmak mümkündür. Bunun için pandas modülünden <code class="docutils literal notranslate"><span class="pre">.read_sql_query()</span></code> metodunu kullanmamız gerekiyor.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">baglanti</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sql_türü://kullanıcı_adı:şifre@host:port/veri_tabanı&#39;</span><span class="p">)</span>
+<span class="n">sonuc_tablo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM Tablo1&#39;</span><span class="p">,</span> <span class="n">baglan</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Görüldüğü gibi bu metod sayesinde <code class="docutils literal notranslate"><span class="pre">sqlalchemy</span></code> modülünde 3-4 satırda yapılan işi tek satırda yapmak mümkün oluyor. Ancak hala <code class="docutils literal notranslate"><span class="pre">.create_engine()</span></code> metodu için sqlalchemy modülüne ihtiyaç duyduğumuza dikkat edin.</p>
+</section>
+<section id="webden-veri-cekme">
+<h2><span class="section-number">12.5. </span>Webden Veri Çekme<a class="headerlink" href="#webden-veri-cekme" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -1859,6 +1991,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excel-dosyalarindan-veri-okuma">12.2. Excel Dosyalarından Veri Okuma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diger-dosya-turlerinden-veri-okuma">12.3. Diğer Dosya Türlerinden Veri Okuma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sas-dosyalari">12.3.1. SAS Dosyaları</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stata">12.3.2. STATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hdf5-veri-tipi">12.3.3. HDF5 Veri Tipi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab">12.3.4. MATLAB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iliskisel-veri-tabanlarindan-veri-okuma">12.4. İlişkisel Veri Tabanlarından Veri Okuma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webden-veri-cekme">12.5. Webden Veri Çekme</a></li>
 </ul>
   </nav></div>
 
